@@ -58,7 +58,7 @@ func __on_merge_button_down():
         else: ## 说明些文件没有对应的翻译,则直接进行移动操作
             pass
             var new_file_str=new_dir_str+"/"+i["文件"]
-            dir.rename(file_str,new_file_str)
+            dir.copy(file_str,new_file_str)
             
     print("执行合并完成：")
     
