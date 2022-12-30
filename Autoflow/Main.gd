@@ -11,7 +11,7 @@ var is_test=true
 func _ready():
     ##---> 做一些初化化工作
     print("当前项目路径：",G.dir_current_parent())
-    $ButtonA.connect("button_down",self,"__on_merge_button_down")
+    $ButtonA.connect("pressed",self,"__on_merge_button_down")
     
     ## 扫描待翻译文件列表
     G.dir_contents(Cargo_doc_path,DOC_files)
@@ -34,6 +34,7 @@ func _ready():
 ## 文档合并按钮按下后，开始执行合并操作。
 func __on_merge_button_down():
     ## 遍历所有文件
+    print("开始执行合并：")
     var dir = Directory.new()
     for i in DOC_files:
         var file_str=i["目录"]+"/"+i["文件"]
@@ -46,16 +47,21 @@ func __on_merge_button_down():
             ## 这里应该对循环引用等进行验证
             var original_text=G.load_file(file_str)
             
+            if !TL_flow_obj_in_test(TL_s):return ## 反向包含将退出
+            
             for it in TL_s:
                 original_text=original_text.replace(it.source_text,it.translation_text)
             
-            print(original_text)
+            if TL_s.size()>0:
+                print(file_str,"文件已进行合并。")
             G.save_file(original_text,new_dir_str+"/"+i["文件"])
         else: ## 说明些文件没有对应的翻译,则直接进行移动操作
             pass
             var new_file_str=new_dir_str+"/"+i["文件"]
             dir.rename(file_str,new_file_str)
-
+            
+    print("执行合并完成：")
+    
 ## 从内容获得翻译词条
 func get_TL_entrys(content):
     var regex = RegEx.new()
@@ -77,8 +83,21 @@ func TL_flow_obj_sorting_by_length(_TLL):
                 _TLL[i]=_TLL[u]
                 _TLL[u]=c
 
-
-
+## 验证词条的反包含性,即验证较短词条是否重复替代较长词条翻译后的结果。
+func TL_flow_obj_in_test(_TLL):
+    var length=_TLL.size()-1
+    if length==-1:
+        return true
+        
+    var is_pass=true
+    while length>=0:
+        for u in range(length):
+            if _TLL[u].translation_text.find(_TLL[length].source_text)!=-1:
+                is_pass=false
+                print("该词条反包含：\n",_TLL[length].source_text)
+            pass
+        length-=1
+    return is_pass
 
 
 
