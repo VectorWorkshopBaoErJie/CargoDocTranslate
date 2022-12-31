@@ -357,12 +357,14 @@ A *registry* is a service that contains a collection of downloadable
 contains a list of all crates, and tells Cargo how to download the crates that
 are needed.
 {==+==}
-A *registry* is a service that contains a collection of downloadable [*crates*](#crate) that can be installed or used as dependencies for a [*package*](#package). The default registry in the Rust ecosystem is [crates.io](https://crates.io). The registry has an [*index*](#index) which contains a list of all crates, and tells Cargo how to download the crates that are needed.
+*registry* "注册中心" 服务，拥有可下载的[*crates*](#crate)集合，可以作为[*package*](#package)的依赖而被安装使用。Rust生态系统中的默认注册中心是[crates.io](https://crates.io)。
+该注册中心有一个[*index*](#index)，包含了所有crate的列表，并告知Cargo如何下载需要的crate。
 {==+==}
 
 {==+==}
 ### Source
 {==+==}
+### 源
 {==+==}
 
 {==+==}
@@ -370,6 +372,7 @@ A *source* is a provider that contains [*crates*](#crate) that may be included
 as dependencies for a [*package*](#package). There are several kinds of
 sources:
 {==+==}
+一个*source* "源" 是拥有[*crates*](#crate)的提供者，它可以作为 [*package*](#package) 的依赖项。源有以下几种类型:
 {==+==}
 
 {==+==}
@@ -383,31 +386,41 @@ sources:
 - **Git source** — Packages located in a git repository (such as a [git
   dependency] or [git source]).
 {==+==}
+- **注册中心源** — 参阅 [注册中心](#registry)。
+- **本地注册源** — 一组以压缩文件形式存储在文件系统中的crates。参阅 [本地注册源] 。
+- **目录源** — 一组以压缩文件形式存储在文件系统中的crates。参阅 [目录源].
+- **路径源** — 在文件系统是独立包(如[路径依赖])或多个软件包的集合(比如[路径覆盖])。
+- **Git源** — 位于git仓库中的包(比如[git 依赖]或[git 源])。
 {==+==}
 
 {==+==}
 See [Source Replacement] for more information.
 {==+==}
+详见 [源替换]。
 {==+==}
 
 {==+==}
 ### Spec
 {==+==}
+### Spec
 {==+==}
 
 {==+==}
 See [package ID specification](#package).
 {==+==}
+参阅 [package ID specification](#package) 。
 {==+==}
 
 {==+==}
 ### Target
 {==+==}
+### 目标
 {==+==}
 
 {==+==}
 The meaning of the term *target* depends on the context:
 {==+==}
+ *target* "目标"术语的含义取决于上下文:
 {==+==}
 
 {==+==}
@@ -418,6 +431,7 @@ The meaning of the term *target* depends on the context:
   [*manifest*](#manifest), often inferred automatically by the [directory
   layout] of the source files.
 {==+==}
+- **Cargo 目标** — Cargo [*packages*](#package) *targets* ，对应于将要生成的 [*制品*](#artifact)。包可以有库、二进制、示例、测试和基准目标。在 `Cargo.toml` [*manifest*](#manifest)中配置[目标列表][targets]，通常由源文件的[目录层级]自动推断。
 {==+==}
 
 {==+==}
@@ -428,12 +442,14 @@ The meaning of the term *target* depends on the context:
   command-line option, the `CARGO_TARGET_DIR` [environment variable], or the
   `build.target-dir` [config option].
 {==+==}
+- **目标目录** — Cargo将所有构建的制品和中间文件放在 *目标* 目录中。默认情况下是一个名称为 `target` 的目录，位于 [*workspace*](#workspace) 根目录下，如果不使用工作区，则为包的根目录。该目录可以通过 `--target-dir` 命令行选项、`CARGO_TARGET_DIR`[环境变量]或 `build.target-dir` [配置选项] 来改变。
 {==+==}
 
 {==+==}
 - **Target Architecture** — The OS and machine architecture for the built
   artifacts are typically referred to as a *target*.
 {==+==}
+- **目标架构** — 操作系统以及机器架构中所构建的制品通常被称为 *目标* 。
 {==+==}
 
 {==+==}
@@ -445,51 +461,60 @@ The meaning of the term *target* depends on the context:
   [config option]. The general format of the triple is
   `<arch><sub>-<vendor>-<sys>-<abi>` where:
 {==+==}
+- **目标Triple** — Triple架构是指定目标体系结构的特定格式。Triple可以被称为 *目标Triple* ，它是生成制品的体系结构，而 *host triple* 是编译器运行的体系结构。目标Triple可以通过命令行选项 `--target` 或 `build.target` [配置选项] 指定。Triple的一般格式是 `<arch><sub>-<vendor>-<sys>-<abi>` :
 {==+==}
 
 {==+==}
   - `arch` = The base CPU architecture, for example `x86_64`, `i686`, `arm`,
     `thumb`, `mips`, etc.
 {==+==}
+  - `arch` = CPU基础架构, 例如 `x86_64`, `i686`, `arm`, `thumb`, `mips` 等。
 {==+==}
 
 {==+==}
   - `sub` = The CPU sub-architecture, for example `arm` has `v7`, `v7s`,
     `v5te`, etc.
 {==+==}
+  - `sub` = CPU子架构, 例如 `arm` has `v7`, `v7s`, `v5te` 等。
 {==+==}
 
 {==+==}
   - `vendor` = The vendor, for example `unknown`, `apple`, `pc`, `nvidia`, etc.
 {==+==}
+  - `vendor` = 供应商 , 例如 `unknown`, `apple`, `pc`, `nvidia` 等.
 {==+==}
 
 {==+==}
   - `sys` = The system name, for example `linux`, `windows`, `darwin`, etc.
     `none` is typically used for bare-metal without an OS.
 {==+==}
+  - `sys` = 系统名称, 例如 `linux`, `windows`, `darwin` 等。 `none` 是没有操作系统的裸机.
 {==+==}
 
 {==+==}
   - `abi` = The ABI, for example `gnu`, `android`, `eabi`, etc.
 {==+==}
+  - `abi` = ABI, 例如 `gnu`, `android`, `eabi` 等。
 {==+==}
 
 {==+==}
   Some parameters may be omitted. Run `rustc --print target-list` for a list of
   supported targets.
 {==+==}
+  一些可省略参数。运行 `rustc --print target-list` 获取列表。
 {==+==}
 
 {==+==}
 ### Test Targets
 {==+==}
+### 测试目标
 {==+==}
 
 {==+==}
 Cargo *test targets* generate binaries which help verify proper operation and
 correctness of code. There are two types of test artifacts:
 {==+==}
+Cargo *测试目标* 生成的二进制文件有助于验证代码的正确操作和准确性。有两种类型的测试制品:
 {==+==}
 
 {==+==}
@@ -498,6 +523,7 @@ correctness of code. There are two types of test artifacts:
   or binary code, and runs `#[test]` annotated functions, intended to verify
   individual units of code.
 {==+==}
+* **单元测试** — *单元测试*是可执行的二进制文件，由库或二进制目标直接编译生成。它包含库或二进制代码的全部内容，并运行 `#[test]` 注解的函数，旨在验证各个单元的代码。
 {==+==}
 
 {==+==}
@@ -508,11 +534,13 @@ correctness of code. There are two types of test artifacts:
   `Cargo.toml` [*manifest*](#manifest). It is intended to only test the public
   API of a library, or execute a binary to verify its operation.
 {==+==}
+* **集成测试目标** — [*集成测试目标*][integration-tests] 是由 *测试目标* 编译的可执行二进制文件，该目标是一个独立的 [*crate*](#crate) ，其来源位于 `tests` 目录下或由 `Cargo.toml` [*manifest*](#manifest) 中的 [`[[test]]` table][targets] 指定。它的目的是只测试一个库的公共API，或执行一个二进制文件以验证操作。
 {==+==}
 
 {==+==}
 ### Workspace
 {==+==}
+### 工作空间
 {==+==}
 
 {==+==}
@@ -521,6 +549,7 @@ A [*workspace*][workspace] is a collection of one or more
 `Cargo.lock` [*lock file*](#lock-file)), output directory, and various
 settings such as profiles.
 {==+==}
+[*workspace*][workspace] 是一个或多个 [*packages*](#package) 的集合，它们共享共同的依赖(拥有共享的`Cargo.lock` [*lock file*](#lock-file))、输出目录，各项设置，如配置文件。
 {==+==}
 
 {==+==}
@@ -528,12 +557,14 @@ A [*virtual workspace*][virtual] is a workspace where the root `Cargo.toml`
 [*manifest*](#manifest) does not define a package, and only lists the
 workspace [*members*](#member).
 {==+==}
+[*虚拟工作区*][virtual] 根 `Cargo.toml` [*manifest*](#manifest) 没有定义包，只列出工作区 [*成员*](#member) 。
 {==+==}
 
 {==+==}
 The *workspace root* is the directory where the workspace's `Cargo.toml`
 manifest is located. (Compare with [*package root*](#package).)
 {==+==}
+*工作区根* 是工作区的 `Cargo.toml` 配置清单所在的目录。 (相对于[*package root*](#package))。
 {==+==}
 
 {==+==}
@@ -553,7 +584,7 @@ manifest is located. (Compare with [*package root*](#package).)
 [git source]: ../reference/source-replacement.md
 [integration-tests]: ../reference/cargo-targets.md#integration-tests
 [manifest]: ../reference/manifest.md
-[path dependency]: ../reference/specifying-dependencies.md#specifying-path-dependencies
+[路径依赖]: ../reference/specifying-dependencies.md#specifying-path-dependencies
 [path overrides]: ../reference/overriding-dependencies.md#paths-overrides
 [pkgid-spec]: ../reference/pkgid-spec.md
 [rustdoc-unstable]: https://doc.rust-lang.org/nightly/rustdoc/unstable-features.html
@@ -564,19 +595,19 @@ manifest is located. (Compare with [*package root*](#package).)
 [workspace]: ../reference/workspaces.md
 {==+==}
 [Cargo.toml vs Cargo.lock]: ../guide/cargo-toml-vs-cargo-lock.md
-[Directory Sources]: ../reference/source-replacement.md#directory-sources
-[Local Registry Sources]: ../reference/source-replacement.md#local-registry-sources
-[Source Replacement]: ../reference/source-replacement.md
+[目录源]: ../reference/source-replacement.md#directory-sources
+[本地注册源]: ../reference/source-replacement.md#local-registry-sources
+[源替换]: ../reference/source-replacement.md
 [cargo-unstable]: ../reference/unstable.md
-[config option]: ../reference/config.md
+[配置选项]: ../reference/config.md
 [crates.io]: https://crates.io/
-[directory layout]: ../guide/project-layout.md
+[目录层级]: ../guide/project-layout.md
 [版本指南]: ../../edition-guide/index.html
 [edition-field]: ../reference/manifest.md#the-edition-field
-[environment variable]: ../reference/environment-variables.md
+[环境变量]: ../reference/environment-variables.md
 [feature]: ../reference/features.md
-[git dependency]: ../reference/specifying-dependencies.md#specifying-dependencies-from-git-repositories
-[git source]: ../reference/source-replacement.md
+[git 依赖]: ../reference/specifying-dependencies.md#specifying-dependencies-from-git-repositories
+[git 源]: ../reference/source-replacement.md
 [integration-tests]: ../reference/cargo-targets.md#integration-tests
 [manifest]: ../reference/manifest.md
 [path dependency]: ../reference/specifying-dependencies.md#specifying-path-dependencies
