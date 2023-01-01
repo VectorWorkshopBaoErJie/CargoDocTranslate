@@ -461,7 +461,7 @@ The meaning of the term *target* depends on the context:
   [config option]. The general format of the triple is
   `<arch><sub>-<vendor>-<sys>-<abi>` where:
 {==+==}
-- **目标Triple** — Triple架构是指定目标体系结构的特定格式。Triple可以被称为 *目标Triple* ，它是生成制品的体系结构，而 *host triple* 是编译器运行的体系结构。目标Triple可以通过命令行选项 `--target` 或 `build.target` [配置选项] 指定。Triple的一般格式是 `<arch><sub>-<vendor>-<sys>-<abi>` :
+- **目标三元组** — 三元组架构是指定目标体系结构的特定格式。三元组可以被称为 *目标三元组* ，它是生成制品的体系结构，而 *host triple* 是编译器运行的体系结构。目标三元组可以通过命令行选项 `--target` 或 `build.target` [配置选项] 指定。三元组的一般格式是 `<arch><sub>-<vendor>-<sys>-<abi>` :
 {==+==}
 
 {==+==}
