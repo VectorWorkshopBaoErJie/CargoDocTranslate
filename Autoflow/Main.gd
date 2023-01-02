@@ -44,12 +44,19 @@ func __on_merge_button_down():
             var content=G.load_file(i["翻译"][0]) ##  目前排除补充翻译的情况
             var TL_s=get_TL_entrys(content)
             TL_flow_obj_sorting_by_length(TL_s)  ##  对字符翻译数组按字符串长度进行一次排序。
-            ## 这里应该对循环引用等进行验证
+            
+            
             var original_text=G.load_file(file_str)
             
-            if !TL_flow_obj_in_test(TL_s):return ## 反向包含将退出
+            if !TL_flow_obj_in_test(TL_s): ## 反包含验证
+                print("上面反包含的文件是：",i["文件"])
+                return ## 反向包含将退出
             
             for it in TL_s:
+                if original_text.find(it.source_text)==-1:  ## 验证原文不存在的情况
+                    print("此翻译文本未找到,","在",i["文件"])
+                    print(it.source_text)
+                    continue
                 original_text=original_text.replace(it.source_text,it.translation_text)
             
             if TL_s.size()>0:
