@@ -476,7 +476,8 @@ library, and it requires enabling a corresponding feature in some optional
 dependencies.
 That can be done like this:
 {==+==}
-
+例如，假设在库中添加序列化支持，它需要在一些可选的依赖中启用相应的特性。
+可以像这样做:
 {==+==}
 
 
@@ -499,12 +500,15 @@ dependency.
 It will also enable the `serde` feature for the `rgb` dependency, but only if
 something else has enabled the `rgb` dependency.
 {==+==}
+在这个例子中，启用 `serde` 特性将启用serde依赖。
+它也将启用 `rgb` 依赖的 `serde` 特性，但只有在其他内容已经启用了 `rgb` 依赖的情况下。
 {==+==}
 
 
 {==+==}
 ### Command-line feature options
 {==+==}
+### 命令行可选特性
 {==+==}
 
 
@@ -512,6 +516,7 @@ something else has enabled the `rgb` dependency.
 The following command-line flags can be used to control which features are
 enabled:
 {==+==}
+以下命令行标志可以用来控制哪些特性被启用:
 {==+==}
 
 
@@ -523,6 +528,9 @@ enabled:
   `package-name/feature-name` syntax can be used to specify features for
   specific workspace members.
 {==+==}
+* `--features` _FEATURES_: 启用列出的特性。多个特性可以用逗号或空格分开。
+  若使用空格，如果从shell中运行Cargo，请确保在所有特性周围使用引号(例如 `---features "foo bar"` )。
+  如果在[工作空间]中构建多个包，可以使用 `package-name/feature-name` 语法来指定特定工作空间成员的特性。
 {==+==}
 
 
@@ -530,6 +538,7 @@ enabled:
 * `--all-features`: Activates all features of all packages selected on the
   command-line.
 {==+==}
+* `--all-features`: 激活在命令行上选择的所有包的所有特性。
 {==+==}
 
 
@@ -537,6 +546,7 @@ enabled:
 * `--no-default-features`: Does not activate the [`default`
   feature](#the-default-feature) of the selected packages.
 {==+==}
+* `--no-default-features`: 不激活所选包的[`default` 特性](#the-default-feature)。
 {==+==}
 
 
@@ -549,6 +559,7 @@ enabled:
 {==+==}
 ### Feature unification
 {==+==}
+### 特性联合
 {==+==}
 
 
@@ -556,6 +567,7 @@ enabled:
 Features are unique to the package that defines them. Enabling a feature on a
 package does not enable a feature of the same name on other packages.
 {==+==}
+特性对于定义它们的包来说是唯一的。在包上启用一个特性，不会在其他包上启用相同名称的特性。
 {==+==}
 
 
@@ -565,6 +577,9 @@ all features enabled on that dependency when building it. This helps ensure
 that only a single copy of the dependency is used. See the [features section]
 of the resolver documentation for more details.
 {==+==}
+当依赖被多个软件包使用时，Cargo会在构建时使用该依赖上启用的所有特性的联合。
+这有助于确保只使用该依赖的一个副本。
+更多细节请参见解析器文档中的 [特性部分] 。
 {==+==}
 
 
@@ -575,6 +590,9 @@ number][winapi-features] of features. If your package depends on a package
 another dependency `bar` which enables the "std" and "winnt" features of
 `winapi`, then `winapi` will be built with all four of those features enabled.
 {==+==}
+例如，来看一下 [`winapi`] 包，它使用了 [大量][winapi-features] 的特性。
+如果你的包依赖于包 `foo` ，它启用了 `winapi` 的 "fileapi" 和 "handleapi" 特性，
+而另一个依赖包 `bar` 启用了 `winapi` 的 "std" 和 "winnt" 特性，那么 `winapi` 将在启用所有这四种特性后被构建。
 {==+==}
 
 
@@ -597,6 +615,8 @@ a feature should not disable functionality, and it should usually be safe to
 enable any combination of features. A feature should not introduce a
 [SemVer-incompatible change](#semver-compatibility).
 {==+==}
+这样做的效果是，特性应该是 *增加性* 的。也就是说，启用特性不应该禁用功能，
+而且启用任意特性的组合通常都是安全的。一个特性不应该引入 [不兼容语义化改变](#semver-compatibility)。
 {==+==}
 
 
@@ -605,6 +625,7 @@ For example, if you want to optionally support [`no_std`] environments, **do
 not** use a `no_std` feature. Instead, use a `std` feature that *enables*
 `std`. For example:
 {==+==}
+例如，如果你想选择性地支持 [`no_std`] 环境，**不要**使用 `no_std` 特性。相反，使用 "std" 特性，*启用* `std` 。比如说:
 {==+==}
 
 
@@ -628,12 +649,15 @@ pub fn function_that_requires_std() {
 [`no_std`]: ../../reference/names/preludes.html#the-no_std-attribute
 [features section]: resolver.md#features
 {==+==}
+[`no_std`]: ../../reference/names/preludes.html#the-no_std-attribute
+[features部分]: resolver.md#features
 {==+==}
 
 
 {==+==}
 #### Mutually exclusive features
 {==+==}
+#### 互斥特性
 {==+==}
 
 
@@ -644,6 +668,9 @@ coordinating all uses of the package in the dependency graph to cooperate to
 avoid enabling them together. If it is not possible, consider adding a compile
 error to detect this scenario. For example:
 {==+==}
+在极少数情况下，特性之间可能相互不兼容。
+如果可能的话，应该避免这种情况，因为这需要协调依赖图中包的所有使用，避免同时启用。
+如果不可能，可以考虑增加一个编译错误来检测这种情况。比如说:
 {==+==}
 
 
@@ -659,6 +686,7 @@ compile_error!("feature \"foo\" and feature \"bar\" cannot be enabled at the sam
 {==+==}
 Instead of using mutually exclusive features, consider some other options:
 {==+==}
+与其使用相互排斥的特性，不如考虑一些其他选择:
 {==+==}
 
 
@@ -672,6 +700,9 @@ Instead of using mutually exclusive features, consider some other options:
   command-line argument, or environment variable to choose which behavior to
   enable.
 {==+==}
+* 将功能分成独立的包。
+* 当有冲突时，[选择其中之一][feature-precedence]。[`cfg-if`] 包可以帮助编写更复杂的 `cfg` 表达式。
+* 构建代码以允许同时启用这些功能，并使用运行时选项来控制使用哪个功能。例如，使用一个配置文件、命令行参数或环境变量来选择启用哪种行为。
 {==+==}
 
 
@@ -685,6 +716,7 @@ Instead of using mutually exclusive features, consider some other options:
 {==+==}
 #### Inspecting resolved features
 {==+==}
+#### 检查解析特性
 {==+==}
 
 
@@ -694,6 +726,8 @@ different features get enabled on various packages. The [`cargo tree`] command
 offers several options to help inspect and visualize which features are
 enabled. Some options to try:
 {==+==}
+在复杂的依赖图中，有时很难理解不同的特性是如何在不同的包上被启用的。
+[`cargo tree`] 命令提供了几个选项来帮助检查和可视化哪些特性被启用。可以尝试:
 {==+==}
 
 
@@ -709,6 +743,12 @@ enabled. Some options to try:
   package and why. See the example at the bottom of the [`cargo tree`] page on
   how to read this.
 {==+==}
+* `cargo tree -e features`: 这将显示依赖图中的特征。
+  每个特性都会出现，显示哪个软件包启用了它。
+* `cargo tree -f "{p} {f}"`: 这是更紧凑的视图，显示每个包上启用的特性的逗号分隔的列表。
+* `cargo tree -e features -i foo`: 这将反转树形图，显示特征如何流入给定的包 "foo"。这可能很有用，因为查看整个图表可能相当大，而且令人不知所措。
+当你试图弄清楚哪些特性在特定的包上被启用以及为什么要这样做时，可以使用这个方法。
+请看[`cargo tree`]页面底部的例子，了解阅读。
 {==+==}
 
 
@@ -721,6 +761,7 @@ enabled. Some options to try:
 {==+==}
 ### Feature resolver version 2
 {==+==}
+### 特性解析版本2
 {==+==}
 
 
@@ -728,6 +769,7 @@ enabled. Some options to try:
 A different feature resolver can be specified with the `resolver` field in
 `Cargo.toml`, like this:
 {==+==}
+可以用 `Cargo.toml` 中的 `resolver` 字段指定不同的特性解析器，像这样:
 {==+==}
 
 
@@ -746,6 +788,7 @@ resolver = "2"
 See the [resolver versions] section for more detail on specifying resolver
 versions.
 {==+==}
+关于指定解析器版本的更多细节，请参见 [解析器版本] 部分。
 {==+==}
 
 
@@ -755,6 +798,8 @@ that unification can be unwanted. The exact situations are described in the
 [resolver chapter][resolver-v2], but in short, it avoids unifying in these
 situations:
 {==+==}
+版本 `"2"` 的解析器在一些不需要联合的情况下避免了联合的特性。
+具体的情况在 [解析器章节][resolver-v2] 中有描述，简而言之，它避免在这些情况下进行联合。
 {==+==}
 
 
@@ -766,6 +811,9 @@ situations:
 * [Dev-dependencies] do not activate features unless building a target that
   needs them (like tests or examples).
 {==+==}
+* 对于目前没有被构建的目标，在[特定平台依赖]上启用的特性会被忽略。
+* [Build-dependencies] 和 proc-macros 不与常规依赖共享特性。
+* [Dev-dependencies] 不会激活特性，除非构建需要它们的目标(如测试或实例)。
 {==+==}
 
 
@@ -775,6 +823,8 @@ build-dependency enables a `std` feature, and the same dependency is used as a
 normal dependency for a `no_std` environment, enabling `std` would break the
 build.
 {==+==}
+在某些情况下，避免联合是必要的。
+例如，如果build-dependency启用了 `std` 特性，而同一个依赖被用作 `no_std` 环境的常规依赖，启用 `std` 会破坏构建。
 {==+==}
 
 
@@ -795,12 +845,20 @@ the resolved features. For build dependencies, this is not necessary if you
 are cross-compiling with the `--target` flag because build dependencies are
 always built separately from normal dependencies in that scenario.
 {==+==}
+然而，一个缺点是，这可能会增加构建时间，因为依赖会被构建多次(每次都有不同的特性)。
+当使用版本 `"2"` 解析器时，建议检查那些被多次构建的依赖，以减少整体构建时间。
+如果不是 *必须* 要用单独的特性来构建这些重复的包，可以考虑在[依赖声明](#dependency-features)中的 `特性` 列表中添加特性，
+这样重复的包最后就会有相同的特性(因此Cargo只会构建一次)。
+你可以用[`cargo tree --duplicates`][`cargo tree`]命令检测这些重复的依赖。它将显示哪些包被多次构建；
+寻找任何列出相同版本的条目。参见 [Inspecting resolved features](#inspecting-resolved-features) 获取更多关于获取已解决特性的信息。
+对于构建依赖，如果你使用 `--target` 标志进行交叉编译，则没有必要这样做，因为在这种情况下，构建依赖总是与普通依赖分开构建。
 {==+==}
 
 
 {==+==}
 #### Resolver version 2 command-line flags
 {==+==}
+#### 解析器版本2命令行标记
 {==+==}
 
 
@@ -808,6 +866,7 @@ always built separately from normal dependencies in that scenario.
 The `resolver = "2"` setting also changes the behavior of the `--features` and
 `--no-default-features` [command-line options](#command-line-feature-options).
 {==+==}
+ `resolver = "2"` 的设置也改变了 `--features` 和 `--no-default-features` [命令行选项](#command-line-feature-options) 的行为。
 {==+==}
 
 
@@ -818,6 +877,9 @@ current working directory. For example, in a workspace with packages `foo` and
 `cargo build -p bar --features bar-feat`, this would fail because the
 `--features` flag only allowed enabling features on `foo`.
 {==+==}
+在版本 `"1"` 中，你只能为当前工作目录中的包启用特性。
+例如，在一个有 `foo` 和 `bar` 包的工作空间中，如果你在 `foo` 包的目录下，运行 `cargo build -p bar --features bar-feat` 命令，就会失败，
+因为 `--features` 标志只允许启用 `foo` 的特性。
 {==+==}
 
 
@@ -826,6 +888,7 @@ With `resolver = "2"`, the features flags allow enabling features for any of
 the packages selected on the command-line with `-p` and `--workspace` flags.
 For example:
 {==+==}
+在 `resolver = "2"` 的情况下，特性标志允许启用任何在命令行中用 `-p` 和 `--workspace` 标志选择的包的特性。比如说:
 {==+==}
 
 
@@ -839,6 +902,13 @@ cargo build -p foo -p bar --features foo-feat,bar-feat
 cargo build -p foo -p bar --features foo/foo-feat,bar/bar-feat
 ```
 {==+==}
+```sh
+# 这个命令在 resolver = "2" 的情况下是允许的，无论你在哪个目录下。
+cargo build -p foo -p bar --features foo-feat,bar-feat
+
+# 这个明确的等价形式适用于任何解析器版本:
+cargo build -p foo -p bar --features foo/foo-feat,bar/bar-feat
+```
 {==+==}
 
 
@@ -847,6 +917,8 @@ Additionally, with `resolver = "1"`, the `--no-default-features` flag only
 disables the default feature for the package in the current directory. With
 version "2", it will disable the default features for all workspace members.
 {==+==}
+此外，在 `resolver = "1"` 的情况下，`--no-default-features` 标志只停用当前目录下包的默认特性。
+如果版本为 "2" ，它将禁用所有工作空间成员的默认特性。
 {==+==}
 
 
@@ -856,12 +928,17 @@ version "2", it will disable the default features for all workspace members.
 [dev-dependencies]: specifying-dependencies.md#development-dependencies
 [resolver-v2]: resolver.md#feature-resolver-version-2
 {==+==}
+[解析器版本]: resolver.md#resolver-versions
+[build-dependencies]: specifying-dependencies.md#build-dependencies
+[dev-dependencies]: specifying-dependencies.md#development-dependencies
+[resolver-v2]: resolver.md#feature-resolver-version-2
 {==+==}
 
 
 {==+==}
 ### Build scripts
 {==+==}
+### 构建脚本
 {==+==}
 
 
@@ -870,18 +947,21 @@ version "2", it will disable the default features for all workspace members.
 inspecting the `CARGO_FEATURE_<name>` environment variable, where `<name>` is
 the feature name converted to uppercase and `-` converted to `_`.
 {==+==}
+[构建脚本]可以通过检查 `CARGO_FEATURE_<name>` 环境变量来检测包上启用了哪些特性，其中`<name>`是转换为大写的特性名称， `-` 转换为 `_` 。
 {==+==}
 
 
 {==+==}
 [build scripts]: build-scripts.md
 {==+==}
+[构建脚本]: build-scripts.md
 {==+==}
 
 
 {==+==}
 ### Required features
 {==+==}
+### 必须特性
 {==+==}
 
 
@@ -890,6 +970,8 @@ The [`required-features` field] can be used to disable specific [Cargo
 targets] if a feature is not enabled. See the linked documentation for more
 details.
 {==+==}
+如果某个特性没有被启用，[`required-features` 字段]可以用来禁用特定的[Cargo 目标]。
+更多细节请参阅链接的文档。
 {==+==}
 
 
@@ -897,12 +979,15 @@ details.
 [`required-features` field]: cargo-targets.md#the-required-features-field
 [Cargo targets]: cargo-targets.md
 {==+==}
+[`required-features` 字段]: cargo-targets.md#the-required-features-field
+[Cargo 目标]: cargo-targets.md
 {==+==}
 
 
 {==+==}
 ### SemVer compatibility
 {==+==}
+### 语义化版本兼容
 {==+==}
 
 
@@ -912,6 +997,9 @@ example, the feature shouldn't change an existing API in a way that could
 break existing uses. More details about what changes are compatible can be
 found in the [SemVer Compatibility chapter](semver.md).
 {==+==}
+启用特性不应该引入语义化不兼容的变化。
+例如，该特性不应该以可能破坏现有用途的方式改变现有的API。
+关于哪些变化是兼容的，可以在[语义化版本兼容性章节](semver.md)中找到更多细节。
 {==+==}
 
 
@@ -921,6 +1009,8 @@ dependencies, as these can sometimes be backwards-incompatible changes. More
 details can be found in the [Cargo section](semver.md#cargo) of the SemVer
 Compatibility chapter. In short, follow these rules:
 {==+==}
+在添加和删除特性定义和可选的依赖时应该小心，因为这些有时可能是向后不兼容的变化。
+更多细节可以在语义化版本兼容性章节的[Cargo 部分](semver.md#cargo)中找到。简而言之，遵循这些规则:
 {==+==}
 
 
@@ -933,12 +1023,20 @@ Compatibility chapter. In short, follow these rules:
   * [Moving existing public code behind a feature][item-remove].
   * [Remove a feature from a feature list][cargo-feature-remove-another].
 {==+==}
+* 在次要版本中，以下做法通常是安全的:
+  * 添加 [新特性][cargo-feature-add] 或 [可选依赖][cargo-dep-add]。
+  * [改变依赖上使用的特性][cargo-change-dep-feature].
+* 以下内容通常**不**应该在次要版本中去做:
+  * [移除特性][cargo-feature-remove] 或者 [可选依赖][cargo-remove-opt-dep].
+  * [将现有的公共代码移到特性之后][item-remove].
+  * [从特性列表中移除特性][cargo-feature-remove-another].
 {==+==}
 
 
 {==+==}
 See the links for caveats and examples.
 {==+==}
+注意事项和实例见链接。
 {==+==}
 
 
@@ -957,6 +1055,7 @@ See the links for caveats and examples.
 {==+==}
 ### Feature documentation and discovery
 {==+==}
+### 特征文档和发现
 {==+==}
 
 
@@ -969,6 +1068,11 @@ guide, consider adding the documentation there (for example, see [serde.rs]).
 If you have a binary project, consider documenting the features in the README
 or other documentation for the project (for example, see [sccache]).
 {==+==}
+我们鼓励你记录你的包中有哪些特性。
+这可以通过在 `lib.rs` 的顶部添加 [doc comments] 来实现。
+请查看 [regex crate source]例子，它被渲染后可以在 [docs.rs][regex-docs-rs] 上查看。
+如果你有其他的文档，比如用户指南，考虑将文档添加到那里(例如，参阅[serde.rs])。
+如果你有一个二进制项目，考虑在README或项目的其他文档中记录这些特性(例如，参阅[sccache])。
 {==+==}
 
 
@@ -978,6 +1082,8 @@ considered "unstable" or otherwise shouldn't be used. For example, if there is
 an optional dependency, but you don't want users to explicitly list that
 optional dependency as a feature, exclude it from the documented list.
 {==+==}
+明确记录特性可以为那些被认为是 "不稳定" 或不应该被使用的特性设定期望。
+例如，如果有一个可选的依赖，但你不希望用户明确地把这个可选依赖列为特性，那么就把它从记录的列表中排除。
 {==+==}
 
 
@@ -986,6 +1092,8 @@ Documentation published on [docs.rs] can use metadata in `Cargo.toml` to
 control which features are enabled when the documentation is built. See
 [docs.rs metadata documentation] for more details.
 {==+==}
+在[docs.rs]上发布的文档可以使用 `Cargo.toml` 中的元数据来控制文档构建时启用哪些特性。
+更多细节请参见 [docs.rs metadata documentation] 。
 {==+==}
 
 
@@ -996,6 +1104,8 @@ control which features are enabled when the documentation is built. See
 > documentation], where you can see colored boxes which note which features
 > are required to use it.
 {==+==}
+> **注意**: Rustdoc实验性地支持对文档进行注释，以表明使用某些API需要哪些特性。
+> 更多细节见 [`doc_cfg`] 文档。一个例子是[`syn` documentation]，你可以看到彩色的方框，其中指出使用哪些特性是需要的。
 {==+==}
 
 
@@ -1016,6 +1126,7 @@ control which features are enabled when the documentation is built. See
 {==+==}
 #### Discovering features
 {==+==}
+#### 发现特性
 {==+==}
 
 
@@ -1028,6 +1139,10 @@ crate page on [crates.io] has a link to the source repository if available.
 Tools like [`cargo vendor`] or [cargo-clone-crate] can be used to download the
 source and inspect it.
 {==+==}
+当特性被记录在库的API中时，这可以使你的用户更容易发现哪些特性是可用的以及它们的作用。
+如果一个包的特性文档不容易获得，你可以看看 `Cargo.toml` 文件，但有时会很难追踪到它。
+如果存在，[crates.io]上的crate页面有一个指向源码库的链接。
+像 [`cargo vendor`] 或 [cargo-clone-crate] 这样的工具可以用来下载源码并检查它。
 {==+==}
 
 
@@ -1041,16 +1156,21 @@ source and inspect it.
 {==+==}
 ### Feature combinations
 {==+==}
+### 特性组合
 {==+==}
 
 
 {==+==}
 Because features are a form of conditional compilation, they require an exponential number of configurations and test cases to be 100% covered. By default, tests, docs, and other tooling such as [Clippy](https://github.com/rust-lang/rust-clippy) will only run with the default set of features.
 {==+==}
+因为特性是一种条件编译的形式，它们需要指数级的配置和测试案例才能100%覆盖。
+默认情况下，测试、文档和其他工具，如[Clippy](https://github.com/rust-lang/rust-clippy)将只在默认的特性集下运行。
 {==+==}
 
 
 {==+==}
 We encourage you to consider your strategy and tooling in regards to different feature combinations - Every project will have different requirements in conjunction with time, resources, and the cost-benefit of covering specific scenarios. Common configurations may be with / without default features, specific combinations of features, or all combinations of features.
 {==+==}
+我们鼓励你考虑你的策略和工具在不同的特性组合方面 - 每个项目将有不同的要求，结合时间、资源和覆盖特定场景的成本效益。
+常见的配置可能是有/无默认功能，特定的特性组合，或所有的特性组合。
 {==+==}
