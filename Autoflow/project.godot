@@ -9,12 +9,36 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "LoadController",
+"language": "GDScript",
+"path": "res://controller/LoadController.gd"
+}, {
+"base": "TFile",
+"class": "SF",
+"language": "GDScript",
+"path": "res://class/SourceFile.gd"
+}, {
+"base": "TFile",
+"class": "TF",
+"language": "GDScript",
+"path": "res://class/TranslationFile.gd"
+}, {
+"base": "Reference",
+"class": "TFile",
+"language": "GDScript",
+"path": "res://class/TFile.gd"
+}, {
 "base": "Reference",
 "class": "TL",
 "language": "GDScript",
-"path": "res://class/translation_pair.gd"
+"path": "res://class/TranslationPair.gd"
 } ]
 _global_script_class_icons={
+"LoadController": "",
+"SF": "",
+"TF": "",
+"TFile": "",
 "TL": ""
 }
 
@@ -27,6 +51,8 @@ config/icon="res://setting/icon.png"
 [autoload]
 
 G="*res://lib/G.gd"
+Tool="*res://lib/Tool.gd"
+Data="*res://Data.gd"
 
 [gui]
 

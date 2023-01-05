@@ -1,50 +1,48 @@
 extends Control
 
-## 待翻译的文件路径列表 其每一个文件为一个字典，{文件:git-authentication.md, 目录:E:/develop/CargoDocTranslate/Cargo_doc/appendix },
-var DOC_files=[]            
+var loadController=LoadController.new()
 
-var Cargo_doc_path=G.dir_current_parent()+"Cargo_doc"
-var Cargo_doc_cn_path=G.dir_current_parent()+"Cargo_doc_cn"
-
-var is_test=true
-
-func _ready():
-    ##---> 做一些初化化工作
+## 项目初始化工作
+func init():
     print("当前项目路径：",G.dir_current_parent())
     $ButtonA.connect("pressed",self,"__on_merge_button_down")
     
-    ## 扫描待翻译文件列表
-    G.dir_contents(Cargo_doc_path,DOC_files)
-    
-    ## 遍历一次待翻译文件列表，并检索翻译库文件
-    for i in DOC_files:
-        var new_str=i["目录"].replace("/Cargo_doc","/Cargo_doc_cn")
-        var new_file_str=new_str+"/"+i["文件"].replace(".md","_cn.md") ##对应的翻译库文件
-        
-        var file = File.new() #尝试加载文件
-        if file.file_exists(new_file_str):
-            i["翻译"]=[]
-            i["翻译"].append(new_file_str)
-        file.close()
+    loadController.load_all_SF()
+    loadController.load_all_TF()
 
-    #print(DOC_files)
-    ##---> 做一些检测工作
-    #is_test=config_obj.TL_flow_objs_init()
+
+func _ready():
+    ##---> 做一些初化化工作
+    init()
+    
+#    ## 遍历一次待翻译文件列表，并检索翻译库文件
+#    for i in Data.DOC_files:
+#        var new_str=i["目录"].replace("/Cargo_doc","/Cargo_doc_cn")
+#        var new_file_str=new_str+"/"+i["文件"].replace(".md","_cn.md") ##对应的翻译库文件
+#
+#        var file = File.new() #尝试加载文件
+#        if file.file_exists(new_file_str):
+#            i["翻译"]=[]
+#            i["翻译"].append(new_file_str)
+#        file.close()
+    
 
 ## 文档合并按钮按下后，开始执行合并操作。
 func __on_merge_button_down():
     ## 遍历所有文件
     print("开始执行合并：")
     var dir = Directory.new()
-    for i in DOC_files:
+    for i in Data.DOC_files:
         var file_str=i["目录"]+"/"+i["文件"]
         var new_dir_str=i["目录"].replace("/Cargo_doc","/Cargo_doc_merge")
         dir.make_dir_recursive(new_dir_str)
         if i.has("翻译"):
             var content=G.load_file(i["翻译"][0]) ##  目前排除补充翻译的情况
-            var TL_s=get_TL_entrys(content)
+            var TL_s=Tool.get_TL_entrys(content)
             TL_flow_obj_sorting_by_length(TL_s)  ##  对字符翻译数组按字符串长度进行一次排序。
             
+            for it in TL_s: 
+                pass
             
             var original_text=G.load_file(file_str)
             
@@ -69,17 +67,6 @@ func __on_merge_button_down():
             
     print("执行合并完成：")
     
-## 从内容获得翻译词条
-func get_TL_entrys(content):
-    var regex = RegEx.new()
-    regex.compile("\\{==\\+==\\}\\n(?<source>[\\s\\S]*?)\\n\\{==\\+==\\}\\n(?<translation>[\\s\\S]*?)\\n\\{==\\+==\\}")
-    var results = regex.search_all(content)
-    var TL_s=[]
-    for i in results:
-        var tl_entry=TL.new(i.get_string("source"),i.get_string("translation"))
-        TL_s.append(tl_entry)
-        pass
-    return TL_s
 
 ## 对字符翻译数组按字符串长度进行一次排序。
 func TL_flow_obj_sorting_by_length(_TLL):
@@ -95,7 +82,7 @@ func TL_flow_obj_in_test(_TLL):
     var length=_TLL.size()-1
     if length==-1:
         return true
-        
+    
     var is_pass=true
     while length>=0:
         for u in range(length):

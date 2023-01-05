@@ -15,3 +15,12 @@ margin_right = 595.0
 margin_bottom = 315.0
 custom_fonts/font = ExtResource( 2 )
 text = "合并生成"
+
+[node name="Label" type="Label" parent="."]
+margin_top = 154.0
+margin_right = 1024.0
+margin_bottom = 199.0
+custom_fonts/font = ExtResource( 2 )
+text = "为了更准确验证，当前项目重构中！！"
+align = 1
+valign = 1
