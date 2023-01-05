@@ -28,4 +28,10 @@ func find_SF(tf:TF):
     return null
 
 
-
+func find_TF(tf:SF):
+    for it in Data.TF_files:
+        var na1=tf.file_name.replace(".md","_cn.md")
+        var na2=tf.path.replace("Cargo_doc","Cargo_doc_cn")
+        if it.file_name==na1 and it.path==na2:
+            return it
+    return null

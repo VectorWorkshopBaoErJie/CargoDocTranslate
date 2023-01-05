@@ -12,18 +12,6 @@ func init():
     
     
 func _ready():
-    ##---> 做一些初化化工作
-    print("项目启动！")
+    Ui.add_test("项目启动！\n")
     init()
-    
-#    ## 遍历一次待翻译文件列表，并检索翻译库文件
-#    for i in Data.DOC_files:
-#        var new_str=i["目录"].replace("/Cargo_doc","/Cargo_doc_cn")
-#        var new_file_str=new_str+"/"+i["文件"].replace(".md","_cn.md") ##对应的翻译库文件
-#
-#        var file = File.new() #尝试加载文件
-#        if file.file_exists(new_file_str):
-#            i["翻译"]=[]
-#            i["翻译"].append(new_file_str)
-#        file.close()
     

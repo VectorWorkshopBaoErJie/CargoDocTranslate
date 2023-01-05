@@ -7,48 +7,41 @@ func show_text(text):
 func get_text():
     return $Control/RichTextLabel.text
 
+func add_test(text):
+    $Control/RichTextLabel.text+=text
+
 func _ready():
     $Control/ButtonA.connect("pressed",self,"__on_merge_button_down")
     
-    
 ## 文档合并按钮按下后，开始执行合并操作。
 func __on_merge_button_down():
-    print("执行合并操作：")
+    
     if Data.is_err: ## 只有检测无错误时，才能合并。
+        add_test("项目有错误，无法合并，请修正错误后，尝试：\n")
         return
+    else:
+        add_test("开始执行合并：\n")
     
-#    ## 遍历所有文件
-#    print("开始执行合并：")
-#    var dir = Directory.new()
-#    for i in Data.DOC_files:
-#        var file_str=i["目录"]+"/"+i["文件"]
-#        var new_dir_str=i["目录"].replace("/Cargo_doc","/Cargo_doc_merge")
-#        dir.make_dir_recursive(new_dir_str)
-#        if i.has("翻译"):
-#            var content=G.load_file(i["翻译"][0]) ##  目前排除补充翻译的情况
-#            var TL_s
-#
-#            for it in TL_s: 
-#                pass
-#
-#            var original_text=G.load_file(file_str)
-#
-#
-#            for it in TL_s:
-#                if original_text.find(it.source_text)==-1:  ## 验证原文不存在的情况
-#                    print("此翻译文本未找到,","在",i["文件"])
-#                    print(it.source_text)
-#                    continue
-#                original_text=original_text.replace(it.source_text,it.translation_text)
-#
-#            if TL_s.size()>0:
-#                print(file_str,"文件已进行合并。")
-#            G.save_file(original_text,new_dir_str+"/"+i["文件"])
-#        else: ## 说明些文件没有对应的翻译,则直接进行移动操作
-#            pass
-#            var new_file_str=new_dir_str+"/"+i["文件"]
-#            dir.copy(file_str,new_file_str)
-#
-#    print("执行合并完成：")
+    var dir = Directory.new()
     
+    for it in Data.SF_files:
+        var file_str=it.path+"/"+it.file_name
+        var new_dir_str=it.path.replace("/Cargo_doc","/Cargo_doc_merge")
+        dir.make_dir_recursive(new_dir_str)
+        if it.is_type==false:
+            dir.copy(file_str,new_dir_str+"/"+it.file_name)
+        else:
+            var tf=Data.find_TF(it)
+            if tf==null:
+                continue ## 没有找到文件，就不合并
+            var TL_S=tf.get_TL_entrys()
+            
+            for op in TL_S:
+                if op.translation_text=="":
+                    op.translation_text=op.source_text
 
+            for op in TL_S:
+                it.content=it.content.replace(op.source_text,op.translation_text)
+            G.save_file(it.content,new_dir_str+"/"+it.file_name)
+            
+    add_test("合并完毕：\n")

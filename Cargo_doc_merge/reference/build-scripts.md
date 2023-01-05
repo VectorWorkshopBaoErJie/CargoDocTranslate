@@ -344,10 +344,11 @@ Cargo和 `rustc` 使用为GNU 制作开发的[jobserver 协议]来协调进程�
 每个构建脚本都从Cargo那里继承一个作业槽，并试图运行时只使用一个CPU。
 如果脚本想并行使用更多的CPU，应该使用[`jobserver` crate]来与Cargo协调。
 
-{==+==}
-
+As an example, the [`cc` crate] may enable the optional `parallel` feature
+which will use the jobserver protocol to attempt to build multiple C files
+at the same time.
 
 [`cc` crate]: https://crates.io/crates/cc
 [`jobserver` crate]: https://crates.io/crates/jobserver
-[jobserver protocol]: http://make.mad-scientist.net/papers/jobserver-implementation/
+[jobserver 协议]: http://make.mad-scientist.net/papers/jobserver-implementation/
 [crates.io]: https://crates.io/
