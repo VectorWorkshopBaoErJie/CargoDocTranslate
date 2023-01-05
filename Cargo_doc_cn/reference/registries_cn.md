@@ -49,6 +49,7 @@ table has a key for each registry, for example:
 my-registry = { index = "https://my-intranet:8080/git/index" }
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -69,6 +70,7 @@ name = "my-project"
 version = "0.1.0"
 edition = "2021"
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -76,6 +78,7 @@ edition = "2021"
 other-crate = { version = "1.0", registry = "my-registry" }
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -92,6 +95,7 @@ environment variable will accomplish the same thing as defining a config file:
 CARGO_REGISTRIES_MY_REGISTRY_INDEX=https://my-intranet:8080/git/index
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -121,6 +125,7 @@ Cargo的一些命令，如[`cargo publish`]，需要一个 `--registry` 命令�
 {==+==}
 1. `cargo login --registry=my-registry`
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -137,6 +142,7 @@ Cargo的一些命令，如[`cargo publish`]，需要一个 `--registry` 命令�
 {==+==}
 2. `cargo publish --registry=my-registry`
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -153,6 +159,7 @@ key. For example:
 default = "my-registry"
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -171,6 +178,7 @@ value may be a list of registry names, for example:
 publish = ["my-registry"]
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -195,6 +203,7 @@ has a separate table for each registry, for example:
 token = "854DvwSlUwEHtIo3kWy6x7UCPKHfzCmy"
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -239,4 +248,5 @@ token = "854DvwSlUwEHtIo3kWy6x7UCPKHfzCmy"
 })();
 </script>
 {==+==}
+
 {==+==}

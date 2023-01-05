@@ -1024,6 +1024,7 @@ As an example, the [`cc` crate] may enable the optional `parallel` feature
 which will use the jobserver protocol to attempt to build multiple C files
 at the same time.
 {==+==}
+
 {==+==}
 
 {==+==}

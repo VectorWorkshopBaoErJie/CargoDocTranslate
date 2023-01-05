@@ -27,7 +27,6 @@ The key points of workspaces are:
 * The [`[patch]`][patch], [`[replace]`][replace] and [`[profile.*]`][profiles]
   sections in `Cargo.toml` are only recognized in the *root* manifest, and
   ignored in member crates' manifests.
-
 {==+==}
 * 普通命令可以在所有工作空间成员中运行，如`cargo check --workspace`。
 * 所有软件包共享一个共同的[`Cargo.lock`]文件，该文件驻留在 *工作空间根* 下。
@@ -87,7 +86,7 @@ To create a workspace, you add the `[workspace]` table to a `Cargo.toml`:
 
 {==+==}
 At minimum, a workspace has to have a member, either with a root package or as
-a virtual manifest.pa
+a virtual manifest.
 {==+==}
 一个工作空间至少有一个成员，要么是一个根package，要么作为虚拟清单。
 {==+==}
@@ -116,6 +115,7 @@ name = "hello_world" # the name of the package
 version = "0.1.0"    # the current version, obeying semver
 authors = ["Alice <a@example.com>", "Bob <b@example.com>"]
 ```
+
 <a id="virtual-manifest"></a>
 {==+==}
 ```toml
@@ -126,6 +126,7 @@ name = "hello_world" # package的名字
 version = "0.1.0"    # 当前版本, 遵循 semver
 authors = ["Alice <a@example.com>", "Bob <b@example.com>"]
 ```
+
 <a id="virtual-manifest"></a>
 {==+==}
 
@@ -150,6 +151,12 @@ you want to keep all the packages organized in separate directories.
 [workspace]
 members = ["hello_world"]
 ```
+{==+==}
+
+{==+==}
+
+
+{==+==}
 ```toml
 # [PROJECT_DIR]/hello_world/Cargo.toml
 [package]
@@ -159,11 +166,6 @@ authors = ["Alice <a@example.com>", "Bob <b@example.com>"]
 ```
 {==+==}
 ```toml
-# [PROJECT_DIR]/Cargo.toml
-[workspace]
-members = ["hello_world"]
-```
-```toml
 # [PROJECT_DIR]/hello_world/Cargo.toml
 [package]
 name = "hello_world" # package名称
@@ -171,6 +173,7 @@ version = "0.1.0"    # 当前版本, 遵循 semver
 authors = ["Alice <a@example.com>", "Bob <b@example.com>"]
 ```
 {==+==}
+
 
 {==+==}
 ### The `members` and `exclude` fields 
@@ -180,7 +183,8 @@ authors = ["Alice <a@example.com>", "Bob <b@example.com>"]
 
 {==+==}
 The `members` and `exclude` fields define which packages are members of
-the workspace:{==+==}
+the workspace:
+{==+==}
 `members` 和 `exclude`字段定义哪些package是工作空间的成员:
 {==+==}
 
@@ -222,7 +226,8 @@ manifest key can be used in member crates to point at a workspace's root to
 override this automatic search. The manual setting can be useful if the member
 is not inside a subdirectory of the workspace root.
 {==+==}
-当在工作空间的一个子目录中，Cargo将自动搜索父目录中带`[workspace]`的 `Cargo.toml`文件，以确定使用哪个工作空间。定义的文件来决定使用哪个工作空间。[`package.workspace`]文件可在成员crates中使用清单key来指向工作空间的根，以覆盖这种自动搜索。当成员不在工作空间根目录的子目录内，手动设置就很有用。
+当在工作空间的一个子目录中，Cargo将自动搜索父目录中带`[workspace]`的 `Cargo.toml`文件，以确定使用哪个工作空间。定义的文件来决定使用哪个工作空间。
+[`package.workspace`]文件可在成员crates中使用清单key来指向工作空间的根，以覆盖这种自动搜索。当成员不在工作空间根目录的子目录内，手动设置就很有用。
 {==+==}
 
 {==+==}
@@ -242,7 +247,9 @@ a [virtual workspace](#virtual-workspace), it will apply to all members (as if
 {==+==}
 在工作空间中，与package有关的cargo命令，如[`cargo build`]可以使用
 `-p`/`-package`或`-workspace`命令行标志来决定对哪些
-package来操作。如果这两个标志都没有被指定，Cargo将使用当前工作目录下的package。如果当前的目录是一个[虚拟工作空间](#虚拟工作空间)，它将用于所有成员(就像`--workspace`是在命令行上指定的)。 也请参见[`default-members`](#`default-members`字段)。
+package来操作。如果这两个标志都没有被指定，Cargo将使用当前工作目录下的package。
+如果当前的目录是一个[虚拟工作空间](#virtual-workspace)，它将用于所有成员(就像`--workspace`是在命令行上指定的)。
+也请参见[`default-members`](#the-default-members-field)。
 {==+==}
 
 {==+==}
@@ -259,11 +266,18 @@ used:
 可选的`default-members`key可以被指定，以设置在工作空间根和package选择标志未被使用时操作的成员:
 {==+==}
 
+
+{==+==}
 ```toml
 [workspace]
 members = ["path/to/member1", "path/to/member2", "path/to/member3/*"]
 default-members = ["path/to/member2", "path/to/member3/foo"]
 ```
+{==+==}
+
+{==+==}
+
+
 {==+==}
 When specified, `default-members` must expand to a subset of `members`.
 {==+==}
@@ -290,6 +304,7 @@ Keys that are supported:
 支持的key
 {==+==}
 
+{==+==}
 |                |                 |
 |----------------|-----------------|
 | `authors`      | `categories`    |
@@ -300,6 +315,10 @@ Keys that are supported:
 | `license-file` | `publish`       |
 | `readme`       | `repository`    |
 | `rust-version` | `version`       |
+{==+==}
+
+{==+==}
+
 
 {==+==}
 - `license-file` and `readme` are relative to the workspace root
@@ -315,6 +334,8 @@ Example:
 例子:
 {==+==}
 
+
+{==+==}
 ```toml
 # [PROJECT_DIR]/Cargo.toml
 [workspace]
@@ -336,6 +357,10 @@ authors.workspace = true
 description.workspace = true
 documentation.workspace = true
 ```
+{==+==}
+
+{==+==}
+
 {==+==}
 ### The `dependencies` table
 {==+==}
@@ -375,6 +400,8 @@ Example:
 例子:
 {==+==}
 
+
+{==+==}
 ```toml
 # [PROJECT_DIR]/Cargo.toml
 [workspace]
@@ -385,7 +412,11 @@ cc = "1.0.73"
 rand = "0.8.5"
 regex = { version = "1.6.0", default-features = false, features = ["std"] }
 ```
+{==+==}
 
+{==+==}
+
+{==+==}
 ```toml
 # [PROJECT_DIR]/bar/Cargo.toml
 [package]
@@ -401,6 +432,11 @@ cc.workspace = true
 [dev-dependencies]
 rand.workspace = true
 ```
+{==+==}
+
+{==+==}
+
+
 {==+==}
 ### The `metadata` table
 {==+==}
@@ -436,6 +472,7 @@ if that makes sense for the tool in question.
 [`package.metadata`][package-metadata]。虽然Cargo没有为这些表的内容指定格式，但建议外部工具以一致的方式使用它们，例如，如果`package.metadata`中缺少数据，可以参考`workspace.metadata`中的数据，如果这对相关工具来说是有意义的。
 {==+==}
 
+{==+==}
 [package]: manifest.md#the-package-section
 [`Cargo.lock`]: ../guide/cargo-toml-vs-cargo-lock.md
 [package-metadata]: manifest.md#the-metadata-table
@@ -450,3 +487,6 @@ if that makes sense for the tool in question.
 [specifying-dependencies]: specifying-dependencies.md
 [features]: features.md
 [inheriting-a-dependency-from-a-workspace]: specifying-dependencies.md#inheriting-a-dependency-from-a-workspace
+{==+==}
+
+{==+==}

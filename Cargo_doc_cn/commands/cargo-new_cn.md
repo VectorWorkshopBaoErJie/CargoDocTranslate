@@ -1,6 +1,7 @@
 {==+==}
 # cargo-new(1)
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -27,6 +28,7 @@ cargo-new - 创建一个新的cargo package
 {==+==}
 `cargo new` [_options_] _path_
 {==+==}
+
 {==+==}
 
 
@@ -71,14 +73,9 @@ in an existing directory.
 
 
 {==+==}
-<dl>
-{==+==}
-{==+==}
-
-
-{==+==}
 <dt class="option-term" id="option-cargo-new---bin"><a class="option-anchor" href="#option-cargo-new---bin"></a><code>--bin</code></dt>
 {==+==}
+
 {==+==}
 
 
@@ -94,6 +91,7 @@ This is the default behavior.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-new---lib"><a class="option-anchor" href="#option-cargo-new---lib"></a><code>--lib</code></dt>
 {==+==}
+
 {==+==}
 
 
@@ -107,6 +105,7 @@ This is the default behavior.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-new---edition"><a class="option-anchor" href="#option-cargo-new---edition"></a><code>--edition</code> <em>edition</em></dt>
 {==+==}
+
 {==+==}
 
 
@@ -122,6 +121,7 @@ Possible values: 2015, 2018, 2021</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-new---name"><a class="option-anchor" href="#option-cargo-new---name"></a><code>--name</code> <em>name</em></dt>
 {==+==}
+
 {==+==}
 
 
@@ -135,6 +135,7 @@ Possible values: 2015, 2018, 2021</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-new---vcs"><a class="option-anchor" href="#option-cargo-new---vcs"></a><code>--vcs</code> <em>vcs</em></dt>
 {==+==}
+
 {==+==}
 
 
@@ -153,6 +154,7 @@ hg, pijul, or fossil) or do not initialize any version control at all
 {==+==}
 <dt class="option-term" id="option-cargo-new---registry"><a class="option-anchor" href="#option-cargo-new---registry"></a><code>--registry</code> <em>registry</em></dt>
 {==+==}
+
 {==+==}
 
 
@@ -175,12 +177,6 @@ be restricted.</dd>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-
-{==+==}
 ### Display Options
 {==+==}
 ### 输出选项
@@ -192,6 +188,7 @@ be restricted.</dd>
 <dt class="option-term" id="option-cargo-new--v"><a class="option-anchor" href="#option-cargo-new--v"></a><code>-v</code></dt>
 <dt class="option-term" id="option-cargo-new---verbose"><a class="option-anchor" href="#option-cargo-new---verbose"></a><code>--verbose</code></dt>
 {==+==}
+
 {==+==}
 
 
@@ -210,6 +207,7 @@ May also be specified with the <code>term.verbose</code>
 <dt class="option-term" id="option-cargo-new--q"><a class="option-anchor" href="#option-cargo-new--q"></a><code>-q</code></dt>
 <dt class="option-term" id="option-cargo-new---quiet"><a class="option-anchor" href="#option-cargo-new---quiet"></a><code>--quiet</code></dt>
 {==+==}
+
 {==+==}
 
 
@@ -226,6 +224,7 @@ May also be specified with the <code>term.quiet</code>
 {==+==}
 <dt class="option-term" id="option-cargo-new---color"><a class="option-anchor" href="#option-cargo-new---color"></a><code>--color</code> <em>when</em></dt>
 {==+==}
+
 {==+==}
 
 
@@ -250,11 +249,6 @@ terminal.</li>
 {==+==}
 
 
-{==+==}
-</dl>
-{==+==}
-{==+==}
-
 
 {==+==}
 ### Common Options
@@ -263,15 +257,11 @@ terminal.</li>
 {==+==}
 
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
-
 
 {==+==}
 <dt class="option-term" id="option-cargo-new-+toolchain"><a class="option-anchor" href="#option-cargo-new-+toolchain"></a><code>+</code><em>toolchain</em></dt>
 {==+==}
+
 {==+==}
 
 
@@ -291,6 +281,7 @@ for more information about how toolchain overrides work.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-new---config"><a class="option-anchor" href="#option-cargo-new---config"></a><code>--config</code> <em>KEY=VALUE</em> or <em>PATH</em></dt>
 {==+==}
+
 {==+==}
 
 
@@ -309,6 +300,7 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 <dt class="option-term" id="option-cargo-new--h"><a class="option-anchor" href="#option-cargo-new--h"></a><code>-h</code></dt>
 <dt class="option-term" id="option-cargo-new---help"><a class="option-anchor" href="#option-cargo-new---help"></a><code>--help</code></dt>
 {==+==}
+
 {==+==}
 
 
@@ -322,6 +314,7 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 {==+==}
 <dt class="option-term" id="option-cargo-new--Z"><a class="option-anchor" href="#option-cargo-new--Z"></a><code>-Z</code> <em>flag</em></dt>
 {==+==}
+
 {==+==}
 
 
@@ -335,6 +328,7 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 {==+==}
 </dl>
 {==+==}
+
 {==+==}
 
 

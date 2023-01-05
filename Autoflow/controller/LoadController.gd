@@ -13,11 +13,17 @@ func load_all_SF():
             tr.is_type=true
             tr.content=G.load_file(tr.path+"/"+tr.file_name)
         Data.SF_files.append(tr)
-    
+
 
 func load_all_TF():
-    
-    
-    pass
+    var files=[]
+    G.dir_contents(Data.DOC_cn_path,files)
+    for it in files:
+        var tr=TF.new()
+        tr.path=it.path
+        tr.file_name=it.file_name
+        tr.content=G.load_file(tr.path+"/"+tr.file_name)
+        Data.TF_files.append(tr)
+
 
 

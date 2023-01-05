@@ -303,10 +303,7 @@ you need to specify is the location of the repository with the `git` key:
 regex = { git = "https://github.com/rust-lang/regex.git" }
 ```
 {==+==}
-```toml
-[dependencies]
-regex = { git = "https://github.com/rust-lang/regex.git" }
-```
+
 {==+==}
 
 {==+==}
@@ -647,8 +644,10 @@ openssl = "1.0.1"
 {==+==}
 
 {==+==}
-#### 为自定义目标指定依赖
+#### Custom target specifications
 {==+==}
+
+#### 为自定义目标指定依赖
 {==+==}
 
 {==+==}

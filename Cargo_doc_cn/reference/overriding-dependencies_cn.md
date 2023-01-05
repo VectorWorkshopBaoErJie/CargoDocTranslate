@@ -57,6 +57,7 @@ on the different ways to override a dependency.
     * [The `[replace]` section](#the-replace-section)
     * [`paths` overrides](#paths-overrides)
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -68,7 +69,7 @@ on the different ways to override a dependency.
 {==+==}
 
 {==+==}
-### Testing  bugfix
+### Testing a bugfix
 {==+==}
 ### 测试一个bugfix
 {==+==}
@@ -269,6 +270,7 @@ uuid = "1.0.1"
 uuid = { git = 'https://github.com/uuid-rs/uuid.git' }
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -310,6 +312,7 @@ uuid = "1.0"
 uuid = { git = 'https://github.com/uuid-rs/uuid.git' }
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -343,6 +346,7 @@ dependency is a git dependency, you can override it to a local path with:
 my-library = { path = "../my-library/path" }
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -376,6 +380,7 @@ uuid = "2.0"
 uuid = { git = "https://github.com/uuid-rs/uuid.git", branch = "2.0.0" }
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -401,6 +406,7 @@ uuid = "1.0"
 uuid = { git = 'https://github.com/uuid-rs/uuid.git', branch = '2.0.0' }
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -436,6 +442,7 @@ serde = { git = 'https://github.com/serde-rs/serde.git' }
 serde2 = { git = 'https://github.com/example/serde.git', package = 'serde', branch = 'v2' }
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -483,6 +490,7 @@ git = 'https://github.com/example/baz.git'
 baz = { git = 'https://github.com/example/patched-baz.git', branch = 'my-branch' }
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -562,6 +570,7 @@ Cargo.toml的这个部分被用来以其他拷贝来覆盖某个依赖。语法�
 "bar:1.0.2" = { path = 'my/local/bar' }
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -611,6 +620,7 @@ Path overrides are specified through [`.cargo/config.toml`](config.md) instead o
 paths = ["/path/to/uuid"]
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -668,4 +678,5 @@ Cargo how to find local unpublished crates.
 [multiple locations]: specifying-dependencies.md#multiple-locations
 [dependencies]: specifying-dependencies.md
 {==+==}
+
 {==+==}

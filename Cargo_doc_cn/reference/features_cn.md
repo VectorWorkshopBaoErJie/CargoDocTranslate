@@ -122,6 +122,7 @@ ico = ["bmp", "png"]
 webp = []
 ```
 {==+==}
+
 {==+==}
 
 
@@ -187,6 +188,7 @@ ico = ["bmp", "png"]
 webp = []
 ```
 {==+==}
+
 {==+==}
 
 
@@ -256,6 +258,7 @@ an external package to handle GIF images. This can be expressed like this:
 gif = { version = "0.11.1", optional = true }
 ```
 {==+==}
+
 {==+==}
 
 
@@ -273,6 +276,7 @@ like this:
 gif = ["dep:gif"]
 ```
 {==+==}
+
 {==+==}
 
 
@@ -331,6 +335,7 @@ rgb = { version = "0.8.25", optional = true }
 avif = ["dep:ravif", "dep:rgb"]
 ```
 {==+==}
+
 {==+==}
 
 
@@ -407,6 +412,7 @@ The [`default` features](#the-default-feature) can be disabled using
 flate2 = { version = "1.0.3", default-features = false, features = ["zlib"] }
 ```
 {==+==}
+
 {==+==}
 
 
@@ -491,6 +497,7 @@ rgb = { version = "0.8.25", optional = true }
 serde = ["dep:serde", "rgb?/serde"]
 ```
 {==+==}
+
 {==+==}
 
 
@@ -553,6 +560,7 @@ enabled:
 {==+==}
 [workspace]: workspaces.md
 {==+==}
+
 {==+==}
 
 
@@ -599,6 +607,7 @@ another dependency `bar` which enables the "std" and "winnt" features of
 {==+==}
 ![winapi features example](../images/winapi-features.svg)
 {==+==}
+
 {==+==}
 
 
@@ -606,6 +615,7 @@ another dependency `bar` which enables the "std" and "winnt" features of
 [`winapi`]: https://crates.io/crates/winapi
 [winapi-features]: https://github.com/retep998/winapi-rs/blob/0.3.9/Cargo.toml#L25-L431
 {==+==}
+
 {==+==}
 
 
@@ -642,6 +652,7 @@ pub fn function_that_requires_std() {
 }
 ```
 {==+==}
+
 {==+==}
 
 
@@ -680,6 +691,7 @@ error to detect this scenario. For example:
 compile_error!("feature \"foo\" and feature \"bar\" cannot be enabled at the same time");
 ```
 {==+==}
+
 {==+==}
 
 
@@ -710,6 +722,7 @@ Instead of using mutually exclusive features, consider some other options:
 [`cfg-if`]: https://crates.io/crates/cfg-if
 [feature-precedence]: features-examples.md#feature-precedence
 {==+==}
+
 {==+==}
 
 
@@ -755,6 +768,7 @@ enabled. Some options to try:
 {==+==}
 [`cargo tree`]: ../commands/cargo-tree.md
 {==+==}
+
 {==+==}
 
 
@@ -781,6 +795,7 @@ version = "1.0.0"
 resolver = "2"
 ```
 {==+==}
+
 {==+==}
 
 
@@ -1049,6 +1064,7 @@ See the links for caveats and examples.
 [cargo-remove-opt-dep]: semver.md#cargo-remove-opt-dep
 [cargo-feature-remove-another]: semver.md#cargo-feature-remove-another
 {==+==}
+
 {==+==}
 
 
@@ -1120,6 +1136,7 @@ control which features are enabled when the documentation is built. See
 [`doc_cfg`]: ../../unstable-book/language-features/doc-cfg.html
 [`syn` documentation]: https://docs.rs/syn/1.0.54/syn/#modules
 {==+==}
+
 {==+==}
 
 
@@ -1150,6 +1167,7 @@ source and inspect it.
 [`cargo vendor`]: ../commands/cargo-vendor.md
 [cargo-clone-crate]: https://crates.io/crates/cargo-clone-crate
 {==+==}
+
 {==+==}
 
 
