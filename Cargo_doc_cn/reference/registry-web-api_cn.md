@@ -407,11 +407,6 @@ yank端点将在索引中将给定版本的crate的 `yank` 字段设置为 `true
 {==+==}
 
 
-{==+==}
-A successful response includes the JSON object:
-{==+==}
-响应成功包括JSON对象:
-{==+==}
 
 
 {==+==}
@@ -455,11 +450,6 @@ unyank端点将在索引中将给定版本的crate的 `yank` 字段设置为 `fa
 {==+==}
 
 
-{==+==}
-A successful response includes the JSON object:
-{==+==}
-响应成功包括JSON对象:
-{==+==}
 
 
 {==+==}
@@ -493,7 +483,9 @@ control a crate. It is up to the registry to decide exactly how users and
 owners are handled. See the [publishing documentation] for a description of
 how [crates.io] handles owners via GitHub users and teams.
 {==+==}
-
+Cargo没有固有的用户和所有者的概念，但它提供 `owner` 命令来帮助管理谁有控制crate的授权。
+具体如何处理用户和所有者，由注册中心决定。
+关于[crates.io]如何通过GitHub用户和团队处理所有者的描述，请参见[发布文档]。
 {==+==}
 
 
@@ -516,15 +508,9 @@ how [crates.io] handles owners via GitHub users and teams.
 {==+==}
 The owners endpoint returns a list of owners of the crate.
 {==+==}
-
+owners端点返回crate的所有者列表。
 {==+==}
 
-
-{==+==}
-A successful response includes the JSON object:
-{==+==}
-
-{==+==}
 
 
 {==+==}
@@ -545,7 +531,22 @@ A successful response includes the JSON object:
 }
 ```
 {==+==}
-
+```javascript
+{
+    // crate的所有者数组。
+    "users": [
+        {
+            // 所有者的唯一无符号32位整数。
+            "id": 70,
+            // 所有者唯一的用户名。
+            "login": "github:rust-lang:core",
+            // 所有者的名字。
+            // 这是可选的，可以为空。
+            "name": "Core",
+        }
+    ]
+}
+```
 {==+==}
 
 
@@ -571,14 +572,16 @@ crate. It is up to the registry how to handle the request. For example,
 [crates.io] sends an invite to the user that they must accept before being
 added.
 {==+==}
-
+PUT请求将向注册中心发送请求，以将新的所有者添加到crate里。
+如何处理这个请求是由注册中心决定。
+例如，[crates.io]会向用户发送一个邀请，他们必须在被添加之前接受。
 {==+==}
 
 
 {==+==}
 The request should include the following JSON object:
 {==+==}
-
+该请求应包括以下JSON对象:
 {==+==}
 
 
@@ -590,15 +593,14 @@ The request should include the following JSON object:
 }
 ```
 {==+==}
-
+```javascript
+{
+    // 要添加的所有者的 `login` 字符串数组。
+    "users": ["login_name"]
+}
+```
 {==+==}
 
-
-{==+==}
-A successful response includes the JSON object:
-{==+==}
-
-{==+==}
 
 
 {==+==}
@@ -611,7 +613,14 @@ A successful response includes the JSON object:
 }
 ```
 {==+==}
-
+```javascript
+{
+    // 表示添加成功，始终为真。
+    "ok": true,
+    // 一个要显示给用户的字符串。
+    "msg": "user ehuss has been invited to be an owner of crate cargo"
+}
+```
 {==+==}
 
 
@@ -635,7 +644,7 @@ A successful response includes the JSON object:
 A DELETE request will remove an owner from a crate. The request should include
 the following JSON object:
 {==+==}
-
+DELETE请求将从crate中删除一个所有者。该请求应包括以下JSON对象:
 {==+==}
 
 
@@ -647,15 +656,14 @@ the following JSON object:
 }
 ```
 {==+==}
-
+```javascript
+{
+    // 要删除的所有者的 `login` 字符串数组。
+    "users": ["login_name"]
+}
+```
 {==+==}
 
-
-{==+==}
-A successful response includes the JSON object:
-{==+==}
-
-{==+==}
 
 
 {==+==}
@@ -666,7 +674,12 @@ A successful response includes the JSON object:
 }
 ```
 {==+==}
-
+```javascript
+{
+    // 表示删除成功，始终为真。
+    "ok": true
+}
+```
 {==+==}
 
 
@@ -692,15 +705,10 @@ A successful response includes the JSON object:
 The search request will perform a search for crates, using criteria defined on
 the server.
 {==+==}
-
+搜索请求将使用服务器上定义的标准对caate进行搜索。
 {==+==}
 
 
-{==+==}
-A successful response includes the JSON object:
-{==+==}
-
-{==+==}
 
 
 {==+==}
@@ -724,6 +732,25 @@ A successful response includes the JSON object:
 }
 ```
 {==+==}
+```javascript
+{
+    // 结果数组
+    "crates": [
+        {
+            // crate的名字。
+            "name": "rand",
+            // 可用的最高版本
+            "max_version": "0.6.1",
+            // crate的文字描述。
+            "description": "Random number generators and other randomness functionality.\n",
+        }
+    ],
+    "meta": {
+        // 服务器上可用的结果总数。
+        "total": 119
+    }
+}
+```
 
 {==+==}
 
@@ -747,7 +774,8 @@ The "login" endpoint is not an actual API request. It exists solely for the
 [`cargo login`] command to display a URL to instruct a user to visit in a web
 browser to log in and retrieve an API token.
 {==+==}
-
+"login" 端点不是实际的API请求。
+它的存在仅仅是为了 [`cargo login`] 命令显示URL，指示用户在网络浏览器中访问以登录并获取API令牌。
 {==+==}
 
 
