@@ -20,14 +20,12 @@ and generated documentation.
 
 {==+==}
 ### Cargo
-{==+==}
-### Cargo
-{==+==}
 
-{==+==}
 *Cargo* is the Rust [*package manager*](#package-manager), and the primary
 topic of this book.
 {==+==}
+### Cargo
+
 *Cargo* 是Rust的[*包管理器*](#package-manager)，也是本书涉及的主要内容。
 {==+==}
 
@@ -294,7 +292,7 @@ related metadata between the packages.
 {==+==}
 ### Package manager
 {==+==}
-### Package 管理
+### 包管理
 {==+==}
 
 {==+==}
@@ -322,7 +320,7 @@ packages, makes distributable packages, and (optionally) uploads them to
 {==+==}
 ### Package registry
 {==+==}
-### Package 注册中心
+### 包注册中心
 {==+==}
 
 {==+==}
@@ -584,7 +582,7 @@ manifest is located. (Compare with [*package root*](#package).)
 [git source]: ../reference/source-replacement.md
 [integration-tests]: ../reference/cargo-targets.md#integration-tests
 [manifest]: ../reference/manifest.md
-[路径依赖]: ../reference/specifying-dependencies.md#specifying-path-dependencies
+[path dependency]: ../reference/specifying-dependencies.md#specifying-path-dependencies
 [path overrides]: ../reference/overriding-dependencies.md#paths-overrides
 [pkgid-spec]: ../reference/pkgid-spec.md
 [rustdoc-unstable]: https://doc.rust-lang.org/nightly/rustdoc/unstable-features.html
@@ -610,7 +608,7 @@ manifest is located. (Compare with [*package root*](#package).)
 [git 源]: ../reference/source-replacement.md
 [integration-tests]: ../reference/cargo-targets.md#integration-tests
 [manifest]: ../reference/manifest.md
-[path dependency]: ../reference/specifying-dependencies.md#specifying-path-dependencies
+[路径依赖]: ../reference/specifying-dependencies.md#specifying-path-dependencies
 [path overrides]: ../reference/overriding-dependencies.md#paths-overrides
 [pkgid-spec]: ../reference/pkgid-spec.md
 [rustdoc-unstable]: https://doc.rust-lang.org/nightly/rustdoc/unstable-features.html
