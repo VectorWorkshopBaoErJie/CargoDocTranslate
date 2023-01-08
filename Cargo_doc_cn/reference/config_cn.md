@@ -201,6 +201,7 @@ vcs = "none"              # VCS to use ('git', 'hg', 'pijul', 'fossil', 'none')
 vcs = "none"              # VCS 便用 ('git', 'hg', 'pijul', 'fossil', 'none')
 {==+==}
 
+
 {==+==}
 [http]
 debug = false               # HTTP debugging
@@ -229,6 +230,7 @@ multiplexing = true         # HTTP/2 多路复用
 user-agent = "…"            # user-agent 头
 {==+==}
 
+
 {==+==}
 [install]
 root = "/some/path"         # `cargo install` destination directory
@@ -236,6 +238,7 @@ root = "/some/path"         # `cargo install` destination directory
 [install]
 root = "/some/path"         # `cargo install` 目标目录
 {==+==}
+
 
 {==+==}
 [net]
@@ -249,6 +252,7 @@ git-fetch-with-cli = true   # 使用 `git` 可执行文件进行git操作
 offline = true              # 不接入网络
 {==+==}
 
+
 {==+==}
 [patch.<registry>]
 # Same keys as for [patch] in Cargo.toml
@@ -256,6 +260,7 @@ offline = true              # 不接入网络
 [patch.<registry>]
 # 与Cargo.toml中 [patch] 的键相同。
 {==+==}
+
 
 {==+==}
 [profile.<name>]         # Modify profile settings via config.
@@ -291,6 +296,7 @@ rpath = false            # 设置rpath链接选项。
 # profile下的键是一样的 (减去 `panic`, `lto`, 和 `rpath`)。
 {==+==}
 
+
 {==+==}
 [registries.<name>]  # registries other than crates.io
 index = "…"          # URL of the registry index
@@ -301,6 +307,7 @@ index = "…"          # 注册中心的URL索引
 token = "…"          # 注册中心的认证令牌
 {==+==}
 
+
 {==+==}
 [registry]
 default = "…"        # name of the default registry
@@ -310,6 +317,7 @@ token = "…"          # authentication token for crates.io
 default = "…"        # 默认注册中心的名称
 token = "…"          # crates.io的认证令牌
 {==+==}
+
 
 {==+==}
 [source.<name>]      # source definition and replacement
@@ -333,6 +341,7 @@ tag = "…"            # git仓库的tag名称
 rev = "…"            # git仓库的修订
 {==+==}
 
+
 {==+==}
 [target.<triple>]
 linker = "…"            # linker to use
@@ -345,6 +354,7 @@ runner = "…"            # 运行可执行文件的包装器
 rustflags = ["…", "…"]  # `rustc` 的自定义标记
 {==+==}
 
+
 {==+==}
 [target.<cfg>]
 runner = "…"            # wrapper to run executables
@@ -354,6 +364,7 @@ rustflags = ["…", "…"]  # custom flags for `rustc`
 runner = "…"            # 运行可执行文件的包装器
 rustflags = ["…", "…"]  # `rustc` 的自定义标记
 {==+==}
+
 
 {==+==}
 [target.<triple>.<links>] # `links` build script override
@@ -376,6 +387,7 @@ rustc-cdylib-link-arg = ["…"]
 metadata_key1 = "value"
 metadata_key2 = "value"
 {==+==}
+
 
 {==+==}
 [term]
@@ -1144,7 +1156,6 @@ overrides the config setting.
 * Default: none
 * Environment: `CARGO_BUILD_DEP_INFO_BASEDIR`
 {==+==}
-
 ##### `build.dep-info-basedir`
 * Type: 字符串 (path)
 * Default: none
@@ -1157,7 +1168,8 @@ info](../guide/build-cache.md#dep-info-files) file paths. This config setting
 is intended to convert absolute paths to relative paths for tools that require
 relative paths.
 {==+==}
-从[dep info](../guide/build-cache.md#dep-info-files)文件路径中分割指定的路径前缀。这个配置的目的是为需要相对路径的工具，将绝对路径转换成相对路径。
+从[dep info](../guide/build-cache.md#dep-info-files)文件路径中分割指定的路径前缀。
+这个配置的目的是为需要相对路径的工具，将绝对路径转换成相对路径。
 {==+==}
 
 {==+==}
@@ -1177,6 +1189,7 @@ This option is deprecated and unused. Cargo always has pipelining enabled.
 
 这个选项已被废弃，未使用。Cargo总是启用流水线。
 {==+==}
+
 
 {==+==}
 #### `[doc]`
@@ -1221,6 +1234,7 @@ The `[cargo-new]` table defines defaults for the [`cargo new`] command.
 `[cargo-new]` 表定义了 [`cargo new`] 命令的默认值。
 {==+==}
 
+
 {==+==}
 ##### `cargo-new.name`
 
@@ -1231,6 +1245,7 @@ This option is deprecated and unused.
 该选项已被废弃，未被使用。
 {==+==}
 
+
 {==+==}
 ##### `cargo-new.email`
 
@@ -1240,6 +1255,7 @@ This option is deprecated and unused.
 
 该选项已被废弃，未被使用。
 {==+==}
+
 
 {==+==}
 ##### `cargo-new.vcs`
@@ -1253,6 +1269,7 @@ This option is deprecated and unused.
 * Environment: `CARGO_CARGO_NEW_VCS`
 {==+==}
 
+
 {==+==}
 Specifies the source control system to use for initializing a new repository.
 Valid values are `git`, `hg` (for Mercurial), `pijul`, `fossil` or `none` to
@@ -1262,6 +1279,7 @@ repository. Can be overridden with the `--vcs` CLI option.
 指定初始化新版本库时使用的源码控制系统。
 有效值是 `git` 、 `hg` (用于Mercurial) 、 `pijul`  、 `fossil` ，或 `none` 以禁用此行为。默认为 `git` ，如果已经在一个VCS仓库内，则默认为 `none` 。可以用 `--vcs` CLI选项来覆盖。
 {==+==}
+
 
 {==+==}
 ### `[env]`
@@ -1274,6 +1292,7 @@ build scripts, rustc invocations, `cargo run` and `cargo build`.
 `[env]` 部分允许你为构建脚本、rustc调用、 `cargo run` 和 `cargo build` 设置附加的环境变量。
 {==+==}
 
+
 {==+==}
 ```toml
 [env]
@@ -1286,12 +1305,14 @@ OPENSSL_DIR = "/opt/openssl"
 ```
 {==+==}
 
+
 {==+==}
 By default, the variables specified will not override values that already exist
 in the environment. This behavior can be changed by setting the `force` flag.
 {==+==}
 默认情况下，指定的变量将不会覆盖环境中已经存在的值。可以通过设置 `force` 标志来改变这种行为。
 {==+==}
+
 
 {==+==}
 Setting the `relative` flag evaluates the value as a config-relative path that
@@ -1302,6 +1323,7 @@ absolute path.
 设置 `relative` 标志会将该值评估为相对配置路径，它是相对于包含`config.toml` 文件的 `.cargo` 目录的父目录而言的。环境变量的值将是完整的绝对路径。
 {==+==}
 
+
 {==+==}
 ```toml
 [env]
@@ -1315,6 +1337,7 @@ TMPDIR = { value = "/home/tmp", force = true }
 OPENSSL_DIR = { value = "vendor/openssl", relative = true }
 ```
 {==+==}
+
 
 {==+==}
 ### `[future-incompat-report]`
@@ -1325,6 +1348,7 @@ The `[future-incompat-report]` table controls setting for [future incompat repor
 
 `[future-incompat-report]` 表控制 [未来不匹配的报告](future-incompat-report.md) 的设置。
 {==+==}
+
 
 {==+==}
 #### `future-incompat-report.frequency`
@@ -1338,11 +1362,13 @@ The `[future-incompat-report]` table controls setting for [future incompat repor
 * Environment: `CARGO_FUTURE_INCOMPAT_REPORT_FREQUENCY`
 {==+==}
 
+
 {==+==}
 Controls how often we display a notification to the terminal when a future incompat report is available. Possible values:
 {==+==}
 控制当未来不兼容报告可用时，多长时间向终端显示一次通知。可能的值为:
 {==+==}
+
 
 {==+==}
 * `always` (default): Always display a notification when a command (e.g. `cargo build`) produces a future incompat report
@@ -1351,6 +1377,7 @@ Controls how often we display a notification to the terminal when a future incom
 * `always` (默认): 当命令(例如 `cargo build`)产生未来不兼容报告时，总是显示通知。
 * `never`: 永不显示通知
 {==+==}
+
 
 {==+==}
 #### `[http]`
@@ -1363,6 +1390,7 @@ crate dependencies and accessing remote git repositories.
 `[http]` 表定义了HTTP行为设置。包括获取crate的依赖和访问远程git仓库。
 {==+==}
 
+
 {==+==}
 ##### `http.debug`
 * Type: boolean
@@ -1374,6 +1402,7 @@ crate dependencies and accessing remote git repositories.
 * Default: false
 * Environment: `CARGO_HTTP_DEBUG`
 {==+==}
+
 
 {==+==}
 If `true`, enables debugging of HTTP requests. The debug information can be
@@ -1383,6 +1412,7 @@ variable (or use `trace` for even more information).
 如果 `true` ，启用对HTTP请求的调试。调试信息可以通过设置 `CARGO_LOG=cargo::ops::registry=debug` 环境变量查看(或者使用 `trace` 获取更多信息) 。
 {==+==}
 
+
 {==+==}
 Be wary when posting logs from this output in a public location. The output
 may include headers with authentication tokens which you don't want to leak!
@@ -1390,6 +1420,7 @@ Be sure to review logs before posting them.
 {==+==}
 当把这个输出的日志发布到公开位置时，要小心谨慎。该输出可能包括带有认证令牌的头信息，你不希望泄漏这些信息。在发布日志之前，一定要审查日志。
 {==+==}
+
 
 {==+==}
 ##### `http.proxy`
@@ -1403,6 +1434,7 @@ Be sure to review logs before posting them.
 * Environment: `CARGO_HTTP_PROXY` 或 `HTTPS_PROXY` 或 `https_proxy` 或 `http_proxy`
 {==+==}
 
+
 {==+==}
 Sets an HTTP and HTTPS proxy to use. The format is in [libcurl format] as in
 `[protocol://]host[:port]`. If not set, Cargo will also check the `http.proxy`
@@ -1414,6 +1446,7 @@ requests, and `http_proxy` sets it for HTTP requests.
 如果没有设置，Cargo也会检查你全局git配置中的 `http.proxy` 设置。
 如果这些都没有设置， `HTTPS_PROXY` 或 `https_proxy` 环境变量为HTTPS请求设置代理， `http_proxy` 为HTTP请求设置。
 {==+==}
+
 
 {==+==}
 ##### `http.timeout`
@@ -1427,11 +1460,13 @@ requests, and `http_proxy` sets it for HTTP requests.
 * Environment: `CARGO_HTTP_TIMEOUT` 或 `HTTP_TIMEOUT`
 {==+==}
 
+
 {==+==}
 Sets the timeout for each HTTP request, in seconds.
 {==+==}
 设置每个HTTP请求的超时，单位为秒。
 {==+==}
+
 
 {==+==}
 ##### `http.cainfo`
@@ -1445,6 +1480,7 @@ Sets the timeout for each HTTP request, in seconds.
 * Environment: `CARGO_HTTP_CAINFO`
 {==+==}
 
+
 {==+==}
 Path to a Certificate Authority (CA) bundle file, used to verify TLS
 certificates. If not specified, Cargo attempts to use the system certificates.
@@ -1452,6 +1488,7 @@ certificates. If not specified, Cargo attempts to use the system certificates.
 CA证书绑定文件的路径，用于验证TLS证书。如果没有指定，Cargo会尝试使用系统证书。
 {==+==}
 
+
 {==+==}
 ##### `http.check-revoke`
 * Type: boolean
@@ -1464,12 +1501,14 @@ CA证书绑定文件的路径，用于验证TLS证书。如果没有指定，Car
 * Environment: `CARGO_HTTP_CHECK_REVOKE`
 {==+==}
 
+
 {==+==}
 This determines whether or not TLS certificate revocation checks should be
 performed. This only works on Windows.
 {==+==}
 这决定了是否应该进行TLS证书撤销检查。仅适用于Windows。
 {==+==}
+
 
 {==+==}
 ##### `http.ssl-version`
@@ -1483,6 +1522,7 @@ performed. This only works on Windows.
 * Environment: `CARGO_HTTP_SSL_VERSION`
 {==+==}
 
+
 {==+==}
 This sets the minimum TLS version to use. It takes a string, with one of the
 possible values of "default", "tlsv1", "tlsv1.0", "tlsv1.1", "tlsv1.2", or
@@ -1490,6 +1530,7 @@ possible values of "default", "tlsv1", "tlsv1.0", "tlsv1.1", "tlsv1.2", or
 {==+==}
 此设置要使用的最小TLS版本。它需要一个字符串，可能的值是 "default"、"tlsv1"、"tlsv1.0"、"tlsv1.1"、"tlsv1.2"、"tlsv1.3" 之一。
 {==+==}
+
 
 {==+==}
 This may alternatively take a table with two keys, `min` and `max`, which each
@@ -1499,12 +1540,14 @@ range of TLS versions to use.
 这可能是有两个键的表，`min` 和 `max` ，每个键都有相同的字符串值，指定要使用的TLS版本的最小和最大范围。
 {==+==}
 
+
 {==+==}
 The default is a minimum version of "tlsv1.0" and a max of the newest version
 supported on your platform, typically "tlsv1.3".
 {==+==}
 默认情况下，最小版本为 "tlsv1.0" ，最大版本为你的平台上支持的最新版本，通常为 "tlsv1.3" 。
 {==+==}
+
 
 {==+==}
 ##### `http.low-speed-limit`
@@ -1518,6 +1561,7 @@ supported on your platform, typically "tlsv1.3".
 * Environment: `CARGO_HTTP_LOW_SPEED_LIMIT`
 {==+==}
 
+
 {==+==}
 This setting controls timeout behavior for slow connections. If the average
 transfer speed in bytes per second is below the given value for
@@ -1527,6 +1571,7 @@ connection is considered too slow and Cargo will abort and retry.
 此设置控制过慢连接超时行为。
 如果以字节/秒为单位的平均传输速度低于[`http.timeout`](#httptimeout)秒的给定值(默认为30秒)，那么该连接被认为太慢，Cargo将中止并重试。
 {==+==}
+
 
 {==+==}
 ##### `http.multiplexing`
@@ -1539,6 +1584,7 @@ connection is considered too slow and Cargo will abort and retry.
 * Default: true
 * Environment: `CARGO_HTTP_MULTIPLEXING`
 {==+==}
+
 
 {==+==}
 When `true`, Cargo will attempt to use the HTTP2 protocol with multiplexing.
@@ -1550,6 +1596,7 @@ without pipelining.
 这允许多个请求使用同一个连接，通常可以提高获取多文件的性能。
 如果 `false` ，Cargo将使用HTTP1.1，没有管道。
 {==+==}
+
 
 {==+==}
 ##### `http.user-agent`
@@ -1563,12 +1610,14 @@ without pipelining.
 * Environment: `CARGO_HTTP_USER_AGENT`
 {==+==}
 
+
 {==+==}
 Specifies a custom user-agent header to use. The default if not specified is a
 string that includes Cargo's version.
 {==+==}
 指定要使用的自定义user-agent header。如果没有指定，默认是一个包括Cargo版本的字符串。
 {==+==}
+
 
 {==+==}
 #### `[install]`
@@ -1579,6 +1628,7 @@ The `[install]` table defines defaults for the [`cargo install`] command.
 
 `[install]` 表定义了 [`cargo install`] 命令的默认值。
 {==+==}
+
 
 {==+==}
 ##### `install.root`
@@ -1592,12 +1642,14 @@ The `[install]` table defines defaults for the [`cargo install`] command.
 * Environment: `CARGO_INSTALL_ROOT`
 {==+==}
 
+
 {==+==}
 Sets the path to the root directory for installing executables for [`cargo
 install`]. Executables go into a `bin` directory underneath the root.
 {==+==}
 为 [`cargo install`] 设置安装可执行文件的根目录的路径。可执行文件会进入根目录下的 `bin` 目录。
 {==+==}
+
 
 {==+==}
 To track information of installed executables, some extra files, such as
@@ -1606,6 +1658,7 @@ To track information of installed executables, some extra files, such as
 为了跟踪已安装的可执行文件的信息，一些附加文件，如 `.crates.toml` 和 `.crates2.json` 也会在这个根下创建。
 {==+==}
 
+
 {==+==}
 The default if not specified is Cargo's home directory (default `.cargo` in
 your home directory).
@@ -1613,11 +1666,13 @@ your home directory).
 如果没有指定，默认是Cargo的主目录 (默认为你的主目录中 `.cargo` ) 。
 {==+==}
 
+
 {==+==}
 Can be overridden with the `--root` command-line option.
 {==+==}
 可以用 `--root` 命令行选项来覆盖。
 {==+==}
+
 
 {==+==}
 #### `[net]`
@@ -1628,6 +1683,7 @@ The `[net]` table controls networking configuration.
 
 `[net]` 表控制网络配置。
 {==+==}
+
 
 {==+==}
 ##### `net.retry`
@@ -1641,11 +1697,13 @@ The `[net]` table controls networking configuration.
 * Environment: `CARGO_NET_RETRY`
 {==+==}
 
+
 {==+==}
 Number of times to retry possibly spurious network errors.
 {==+==}
 可能是虚假网络的错误重试次数。
 {==+==}
+
 
 {==+==}
 ##### `net.git-fetch-with-cli`
@@ -1658,6 +1716,7 @@ Number of times to retry possibly spurious network errors.
 * Default: false
 * Environment: `CARGO_NET_GIT_FETCH_WITH_CLI`
 {==+==}
+
 
 {==+==}
 If this is `true`, then Cargo will use the `git` executable to fetch registry
@@ -1666,6 +1725,7 @@ library.
 {==+==}
 如果这是 `true` ，那么Cargo将使用 `git` 可执行程序来获取注册中心索引和git依赖。如果是 `false` ，那么它将使用内置的 `git` 库。
 {==+==}
+
 
 {==+==}
 Setting this to `true` can be helpful if you have special authentication
@@ -1677,6 +1737,7 @@ setting up git authentication.
 参阅 [Git Authentication](../appendix/git-authentication.md)以了解更多关于设置git认证的信息。
 {==+==}
 
+
 {==+==}
 ##### `net.offline`
 * Type: boolean
@@ -1688,6 +1749,7 @@ setting up git authentication.
 * Default: false
 * Environment: `CARGO_NET_OFFLINE`
 {==+==}
+
 
 {==+==}
 If this is `true`, then Cargo will avoid accessing the network, and attempt to
@@ -1698,17 +1760,20 @@ needed, and generate an error if it encounters a network error.
 如果是 `false` ，Cargo将根据需要访问网络，如果遇到网络错误，将产生一个错误。
 {==+==}
 
+
 {==+==}
 Can be overridden with the `--offline` command-line option.
 {==+==}
 可以用 `--offline` 命令行选项来覆盖。
 {==+==}
 
+
 {==+==}
 #### `[patch]`
 {==+==}
 #### `[patch]`
 {==+==}
+
 
 {==+==}
 Just as you can override dependencies using [`[patch]` in
@@ -1721,6 +1786,7 @@ any affected build. The format is identical to the one used in
 你可以在cargo配置文件中覆盖它们，将这些补丁应用于任何受影响的构建。其格式与 `Cargo.toml` 中的格式相同。
 {==+==}
 
+
 {==+==}
 Since `.cargo/config.toml` files are not usually checked into source
 control, you should prefer patching using `Cargo.toml` where possible to
@@ -1732,6 +1798,7 @@ external build tool.
 由于 `.cargo/config.toml` 文件通常不会被检查到源代码控制中，你应该尽可能选择使用 `Cargo.toml` 来打补丁，以确保其他开发者可以在自己的环境中编译你的crate。
 一般来说，只有当补丁部分由外部构建工具自动生成时，通过cargo配置文件进行修补才是合适的。
 {==+==}
+
 
 {==+==}
 If a given dependency is patched both in a cargo configuration file and
@@ -1746,12 +1813,14 @@ lowest precedence.
 `$HOME/.cargo/config.toml` 的优先级最低。
 {==+==}
 
+
 {==+==}
 Relative `path` dependencies in such a `[patch]` section are resolved
 relative to the configuration file they appear in.
 {==+==}
 在这样的 `[patch]` 部分中的相对 `path` 依赖是相对于它们出现配置文件的。
 {==+==}
+
 
 {==+==}
 #### `[profile]`
@@ -1768,6 +1837,7 @@ details about the options.
 关于选项的详细信息，请参阅 [配置文件章节] 。
 {==+==}
 
+
 {==+==}
 [Profiles chapter]: profiles.md
 
@@ -1779,6 +1849,7 @@ details about the options.
 ##### `[profile.<name>.build-override]`
 * Environment: `CARGO_PROFILE_<name>_BUILD_OVERRIDE_<key>`
 {==+==}
+
 
 {==+==}
 The build-override table overrides settings for build scripts, proc macros,
@@ -1790,14 +1861,15 @@ and their dependencies. It has the same keys as a normal profile. See the
 参见 [覆盖部分](profiles.md#overrides) 以了解更多细节。
 {==+==}
 
+
 {==+==}
 ##### `[profile.<name>.package.<name>]`
 * Environment: not supported
 {==+==}
-
 ##### `[profile.<name>.package.<name>]`
 * Environment: 不支持
 {==+==}
+
 
 {==+==}
 The package table overrides settings for specific packages. It has the same
@@ -1863,6 +1935,7 @@ See [split-debuginfo](profiles.md#split-debuginfo).
 参阅 [split-debuginfo](profiles.md#split-debuginfo)。
 {==+==}
 
+
 {==+==}
 ##### `profile.<name>.debug-assertions`
 * Type: boolean
@@ -1874,6 +1947,7 @@ See [split-debuginfo](profiles.md#split-debuginfo).
 * Default: 参阅配置文件文档。
 * Environment: `CARGO_PROFILE_<name>_DEBUG_ASSERTIONS`
 {==+==}
+
 
 {==+==}
 See [debug-assertions](profiles.md#debug-assertions).
@@ -1881,6 +1955,7 @@ See [debug-assertions](profiles.md#debug-assertions).
 参阅 [debug-assertions](profiles.md#debug-assertions)。
 {==+==}
 
+
 {==+==}
 ##### `profile.<name>.incremental`
 * Type: boolean
@@ -1893,11 +1968,13 @@ See [debug-assertions](profiles.md#debug-assertions).
 * Environment: `CARGO_PROFILE_<name>_INCREMENTAL`
 {==+==}
 
+
 {==+==}
 See [incremental](profiles.md#incremental).
 {==+==}
 参阅 [incremental](profiles.md#incremental).
 {==+==}
+
 
 {==+==}
 ##### `profile.<name>.lto`
@@ -1910,6 +1987,7 @@ See [incremental](profiles.md#incremental).
 * Default: 参阅配置文件文档。
 * Environment: `CARGO_PROFILE_<name>_LTO`
 {==+==}
+
 
 {==+==}
 See [lto](profiles.md#lto).
@@ -1929,11 +2007,13 @@ See [lto](profiles.md#lto).
 * Environment: `CARGO_PROFILE_<name>_OVERFLOW_CHECKS`
 {==+==}
 
+
 {==+==}
 See [overflow-checks](profiles.md#overflow-checks).
 {==+==}
 参阅 [overflow-checks](profiles.md#overflow-checks) 。
 {==+==}
+
 
 {==+==}
 ##### `profile.<name>.opt-level`
@@ -1947,11 +2027,13 @@ See [overflow-checks](profiles.md#overflow-checks).
 * Environment: `CARGO_PROFILE_<name>_OPT_LEVEL`
 {==+==}
 
+
 {==+==}
 See [opt-level](profiles.md#opt-level).
 {==+==}
 参阅 [opt-level](profiles.md#opt-level) 。
 {==+==}
+
 
 {==+==}
 ##### `profile.<name>.panic`
@@ -1965,11 +2047,13 @@ See [opt-level](profiles.md#opt-level).
 * Environment: `CARGO_PROFILE_<name>_PANIC`
 {==+==}
 
+
 {==+==}
 See [panic](profiles.md#panic).
 {==+==}
 参阅 [panic](profiles.md#panic) 。
 {==+==}
+
 
 {==+==}
 ##### `profile.<name>.rpath`
@@ -1983,11 +2067,13 @@ See [panic](profiles.md#panic).
 * Environment: `CARGO_PROFILE_<name>_RPATH`
 {==+==}
 
+
 {==+==}
 See [rpath](profiles.md#rpath).
 {==+==}
 参阅 [rpath](profiles.md#rpath) 。
 {==+==}
+
 
 {==+==}
 #### `[registries]`
@@ -2001,6 +2087,7 @@ consists of a sub-table for each named registry.
 它由各个命名的注册中心的子表组成。
 {==+==}
 
+
 {==+==}
 ##### `registries.<name>.index`
 * Type: string (url)
@@ -2013,11 +2100,13 @@ consists of a sub-table for each named registry.
 * Environment: `CARGO_REGISTRIES_<name>_INDEX`
 {==+==}
 
+
 {==+==}
 Specifies the URL of the git index for the registry.
 {==+==}
 指定注册中心git索引的URL。
 {==+==}
+
 
 {==+==}
 ##### `registries.<name>.token`
@@ -2031,6 +2120,7 @@ Specifies the URL of the git index for the registry.
 * Environment: `CARGO_REGISTRIES_<name>_TOKEN`
 {==+==}
 
+
 {==+==}
 Specifies the authentication token for the given registry. This value should
 only appear in the [credentials](#credentials) file. This is used for registry
@@ -2041,11 +2131,13 @@ commands like [`cargo publish`] that require authentication.
 这用于需要认证的注册中心命令，如 [`cargo publish`] 。
 {==+==}
 
+
 {==+==}
 Can be overridden with the `--token` command-line option.
 {==+==}
 可以用 `--token` 命令行选项来覆盖。
 {==+==}
+
 
 {==+==}
 #### `[registry]`
@@ -2058,6 +2150,7 @@ specified.
 `[注册中心]` 表控制在没有指定的情况下使用的默认注册中心。
 {==+==}
 
+
 {==+==}
 ##### `registry.index`
 
@@ -2067,6 +2160,7 @@ This value is no longer accepted and should not be used.
 
 不再接受此值，不应使用。
 {==+==}
+
 
 {==+==}
 ##### `registry.default`
@@ -2079,6 +2173,7 @@ This value is no longer accepted and should not be used.
 * Default: `"crates-io"`
 * Environment: `CARGO_REGISTRY_DEFAULT`
 {==+==}
+
 
 {==+==}
 The name of the registry (from the [`registries` table](#registries)) to use
@@ -2093,6 +2188,7 @@ Can be overridden with the `--registry` command-line option.
 可以用 `--registry` 命令行选项来覆盖。
 {==+==}
 
+
 {==+==}
 ##### `registry.token`
 * Type: string
@@ -2105,6 +2201,7 @@ Can be overridden with the `--registry` command-line option.
 * Environment: `CARGO_REGISTRY_TOKEN`
 {==+==}
 
+
 {==+==}
 Specifies the authentication token for [crates.io]. This value should only
 appear in the [credentials](#credentials) file. This is used for registry
@@ -2115,11 +2212,6 @@ commands like [`cargo publish`] that require authentication.
 这用于像 [`cargo publish`] 这样的需要认证的注册中心命令。
 {==+==}
 
-{==+==}
-Can be overridden with the `--token` command-line option.
-{==+==}
-可以用 `--token` 命令行选项来覆盖。
-{==+==}
 
 {==+==}
 #### `[source]`
@@ -2137,6 +2229,7 @@ local-registry, or git).
 源应该只定义为一种(目录、注册中心、本地注册或git)。
 {==+==}
 
+
 {==+==}
 ##### `source.<name>.replace-with`
 * Type: string
@@ -2149,11 +2242,13 @@ local-registry, or git).
 * Environment: 不支持
 {==+==}
 
+
+{==+==}
+If set, replace this source with the given named source or named registry.
 {==+==}
 如果设置，用给定的命名源或命名注册中心替换这个源。
 {==+==}
 
-{==+==}
 
 {==+==}
 ##### `source.<name>.directory`
@@ -2167,11 +2262,13 @@ local-registry, or git).
 * Environment: 不支持
 {==+==}
 
+
+{==+==}
+Sets the path to a directory to use as a directory source.
 {==+==}
 设置目录路径，作为目录源使用。
 {==+==}
 
-{==+==}
 
 {==+==}
 ##### `source.<name>.registry`
@@ -2184,6 +2281,7 @@ local-registry, or git).
 * Default: none
 * Environment: 不支持
 {==+==}
+
 
 {==+==}
 Sets the URL to use for a registry source.
@@ -2191,6 +2289,7 @@ Sets the URL to use for a registry source.
 设置用于注册中心源的URL。
 {==+==}
 
+
 {==+==}
 ##### `source.<name>.local-registry`
 * Type: string (path)
@@ -2203,11 +2302,13 @@ Sets the URL to use for a registry source.
 * Environment: 不支持
 {==+==}
 
+
 {==+==}
 Sets the path to a directory to use as a local registry source.
 {==+==}
 设置目录路径，用作本地注册源。
 {==+==}
+
 
 {==+==}
 ##### `source.<name>.git`
@@ -2221,11 +2322,13 @@ Sets the path to a directory to use as a local registry source.
 * Environment: 不支持
 {==+==}
 
+
 {==+==}
 Sets the URL to use for a git repository source.
 {==+==}
 设置用于git仓库源的URL。
 {==+==}
+
 
 {==+==}
 ##### `source.<name>.branch`
@@ -2238,6 +2341,7 @@ Sets the URL to use for a git repository source.
 * Default: none
 * Environment: 不支持
 {==+==}
+
 
 {==+==}
 Sets the branch name to use for a git repository.
@@ -2245,6 +2349,7 @@ Sets the branch name to use for a git repository.
 设置用于git仓库的分支名称。
 {==+==}
 
+
 {==+==}
 ##### `source.<name>.tag`
 * Type: string
@@ -2256,7 +2361,7 @@ Sets the branch name to use for a git repository.
 * Default: none
 * Environment: 不支持
 {==+==}
-{==+==}
+
 
 {==+==}
 Sets the tag name to use for a git repository.
@@ -2521,9 +2626,9 @@ The `[term]` table controls terminal output and interaction.
 {==+==}
 
 {==+==}
-控制Cargo是否显示日志信息。
+Controls whether or not log messages are displayed by Cargo.
 {==+==}
-
+控制Cargo是否显示日志信息。
 {==+==}
 
 {==+==}

@@ -1,4 +1,4 @@
-class_name TL
+class_name TL 
 ## 原文
 var source_text:String
 
