@@ -19,7 +19,7 @@ Cargo安装crates并从 "注册中心" 中获取依赖。
 > Note: If you are interested in mirroring or vendoring an existing registry,
 > take a look at [Source Replacement].
 {==+==}
-> 注意: 如果你对镜像或提供现有的注册中心感兴趣，请看一下[源替换]。
+> 注意: 如果你对镜像或拓展现有的注册中心感兴趣，请看一下[源替换]。
 {==+==}
 
 {==+==}
