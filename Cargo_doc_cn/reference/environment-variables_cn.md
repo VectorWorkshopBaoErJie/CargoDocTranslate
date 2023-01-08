@@ -281,7 +281,16 @@ Cargo会读取一些配置值的环境变量。详情见[配置章节][config-en
 * `CARGO_HTTP_CHECK_REVOKE` — Disables TLS certificate revocation checks, see [`http.check-revoke`].
 * `CARGO_HTTP_SSL_VERSION` — The TLS version to use, see [`http.ssl-version`].
 {==+==}
-
+* `CARGO_BUILD_INCREMENTAL` — 增量编译, 见 [`build.incremental`] 。
+* `CARGO_BUILD_DEP_INFO_BASEDIR` — 仓库信息的相对目录, 见 [`build.dep-info-basedir`].
+* `CARGO_CARGO_NEW_VCS` —  [`cargo new`] 默认的源码控制系统, 见 [`cargo-new.vcs`].
+* `CARGO_FUTURE_INCOMPAT_REPORT_FREQUENCY` - 应该多长时间生成一次未来的不兼容报告通知, 见 [`future-incompat-report.frequency`].
+* `CARGO_HTTP_DEBUG` — 启用 HTTP 调试, 见 [`http.debug`].
+* `CARGO_HTTP_PROXY` — 启用HTTP代理, 见 [`http.proxy`].
+* `CARGO_HTTP_TIMEOUT` — HTTP超时, 见 [`http.timeout`].
+* `CARGO_HTTP_CAINFO` — TLS证书机构文件, 见 [`http.cainfo`].
+* `CARGO_HTTP_CHECK_REVOKE` — 禁用TLS证书废止检查, 见 [`http.check-revoke`].
+* `CARGO_HTTP_SSL_VERSION` — 要使用的TLS版本, 见 [`http.ssl-version`].
 {==+==}
 
 
@@ -297,7 +306,16 @@ Cargo会读取一些配置值的环境变量。详情见[配置章节][config-en
 * `CARGO_PROFILE_<name>_CODEGEN_UNITS` — Set code generation units, see [`profile.<name>.codegen-units`].
 * `CARGO_PROFILE_<name>_DEBUG` — What kind of debug info to include, see [`profile.<name>.debug`].
 {==+==}
-
+* `CARGO_HTTP_LOW_SPEED_LIMIT` — HTTP的低速限制, 见 [`http.low-speed-limit`].
+* `CARGO_HTTP_MULTIPLEXING` — 是否使用HTTP/2多路复用, 见 [`http.multiplexing`].
+* `CARGO_HTTP_USER_AGENT` — HTTP user-agent 头, 见 [`http.user-agent`].
+* `CARGO_INSTALL_ROOT` — [`cargo install`] 的默认目录, 见 [`install.root`].
+* `CARGO_NET_RETRY` — 网络错误重试的次数, 见 [`net.retry`].
+* `CARGO_NET_GIT_FETCH_WITH_CLI` — 启用 `git` 可执行程序来获取, 见 [`net.git-fetch-with-cli`].
+* `CARGO_NET_OFFLINE` — 脱机模式, 见 [`net.offline`].
+* `CARGO_PROFILE_<name>_BUILD_OVERRIDE_<key>` — 覆盖构建脚本配置文件, 见 [`profile.<name>.build-override`].
+* `CARGO_PROFILE_<name>_CODEGEN_UNITS` — 设定代码生成单元, 见 [`profile.<name>.codegen-units`].
+* `CARGO_PROFILE_<name>_DEBUG` — 要包括什么样的调试信息, 见 [`profile.<name>.debug`].
 {==+==}
 
 
@@ -313,7 +331,16 @@ Cargo会读取一些配置值的环境变量。详情见[配置章节][config-en
 * `CARGO_REGISTRIES_<name>_INDEX` — URL of a registry index, see [`registries.<name>.index`].
 * `CARGO_REGISTRIES_<name>_TOKEN` — Authentication token of a registry, see [`registries.<name>.token`].
 {==+==}
-
+* `CARGO_PROFILE_<name>_DEBUG_ASSERTIONS` — 启用/禁用调试断言, 见 [`profile.<name>.debug-assertions`].
+* `CARGO_PROFILE_<name>_INCREMENTAL` — 启用/禁用增量编译, 见 [`profile.<name>.incremental`].
+* `CARGO_PROFILE_<name>_LTO` — 链接时间优化, 见 [`profile.<name>.lto`].
+* `CARGO_PROFILE_<name>_OVERFLOW_CHECKS` — 启用/禁用溢出检查, 见 [`profile.<name>.overflow-checks`].
+* `CARGO_PROFILE_<name>_OPT_LEVEL` — 设置优化级别, 见 [`profile.<name>.opt-level`].
+* `CARGO_PROFILE_<name>_PANIC` — 要使用的恐慌策略, 见 [`profile.<name>.panic`].
+* `CARGO_PROFILE_<name>_RPATH` — rpath链接选项, 见 [`profile.<name>.rpath`].
+* `CARGO_PROFILE_<name>_SPLIT_DEBUGINFO` — 控制调试文件的输出行为, 见 [`profile.<name>.split-debuginfo`].
+* `CARGO_REGISTRIES_<name>_INDEX` — 注册中心索引的URL, 见 [`registries.<name>.index`].
+* `CARGO_REGISTRIES_<name>_TOKEN` — 注册中心认证token, 见 [`registries.<name>.token`].
 {==+==}
 
 
@@ -329,7 +356,16 @@ Cargo会读取一些配置值的环境变量。详情见[配置章节][config-en
 * `CARGO_TERM_PROGRESS_WHEN` — The default progress bar showing mode, see [`term.progress.when`].
 * `CARGO_TERM_PROGRESS_WIDTH` — The default progress bar width, see [`term.progress.width`].
 {==+==}
-
+* `CARGO_REGISTRY_DEFAULT` — `--registry` 的默认注册中心。见 [`registry.default`] 。
+* `CARGO_REGISTRY_TOKEN` — [crates.io]的认证token。 见 [`registry.token`] 。
+* `CARGO_TARGET_<triple>_LINKER` — 使用的链接器, 见 [`target.<triple>.linker`] 。 三元组必须是 [转换为大写字母和下划线](config.md#environment-variables) 。
+* `CARGO_TARGET_<triple>_RUNNER` — 可执行的运行器, 见 [`target.<triple>.runner`] 。
+* `CARGO_TARGET_<triple>_RUSTFLAGS` — 目标的额外 `rustc` 标志, 见 [`target.<triple>.rustflags`] 。
+* `CARGO_TERM_QUIET` — 静默模式, 见 [`term.quiet`] 。
+* `CARGO_TERM_VERBOSE` — 默认的终端口令, 见 [`term.verbose`] 。
+* `CARGO_TERM_COLOR` — 默认颜色模式, 见 [`term.color`] 。
+* `CARGO_TERM_PROGRESS_WHEN` — 默认的进度条显示模式, 见 [`term.progress.when`] 。
+* `CARGO_TERM_PROGRESS_WIDTH` — 默认的进度条宽度, 见 [`term.progress.width`] 。
 {==+==}
 
 
@@ -403,7 +439,7 @@ Cargo会读取一些配置值的环境变量。详情见[配置章节][config-en
 {==+==}
 ### Environment variables Cargo sets for crates
 {==+==}
-
+### 环境变量Cargo的crate集
 {==+==}
 
 
@@ -413,7 +449,9 @@ Note that this applies for running binaries with `cargo run` and `cargo test`
 as well. To get the value of any of these variables in a Rust program, do
 this:
 {==+==}
-
+Cargo在编译时将这些环境变量暴露给你的crate。
+注意，这也适用于用 `cargo run` 和 `cargo test` 运行二进制文件。
+要在Rust程序中获得这些变量的值，请这样做:
 {==+==}
 
 
@@ -429,7 +467,7 @@ let version = env!("CARGO_PKG_VERSION");
 {==+==}
 `version` will now contain the value of `CARGO_PKG_VERSION`.
 {==+==}
-
+`version` 现在将包含 `CARGO_PKG_VERSION` 的值。
 {==+==}
 
 
@@ -437,7 +475,7 @@ let version = env!("CARGO_PKG_VERSION");
 Note that if one of these values is not provided in the manifest, the
 corresponding environment variable is set to the empty string, `""`.
 {==+==}
-
+请注意，如果配置清单中没有提供这些值之一，则相应的环境变量将被设置为空字符串 `""` 。
 {==+==}
 
 
@@ -453,7 +491,16 @@ corresponding environment variable is set to the empty string, `""`.
 * `CARGO_PKG_NAME` — The name of your package.
 * `CARGO_PKG_DESCRIPTION` — The description from the manifest of your package.
 {==+==}
-
+* `CARGO` — 执行构建的 `cargo` 二进制文件的路径。
+* `CARGO_MANIFEST_DIR` — 包含你的包配置清单的目录。
+* `CARGO_PKG_VERSION` — 你的包的完整版本。
+* `CARGO_PKG_VERSION_MAJOR` — 你的包的主要版本。
+* `CARGO_PKG_VERSION_MINOR` — 你的包的次要版本。
+* `CARGO_PKG_VERSION_PATCH` — 你的包的补丁版本。
+* `CARGO_PKG_VERSION_PRE` — 你的包的预发布版本。
+* `CARGO_PKG_AUTHORS` — 冒号分隔的作者名单，来自你的包的配置清单。
+* `CARGO_PKG_NAME` — 你的包的名称。
+* `CARGO_PKG_DESCRIPTION` — 你的包配置清单的描述。
 {==+==}
 
 
@@ -478,7 +525,15 @@ corresponding environment variable is set to the empty string, `""`.
   Binaries are automatically built when the test is built, unless the binary
   has required features that are not enabled.
 {==+==}
-
+* `CARGO_PKG_HOMEPAGE` — 你的包的配置清单中的主页。
+* `CARGO_PKG_REPOSITORY` — 你的包配置清单中的存储库。
+* `CARGO_PKG_LICENSE` — 你的包的配置清单中的许可证。
+* `CARGO_PKG_LICENSE_FILE` — 你的包的配置清单中的许可证文件。
+* `CARGO_PKG_RUST_VERSION` — 你的包的配置清单中的Rust版本。 注意，这是包支持的最小Rust版本，而不是当前的Rust版本。
+* `CARGO_CRATE_NAME` — 当前正在编译的crate的名称。
+* `CARGO_BIN_NAME` — 当前正在编译的二进制文件的名称(如果它是一个二进制文件)。这个名字不包括任何文件扩展名，如 `.exe` 。
+* `OUT_DIR` — 如果该包有构建脚本，这将被设置为构建脚本应该放置其输出的文件夹。更多信息见下文。(只在编译过程中设置)。
+* `CARGO_BIN_EXE_<name>` — 二进制目标的可执行文件的绝对路径。这只在构建[集成测试]或基准时设置。这可以与[`env` macro]一起使用，以找到为测试目的运行的可执行文件。 `<name>` 是二进制目标的名称，完全按原样。例如， `CARGO_BIN_EXE_my-program` 代表一个名为 `my-program` 的二进制文件。当测试建立时，二进制文件会自动建立，除非二进制文件有未启用的必要特性。
 {==+==}
 
 
@@ -495,7 +550,8 @@ corresponding environment variable is set to the empty string, `""`.
   the tests/benches. Cargo initially creates this directory but doesn't
   manage its content in any way, this is the responsibility of the test code.
 {==+==}
-
+* `CARGO_PRIMARY_PACKAGE` — 如果正在构建的包是主要的，这个环境变量将被设置。主要包是用户在命令行中选择的，可以是 `-p` 标志，也可以是基于当前目录和默认工作空间成员的默认值。这个环境变量在构建依赖时不会被设置。只有在编译包时才会设置（而不是在运行二进制文件或测试时）。
+* `CARGO_TARGET_TMPDIR` — 只在构建[集成测试]或基准代码时设置。这是一个指向目标目录内的路径，集成测试或基准测试可以在这里自由放置测试/基准所需的任何数据。Cargo初始创建这个目录，但不以任何方式管理其内容，这是测试代码的责任。
 {==+==}
 
 
@@ -510,7 +566,7 @@ corresponding environment variable is set to the empty string, `""`.
 {==+==}
 #### Dynamic library paths
 {==+==}
-
+#### 动态库路径
 {==+==}
 
 
@@ -520,7 +576,7 @@ with commands like `cargo run` and `cargo test`. This helps with locating
 shared libraries that are part of the build process. The variable name depends
 on the platform:
 {==+==}
-
+在使用 `cargo run` 和 `cargo test` 等命令编译和运行二进制文件时，Cargo也会设置动态库路径。这有助于定位作为构建过程一部分的共享库。变量名称取决于平台:
 {==+==}
 
 
@@ -538,14 +594,14 @@ The value is extended from the existing value when Cargo starts. macOS has
 special consideration where if `DYLD_FALLBACK_LIBRARY_PATH` is not already
 set, it will add the default `$HOME/lib:/usr/local/lib:/usr/lib`.
 {==+==}
-
+macOS有特殊的考虑，如果 `DYLD_FALLBACK_LIBRARY_PATH` 还没有设置，它就会增加默认的 `$HOME/lib:/usr/local/lib:/usr/lib` 。
 {==+==}
 
 
 {==+==}
 Cargo includes the following paths:
 {==+==}
-
+Cargo包括以下路径:
 {==+==}
 
 
@@ -556,7 +612,7 @@ Cargo includes the following paths:
   Cargo to properly set the environment if additional libraries on the system
   are needed in the search path.
 {==+==}
-
+* 搜索任何带有[`rustc-link-search` instruction](build-scripts.md#rustc-link-search)的构建脚本中包含的路径。 `target` 目录之外的路径会被删除。如果在搜索路径中需要额外的系统库，运行Cargo的用户有责任正确设置环境。
 {==+==}
 
 
@@ -564,7 +620,7 @@ Cargo includes the following paths:
 * The base output directory, such as `target/debug`, and the "deps" directory.
   This is mostly for legacy support of `rustc` compiler plugins.
 {==+==}
-
+* 基本输出目录，如 `target/debug` ，和 "deps" 目录。这主要是为了对 `rustc` 编译器插件的遗留支持。
 {==+==}
 
 
@@ -572,14 +628,14 @@ Cargo includes the following paths:
 * The rustc sysroot library path. This generally is not important to most
   users.
 {==+==}
-
+* rustc sysroot库的路径。这对大多数用户来说通常并不重要。
 {==+==}
 
 
 {==+==}
 ### Environment variables Cargo sets for build scripts
 {==+==}
-
+### 环境变量 Cargo为构建脚本设置的环境变量
 {==+==}
 
 
@@ -588,7 +644,7 @@ Cargo sets several environment variables when build scripts are run. Because the
 are not yet set when the build script is compiled, the above example using `env!` won't work
 and instead you'll need to retrieve the values when the build script is run:
 {==+==}
-
+Cargo在运行构建脚本时设置了几个环境变量。因为这些变量在编译构建脚本时还没有设置，所以上面的例子中使用 `env!` 是行不通的，而是需要在运行构建脚本时检索这些值。
 {==+==}
 
 
@@ -605,7 +661,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
 {==+==}
 `out_dir` will now contain the value of `OUT_DIR`.
 {==+==}
-
+`out_dir` 现在将包含 `OUT_DIR` 的值。
 {==+==}
 
 
@@ -617,7 +673,8 @@ let out_dir = env::var("OUT_DIR").unwrap();
                          current working directory of the build script when it
                          starts.
 {==+==}
-
+* `CARGO` — Path to the `cargo` binary performing the build.
+* `CARGO_MANIFEST_DIR` — 包含正在构建的包的配置清单的目录(包含构建脚本的软件包)。还要注意，这是构建脚本启动时的当前工作目录的值。
 {==+==}
 
 
@@ -633,7 +690,8 @@ let out_dir = env::var("OUT_DIR").unwrap();
                       but it's free for build scripts invoking GNU Make
                       to set it to the contents of `CARGO_MAKEFLAGS`.
 {==+==}
-
+* `CARGO_MANIFEST_LINKS` — 配置清单 `links` 值。
+* `CARGO_MAKEFLAGS` — 包含Cargo的[jobserver]实现所需的参数，以使子进程并行化。Rustc或build.rs中的cargo调用已经可以读取 `CARGO_MAKEFLAGS` ，但GNU Make要求这些标志直接作为参数指定，或通过 `MAKEFLAGS` 环境变量指定。目前Cargo并没有设置 `MAKEFLAGS`变量，但GNU Make的编译脚本可以将其设置为 `CARGO_MAKEFLAGS` 的内容。
 {==+==}
 
 
@@ -643,7 +701,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
                            where `<name>` is the name of the feature uppercased
                            and having `-` translated to `_`.
 {==+==}
-
+* `CARGO_FEATURE_<name>` — 对于正在构建的包的每个激活的特性，这个环境变量将出现，其中 `<name>` 是特性的名称，为大写字母， `-` 转换成 `_` 。
 {==+==}
 
 
@@ -658,7 +716,9 @@ let out_dir = env::var("OUT_DIR").unwrap();
   and values set by build scripts and extra flags passed to `rustc` (such as
   those defined in `RUSTFLAGS`). Some examples of what these variables are:
 {==+==}
-
+* `CARGO_CFG_<cfg>` — 对于正在构建的包的每一个[配置选项][configuration]，这个环境变量将包含配置的值，其中 `<cfg>` 是配置的名称，为大写，并将 `-` 转换为 `_` 。
+  布尔型配置如果被设置就会出现，否则就不会出现。具有多个值的配置连接到一个变量，其值以 `,` 分割。
+  这包括编译器内置的值(可以用`rustc --print=cfg` 查看)，以及由编译脚本和传递给 `rustc` 的额外标志(比如在 `RUSTFLAGS` 中定义的)设置的值。这些变量的一些例子:
 {==+==}
 
 
@@ -674,7 +734,16 @@ let out_dir = env::var("OUT_DIR").unwrap();
     * `CARGO_CFG_TARGET_ENDIAN=little` — The CPU [target endianness].
     * `CARGO_CFG_TARGET_FEATURE=mmx,sse` — List of CPU [target features] enabled.
 {==+==}
-
+    * `CARGO_CFG_UNIX` — 在 [unix-like platforms] 设置。
+    * `CARGO_CFG_WINDOWS` — 在 [windows-like platforms] 设置。
+    * `CARGO_CFG_TARGET_FAMILY=unix` —  [target family] 。
+    * `CARGO_CFG_TARGET_OS=macos` —  [target operating system] 。
+    * `CARGO_CFG_TARGET_ARCH=x86_64` —  CPU [target architecture] 。
+    * `CARGO_CFG_TARGET_VENDOR=apple` —  [target vendor] 。
+    * `CARGO_CFG_TARGET_ENV=gnu` —  [target environment] ABI 。
+    * `CARGO_CFG_TARGET_POINTER_WIDTH=64` —  CPU [pointer width] 。
+    * `CARGO_CFG_TARGET_ENDIAN=little` —  CPU [target endianness] 。
+    * `CARGO_CFG_TARGET_FEATURE=mmx,sse` — 启用的CPU[target features] 列表。
 {==+==}
 
 
@@ -683,7 +752,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
               be placed. This folder is inside the build directory for the
               package being built, and it is unique for the package in question.
 {==+==}
-
+* `OUT_DIR` — 所有输出和中间制品应该放在哪个文件夹里。这个文件夹位于正在构建的包的构建目录内，而且对相关的包来说是唯一的。
 {==+==}
 
 
@@ -692,14 +761,14 @@ let out_dir = env::var("OUT_DIR").unwrap();
              compiled for this triple. See the [Target Triple] description
              for more information.
 {==+==}
-
+* `TARGET` — 正在被编译的目标三元组。本地代码应该为这个三元组进行编译。更多信息请参见 [Target Triple] 的描述。
 {==+==}
 
 
 {==+==}
 * `HOST` — the host triple of the Rust compiler.
 {==+==}
-
+* `HOST` — 是Rust编译器的主机三元组。
 {==+==}
 
 
@@ -713,7 +782,8 @@ let out_dir = env::var("OUT_DIR").unwrap();
                of `CARGO_MAKEFLAGS` to activate the use of Cargo's GNU Make
                compatible [jobserver] for sub-make invocations.
 {==+==}
-
+* `NUM_JOBS` — 被指定为顶层并行性的并行性。这对于向 `make` 这样的系统传递 `-j` 参数很有用。注意，在解释这个环境变量的时候要注意。
+               出于历史原因，仍然提供了这个变量，但最近的Cargo版本，例如，不需要运行 `make -j` ，而是可以将 `MAKEFLAGS` 环境变量设置为 `CARGO_MAKEFLAGS` 的内容，以激活使用Cargo的GNU Make兼容 [jobserver] 进行子make调用。
 {==+==}
 
 
@@ -721,7 +791,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
 * `OPT_LEVEL`, `DEBUG` — values of the corresponding variables for the
                          profile currently being built.
 {==+==}
-
+* `OPT_LEVEL`, `DEBUG` — 目前正在建立的配置文件的相应变量的值。
 {==+==}
 
 
@@ -732,7 +802,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
   Using other environment variables like `OPT_LEVEL` provide a more correct
   view of the actual settings being used.
 {==+==}
-
+* `PROFILE` — `release` 用于发布版本， `debug` 用于其他版本。这是根据 [profile] 是否继承自 [`dev`] 或 [`release`] 配置文件来决定的。不建议使用这个环境变量。使用其他环境变量，如 `OPT_LEVEL` ，可以更准确地了解正在使用的实际设置。
 {==+==}
 
 
@@ -740,7 +810,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
 * `DEP_<name>_<key>` — For more information about this set of environment
                        variables, see build script documentation about [`links`][links].
 {==+==}
-
+* `DEP_<name>_<key>` — 关于这组环境变量的更多信息，请参见关于 [`links`][links] 的构建脚本文档。
 {==+==}
 
 
@@ -749,7 +819,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
                        resolved to use, passed to the build script so it might
                        use it as well.
 {==+==}
-
+* `RUSTC`, `RUSTDOC` — 是Cargo决定使用的编译器和文档生成器，传递给构建脚本，以便它也能使用。
 {==+==}
 
 
@@ -757,7 +827,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
 * `RUSTC_WRAPPER` — the `rustc` wrapper, if any, that Cargo is using.
                     See [`build.rustc-wrapper`].
 {==+==}
-
+* `RUSTC_WRAPPER` — Cargo使用的 `rustc` 包装器，如果有的话。 见 [`build.rustc-wrapper`].
 {==+==}
 
 
@@ -766,7 +836,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
 			      using for workspace members. See
 			      [`build.rustc-workspace-wrapper`].
 {==+==}
-
+* `RUSTC_WORKSPACE_WRAPPER` — `rustc` 包装器，如果有的话，Cargo对工作空间成员使用。 见 [`build.rustc-workspace-wrapper`].
 {==+==}
 
 
@@ -777,7 +847,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
                    about [cargo configuration][cargo-config] for more
                    information.
 {==+==}
-
+* `RUSTC_LINKER` — 如果指定了链接器，则是Cargo已经决定为当前目标使用的链接器二进制文件的路径。链接器可以通过编辑 `.cargo/config.toml` 来改变；更多信息请参见 [cargo configuration][cargo-config] 文档。
 {==+==}
 
 
@@ -787,14 +857,14 @@ let out_dir = env::var("OUT_DIR").unwrap();
   [`build.rustflags`]. Note that since Rust 1.55, `RUSTFLAGS` is removed from
   the environment; scripts should use `CARGO_ENCODED_RUSTFLAGS` instead.
 {==+==}
-
+* `CARGO_ENCODED_RUSTFLAGS` — 附加的标志，Cargo调用 `rustc` 时，用 `0x1f` 字符(ASCII单位分隔符)分隔。见 [`build.rustflags`] 。注意，从Rust 1.55开始， `RUSTFLAGS` 已经从环境中移除；脚本应该使用 `CARGO_ENCODED_RUSTFLAGS` 代替。
 {==+==}
 
 
 {==+==}
 * `CARGO_PKG_<var>` - The package information variables, with the same names and values as are [provided during crate building][variables set for crates].
 {==+==}
-
+* `CARGO_PKG_<var>` - 包的信息变量，其名称和数值与[在crate构建过程中提供的][variables set for crates]相同。
 {==+==}
 
 
@@ -828,7 +898,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
 {==+==}
 ### Environment variables Cargo sets for 3rd party subcommands
 {==+==}
-
+### 环境变量 Cargo为第三方子命令设置的环境变量
 {==+==}
 
 
@@ -836,19 +906,19 @@ let out_dir = env::var("OUT_DIR").unwrap();
 Cargo exposes this environment variable to 3rd party subcommands
 (ie. programs named `cargo-foobar` placed in `$PATH`):
 {==+==}
-
+Cargo将这个环境变量暴露给第三方子命令(即放在 `$PATH` 中的名为 `cargo-foobar` 的程序):
 {==+==}
 
 
 {==+==}
 * `CARGO` — Path to the `cargo` binary performing the build.
 {==+==}
-
+* `CARGO` — 执行构建的 `cargo` 二进制文件的路径。
 {==+==}
 
 
 {==+==}
 For extended information about your environment you may run `cargo metadata`.
 {==+==}
-
+对于你的环境的扩展信息，可以运行 `cargo metadata` 。
 {==+==}
