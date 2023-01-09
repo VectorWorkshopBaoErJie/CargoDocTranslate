@@ -502,7 +502,8 @@ crates should be avoided.
 <a id="struct-add-private-field-when-public"></a>
 ### Major: adding a private struct field when all current fields are public
 {==+==}
-
+<a id="struct-add-private-field-when-public"></a>
+### Major: 当当前所有字段都是公共的时候，添加私有结构体字段
 {==+==}
 
 
@@ -510,7 +511,8 @@ crates should be avoided.
 When a private field is added to a struct that previously had all public fields,
 this will break any code that attempts to construct it with a [struct literal].
 {==+==}
-
+当私有字段被添加到之前拥有所有公共字段的结构体中时。
+这将破坏任何试图用[struct literal]"结构体字面量"来构建该结构体的代码。
 {==+==}
 
 
@@ -538,7 +540,28 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub struct Foo {
+    pub f1: i32,
+}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub struct Foo {
+    pub f1: i32,
+    f2: i32,
+}
+
+///////////////////////////////////////////////////////////
+// 示例：使用会打破用法。
+fn main() {
+    let x = updated_crate::Foo { f1: 123 }; // Error: 不能构建 `Foo`
+}
+```
 {==+==}
 
 
@@ -549,7 +572,10 @@ Mitigation strategies:
   a struct to prevent users from using struct literal syntax, and instead
   provide a constructor method and/or [Default] implementation.
 {==+==}
-
+缓和策略:
+* 不要向所有公共字段的结构体添加新字段。
+* 在首次引入结构体时，将结构标记为[`#[non_exhaustive]`][non_exhaustive]，
+  以阻止用户使用结构字面量语法，而是提供构造方法或 [Default] 实现。
 {==+==}
 
 
@@ -557,7 +583,8 @@ Mitigation strategies:
 <a id="struct-add-public-field-when-no-private"></a>
 ### Major: adding a public field when no private field exists
 {==+==}
-
+<a id="struct-add-public-field-when-no-private"></a>
+### Major: 在不存在私有字段的情况下添加公共字段
 {==+==}
 
 
@@ -565,7 +592,7 @@ Mitigation strategies:
 When a public field is added to a struct that has all public fields, this will
 break any code that attempts to construct it with a [struct literal].
 {==+==}
-
+当公共字段被添加到拥有所有公共字段的结构体中时，这将破坏任何试图用[struct literal]"结构体字面量"来构建它的代码。
 {==+==}
 
 
@@ -593,7 +620,28 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub struct Foo {
+    pub f1: i32,
+}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub struct Foo {
+    pub f1: i32,
+    pub f2: i32,
+}
+
+///////////////////////////////////////////////////////////
+// 示例：使用会打破用法。
+fn main() {
+    let x = updated_crate::Foo { f1: 123 }; // Error: 缺失 `f2` 字段
+}
+```
 {==+==}
 
 
@@ -604,7 +652,10 @@ Mitigation strategies:
   a struct to prevent users from using struct literal syntax, and instead
   provide a constructor method and/or [Default] implementation.
 {==+==}
-
+缓和策略:
+* 不要向所有公共字段结构体添加新字段。
+* 在首次引入结构体时，将结构体标记为[`#[non_exhaustive]`][non_exhaustive]，
+  以阻止用户使用结构体字面量语法，而是提供构造方法或[Default]实现。
 {==+==}
 
 
@@ -612,7 +663,8 @@ Mitigation strategies:
 <a id="struct-private-fields-with-private"></a>
 ### Minor: adding or removing private fields when at least one already exists
 {==+==}
-
+<a id="struct-private-fields-with-private"></a>
+### Minor: 当至少有一个私有字段存在时添加或删除私有字段
 {==+==}
 
 
@@ -620,7 +672,7 @@ Mitigation strategies:
 It is safe to add or remove private fields from a struct when the struct
 already has at least one private field.
 {==+==}
-
+当结构已经至少有一个私有字段时，从结构中添加或删除私有字段是安全的。
 {==+==}
 
 
@@ -650,7 +702,30 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MINOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+#[derive(Default)]
+pub struct Foo {
+    f1: i32,
+}
+
+///////////////////////////////////////////////////////////
+// 之后
+#[derive(Default)]
+pub struct Foo {
+    f2: f64,
+}
+
+///////////////////////////////////////////////////////////
+// 示例： 使用库将是安全的。
+fn main() {
+    // 不能访问私有字段。
+    let x = updated_crate::Foo::default();
+}
+```
 {==+==}
 
 
@@ -658,7 +733,7 @@ fn main() {
 This is safe because existing code cannot use a [struct literal] to construct
 it, nor exhaustively match its contents.
 {==+==}
-
+这是安全的，因为现有的代码不能使用[struct literal]来构造它，无需彻底匹配其内容。
 {==+==}
 
 
@@ -667,7 +742,7 @@ Note that for tuple structs, this is a **major change** if the tuple contains
 public fields, and the addition or removal of a private field changes the
 index of any public field.
 {==+==}
-
+请注意，对于元组结构体来说，如果元组包含公共字段，增加或删除私有字段会改变任何公共字段的索引，将是 **major变化** 。
 {==+==}
 
 
@@ -693,7 +768,26 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+#[derive(Default)]
+pub struct Foo(pub i32, i32);
+
+///////////////////////////////////////////////////////////
+// 之后
+#[derive(Default)]
+pub struct Foo(f64, pub i32, i32);
+
+///////////////////////////////////////////////////////////
+// 示例：使用会打破用法。
+fn main() {
+    let x = updated_crate::Foo::default();
+    let y = x.0; // Error: 是私有的。
+}
+```
 {==+==}
 
 
@@ -701,7 +795,8 @@ fn main() {
 <a id="struct-tuple-normal-with-private"></a>
 ### Minor: going from a tuple struct with all private fields (with at least one field) to a normal struct, or vice versa
 {==+==}
-
+<a id="struct-tuple-normal-with-private"></a>
+### Minor: 从具有所有私有字段的元组结构体(至少有一个字段)到正常的结构体。
 {==+==}
 
 
@@ -709,7 +804,7 @@ fn main() {
 Changing a tuple struct to a normal struct (or vice-versa) is safe if all
 fields are private.
 {==+==}
-
+如果所有字段都是私有的，那么将元组结构体改变为普通结构体是安全的，反之亦然。
 {==+==}
 
 
@@ -737,7 +832,28 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MINOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+#[derive(Default)]
+pub struct Foo(i32);
+
+///////////////////////////////////////////////////////////
+// 之后
+#[derive(Default)]
+pub struct Foo {
+    f1: i32,
+}
+
+///////////////////////////////////////////////////////////
+// 示例：库的使用将是安全的。
+fn main() {
+    // 不能访问私有字段。
+    let x = updated_crate::Foo::default();
+}
+```
 {==+==}
 
 
