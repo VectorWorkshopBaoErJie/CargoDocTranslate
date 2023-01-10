@@ -2610,7 +2610,8 @@ Mitigation strategies:
 <a id="env-change-requirements"></a>
 ### Possibly-breaking: changing the platform and environment requirements
 {==+==}
-
+<a id="env-change-requirements"></a>
+### Possibly-breaking: 改变平台和环境要求
 {==+==}
 
 
@@ -2623,7 +2624,7 @@ for example requiring a newer version of an operating system. These changes
 can be difficult to track, since you may not always know if a change breaks in
 an environment that is not automatically tested.
 {==+==}
-
+一个库对它所运行的环境有非常宽泛的假设，例如主机平台、操作系统版本、可用的服务、文件系统支持等等。如果你发布的新版本限制了以前支持的内容，例如需要新版本的操作系统，这可能是破坏性的变化。这些变化可能很难跟踪，因为你可能并不总是知道在一个没有自动测试的环境中，变化是否会形成破坏。
 {==+==}
 
 
@@ -2634,7 +2635,8 @@ support all environments. Another notable situation is when a vendor
 discontinues support for some hardware or OS, the project may deem it
 reasonable to also discontinue support.
 {==+==}
-
+一些项目可能认为这是可以接受的破坏，特别是如果这种破坏对大多数用户来说是不可能的，或者项目没有资源来支持所有环境。
+另一种值得注意的情况是，当供应商停止对某些硬件或操作系统的支持时，项目可能认为停止支持也是合理的。
 {==+==}
 
 
@@ -2643,7 +2645,9 @@ Mitigation strategies:
 * Document the platforms and environments you specifically support.
 * Test your code on a wide range of environments in CI.
 {==+==}
-
+缓和策略:
+* 记录你具体支持的平台和环境。
+* 在CI中，在宽泛的环境中测试你的代码。
 {==+==}
 
 
@@ -2653,7 +2657,10 @@ Mitigation strategies:
 <a id="cargo-feature-add"></a>
 #### Minor: adding a new Cargo feature
 {==+==}
+### Cargo
 
+<a id="cargo-feature-add"></a>
+#### Minor: 增加新的Cargo特性
 {==+==}
 
 
@@ -2664,7 +2671,7 @@ that have stricter backwards-compatibility needs. In that scenario, avoid
 adding the feature to the "default" list, and possibly document the
 consequences of enabling the feature.
 {==+==}
-
+增加新的[Cargo features]通常是安全的。如果该特性引入了新的变化，带来破坏性，这可能会给那些有更严格的向后兼容性需求的项目带来困难。在这种情况下，应避免将该特性添加到 "默认" 列表中，并记录可能启用该特性的后果。
 {==+==}
 
 
@@ -2683,7 +2690,19 @@ consequences of enabling the feature.
 std = []
 ```
 {==+==}
+```toml
+# MINOR CHANGE
 
+###########################################################
+# 之前
+[features]
+# ..empty
+
+###########################################################
+# 之后
+[features]
+std = []
+```
 {==+==}
 
 
@@ -2691,7 +2710,8 @@ std = []
 <a id="cargo-feature-remove"></a>
 #### Major: removing a Cargo feature
 {==+==}
-
+<a id="cargo-feature-remove"></a>
+#### Major: 移除 Cargo 特性
 {==+==}
 
 
@@ -2699,7 +2719,7 @@ std = []
 It is usually a breaking change to remove [Cargo features]. This will cause
 an error for any project that enabled the feature.
 {==+==}
-
+移除[Cargo features]通常是一种破坏性的改变。这将导致任何启用该特性的项目出现错误。
 {==+==}
 
 
@@ -2718,7 +2738,19 @@ logging = []
 # ..logging removed
 ```
 {==+==}
+```toml
+# MAJOR CHANGE
 
+###########################################################
+# 之前
+[features]
+logging = []
+
+###########################################################
+# 之后
+[dependencies]
+# ..logging removed
+```
 {==+==}
 
 
@@ -2730,7 +2762,9 @@ Mitigation strategies:
   functionality. Document that the feature is deprecated, and remove it in a
   future major SemVer release.
 {==+==}
-
+缓和策略:
+* 清楚地记录你的特性。如果有一个内部或实验性的特性，就把它标记为这样的特性，以便用户知道这个特性的状态。
+* 在 `Cargo.toml` 中保留旧的特性，但删除其功能。记录该特性已被废弃，并在未来的语义化主要版本中删除。
 {==+==}
 
 
@@ -2738,7 +2772,8 @@ Mitigation strategies:
 <a id="cargo-feature-remove-another"></a>
 #### Major: removing a feature from a feature list if that changes functionality or public items
 {==+==}
-
+<a id="cargo-feature-remove-another"></a>
+#### Major: 如果改变了功能或公共条目，从特性列表中删除一个特性
 {==+==}
 
 
@@ -2746,7 +2781,7 @@ Mitigation strategies:
 If removing a feature from another feature, this can break existing users if
 they are expecting that functionality to be available through that feature.
 {==+==}
-
+如果从另一个特性中删除特性，这可能会破坏现有的用户，如果他们期望通过该特性来获得该功能。
 {==+==}
 
 
@@ -2767,7 +2802,21 @@ default = []  # This may cause packages to fail if they are expecting std to be 
 std = []
 ```
 {==+==}
+```toml
+# Breaking change example
 
+###########################################################
+# 之前
+[features]
+default = ["std"]
+std = []
+
+###########################################################
+# 之后
+[features]
+default = []  # 如果包期望启用std，这可能会导致它们失败。
+std = []
+```
 {==+==}
 
 
@@ -2775,7 +2824,8 @@ std = []
 <a id="cargo-remove-opt-dep"></a>
 #### Possibly-breaking: removing an optional dependency
 {==+==}
-
+<a id="cargo-remove-opt-dep"></a>
+#### Possibly-breaking: 删除可选依赖
 {==+==}
 
 
@@ -2783,7 +2833,7 @@ std = []
 Removing an optional dependency can break a project using your library because
 another project may be enabling that dependency via [Cargo features].
 {==+==}
-
+删除可选依赖可能会破坏使用你的库的项目，因为另一个项目可能通过[Cargo features]启用该依赖。
 {==+==}
 
 
@@ -2802,7 +2852,19 @@ curl = { version = "0.4.31", optional = true }
 # ..curl removed
 ```
 {==+==}
+```toml
+# Breaking change example
 
+###########################################################
+# 之前
+[dependencies]
+curl = { version = "0.4.31", optional = true }
+
+###########################################################
+# 之后
+[dependencies]
+# ..curl removed
+```
 {==+==}
 
 
@@ -2815,7 +2877,10 @@ Mitigation strategies:
 * Replace the optional dependency with a [Cargo feature] that does nothing,
   and document that it is deprecated.
 {==+==}
-
+缓和策略:
+* 清楚地记录你的特性。如果可选依赖不包括在记录的特性列表中，那么你可以决定认为改变无记录的条目是安全的。
+* 留下可选择依赖，只是在你的库中不使用它。
+* 用一个什么都不做的[Cargo feature]来替换这个可选依赖，并记录下它的废弃情况。
 {==+==}
 
 
@@ -2827,7 +2892,7 @@ Mitigation strategies:
   optional dependencies necessary to implement "networking". Then document the
   "networking" feature.
 {==+==}
-
+* 使用能够实现可选的依赖的高级特性，并将这些特性记录为实现扩展功能的首选方式。例如，如果你的库对 "联网" 这样的内容有可选的支持，创建一个名为 "联网" 的泛型特性，它能够实现 "联网" 所需的可选依赖。然后记录 "联网" 特性。
 {==+==}
 
 
@@ -2835,7 +2900,8 @@ Mitigation strategies:
 <a id="cargo-change-dep-feature"></a>
 #### Minor: changing dependency features
 {==+==}
-
+<a id="cargo-change-dep-feature"></a>
+#### Minor: 改变依赖特性
 {==+==}
 
 
@@ -2843,7 +2909,7 @@ Mitigation strategies:
 It is usually safe to change the features on a dependency, as long as the
 feature does not introduce a breaking change.
 {==+==}
-
+通常情况下，改变依赖上的特性是安全的，只要该特性不引入破坏性的变化。
 {==+==}
 
 
@@ -2863,7 +2929,20 @@ rand = { version = "0.7.3", features = ["small_rng"] }
 rand = "0.7.3"
 ```
 {==+==}
+```toml
+# MINOR CHANGE
 
+###########################################################
+# 之前
+[dependencies]
+rand = { version = "0.7.3", features = ["small_rng"] }
+
+
+###########################################################
+# 之后
+[dependencies]
+rand = "0.7.3"
+```
 {==+==}
 
 
@@ -2871,7 +2950,8 @@ rand = "0.7.3"
 <a id="cargo-dep-add"></a>
 #### Minor: adding dependencies
 {==+==}
-
+<a id="cargo-dep-add"></a>
+#### Minor: 添加依赖
 {==+==}
 
 
@@ -2881,7 +2961,8 @@ does not introduce new requirements that result in a breaking change.
 For example, adding a new dependency that requires nightly in a project
 that previously worked on stable is a major change.
 {==+==}
-
+增加新的依赖通常是安全的，只要新的依赖没有引入新的需求而导致破坏性的变化。
+例如，在一个以前在稳定版本上工作的项目中添加一个需要每日构建的新依赖，是一个重大的变化。
 {==+==}
 
 
@@ -2900,14 +2981,26 @@ that previously worked on stable is a major change.
 log = "0.4.11"
 ```
 {==+==}
+```toml
+# MINOR CHANGE
 
+###########################################################
+# 之前
+[dependencies]
+# ..empty
+
+###########################################################
+# 之后
+[dependencies]
+log = "0.4.11"
+```
 {==+==}
 
 
 {==+==}
 ## Application compatibility
 {==+==}
-
+## 应用程序兼容性
 {==+==}
 
 
@@ -2922,7 +3015,11 @@ to list, so you are encouraged to use the spirit of the [SemVer] spec to guide
 your decisions on how to apply versioning to your application, or at least
 document what your commitments are.
 {==+==}
-
+Cargo项目也可能包括可执行的二进制文件，它们有自己的接口(如CLI接口、OS级交互等)。
+由于这些是Cargo包的一部分，它们经常使用和共享与包相同的版本。
+你需要决定是否以及如何在你对应用程序的修改中采用语义化版本约定与你的用户进行沟通。
+对应用程序的潜在破坏性和兼容性的改变不胜枚举，
+所以我们鼓励你使用[SemVer]规范的精神来指导你决定如何将版本控制应用于你的应用程序，或者至少记录你的承诺。
 {==+==}
 
 
