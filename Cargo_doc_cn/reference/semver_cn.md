@@ -473,7 +473,7 @@ pub trait NewTrait {
 impl NewTrait for i32 {}
 
 ///////////////////////////////////////////////////////////
-// 示例：使用会打破用法。
+// 示例：使用是破坏性的。
 use updated_crate::*;
 
 pub trait LocalTrait {
@@ -557,7 +557,7 @@ pub struct Foo {
 }
 
 ///////////////////////////////////////////////////////////
-// 示例：使用会打破用法。
+// 示例：使用是破坏性的。
 fn main() {
     let x = updated_crate::Foo { f1: 123 }; // Error: 不能构建 `Foo`
 }
@@ -637,7 +637,7 @@ pub struct Foo {
 }
 
 ///////////////////////////////////////////////////////////
-// 示例：使用会打破用法。
+// 示例：使用是破坏性的。
 fn main() {
     let x = updated_crate::Foo { f1: 123 }; // Error: 缺失 `f2` 字段
 }
@@ -782,7 +782,7 @@ pub struct Foo(pub i32, i32);
 pub struct Foo(f64, pub i32, i32);
 
 ///////////////////////////////////////////////////////////
-// 示例：使用会打破用法。
+// 示例：使用是破坏性的。
 fn main() {
     let x = updated_crate::Foo::default();
     let y = x.0; // Error: 是私有的。
@@ -861,7 +861,7 @@ fn main() {
 This is safe because existing code cannot use a [struct literal] to construct
 it, nor match its contents.
 {==+==}
-
+这是安全的，因为当前的代码不能使用[struct literal]来构造它，不能匹配它的内容。
 {==+==}
 
 
@@ -869,7 +869,8 @@ it, nor match its contents.
 <a id="enum-variant-new"></a>
 ### Major: adding new enum variants (without `non_exhaustive`)
 {==+==}
-
+<a id="enum-variant-new"></a>
+### Major: 添加新的枚举条目 (没有 `non_exhaustive` ) 。
 {==+==}
 
 
@@ -877,7 +878,7 @@ it, nor match its contents.
 It is a breaking change to add a new enum variant if the enum does not use the
 [`#[non_exhaustive]`][non_exhaustive] attribute.
 {==+==}
-
+如果枚举未使用[`#[non_exhaustive]`][non_exhaustive]属性，增加新的枚举条目是破坏性的改变。
 {==+==}
 
 
@@ -909,7 +910,32 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub enum E {
+    Variant1,
+}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub enum E {
+    Variant1,
+    Variant2,
+}
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的。
+fn main() {
+    use updated_crate::E;
+    let x = E::Variant1;
+    match x { // Error: `E::Variant2` 未涵盖
+        E::Variant1 => {}
+    }
+}
+```
 {==+==}
 
 
@@ -918,7 +944,8 @@ Mitigation strategies:
 * When introducing the enum, mark it as [`#[non_exhaustive]`][non_exhaustive]
   to force users to use [wildcard patterns] to catch new variants.
 {==+==}
-
+缓和策略:
+* 在引入枚举时，将其标记为[`#[non_exhaustive]`][non_exhaustive]，以迫使用户使用[通配符模式]来捕获新的变体。
 {==+==}
 
 
@@ -926,7 +953,8 @@ Mitigation strategies:
 <a id="enum-fields-new"></a>
 ### Major: adding new fields to an enum variant
 {==+==}
-
+<a id="enum-fields-new"></a>
+### Major: 向枚举变量添加新字段
 {==+==}
 
 
@@ -934,7 +962,7 @@ Mitigation strategies:
 It is a breaking change to add new fields to an enum variant because all
 fields are public, and constructors and matching will fail to compile.
 {==+==}
-
+在枚举变体中添加新的字段是一种破坏性的改变，因为所有的字段都是公开的，构造函数和匹配将无法编译。
 {==+==}
 
 
@@ -965,7 +993,31 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub enum E {
+    Variant1 { f1: i32 },
+}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub enum E {
+    Variant1 { f1: i32, f2: i32 },
+}
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的。
+fn main() {
+    use updated_crate::E;
+    let x = E::Variant1 { f1: 1 }; // Error: 缺失 f2
+    match x {
+        E::Variant1 { f1 } => {} // Error: 缺失 f2
+    }
+}
+```
 {==+==}
 
 
@@ -979,7 +1031,13 @@ Mitigation strategies:
       Variant1{f1: i32}
   }
 {==+==}
-
+缓和策略:
+* 在引入枚举时，将变体标记为[`non_exhaustive`][non_exhaustive]，使其没有通配符的情况下不能构建或匹配它。
+  ```rust,ignore,skip
+  pub enum E {
+      #[non_exhaustive]
+      Variant1{f1: i32}
+  }
 {==+==}
 
 
@@ -997,7 +1055,17 @@ Mitigation strategies:
   }
   ```
 {==+==}
-
+  ```
+* 在引入枚举时，使用显式结构体作为值，在这里你可以对字段可见性进行控制。
+  ```rust,ignore,skip
+  pub struct Foo {
+     f1: i32,
+     f2: i32,
+  }
+  pub enum E {
+      Variant1(Foo)
+  }
+  ```
 {==+==}
 
 
@@ -1005,7 +1073,8 @@ Mitigation strategies:
 <a id="trait-new-item-no-default"></a>
 ### Major: adding a non-defaulted trait item
 {==+==}
-
+<a id="trait-new-item-no-default"></a>
+### Major: 添加非默认的trait条目
 {==+==}
 
 
@@ -1013,7 +1082,7 @@ Mitigation strategies:
 It is a breaking change to add a non-defaulted item to a trait. This will
 break any implementors of the trait.
 {==+==}
-
+在特性中添加非默认的条目是一种破坏性的改变。这将破坏该特性的任何实现者。
 {==+==}
 
 
@@ -1039,7 +1108,26 @@ struct Foo;
 impl Trait for Foo {}  // Error: not all trait items implemented
 ```
 {==+==}
+```rust,ignore
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub trait Trait {}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub trait Trait {
+    fn foo(&self);
+}
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的。
+use updated_crate::Trait;
+struct Foo;
+
+impl Trait for Foo {}  // Error: 未实现所有trait条目
+```
 {==+==}
 
 
@@ -1050,7 +1138,9 @@ Mitigation strategies:
 * When introducing the trait, use the [sealed trait] technique to prevent
   users outside of the crate from implementing the trait.
 {==+==}
-
+缓和策略:
+* 始终为新的相关trait条目提供默认的实现或值。
+* 在引入trait时，使用[sealed trait]技术来防止crate外的用户实现该trait。
 {==+==}
 
 
@@ -1058,7 +1148,8 @@ Mitigation strategies:
 <a id="trait-item-signature"></a>
 ### Major: any change to trait item signatures
 {==+==}
-
+<a id="trait-item-signature"></a>
+### Major: trait条目签名的任何变化
 {==+==}
 
 
@@ -1066,7 +1157,7 @@ Mitigation strategies:
 It is a breaking change to make any change to a trait item signature. This can
 break external implementors of the trait.
 {==+==}
-
+对trait条目的签名做任何改变都是破坏性的。可能会破坏该trait的外部实现者。
 {==+==}
 
 
@@ -1099,7 +1190,32 @@ impl Trait for Foo {
 }
 ```
 {==+==}
+```rust,ignore
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub trait Trait {
+    fn f(&self, x: i32) {}
+}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub trait Trait {
+    // 对于密封的trait或普通函数，这将是次要变化，因为用泛型来泛化严格地扩展了可能的用法。
+    // 但在这种情况下，trait的实现必须使用相同的签名。
+    fn f<V>(&self, x: V) {}
+}
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的。
+use updated_crate::Trait;
+struct Foo;
+
+impl Trait for Foo {
+    fn f(&self, x: i32) {}  // Error: trait 声明有1个类型参数
+}
+```
 {==+==}
 
 
@@ -1110,7 +1226,9 @@ Mitigation strategies:
 * When introducing the trait, use the [sealed trait] technique to prevent
   users outside of the crate from implementing the trait.
 {==+==}
-
+缓和策略:
+* 引入带有默认实现的新条目，以涵盖新功能，而不是修改现有条目。
+* 当引入该trait时，使用[sealed trait]来防止crate外的用户实现该trait。
 {==+==}
 
 
@@ -1118,7 +1236,8 @@ Mitigation strategies:
 <a id="trait-new-default-item"></a>
 ### Possibly-breaking: adding a defaulted trait item
 {==+==}
-
+<a id="trait-new-default-item"></a>
+### Possibly-breaking: 添加默认的trait条目
 {==+==}
 
 
@@ -1127,7 +1246,8 @@ It is usually safe to add a defaulted trait item. However, this can sometimes
 cause a compile error. For example, this can introduce an ambiguity if a
 method of the same name exists in another trait.
 {==+==}
-
+添加默认的trait条目通常是安全的。然而，这有时会导致编译错误。
+例如，如果在另一个trait中存在同名的方法，则会引入混淆。
 {==+==}
 
 
@@ -1163,7 +1283,36 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// Breaking change example
 
+///////////////////////////////////////////////////////////
+// 之前
+pub trait Trait {}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub trait Trait {
+    fn foo(&self) {}
+}
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的。
+use updated_crate::Trait;
+struct Foo;
+
+trait LocalTrait {
+    fn foo(&self) {}
+}
+
+impl Trait for Foo {}
+impl LocalTrait for Foo {}
+
+fn main() {
+    let x = Foo;
+    x.foo(); // Error: 作用域内有多个符合条目
+}
+```
 {==+==}
 
 
@@ -1171,7 +1320,7 @@ fn main() {
 Note that this ambiguity does *not* exist for name collisions on [inherent
 implementations], as they take priority over trait items.
 {==+==}
-
+注意，这种二义性并不存在于[inherent implementations]的名称冲突，因为它们优先于trait条目。
 {==+==}
 
 
@@ -1179,7 +1328,7 @@ implementations], as they take priority over trait items.
 See [trait-object-safety](#trait-object-safety) for a special case to consider
 when adding trait items.
 {==+==}
-
+参见[trait-object-safety](#trait-object-safety)，了解添加trait条目时需要考虑的特殊情况。
 {==+==}
 
 
@@ -1191,7 +1340,8 @@ Mitigation strategies:
   to require downstream users to add [disambiguation syntax] to select the
   correct function when updating the dependency.
 {==+==}
-
+缓和策略:
+* 一些项目可能认为这是可以接受的破坏，特别是如果新的条目名称不太可能与任何现有的代码发生冲突。请谨慎选择名称，以有助避免这些冲突。此外，要求下游用户在更新依赖时添加[disambiguation syntax] "歧义消除语法" 以选择恰当的函数，这是可以接受的。
 {==+==}
 
 
@@ -1199,7 +1349,8 @@ Mitigation strategies:
 <a id="trait-object-safety"></a>
 ### Major: adding a trait item that makes the trait non-object safe
 {==+==}
-
+<a id="trait-object-safety"></a>
+### Major: 添加trait条目，使trait非对象安全
 {==+==}
 
 
@@ -1207,7 +1358,7 @@ Mitigation strategies:
 It is a breaking change to add a trait item that changes the trait to not be
 [object safe].
 {==+==}
-
+增加改变trait的条目，使trait不再是[object safe]，这是破坏性的变化。
 {==+==}
 
 
@@ -1238,7 +1389,31 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub trait Trait {}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub trait Trait {
+    // 一个相关的常量使得该trait不是对象安全的。
+    const CONST: i32 = 123;
+}
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的。
+use updated_crate::Trait;
+struct Foo;
+
+impl Trait for Foo {}
+
+fn main() {
+    let obj: Box<dyn Trait> = Box::new(Foo); // Error: 不能成为一个对象
+}
+```
 {==+==}
 
 
@@ -1246,7 +1421,7 @@ fn main() {
 It is safe to do the converse (making a non-object safe trait into a safe
 one).
 {==+==}
-
+反之也是安全的(将非对象安全的trait变成安全的trait)。
 {==+==}
 
 
@@ -1254,14 +1429,15 @@ one).
 <a id="trait-new-parameter-no-default"></a>
 ### Major: adding a type parameter without a default
 {==+==}
-
+<a id="trait-new-parameter-no-default"></a>
+### Major: 添加没有默认值的类型参数
 {==+==}
 
 
 {==+==}
 It is a breaking change to add a type parameter without a default to a trait.
 {==+==}
-
+在trait中添加没有默认值的类型参数是一种破坏性的改变。
 {==+==}
 
 
@@ -1285,7 +1461,24 @@ struct Foo;
 impl Trait for Foo {}  // Error: missing generics
 ```
 {==+==}
+```rust,ignore
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub trait Trait {}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub trait Trait<T> {}
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的
+use updated_crate::Trait;
+struct Foo;
+
+impl Trait for Foo {}  // Error: 缺失泛型
+```
 {==+==}
 
 
@@ -1293,7 +1486,8 @@ impl Trait for Foo {}  // Error: missing generics
 Mitigating strategies:
 * See [adding a defaulted trait type parameter](#trait-new-parameter-default).
 {==+==}
-
+缓和策略:
+* 见 [添加默认trait类型参数](#trait-new-parameter-default).
 {==+==}
 
 
@@ -1301,7 +1495,8 @@ Mitigating strategies:
 <a id="trait-new-parameter-default"></a>
 ### Minor: adding a defaulted trait type parameter
 {==+==}
-
+<a id="trait-new-parameter-default"></a>
+### Minor: 添加默认trait类型参数
 {==+==}
 
 
@@ -1310,7 +1505,8 @@ It is safe to add a type parameter to a trait as long as it has a default.
 External implementors will use the default without needing to specify the
 parameter.
 {==+==}
-
+在trait中添加类型参数是安全的，只要它有默认值。
+外部实现者将使用默认值而不需要指定参数。
 {==+==}
 
 
@@ -1334,7 +1530,24 @@ struct Foo;
 impl Trait for Foo {}
 ```
 {==+==}
+```rust,ignore
+// MINOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub trait Trait {}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub trait Trait<T = i32> {}
+
+///////////////////////////////////////////////////////////
+// 示例：库的使用是安全的。
+use updated_crate::Trait;
+struct Foo;
+
+impl Trait for Foo {}
+```
 {==+==}
 
 
@@ -1342,7 +1555,8 @@ impl Trait for Foo {}
 <a id="impl-item-new"></a>
 ### Possibly-breaking change: adding any inherent items
 {==+==}
-
+<a id="impl-item-new"></a>
+### Possibly-breaking change: 添加任意内部条目
 {==+==}
 
 
@@ -1352,7 +1566,8 @@ inherent items take priority over trait items. However, in some cases the
 collision can cause problems if the name is the same as an implemented trait
 item with a different signature.
 {==+==}
-
+通常情况下，向一个实现添加内部条目应该是安全的，因为内部条目比trait条目有优先权。
+然而，在某些情况下，如果名称与具有不同签名的已实现的trait条目相同，则冲突会导致问题。
 {==+==}
 
 
@@ -1388,7 +1603,36 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// 破坏性改变示例
 
+///////////////////////////////////////////////////////////
+// 之前
+pub struct Foo;
+
+///////////////////////////////////////////////////////////
+// 之后
+pub struct Foo;
+
+impl Foo {
+    pub fn foo(&self) {}
+}
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的
+use updated_crate::Foo;
+
+trait Trait {
+    fn foo(&self, x: i32) {}
+}
+
+impl Trait for Foo {}
+
+fn main() {
+    let x = Foo;
+    x.foo(1); // Error: 这个函数有0个参数
+}
+```
 {==+==}
 
 
@@ -1397,19 +1641,7 @@ Note that if the signatures match, there would not be a compile-time error,
 but possibly a silent change in runtime behavior (because it is now executing
 a different function).
 {==+==}
-
-{==+==}
-
-
-{==+==}
-Mitigation strategies:
-* Some projects may deem this acceptable breakage, particularly if the new
-  item name is unlikely to collide with any existing code. Choose names
-  carefully to help avoid these collisions. Additionally, it may be acceptable
-  to require downstream users to add [disambiguation syntax] to select the
-  correct function when updating the dependency.
-{==+==}
-
+注意，如果签名匹配，就不会出现编译时错误，但可能会出现运行时行为的静默变化(因为现在执行的是一个不同的函数)。
 {==+==}
 
 
@@ -1417,7 +1649,8 @@ Mitigation strategies:
 <a id="generic-bounds-tighten"></a>
 ### Major: tightening generic bounds
 {==+==}
-
+<a id="generic-bounds-tighten"></a>
+### Major: 收紧泛型边界
 {==+==}
 
 
@@ -1425,7 +1658,7 @@ Mitigation strategies:
 It is a breaking change to tighten generic bounds on a type since this can
 break users expecting the looser bounds.
 {==+==}
-
+在类型上收紧泛型边界是破坏性的改变，因为这可能会打破用户对较宽松边界的预期。
 {==+==}
 
 
@@ -1454,7 +1687,29 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub struct Foo<A> {
+    pub f1: A,
+}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub struct Foo<A: Eq> {
+    pub f1: A,
+}
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的。
+use updated_crate::Foo;
+
+fn main() {
+    let s = Foo { f1: 1.23 }; // Error: trait 边界 `{float}: Eq` 不满足
+}
+```
 {==+==}
 
 
@@ -1462,7 +1717,8 @@ fn main() {
 <a id="generic-bounds-loosen"></a>
 ### Minor: loosening generic bounds
 {==+==}
-
+<a id="generic-bounds-loosen"></a>
+### Minor: 放宽泛型边界
 {==+==}
 
 
@@ -1470,7 +1726,7 @@ fn main() {
 It is safe to loosen the generic bounds on a type, as it only expands what is
 allowed.
 {==+==}
-
+放宽类型泛型界限是安全的，因为它仅扩展了允许的范围。
 {==+==}
 
 
@@ -1499,7 +1755,29 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MINOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub struct Foo<A: Clone> {
+    pub f1: A,
+}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub struct Foo<A> {
+    pub f1: A,
+}
+
+///////////////////////////////////////////////////////////
+// 示例：库的使用是安全的。
+use updated_crate::Foo;
+
+fn main() {
+    let s = Foo { f1: 123 };
+}
+```
 {==+==}
 
 
@@ -1507,7 +1785,8 @@ fn main() {
 <a id="generic-new-default"></a>
 ### Minor: adding defaulted type parameters
 {==+==}
-
+<a id="generic-new-default"></a>
+### Minor: 添加默认的类型参数
 {==+==}
 
 
@@ -1516,7 +1795,7 @@ It is safe to add a type parameter to a type as long as it has a default. All
 existing references will use the default without needing to specify the
 parameter.
 {==+==}
-
+只要类型有默认值，给它添加类型参数是安全的。所有现有的引用将使用默认值，而不需要指定参数。
 {==+==}
 
 
@@ -1545,7 +1824,29 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MINOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+#[derive(Default)]
+pub struct Foo {}
+
+///////////////////////////////////////////////////////////
+// 之后
+#[derive(Default)]
+pub struct Foo<A = i32> {
+    f1: A,
+}
+
+///////////////////////////////////////////////////////////
+// 示例：库的使用是安全的。
+use updated_crate::Foo;
+
+fn main() {
+    let s: Foo = Default::default();
+}
+```
 {==+==}
 
 
@@ -1553,7 +1854,8 @@ fn main() {
 <a id="generic-generalize-identical"></a>
 ### Minor: generalizing a type to use generics (with identical types)
 {==+==}
-
+<a id="generic-generalize-identical"></a>
+### Minor: 泛化类型以使用泛型(具有相同的类型)
 {==+==}
 
 
@@ -1562,7 +1864,8 @@ A struct or enum field can change from a concrete type to a generic type
 parameter, provided that the change results in an identical type for all
 existing use cases. For example, the following change is permitted:
 {==+==}
-
+结构体或枚举字段可以从具体类型改变为泛型类型参数，前提是这种变化带来的所有现有用例的类型相同。
+例如，下面的改变是允许的。
 {==+==}
 
 
@@ -1587,7 +1890,25 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MINOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub struct Foo(pub u8);
+
+///////////////////////////////////////////////////////////
+// 之后
+pub struct Foo<T = u8>(pub T);
+
+///////////////////////////////////////////////////////////
+// 示例：库的使用是安全的。
+use updated_crate::Foo;
+
+fn main() {
+    let s: Foo = Foo(123);
+}
+```
 {==+==}
 
 
@@ -1595,7 +1916,7 @@ fn main() {
 because existing uses of `Foo` are shorthand for `Foo<u8>` which yields the
 identical field type.
 {==+==}
-
+因为当前 `Foo` 是 `Foo<u8>` 的缩写，产生相同的字段类型。
 {==+==}
 
 
@@ -1603,7 +1924,8 @@ identical field type.
 <a id="generic-generalize-different"></a>
 ### Major: generalizing a type to use generics (with possibly different types)
 {==+==}
-
+<a id="generic-generalize-different"></a>
+### Major: 泛化类型以使用泛型(可能有不同的类型)
 {==+==}
 
 
@@ -1611,7 +1933,7 @@ identical field type.
 Changing a struct or enum field from a concrete type to a generic type
 parameter can break if the type can change.
 {==+==}
-
+如果类型可以改变，将结构体或枚举字段从具体类型改为泛型类型参数就是破坏性的。
 {==+==}
 
 
@@ -1636,7 +1958,25 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub struct Foo<T = u8>(pub T, pub u8);
+
+///////////////////////////////////////////////////////////
+// 之后
+pub struct Foo<T = u8>(pub T, pub T);
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的
+use updated_crate::Foo;
+
+fn main() {
+    let s: Foo<f32> = Foo(3.14, 123); // Error: 缺失类型。
+}
+```
 {==+==}
 
 
@@ -1644,7 +1984,8 @@ fn main() {
 <a id="generic-more-generic"></a>
 ### Minor: changing a generic type to a more generic type
 {==+==}
-
+<a id="generic-more-generic"></a>
+### Minor: 将泛型类型改为一个更泛型的类型
 {==+==}
 
 
@@ -1654,7 +1995,8 @@ following adds a generic parameter that defaults to the original type, which
 is safe because all existing users will be using the same type for both
 fields, the the defaulted parameter does not need to be specified.
 {==+==}
-
+将一个泛型类型改为更泛型的类型是安全的。例如，下面添加了一个默认为原始类型的泛型参数，
+这是安全的，因为所有现有的用户都会为两个字段使用相同的类型，默认的参数不需要被指定。
 {==+==}
 
 
@@ -1679,7 +2021,25 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MINOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub struct Foo<T>(pub T, pub T);
+
+///////////////////////////////////////////////////////////
+// 之后
+pub struct Foo<T, U = T>(pub T, pub U);
+
+///////////////////////////////////////////////////////////
+// 示例：库的使用是安全的
+use updated_crate::Foo;
+
+fn main() {
+    let s: Foo<f32> = Foo(1.0, 2.0);
+}
+```
 {==+==}
 
 
@@ -1687,14 +2047,15 @@ fn main() {
 <a id="fn-change-arity"></a>
 ### Major: adding/removing function parameters
 {==+==}
-
+<a id="fn-change-arity"></a>
+### Major: 添加/删除函数参数
 {==+==}
 
 
 {==+==}
 Changing the arity of a function is a breaking change.
 {==+==}
-
+改变函数参数是一种破坏性的改变。
 {==+==}
 
 
@@ -1717,7 +2078,23 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub fn foo() {}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub fn foo(x: i32) {}
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的。
+fn main() {
+    updated_crate::foo(); // Error: 这个函数需要一个参数
+}
+```
 {==+==}
 
 
@@ -1729,7 +2106,9 @@ Mitigating strategies:
   with the builder pattern. This allows new fields to be added to the struct
   in the future.
 {==+==}
-
+缓和策略:
+* 用新的签名引入一个新的函数，并可能[弃用][deprecated]旧的函数。
+* 引入接受结构体参数的函数，其中结构体是用构建模式构建的。这允许将来在结构体中添加新的字段。
 {==+==}
 
 
@@ -1737,7 +2116,8 @@ Mitigating strategies:
 <a id="fn-generic-new"></a>
 ### Possibly-breaking: introducing a new function type parameter
 {==+==}
-
+<a id="fn-generic-new"></a>
+### Possibly-breaking: 引入新的函数类型参数
 {==+==}
 
 
@@ -1745,7 +2125,7 @@ Mitigating strategies:
 Usually, adding a non-defaulted type parameter is safe, but in some
 cases it can be a breaking change:
 {==+==}
-
+通常情况下，增加非默认类型参数是安全的，但在某些情况下，可能是破坏性的改变。
 {==+==}
 
 
@@ -1770,7 +2150,25 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// Breaking change example
 
+///////////////////////////////////////////////////////////
+// 之前
+pub fn foo<T>() {}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub fn foo<T, U>() {}
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的
+use updated_crate::foo;
+
+fn main() {
+    foo::<u8>(); // Error: 这个函数需要2个泛型参数，但只提供了一个泛型参数
+}
+```
 {==+==}
 
 
@@ -1780,7 +2178,8 @@ other ways) that this breakage is usually acceptable. One should take into
 account how likely it is that the function in question is being called with
 explicit type arguments.
 {==+==}
-
+然而，这样的显式调用是非常少见的(通常可以用其他方式编写)，所以这种破坏通常是可以接受的。
+我们应该考虑有问题的函数被显式类型参数调用的可能性。
 {==+==}
 
 
@@ -1788,7 +2187,8 @@ explicit type arguments.
 <a id="fn-generalize-compatible"></a>
 ### Minor: generalizing a function to use generics (supporting original type)
 {==+==}
-
+<a id="fn-generalize-compatible"></a>
+### Minor: 泛化函数以使用泛型(支持原始类型)
 {==+==}
 
 
@@ -1798,7 +2198,8 @@ The type of a parameter to a function, or its return value, can be
 as long as it can be instantiated to the original type. For example, the
 following changes are allowed:
 {==+==}
-
+函数的参数或其返回值的类型可以被*泛化*以使用泛型，包括引入一个新类型的参数，
+只要它可以被实例化为原始类型。例如，允许以下变化:
 {==+==}
 
 
@@ -1831,14 +2232,40 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MINOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub fn foo(x: u8) -> u8 {
+    x
+}
+pub fn bar<T: Iterator<Item = u8>>(t: T) {}
+
+///////////////////////////////////////////////////////////
+// 之后
+use std::ops::Add;
+pub fn foo<T: Add>(x: T) -> T {
+    x
+}
+pub fn bar<T: IntoIterator<Item = u8>>(t: T) {}
+
+///////////////////////////////////////////////////////////
+// 示例：库的使用是安全的
+use updated_crate::{bar, foo};
+
+fn main() {
+    foo(1);
+    bar(vec![1, 2, 3].into_iter());
+}
+```
 {==+==}
 
 
 {==+==}
 because all existing uses are instantiations of the new signature.
 {==+==}
-
+因为所有现有的使用都是新签名的实例化。 
 {==+==}
 
 
@@ -1846,7 +2273,7 @@ because all existing uses are instantiations of the new signature.
 Perhaps somewhat surprisingly, generalization applies to trait objects as
 well, given that every trait implements itself:
 {==+==}
-
+也许有些令人惊讶的是，泛化也适用于trait对象，因为每个trait都实现了自己:
 {==+==}
 
 
@@ -1877,7 +2304,31 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MINOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub trait Trait {}
+pub fn foo(t: &dyn Trait) {}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub trait Trait {}
+pub fn foo<T: Trait + ?Sized>(t: &T) {}
+
+///////////////////////////////////////////////////////////
+// 示例：库的使用是安全的。
+use updated_crate::{foo, Trait};
+
+struct Foo;
+impl Trait for Foo {}
+
+fn main() {
+    let obj = Foo;
+    foo(&obj);
+}
+```
 {==+==}
 
 
@@ -1885,7 +2336,7 @@ fn main() {
 (The use of `?Sized` is essential; otherwise you couldn't recover the original
 signature.)
 {==+==}
-
+(使用 `?Sized` 是必要的，否则你就无法恢复原始签名。)
 {==+==}
 
 
@@ -1894,7 +2345,8 @@ Introducing generics in this way can potentially create type inference
 failures. These are usually rare, and may be acceptable breakage for some
 projects, as this can be fixed with additional type annotations.
 {==+==}
-
+以这种方式引入泛型，有可能造成类型推断的失败。这些通常是少见的，
+对于一些项目来说，可能是可以接受的故障，因为这可以通过额外的类型注解来修复。
 {==+==}
 
 
@@ -1923,7 +2375,29 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// Breaking change example
 
+///////////////////////////////////////////////////////////
+// 之前
+pub fn foo() -> i32 {
+    0
+}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub fn foo<T: Default>() -> T {
+    Default::default()
+}
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的
+use updated_crate::foo;
+
+fn main() {
+    let x = foo(); // Error: 需要类型注释
+}
+```
 {==+==}
 
 
@@ -1931,7 +2405,8 @@ fn main() {
 <a id="fn-generalize-mismatch"></a>
 ### Major: generalizing a function to use generics with type mismatch
 {==+==}
-
+<a id="fn-generalize-mismatch"></a>
+### Major: 泛化函数以使用类型不匹配的泛型
 {==+==}
 
 
@@ -1941,7 +2416,8 @@ generic type constrains or changes the types previously allowed. For example,
 the following adds a generic constraint that may not be satisfied by existing
 code:
 {==+==}
-
+如果泛型约束或改变了以前允许的类型，那么改变函数参数或返回类型就是一种破坏性的改变。
+例如，下面增加了一个可能不被现有代码所满足的泛型约束:
 {==+==}
 
 
@@ -1966,7 +2442,25 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub fn foo(x: Vec<u8>) {}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub fn foo<T: Copy + IntoIterator<Item = u8>>(x: T) {}
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的
+use updated_crate::foo;
+
+fn main() {
+    foo(vec![1, 2, 3]); // Error: `Vec<u8>` 没有实现 `Copy` 
+}
+```
 {==+==}
 
 
@@ -1974,7 +2468,8 @@ fn main() {
 <a id="attr-no-std-to-std"></a>
 ### Major: switching from `no_std` support to requiring `std`
 {==+==}
-
+<a id="attr-no-std-to-std"></a>
+### Major: 从 `no_std` 转为要求 `std`
 {==+==}
 
 
@@ -1982,7 +2477,7 @@ fn main() {
 If your library specifically supports a [`no_std`] environment, it is a
 breaking change to make a new release that requires `std`.
 {==+==}
-
+如果你的库特别支持 [`no_std`] 环境，做一个需要 `std` 的新版本是破坏性的改变。
 {==+==}
 
 
@@ -2012,7 +2507,30 @@ fn example() {
 }
 ```
 {==+==}
+```rust,ignore,skip
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+#![no_std]
+pub fn foo() {}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub fn foo() {
+    std::time::SystemTime::now();
+}
+
+///////////////////////////////////////////////////////////
+// 示例:使用是破坏性的
+// 这将导致no_std目标的链接失败，因为它们没有 `std` crate。
+#![no_std]
+use updated_crate::foo;
+
+fn example() {
+    foo();
+}
+```
 {==+==}
 
 
@@ -2022,14 +2540,15 @@ Mitigation strategies:
   optionally enables `std` support, and when the feature is off, the library
   can be used in a `no_std` environment.
 {==+==}
-
+缓和策略:
+* 为了避免这种情况，一种常见的方式是包含 `std` [Cargo feature] ，可以选择启用 `std` 支持，当该特性关闭时，库可以在`no_std` 环境下使用。
 {==+==}
 
 
 {==+==}
 ## Tooling and environment compatibility
 {==+==}
-
+## 工具和环境的兼容性
 {==+==}
 
 
@@ -2037,7 +2556,8 @@ Mitigation strategies:
 <a id="env-new-rust"></a>
 ### Possibly-breaking: changing the minimum version of Rust required
 {==+==}
-
+<a id="env-new-rust"></a>
+### Possibly-breaking: 改变所需的最小Rust版本
 {==+==}
 
 
@@ -2047,7 +2567,8 @@ projects that are using older versions of Rust. This also includes using new
 features in a new release of Cargo, and requiring the use of a nightly-only
 feature in a crate that previously worked on stable.
 {==+==}
-
+在新版本的Rust中引入使用新的特性，会破坏使用旧版本Rust的项目。
+这也包括在新版本的Cargo中使用新特性，以及要求在之前在稳定版本上工作的crate中使用只在每日构建使用的特性。
 {==+==}
 
 
@@ -2059,7 +2580,7 @@ within a window of releases (such as the current stable release plus N
 previous releases). Just keep in mind that some large projects may not be able
 to update their Rust toolchain rapidly.
 {==+==}
-
+一些项目出于各种原因选择在次要版本中允许这样做。通常情况下，更新到一个较新的Rust版本是比较容易的。Rust也有一个6周的快速发布周期，一些项目会在一个发布窗口期内提供兼容性(比如当前的稳定版加上之前的N个版本)。只要记住，一些大型项目可能无法迅速更新其Rust工具链。
 {==+==}
 
 
@@ -2076,7 +2597,12 @@ Mitigation strategies:
   mechanism for new features. These are currently unstable and only available
   in the nightly channel.
 {==+==}
-
+缓和策略:
+* 使用[Cargo features]使新特性可选加入。
+* 为旧版本提供更大的支持窗口期。
+* 如果可能的话，复制新的标准库项目的源代码，这样你就可以继续使用旧的版本，但利用新的特性。
+* 为较早的次要版本提供一个单独的分支，可以接收重要bug修复的向后移植。
+* 请注意[`[cfg(version(..))]`][cfg-version]和[`#[cfg(accessible(..))]`][cfg-accessible]特性，它们为新特性提供了选择机制。这些特性目前是不稳定的，只在每日构建中可用。
 {==+==}
 
 
@@ -2084,7 +2610,8 @@ Mitigation strategies:
 <a id="env-change-requirements"></a>
 ### Possibly-breaking: changing the platform and environment requirements
 {==+==}
-
+<a id="env-change-requirements"></a>
+### Possibly-breaking: 改变平台和环境要求
 {==+==}
 
 
@@ -2097,7 +2624,7 @@ for example requiring a newer version of an operating system. These changes
 can be difficult to track, since you may not always know if a change breaks in
 an environment that is not automatically tested.
 {==+==}
-
+一个库对它所运行的环境有非常宽泛的假设，例如主机平台、操作系统版本、可用的服务、文件系统支持等等。如果你发布的新版本限制了以前支持的内容，例如需要新版本的操作系统，这可能是破坏性的变化。这些变化可能很难跟踪，因为你可能并不总是知道在一个没有自动测试的环境中，变化是否会形成破坏。
 {==+==}
 
 
@@ -2108,7 +2635,8 @@ support all environments. Another notable situation is when a vendor
 discontinues support for some hardware or OS, the project may deem it
 reasonable to also discontinue support.
 {==+==}
-
+一些项目可能认为这是可以接受的破坏，特别是如果这种破坏对大多数用户来说是不可能的，或者项目没有资源来支持所有环境。
+另一种值得注意的情况是，当供应商停止对某些硬件或操作系统的支持时，项目可能认为停止支持也是合理的。
 {==+==}
 
 
@@ -2117,7 +2645,9 @@ Mitigation strategies:
 * Document the platforms and environments you specifically support.
 * Test your code on a wide range of environments in CI.
 {==+==}
-
+缓和策略:
+* 记录你具体支持的平台和环境。
+* 在CI中，在宽泛的环境中测试你的代码。
 {==+==}
 
 
@@ -2127,7 +2657,10 @@ Mitigation strategies:
 <a id="cargo-feature-add"></a>
 #### Minor: adding a new Cargo feature
 {==+==}
+### Cargo
 
+<a id="cargo-feature-add"></a>
+#### Minor: 增加新的Cargo特性
 {==+==}
 
 
@@ -2138,7 +2671,7 @@ that have stricter backwards-compatibility needs. In that scenario, avoid
 adding the feature to the "default" list, and possibly document the
 consequences of enabling the feature.
 {==+==}
-
+增加新的[Cargo features]通常是安全的。如果该特性引入了新的变化，带来破坏性，这可能会给那些有更严格的向后兼容性需求的项目带来困难。在这种情况下，应避免将该特性添加到 "默认" 列表中，并记录可能启用该特性的后果。
 {==+==}
 
 
@@ -2157,7 +2690,19 @@ consequences of enabling the feature.
 std = []
 ```
 {==+==}
+```toml
+# MINOR CHANGE
 
+###########################################################
+# 之前
+[features]
+# ..empty
+
+###########################################################
+# 之后
+[features]
+std = []
+```
 {==+==}
 
 
@@ -2165,7 +2710,8 @@ std = []
 <a id="cargo-feature-remove"></a>
 #### Major: removing a Cargo feature
 {==+==}
-
+<a id="cargo-feature-remove"></a>
+#### Major: 移除 Cargo 特性
 {==+==}
 
 
@@ -2173,7 +2719,7 @@ std = []
 It is usually a breaking change to remove [Cargo features]. This will cause
 an error for any project that enabled the feature.
 {==+==}
-
+移除[Cargo features]通常是一种破坏性的改变。这将导致任何启用该特性的项目出现错误。
 {==+==}
 
 
@@ -2192,7 +2738,19 @@ logging = []
 # ..logging removed
 ```
 {==+==}
+```toml
+# MAJOR CHANGE
 
+###########################################################
+# 之前
+[features]
+logging = []
+
+###########################################################
+# 之后
+[dependencies]
+# ..logging removed
+```
 {==+==}
 
 
@@ -2204,7 +2762,9 @@ Mitigation strategies:
   functionality. Document that the feature is deprecated, and remove it in a
   future major SemVer release.
 {==+==}
-
+缓和策略:
+* 清楚地记录你的特性。如果有一个内部或实验性的特性，就把它标记为这样的特性，以便用户知道这个特性的状态。
+* 在 `Cargo.toml` 中保留旧的特性，但删除其功能。记录该特性已被废弃，并在未来的语义化主要版本中删除。
 {==+==}
 
 
@@ -2212,7 +2772,8 @@ Mitigation strategies:
 <a id="cargo-feature-remove-another"></a>
 #### Major: removing a feature from a feature list if that changes functionality or public items
 {==+==}
-
+<a id="cargo-feature-remove-another"></a>
+#### Major: 如果改变了功能或公共条目，从特性列表中删除一个特性
 {==+==}
 
 
@@ -2220,7 +2781,7 @@ Mitigation strategies:
 If removing a feature from another feature, this can break existing users if
 they are expecting that functionality to be available through that feature.
 {==+==}
-
+如果从另一个特性中删除特性，这可能会破坏现有的用户，如果他们期望通过该特性来获得该功能。
 {==+==}
 
 
@@ -2241,7 +2802,21 @@ default = []  # This may cause packages to fail if they are expecting std to be 
 std = []
 ```
 {==+==}
+```toml
+# Breaking change example
 
+###########################################################
+# 之前
+[features]
+default = ["std"]
+std = []
+
+###########################################################
+# 之后
+[features]
+default = []  # 如果包期望启用std，这可能会导致它们失败。
+std = []
+```
 {==+==}
 
 
@@ -2249,7 +2824,8 @@ std = []
 <a id="cargo-remove-opt-dep"></a>
 #### Possibly-breaking: removing an optional dependency
 {==+==}
-
+<a id="cargo-remove-opt-dep"></a>
+#### Possibly-breaking: 删除可选依赖
 {==+==}
 
 
@@ -2257,7 +2833,7 @@ std = []
 Removing an optional dependency can break a project using your library because
 another project may be enabling that dependency via [Cargo features].
 {==+==}
-
+删除可选依赖可能会破坏使用你的库的项目，因为另一个项目可能通过[Cargo features]启用该依赖。
 {==+==}
 
 
@@ -2276,7 +2852,19 @@ curl = { version = "0.4.31", optional = true }
 # ..curl removed
 ```
 {==+==}
+```toml
+# Breaking change example
 
+###########################################################
+# 之前
+[dependencies]
+curl = { version = "0.4.31", optional = true }
+
+###########################################################
+# 之后
+[dependencies]
+# ..curl removed
+```
 {==+==}
 
 
@@ -2289,7 +2877,10 @@ Mitigation strategies:
 * Replace the optional dependency with a [Cargo feature] that does nothing,
   and document that it is deprecated.
 {==+==}
-
+缓和策略:
+* 清楚地记录你的特性。如果可选依赖不包括在记录的特性列表中，那么你可以决定认为改变无记录的条目是安全的。
+* 留下可选择依赖，只是在你的库中不使用它。
+* 用一个什么都不做的[Cargo feature]来替换这个可选依赖，并记录下它的废弃情况。
 {==+==}
 
 
@@ -2301,7 +2892,7 @@ Mitigation strategies:
   optional dependencies necessary to implement "networking". Then document the
   "networking" feature.
 {==+==}
-
+* 使用能够实现可选的依赖的高级特性，并将这些特性记录为实现扩展功能的首选方式。例如，如果你的库对 "联网" 这样的内容有可选的支持，创建一个名为 "联网" 的泛型特性，它能够实现 "联网" 所需的可选依赖。然后记录 "联网" 特性。
 {==+==}
 
 
@@ -2309,7 +2900,8 @@ Mitigation strategies:
 <a id="cargo-change-dep-feature"></a>
 #### Minor: changing dependency features
 {==+==}
-
+<a id="cargo-change-dep-feature"></a>
+#### Minor: 改变依赖特性
 {==+==}
 
 
@@ -2317,7 +2909,7 @@ Mitigation strategies:
 It is usually safe to change the features on a dependency, as long as the
 feature does not introduce a breaking change.
 {==+==}
-
+通常情况下，改变依赖上的特性是安全的，只要该特性不引入破坏性的变化。
 {==+==}
 
 
@@ -2337,7 +2929,20 @@ rand = { version = "0.7.3", features = ["small_rng"] }
 rand = "0.7.3"
 ```
 {==+==}
+```toml
+# MINOR CHANGE
 
+###########################################################
+# 之前
+[dependencies]
+rand = { version = "0.7.3", features = ["small_rng"] }
+
+
+###########################################################
+# 之后
+[dependencies]
+rand = "0.7.3"
+```
 {==+==}
 
 
@@ -2345,7 +2950,8 @@ rand = "0.7.3"
 <a id="cargo-dep-add"></a>
 #### Minor: adding dependencies
 {==+==}
-
+<a id="cargo-dep-add"></a>
+#### Minor: 添加依赖
 {==+==}
 
 
@@ -2355,7 +2961,8 @@ does not introduce new requirements that result in a breaking change.
 For example, adding a new dependency that requires nightly in a project
 that previously worked on stable is a major change.
 {==+==}
-
+增加新的依赖通常是安全的，只要新的依赖没有引入新的需求而导致破坏性的变化。
+例如，在一个以前在稳定版本上工作的项目中添加一个需要每日构建的新依赖，是一个重大的变化。
 {==+==}
 
 
@@ -2374,14 +2981,26 @@ that previously worked on stable is a major change.
 log = "0.4.11"
 ```
 {==+==}
+```toml
+# MINOR CHANGE
 
+###########################################################
+# 之前
+[dependencies]
+# ..empty
+
+###########################################################
+# 之后
+[dependencies]
+log = "0.4.11"
+```
 {==+==}
 
 
 {==+==}
 ## Application compatibility
 {==+==}
-
+## 应用程序兼容性
 {==+==}
 
 
@@ -2396,7 +3015,11 @@ to list, so you are encouraged to use the spirit of the [SemVer] spec to guide
 your decisions on how to apply versioning to your application, or at least
 document what your commitments are.
 {==+==}
-
+Cargo项目也可能包括可执行的二进制文件，它们有自己的接口(如CLI接口、OS级交互等)。
+由于这些是Cargo包的一部分，它们经常使用和共享与包相同的版本。
+你需要决定是否以及如何在你对应用程序的修改中采用语义化版本约定与你的用户进行沟通。
+对应用程序的潜在破坏性和兼容性的改变不胜枚举，
+所以我们鼓励你使用[SemVer]规范的精神来指导你决定如何将版本控制应用于你的应用程序，或者至少记录你的承诺。
 {==+==}
 
 
