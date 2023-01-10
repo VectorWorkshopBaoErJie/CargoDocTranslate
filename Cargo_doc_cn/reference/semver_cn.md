@@ -1864,7 +1864,8 @@ A struct or enum field can change from a concrete type to a generic type
 parameter, provided that the change results in an identical type for all
 existing use cases. For example, the following change is permitted:
 {==+==}
-
+结构体或枚举字段可以从具体类型改变为泛型类型参数，前提是这种变化带来的所有现有用例的类型相同。
+例如，下面的改变是允许的。
 {==+==}
 
 
@@ -1889,7 +1890,25 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MINOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub struct Foo(pub u8);
+
+///////////////////////////////////////////////////////////
+// 之后
+pub struct Foo<T = u8>(pub T);
+
+///////////////////////////////////////////////////////////
+// 示例：库的使用是安全的。
+use updated_crate::Foo;
+
+fn main() {
+    let s: Foo = Foo(123);
+}
+```
 {==+==}
 
 
@@ -1897,7 +1916,7 @@ fn main() {
 because existing uses of `Foo` are shorthand for `Foo<u8>` which yields the
 identical field type.
 {==+==}
-
+因为当前 `Foo` 是 `Foo<u8>` 的缩写，产生相同的字段类型。
 {==+==}
 
 
@@ -1905,7 +1924,8 @@ identical field type.
 <a id="generic-generalize-different"></a>
 ### Major: generalizing a type to use generics (with possibly different types)
 {==+==}
-
+<a id="generic-generalize-different"></a>
+### Major: 泛化类型以使用泛型(可能有不同的类型)
 {==+==}
 
 
@@ -1913,7 +1933,7 @@ identical field type.
 Changing a struct or enum field from a concrete type to a generic type
 parameter can break if the type can change.
 {==+==}
-
+如果类型可以改变，将结构体或枚举字段从具体类型改为泛型类型参数就是破坏性的。
 {==+==}
 
 
@@ -1938,7 +1958,25 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub struct Foo<T = u8>(pub T, pub u8);
+
+///////////////////////////////////////////////////////////
+// 之后
+pub struct Foo<T = u8>(pub T, pub T);
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的
+use updated_crate::Foo;
+
+fn main() {
+    let s: Foo<f32> = Foo(3.14, 123); // Error: 缺失类型。
+}
+```
 {==+==}
 
 
@@ -1946,7 +1984,8 @@ fn main() {
 <a id="generic-more-generic"></a>
 ### Minor: changing a generic type to a more generic type
 {==+==}
-
+<a id="generic-more-generic"></a>
+### Minor: 将泛型类型改为一个更泛型的类型
 {==+==}
 
 
@@ -1956,7 +1995,8 @@ following adds a generic parameter that defaults to the original type, which
 is safe because all existing users will be using the same type for both
 fields, the the defaulted parameter does not need to be specified.
 {==+==}
-
+将一个泛型类型改为更泛型的类型是安全的。例如，下面添加了一个默认为原始类型的泛型参数，
+这是安全的，因为所有现有的用户都会为两个字段使用相同的类型，默认的参数不需要被指定。
 {==+==}
 
 
@@ -1981,7 +2021,25 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MINOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub struct Foo<T>(pub T, pub T);
+
+///////////////////////////////////////////////////////////
+// 之后
+pub struct Foo<T, U = T>(pub T, pub U);
+
+///////////////////////////////////////////////////////////
+// 示例：库的使用是安全的
+use updated_crate::Foo;
+
+fn main() {
+    let s: Foo<f32> = Foo(1.0, 2.0);
+}
+```
 {==+==}
 
 
@@ -1989,14 +2047,15 @@ fn main() {
 <a id="fn-change-arity"></a>
 ### Major: adding/removing function parameters
 {==+==}
-
+<a id="fn-change-arity"></a>
+### Major: 添加/删除函数参数
 {==+==}
 
 
 {==+==}
 Changing the arity of a function is a breaking change.
 {==+==}
-
+改变函数参数是一种破坏性的改变。
 {==+==}
 
 
@@ -2019,7 +2078,23 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub fn foo() {}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub fn foo(x: i32) {}
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的。
+fn main() {
+    updated_crate::foo(); // Error: 这个函数需要一个参数
+}
+```
 {==+==}
 
 
@@ -2031,7 +2106,9 @@ Mitigating strategies:
   with the builder pattern. This allows new fields to be added to the struct
   in the future.
 {==+==}
-
+缓和策略:
+* 用新的签名引入一个新的函数，并可能[弃用][deprecated]旧的函数。
+* 引入接受结构体参数的函数，其中结构体是用构建模式构建的。这允许将来在结构体中添加新的字段。
 {==+==}
 
 
@@ -2039,7 +2116,8 @@ Mitigating strategies:
 <a id="fn-generic-new"></a>
 ### Possibly-breaking: introducing a new function type parameter
 {==+==}
-
+<a id="fn-generic-new"></a>
+### Possibly-breaking: 引入新的函数类型参数
 {==+==}
 
 
@@ -2047,7 +2125,7 @@ Mitigating strategies:
 Usually, adding a non-defaulted type parameter is safe, but in some
 cases it can be a breaking change:
 {==+==}
-
+通常情况下，增加非默认类型参数是安全的，但在某些情况下，可能是破坏性的改变。
 {==+==}
 
 
@@ -2072,7 +2150,25 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// Breaking change example
 
+///////////////////////////////////////////////////////////
+// 之前
+pub fn foo<T>() {}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub fn foo<T, U>() {}
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的
+use updated_crate::foo;
+
+fn main() {
+    foo::<u8>(); // Error: 这个函数需要2个泛型参数，但只提供了一个泛型参数
+}
+```
 {==+==}
 
 
@@ -2082,7 +2178,8 @@ other ways) that this breakage is usually acceptable. One should take into
 account how likely it is that the function in question is being called with
 explicit type arguments.
 {==+==}
-
+然而，这样的显式调用是非常少见的(通常可以用其他方式编写)，所以这种破坏通常是可以接受的。
+我们应该考虑有问题的函数被显式类型参数调用的可能性。
 {==+==}
 
 
@@ -2090,7 +2187,8 @@ explicit type arguments.
 <a id="fn-generalize-compatible"></a>
 ### Minor: generalizing a function to use generics (supporting original type)
 {==+==}
-
+<a id="fn-generalize-compatible"></a>
+### Minor: 泛化函数以使用泛型(支持原始类型)
 {==+==}
 
 
@@ -2100,7 +2198,8 @@ The type of a parameter to a function, or its return value, can be
 as long as it can be instantiated to the original type. For example, the
 following changes are allowed:
 {==+==}
-
+函数的参数或其返回值的类型可以被*泛化*以使用泛型，包括引入一个新类型的参数，
+只要它可以被实例化为原始类型。例如，允许以下变化:
 {==+==}
 
 
@@ -2133,14 +2232,40 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MINOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub fn foo(x: u8) -> u8 {
+    x
+}
+pub fn bar<T: Iterator<Item = u8>>(t: T) {}
+
+///////////////////////////////////////////////////////////
+// 之后
+use std::ops::Add;
+pub fn foo<T: Add>(x: T) -> T {
+    x
+}
+pub fn bar<T: IntoIterator<Item = u8>>(t: T) {}
+
+///////////////////////////////////////////////////////////
+// 示例：库的使用是安全的
+use updated_crate::{bar, foo};
+
+fn main() {
+    foo(1);
+    bar(vec![1, 2, 3].into_iter());
+}
+```
 {==+==}
 
 
 {==+==}
 because all existing uses are instantiations of the new signature.
 {==+==}
-
+因为所有现有的使用都是新签名的实例化。 
 {==+==}
 
 
@@ -2148,7 +2273,7 @@ because all existing uses are instantiations of the new signature.
 Perhaps somewhat surprisingly, generalization applies to trait objects as
 well, given that every trait implements itself:
 {==+==}
-
+也许有些令人惊讶的是，泛化也适用于trait对象，因为每个trait都实现了自己:
 {==+==}
 
 
@@ -2179,7 +2304,31 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MINOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub trait Trait {}
+pub fn foo(t: &dyn Trait) {}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub trait Trait {}
+pub fn foo<T: Trait + ?Sized>(t: &T) {}
+
+///////////////////////////////////////////////////////////
+// 示例：库的使用是安全的。
+use updated_crate::{foo, Trait};
+
+struct Foo;
+impl Trait for Foo {}
+
+fn main() {
+    let obj = Foo;
+    foo(&obj);
+}
+```
 {==+==}
 
 
@@ -2187,7 +2336,7 @@ fn main() {
 (The use of `?Sized` is essential; otherwise you couldn't recover the original
 signature.)
 {==+==}
-
+(使用 `?Sized` 是必要的，否则你就无法恢复原始签名。)
 {==+==}
 
 
@@ -2196,7 +2345,8 @@ Introducing generics in this way can potentially create type inference
 failures. These are usually rare, and may be acceptable breakage for some
 projects, as this can be fixed with additional type annotations.
 {==+==}
-
+以这种方式引入泛型，有可能造成类型推断的失败。这些通常是少见的，
+对于一些项目来说，可能是可以接受的故障，因为这可以通过额外的类型注解来修复。
 {==+==}
 
 
@@ -2225,7 +2375,29 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// Breaking change example
 
+///////////////////////////////////////////////////////////
+// 之前
+pub fn foo() -> i32 {
+    0
+}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub fn foo<T: Default>() -> T {
+    Default::default()
+}
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的
+use updated_crate::foo;
+
+fn main() {
+    let x = foo(); // Error: 需要类型注释
+}
+```
 {==+==}
 
 
@@ -2233,7 +2405,8 @@ fn main() {
 <a id="fn-generalize-mismatch"></a>
 ### Major: generalizing a function to use generics with type mismatch
 {==+==}
-
+<a id="fn-generalize-mismatch"></a>
+### Major: 泛化函数以使用类型不匹配的泛型
 {==+==}
 
 
@@ -2243,7 +2416,8 @@ generic type constrains or changes the types previously allowed. For example,
 the following adds a generic constraint that may not be satisfied by existing
 code:
 {==+==}
-
+如果泛型约束或改变了以前允许的类型，那么改变函数参数或返回类型就是一种破坏性的改变。
+例如，下面增加了一个可能不被现有代码所满足的泛型约束:
 {==+==}
 
 
@@ -2268,7 +2442,25 @@ fn main() {
 }
 ```
 {==+==}
+```rust,ignore
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+pub fn foo(x: Vec<u8>) {}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub fn foo<T: Copy + IntoIterator<Item = u8>>(x: T) {}
+
+///////////////////////////////////////////////////////////
+// 示例：使用是破坏性的
+use updated_crate::foo;
+
+fn main() {
+    foo(vec![1, 2, 3]); // Error: `Vec<u8>` 没有实现 `Copy` 
+}
+```
 {==+==}
 
 
@@ -2276,7 +2468,8 @@ fn main() {
 <a id="attr-no-std-to-std"></a>
 ### Major: switching from `no_std` support to requiring `std`
 {==+==}
-
+<a id="attr-no-std-to-std"></a>
+### Major: 从 `no_std` 转为要求 `std`
 {==+==}
 
 
@@ -2284,7 +2477,7 @@ fn main() {
 If your library specifically supports a [`no_std`] environment, it is a
 breaking change to make a new release that requires `std`.
 {==+==}
-
+如果你的库特别支持 [`no_std`] 环境，做一个需要 `std` 的新版本是破坏性的改变。
 {==+==}
 
 
@@ -2314,7 +2507,30 @@ fn example() {
 }
 ```
 {==+==}
+```rust,ignore,skip
+// MAJOR CHANGE
 
+///////////////////////////////////////////////////////////
+// 之前
+#![no_std]
+pub fn foo() {}
+
+///////////////////////////////////////////////////////////
+// 之后
+pub fn foo() {
+    std::time::SystemTime::now();
+}
+
+///////////////////////////////////////////////////////////
+// 示例:使用是破坏性的
+// 这将导致no_std目标的链接失败，因为它们没有 `std` crate。
+#![no_std]
+use updated_crate::foo;
+
+fn example() {
+    foo();
+}
+```
 {==+==}
 
 
@@ -2324,14 +2540,15 @@ Mitigation strategies:
   optionally enables `std` support, and when the feature is off, the library
   can be used in a `no_std` environment.
 {==+==}
-
+缓和策略:
+* 为了避免这种情况，一种常见的方式是包含 `std` [Cargo feature] ，可以选择启用 `std` 支持，当该特性关闭时，库可以在`no_std` 环境下使用。
 {==+==}
 
 
 {==+==}
 ## Tooling and environment compatibility
 {==+==}
-
+## 工具和环境的兼容性
 {==+==}
 
 
@@ -2339,7 +2556,8 @@ Mitigation strategies:
 <a id="env-new-rust"></a>
 ### Possibly-breaking: changing the minimum version of Rust required
 {==+==}
-
+<a id="env-new-rust"></a>
+### Possibly-breaking: 改变所需的最小Rust版本
 {==+==}
 
 
@@ -2349,7 +2567,8 @@ projects that are using older versions of Rust. This also includes using new
 features in a new release of Cargo, and requiring the use of a nightly-only
 feature in a crate that previously worked on stable.
 {==+==}
-
+在新版本的Rust中引入使用新的特性，会破坏使用旧版本Rust的项目。
+这也包括在新版本的Cargo中使用新特性，以及要求在之前在稳定版本上工作的crate中使用只在每日构建使用的特性。
 {==+==}
 
 
@@ -2361,7 +2580,7 @@ within a window of releases (such as the current stable release plus N
 previous releases). Just keep in mind that some large projects may not be able
 to update their Rust toolchain rapidly.
 {==+==}
-
+一些项目出于各种原因选择在次要版本中允许这样做。通常情况下，更新到一个较新的Rust版本是比较容易的。Rust也有一个6周的快速发布周期，一些项目会在一个发布窗口期内提供兼容性(比如当前的稳定版加上之前的N个版本)。只要记住，一些大型项目可能无法迅速更新其Rust工具链。
 {==+==}
 
 
@@ -2378,7 +2597,12 @@ Mitigation strategies:
   mechanism for new features. These are currently unstable and only available
   in the nightly channel.
 {==+==}
-
+缓和策略:
+* 使用[Cargo features]使新特性可选加入。
+* 为旧版本提供更大的支持窗口期。
+* 如果可能的话，复制新的标准库项目的源代码，这样你就可以继续使用旧的版本，但利用新的特性。
+* 为较早的次要版本提供一个单独的分支，可以接收重要bug修复的向后移植。
+* 请注意[`[cfg(version(..))]`][cfg-version]和[`#[cfg(accessible(..))]`][cfg-accessible]特性，它们为新特性提供了选择机制。这些特性目前是不稳定的，只在每日构建中可用。
 {==+==}
 
 
