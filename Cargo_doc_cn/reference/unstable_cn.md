@@ -1,7 +1,7 @@
 {==+==}
 ## Unstable Features
 {==+==}
-
+## 不稳定的特性
 {==+==}
 
 
@@ -12,7 +12,7 @@ needs, and if there are any issues or problems. Check the linked tracking
 issues listed below for more information on the feature, and click the GitHub
 subscribe button if you want future updates.
 {==+==}
-
+实验性的Cargo 特性只在[nightly channel]"每日构建"中提供。我们鼓励你尝试使用这些特性，看看它们是否符合你的需求，以及是否有问题或难题。请查看下面列出的链接的问题跟踪，了解更多关于该特性的信息，如果你想获得未来的更新，请点击GitHub订阅按钮。
 {==+==}
 
 
@@ -21,7 +21,7 @@ After some period of time, if the feature does not have any major concerns, it
 can be [stabilized], which will make it available on stable once the current
 nightly release reaches the stable channel (anywhere from 6 to 12 weeks).
 {==+==}
-
+经过一段时间后，如果该特性没有任何重大问题，它可以被[stabilized]，这将使它在当前每日构建发布的版本到达稳定通道后，就可以在稳定版上使用(6到12周不等)。
 {==+==}
 
 
@@ -29,7 +29,7 @@ nightly release reaches the stable channel (anywhere from 6 to 12 weeks).
 There are three different ways that unstable features can be enabled based on
 how the feature works:
 {==+==}
-
+根据特性的工作方式，有三种不同的方式可以启用不稳定的特性。
 {==+==}
 
 
@@ -37,7 +37,7 @@ how the feature works:
 * New syntax in `Cargo.toml` requires a `cargo-features` key at the top of
   `Cargo.toml`, before any tables. For example:
 {==+==}
-
+* 按照 `Cargo.toml` 新语法，在顶部任意表之前设置 `cargo-features` 键。例如:
 {==+==}
 
 
@@ -52,7 +52,15 @@ how the feature works:
   im-a-teapot = true  # This is a new option enabled by test-dummy-unstable.
   ```
 {==+==}
+  ```toml
+  # 这里指定启用哪些新的 Cargo.toml 特性。
+  cargo-features = ["test-dummy-unstable"]
 
+  [package]
+  name = "my-package"
+  version = "0.1.0"
+  im-a-teapot = true  # 这是由 test-dummy-unstable 启用的新选项。
+  ```
 {==+==}
 
 
@@ -61,7 +69,8 @@ how the feature works:
   unstable-options` CLI option to also be included. For example, the new
   `--out-dir` option is only available on nightly:
 {==+==}
-
+* 新的命令行标志、选项和子命令需要同时包含 `-Z unstable-options` CLI选项。
+  例如，新的 `--out-dir` 选项只在每日构建中可用。
 {==+==}
 
 
@@ -78,7 +87,7 @@ how the feature works:
   complex features that affect multiple parts of Cargo. For example, the
   [mtime-on-use](#mtime-on-use) feature can be enabled with:
 {==+==}
-
+* `-Z`命令行标志用于启用可能没有接口的新功能，或者接口还没有设计好，或者用于影响Cargo多个部分的更复杂功能。例如，[mime-on-use](#mime-on-use)功能可以用以下方式启用:
 {==+==}
 
 
@@ -92,7 +101,7 @@ how the feature works:
 {==+==}
   Run `cargo -Z help` to see a list of flags available.
 {==+==}
-
+  运行 `cargo -Z help` 可以查看可用的标志列表。
 {==+==}
 
 
@@ -101,7 +110,7 @@ how the feature works:
   cargo [config file] (`.cargo/config.toml`) in the `unstable` table. For
   example:
 {==+==}
-
+  可以用 `-Z` 标志配置的内容也可以在cargo [config file] (`.cargo/config.toml`)的 `unstable` 表中设置。比如说:
 {==+==}
 
 
@@ -119,7 +128,7 @@ how the feature works:
 {==+==}
 Each new feature described below should explain how to use it.
 {==+==}
-
+下面描述的每个新特性都将解释如何使用它。
 {==+==}
 
 
@@ -135,7 +144,7 @@ Each new feature described below should explain how to use it.
 {==+==}
 ### List of unstable features
 {==+==}
-
+### 不稳定特性列表 
 {==+==}
 
 
@@ -145,7 +154,10 @@ Each new feature described below should explain how to use it.
 * Build scripts and linking
     * [Metabuild](#metabuild) — Provides declarative build scripts.
 {==+==}
-
+* 不稳定特定特性
+    * [-Z allow-features](#allow-features) — 提供了一种限制使用哪些不稳定特性的方法。
+* 构建脚本和链接
+    * [Metabuild](#metabuild) — 提供声明式的构建脚本。
 {==+==}
 
 
@@ -156,7 +168,11 @@ Each new feature described below should explain how to use it.
     * [minimal-versions](#minimal-versions) — Forces the resolver to use the lowest compatible version instead of the highest.
     * [public-dependency](#public-dependency) — Allows dependencies to be classified as either public or private.
 {==+==}
-
+* 解析器和特性
+    * [no-index-update](#no-index-update) — 防止cargo更新索引缓存。
+    * [avoid-dev-deps](#avoid-dev-deps) — 防止解析器在解析过程中包含 dev-依赖。
+    * [minimal-versions](#minimal-versions) — 强制解析器使用最低的兼容版本，而不是最高的版本。
+    * [public-dependency](#public-dependency) — 允许将依赖分类为公共或私有。
 {==+==}
 
 
@@ -165,7 +181,9 @@ Each new feature described below should explain how to use it.
     * [out-dir](#out-dir) — Adds a directory where artifacts are copied to.
     * [Different binary name](#different-binary-name) — Assign a name to the built binary that is separate from the crate name.
 {==+==}
-
+* 输出行为
+    * [out-dir](#out-dir) — 添加一个目录，将制品复制到该目录。
+    * [Different binary name](#different-binary-name) — 为构建的二进制文件指定一个与crate名称分开的名称。
 {==+==}
 
 
@@ -180,7 +198,15 @@ Each new feature described below should explain how to use it.
     * [crate-type](#crate-type) — Supports passing crate types to the compiler.
     * [keep-going](#keep-going) — Build as much as possible rather than aborting on the first error.
 {==+==}
-
+* 编译行为
+    * [mtime-on-use](#mtime-on-use) — 在每次使用依赖时，更新其最后修改的时间戳，以提供一种机制来删除未使用的制品。
+    * [doctest-xcompile](#doctest-xcompile) — 支持运行带有 `--target` 标志的文档测试。
+    * [build-std](#build-std) — 构建标准库而不是使用预先构建的二进制文件。
+    * [build-std-features](#build-std-features) — 设置与标准库一起使用的特性。
+    * [binary-dep-depinfo](#binary-dep-depinfo) — 致使dep-info文件跟踪二进制文件的依赖。
+    * [panic-abort-tests](#panic-abort-tests) — 允许用 "中止" 恐慌策略运行测试。
+    * [crate-type](#crate-type) — 支持向编译器传递crate类型。
+    * [keep-going](#keep-going) — 尽可能多地构建，而不是在第一个错误时就中止。
 {==+==}
 
 
@@ -189,7 +215,9 @@ Each new feature described below should explain how to use it.
     * [`doctest-in-workspace`](#doctest-in-workspace) — Fixes workspace-relative paths when running doctests.
     * [rustdoc-map](#rustdoc-map) — Provides mappings for documentation to link to external sites like [docs.rs](https://docs.rs/).
 {==+==}
-
+* rustdoc
+    * [`doctest-in-workspace`](#doctest-in-workspace) — 修复文档测试时与工作空间相对路径。
+    * [rustdoc-map](#rustdoc-map) —提供文档的映射，以链接到外部网站，如 [docs.rs](https://docs.rs/) 。
 {==+==}
 
 
@@ -199,7 +227,10 @@ Each new feature described below should explain how to use it.
     * [per-package-target](#per-package-target) — Sets the `--target` to use for each individual package.
     * [artifact dependencies](#artifact-dependencies) - Allow build artifacts to be included into other build artifacts and build them for different targets.
 {==+==}
-
+* `Cargo.toml` 扩展
+    * [Profile `rustflags` option](#profile-rustflags-option) — 直接传递给rustc。
+    * [per-package-target](#per-package-target) — 设置每个独立包的 `--target` 。
+    * [artifact dependencies](#artifact-dependencies) - 允许将构建制品包含到其他构建制品中，并为不同的目标构建。
 {==+==}
 
 
@@ -209,7 +240,10 @@ Each new feature described below should explain how to use it.
     * [unit-graph](#unit-graph) — Emits JSON for Cargo's internal graph structure.
     * [`cargo rustc --print`](#rustc---print) — Calls rustc with `--print` to display information from rustc.
 {==+==}
-
+* 信息和元数据
+    * [Build-plan](#build-plan) — 发送关于哪些命令将被运行的JSON信息。
+    * [unit-graph](#unit-graph) — 为Cargo的内部图结构发送JSON。
+    * [`cargo rustc --print`](#rustc---print) — 用 `--print` 调用rustc，以显示来自 rustc 的信息。
 {==+==}
 
 
@@ -218,7 +252,9 @@ Each new feature described below should explain how to use it.
     * [config-include](#config-include) — Adds the ability for config files to include other files.
     * [`cargo config`](#cargo-config) — Adds a new subcommand for viewing config files.
 {==+==}
-
+* 配置
+    * [config-include](#config-include) — 增加配置文件包含其他文件的能力。
+    * [`cargo config`](#cargo-config) — 增加新的子命令用于查看配置文件。
 {==+==}
 
 
@@ -230,14 +266,19 @@ Each new feature described below should explain how to use it.
     * [publish-timeout](#publish-timeout) — Controls the timeout between uploading the crate and being available in the index
     * [registry-auth](#registry-auth) — Adds support for authenticated registries, and generate registry authentication tokens using asymmetric cryptography.
 {==+==}
-
+* 注册中心
+    * [credential-process](#credential-process) — 增加对从外部认证程序获取注册中心令牌的支持。
+    * [`cargo logout`](#cargo-logout) — 添加 `logout` 命令，以删除当前保存的注册中心令牌。
+    * [sparse-registry](#sparse-registry) — 增加从静态文件HTTP注册中心获取的支持(`sparse+`)。
+    * [publish-timeout](#publish-timeout) — 控制上传crate和在索引中可用之间的超时。
+    * [registry-auth](#registry-auth) — 增加对认证注册的支持，并使用非对称加密生成注册中心认证令牌。
 {==+==}
 
 
 {==+==}
 ### allow-features
 {==+==}
-
+### 接受特性
 {==+==}
 
 
@@ -249,7 +290,7 @@ and `-Zbar` to `cargo`, but you will be unable to pass `-Zbaz`. You can
 pass an empty string (`-Zallow-features=`) to disallow all unstable
 features.
 {==+==}
-
+这个永久不稳定的标志使得可以使用只有列出的一组不稳定的特性。具体来说，如果你传递了 `-Zallow-features=foo,bar` ，你将继续能够向 `cargo` 传递 `-Zfoo` 和 `-Zbar` ，但将无法传递 `-Zbaz` 。你可以传递一个空字符串(`-Zallow-features=`)来禁止所有不稳定的特性。
 {==+==}
 
 
@@ -258,7 +299,7 @@ features.
 to the `cargo-features` entry in `Cargo.toml`. If, for example, you want
 to allow
 {==+==}
-
+`-Zallow-features`也限制了哪些不稳定的特性可以被传递给 `Cargo.toml` 中的 `cargo-features` 条目。例如，如果你想接受
 {==+==}
 
 
@@ -276,7 +317,7 @@ where `test-dummy-unstable` is unstable, that features would also be
 disallowed by `-Zallow-features=`, and allowed with
 `-Zallow-features=test-dummy-unstable`.
 {==+==}
-
+如果 `test-dummy-unstable` 是不稳定的，那么 `-Zallow-features=` 也不接受该特性，而 `-Zallow-features=test-dummy-unstable` 则接受。
 {==+==}
 
 
@@ -286,7 +327,7 @@ to any Rust tools that cargo ends up calling (like `rustc` or
 `rustdoc`). Thus, if you run `cargo -Zallow-features=`, no unstable
 Cargo _or_ Rust features can be used.
 {==+==}
-
+传递给cargo的 `-Zallow-features` 的特性列表也会传递给cargo最终调用的任何Rust工具(如 `rustc` 或 `rustdoc` )。因此，如果你运行 `cargo -Zallow-features=` ，就不能使用不稳定的Cargo_或Rust特性。
 {==+==}
 
 
@@ -305,7 +346,7 @@ the registry index. This is intended for tools such as Crater that issue many
 Cargo commands, and you want to avoid the network latency for updating the
 index each time.
 {==+==}
-
+`-Z no-index-update` 标志确保Cargo不会尝试更新注册中心索引。这是为Crater等工具准备的，这些工具会发布很多Cargo命令，你想避免每次更新索引的网络潜在行为。
 {==+==}
 
 
@@ -326,7 +367,7 @@ To make this more practical setting the `unstable.mtime_on_use` flag in `.cargo/
 or the corresponding ENV variable will apply the `-Z mtime-on-use` to all
 invocations of nightly cargo. (the config flag is ignored by stable)
 {==+==}
-
+`-Z mtime-on-use` 标志是一个实验性的，让Cargo更新使用过的文件的时间戳，以便像cargo-sweep这样的工具更容易发现哪些文件是过时的。对于许多工作流程来说，这需要在 *所有* cargo的调用中进行设置。为了更实用，在 `.cargo/config.toml` 中设置 `unstable.mtime_on_use` 标志或相应的环境变量，将对所有每日构建cargo的调用应用 `-Z mtime-on-use` 。(config标志在稳定版本中被忽略) 
 {==+==}
 
 
@@ -346,7 +387,8 @@ used. The `-Z avoid-dev-deps` flag allows Cargo to avoid downloading
 dev-dependencies if they are not needed. The `Cargo.lock` file will not be
 generated if dev-dependencies are skipped.
 {==+==}
-
+当运行 `cargo install` 或 `cargo build` 等命令时，Cargo目前需要下载 dev-依赖，即使它们不被使用。
+`-Z avoid-dev-deps`标志允许Cargo在不需要dev-依赖时避免下载它们。如果跳过了dev-依赖，将不会生成 `Cargo.lock` 文件。
 {==+==}
 
 
@@ -366,7 +408,8 @@ generated if dev-dependencies are skipped.
 > intended that it will be changed in the future to only enforce minimal
 > versions for direct dependencies.
 {==+==}
-
+> 注意: 不建议使用这个功能。因为它为所有的横向依赖强制执行最小版本，它的作用是有限的，因为不是所有的外部依赖都声明适当的版本下限。
+> 我们打算在未来对其进行修改，只对直接依赖执行最小版本。
 {==+==}
 
 
@@ -375,7 +418,7 @@ When a `Cargo.lock` file is generated, the `-Z minimal-versions` flag will
 resolve the dependencies to the minimum SemVer version that will satisfy the
 requirements (instead of the greatest version).
 {==+==}
-
+当生成 `Cargo.lock` 文件时， `-Z minimal-versions` 标志将把依赖解析为能满足要求的最小语义化版本(而不是最高版本)。
 {==+==}
 
 
@@ -386,7 +429,8 @@ minimum versions that you are actually using. That is, if Cargo.toml says
 `foo = "1.0.0"` that you don't accidentally depend on features added only in
 `foo 1.5.0`.
 {==+==}
-
+这个标志的用途是在持续集成过程中检查 Cargo.toml 中指定的版本是否正确反映了你实际使用的最小版本。
+也就是说，如果 Cargo.toml 说明 `foo = "1.0.0"`，就不会意外地依赖 `foo 1.5.0` 中增加的特性。
 {==+==}
 
 
@@ -408,7 +452,7 @@ exact filename can be tricky since you need to parse JSON output. The
 that the artifacts are copied, so the originals are still in the `target`
 directory. Example:
 {==+==}
-
+这个特性允许你指定制品在构建后将被复制到的目录。通常，制品只被写入 `target/release` 或 `target/debug` 目录。然而，确定确切的文件名可能很棘手，因为你需要解析JSON输出。`--out-dir` 标志使其更容易预计访问制品。注意，制品是复制的，所以原件仍然在 `target` 目录中。例子:
 {==+==}
 
 
@@ -424,7 +468,7 @@ cargo +nightly build --out-dir=out -Z unstable-options
 {==+==}
 This can also be specified in `.cargo/config.toml` files.
 {==+==}
-
+这也可以在 `.cargo/config.toml` 文件中指定。
 {==+==}
 
 
@@ -456,7 +500,7 @@ while also passing it a `--target` option, as well as enabling
 `-Zunstable-features --enable-per-target-ignores` and passing along
 information from `.cargo/config.toml`. See the rustc issue for more information.
 {==+==}
-
+这个标志改变了 `cargo test` 在传递目标时处理文档测试的行为。目前，如果传递的目标与主机不同，cargo将直接跳过文档测试。如果有这个标志，cargo将继续正常工作，将测试传给文档测试，同时也将 `--target` 选项传给它，以及启用 `-Zunstable-features --enable-per-target-ignores`，并将 `.cargo/config.toml` 的信息传给它。更多信息请参见 rustc issue。
 {==+==}
 
 
