@@ -7,21 +7,23 @@
 {==+==}
 To start a new [package][def-package] with Cargo, use `cargo new`:
 {==+==}
-使用 `cargo new` 命令创建一个新的 [package][def-package]
+使用 `cargo new` 命令创建一个新的 [package][def-package] :
 {==+==}
 
-{-----}
+{==+==}
 ```console
 $ cargo new hello_world --bin
 ```
-{-----}
+{==+==}
+
+{==+==}
 
 {==+==}
 We’re passing `--bin` because we’re making a binary program: if we
 were making a library, we’d pass `--lib`. This also initializes a new `git`
 repository by default. If you don't want it to do that, pass `--vcs none`.
 {==+==}
-因为我们创建的是二进制程序，所以我们传递 `--bin` 参数: 
+因为我们创建的是二进制程序，所以我们传递 `--bin` 参数:
 如果我们创建的是类库，我们需要传递 `--lib` 。
 这也会默认初始化一个 `git` 仓库。如果不需要创建代码仓库，你可以传递 `--vcs none` 。
 {==+==}
@@ -73,15 +75,7 @@ edition = "2021"
 
 ```
 {==+==}
-```toml
-[package]
-name = "hello_world"
-version = "0.1.0"
-edition = "2021"
 
-[dependencies]
-
-```
 {==+==}
 
 {==+==}
@@ -106,11 +100,7 @@ fn main() {
 }
 ```
 {==+==}
-```rust
-fn main() {
-    println!("Hello, world!");
-}
-```
+
 {==+==}
 
 {==+==}
@@ -126,10 +116,7 @@ $ cargo build
    Compiling hello_world v0.1.0 (file:///path/to/package/hello_world)
 ```
 {==+==}
-```console
-$ cargo build
-   Compiling hello_world v0.1.0 (file:///path/to/package/hello_world)
-```
+
 {==+==}
 
 {==+==}
@@ -144,10 +131,7 @@ $ ./target/debug/hello_world
 Hello, world!
 ```
 {==+==}
-```console
-$ ./target/debug/hello_world
-Hello, world!
-```
+
 {==+==}
 
 {==+==}
@@ -167,12 +151,7 @@ $ cargo run
 Hello, world!
 ```
 {==+==}
-```console
-$ cargo run
-   Compiling hello_world v0.1.0 (file:///path/to/package/hello_world)
-     Running `target/debug/hello_world`
-Hello, world!
-```
+
 {==+==}
 
 {==+==}
@@ -196,10 +175,7 @@ $ cargo build --release
    Compiling hello_world v0.1.0 (file:///path/to/package/hello_world)
 ```
 {==+==}
-```console
-$ cargo build --release
-   Compiling hello_world v0.1.0 (file:///path/to/package/hello_world)
-```
+
 {==+==}
 
 {==+==}

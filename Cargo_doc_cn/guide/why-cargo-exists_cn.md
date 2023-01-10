@@ -29,11 +29,7 @@ $ ./hello
 Hello, world!
 ```
 {==+==}
-```console
-$ rustc hello.rs
-$ ./hello
-Hello, world!
-```
+
 {==+==}
 
 {==+==}
@@ -66,8 +62,8 @@ involved with performing the above tasks by introducing a higher-level
 [*package manager*][def-package-manager].
 {==+==}
 相较于直接跟 crate 和 `rustc` 打交道，
-我们可以通过引入更高层的 ["*package*"][def-package] 抽象概念
-并使用 [*package manager*][def-package-manager] 来避免这些手动的乏味工作。
+我们可以通过引入更高层的 ["*包(package)*"][def-package] 抽象概念
+并使用 [*包管理器*][def-package-manager] 来避免这些手动的乏味工作。
 {==+==}
 
 {==+==}
@@ -134,9 +130,5 @@ Cargo-based project, you know how to build *all* of them.
 [def-package-manager]:  ../appendix/glossary.md#package-manager  '"package manager" (glossary entry)'
 [def-registry]:         ../appendix/glossary.md#registry         '"registry" (glossary entry)'
 {==+==}
-[def-artifact]:         ../appendix/glossary.md#artifact         '"artifact" (glossary entry)'
-[def-crate]:            ../appendix/glossary.md#crate            '"crate" (glossary entry)'
-[def-package]:          ../appendix/glossary.md#package          '"package" (glossary entry)'
-[def-package-manager]:  ../appendix/glossary.md#package-manager  '"package manager" (glossary entry)'
-[def-registry]:         ../appendix/glossary.md#registry         '"registry" (glossary entry)'
+
 {==+==}

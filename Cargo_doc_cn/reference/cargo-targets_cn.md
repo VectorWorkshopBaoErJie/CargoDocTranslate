@@ -13,9 +13,9 @@ be compiled into a crate. Packages can have [library](#library),
 by the [directory layout][package layout] of the source files.
 {==+==}
 Cargo 包由 *构建目标* 组成，构建目标对应着可以编译成 crate 的源文件。
-包中可以包含 [library](#library), [binary](#binaries), 
+包中可以包含 [library](#library), [binary](#binaries),
 [example](#examples), [test](#tests) 和 [benchmark](#benchmarks) 的构建目标。
-构建目标列表可以在 `Cargo.toml` 目录清单中配置，但总是由源文件的 [directory layout][package layout] 
+构建目标列表可以在 `Cargo.toml` 目录清单中配置，但总是由源文件的 [目录结构][package layout]
 [inferred automatically](#target-auto-discovery)
 {==+==}
 
@@ -75,7 +75,7 @@ in the `[[bin]]` tables in `Cargo.toml`.
 {==+==}
 二进制构建目标为编译后可以运行的可执行程序。
 默认的二进制文件名为 `src/main.rs` ，它默认是包的名称。
-额外的二进制文件会放在 [`src/bin/` directory][package layout]。
+额外的二进制文件会放在 [`src/bin/` 目录][package layout]。
 你可以在 `Cargo.toml` 的 `[[bin]]` 标签下为每个二进制文件的 [自定义] 设置。
 {==+==}
 
@@ -133,8 +133,8 @@ Files located under the [`examples` directory][package layout] are example
 uses of the functionality provided by the library. When compiled, they are
 placed in the [`target/debug/examples` directory][build cache].
 {==+==}
-[`examples` directory][package layout] 下的文件便是使用类库功能的例子。
-编译后，文件会生成在 [`target/debug/examples` directory][build cache]。
+[`examples` 目录][package layout] 下的文件便是使用类库功能的例子。
+编译后，文件会生成在 [`target/debug/examples` 目录][build cache]。
 {==+==}
 
 {==+==}
@@ -152,7 +152,7 @@ can specify the [`crate-type` field](#the-crate-type-field) to make an example
 be compiled as a library:
 {==+==}
 例子默认是二进制可执行文件(带有 `main()` 函数)。
-你可以指定 [`crate-type` field](#the-crate-type-field) 另一个例子编译为类库:
+你可以指定 [`crate-type` 字段](#the-crate-type-field) 另一个例子编译为类库:
 {==+==}
 
 {==+==}
@@ -162,11 +162,7 @@ name = "foo"
 crate-type = ["staticlib"]
 ```
 {==+==}
-```toml
-[[example]]
-name = "foo"
-crate-type = ["staticlib"]
-```
+
 {==+==}
 
 {==+==}
@@ -207,7 +203,7 @@ Cargo 项目中有两种测试的方式:
   access to its *public* API.
 {==+==}
 * *单元测试* 为在类库或二进制(或任何启用了 [the `test` field](#the-test-field) 的构建目标)中
-使用 [`#[test]` attribute][test-attribute] 标记的函数，这种测试可以访问构建目标中定义的私有 API 。
+使用 [`#[test]` 属性][test-attribute] 标记的函数，这种测试可以访问构建目标中定义的私有 API 。
 * *集成测试* 为单独的与项目类库链接的二进制可执行文件。
 它也包含了 `#[test]` 函数并且仅能访问 *公有* API 。
 {==+==}
@@ -221,7 +217,7 @@ field](#the-harness-field) if you want to use a different harness or test
 strategy.
 {==+==}
 使用 [`cargo test`] 命令运行测试。默认情况下，Cargo 和 `rustc` 使用 [libtest harness] ，
-它负责收集和并行执行带有 [`#[test]` attribute][test-attribute] 标记的函数，并报告所有测试的成功或失败情况。
+它负责收集和并行执行带有 [`#[test]` 属性][test-attribute] 标记的函数，并报告所有测试的成功或失败情况。
 如果你想使用不同的使用或测试策略可以查看 [the `harness` field](#the-harness-field) 。
 {==+==}
 
@@ -241,8 +237,7 @@ strategy.
 [libtest harness]: ../../rustc/tests/index.html
 [cargo-test-documentation-tests]: ../commands/cargo-test.md#documentation-tests
 {==+==}
-[libtest harness]: ../../rustc/tests/index.html
-[cargo-test-documentation-tests]: ../commands/cargo-test.md#documentation-tests
+
 {==+==}
 
 {==+==}
@@ -256,7 +251,7 @@ Files located under the [`tests` directory][package layout] are integration
 tests. When you run [`cargo test`], Cargo will compile each of these files as
 a separate crate, and execute them.
 {==+==}
-[`tests` directory][package layout] 目录下的文件便是集成测试。
+[`tests` 目录][package layout] 目录下的文件便是集成测试。
 当你运行 [`cargo test`] 时，Cargo 会将该目录下的每个文件编译为单独的 crate 并执行。
 {==+==}
 
@@ -343,7 +338,7 @@ Similarly to tests:
 * [The `harness` field](#the-harness-field) can be used to disable the
   built-in harness.
 {==+==}
-* 性能测试的文件放置在 [`benches` directory][package layout] 目录下。
+* 性能测试的文件放置在 [`benches` 目录][package layout] 目录下。
 * 类库和二进制文件中定义的性能测试可以访问构建目标中定义的 *私有* API。
 `benches` 目录下的性能测试仅能访问 *公有* API 。
 * [The `bench` field](#the-bench-field) 可以用来定义默认对哪个构建目标进行性能测试。
@@ -379,7 +374,7 @@ which means you can write more than one `[[bin]]` section to make several
 executables in your crate. You can only specify one library, so `[lib]` is a
 normal TOML table.
 {==+==}
-对于指定构建目标应该如何构建，`Cargo.toml` 中所有的 `[lib]`, `[[bin]]`, 
+对于指定构建目标应该如何构建，`Cargo.toml` 中所有的 `[lib]`, `[[bin]]`,
 `[[example]]`, `[[test]]` 和 `[[bench]]` 标记都支持相似的配置。
 比如 `[[bin]]` 这种双层括号标记代表 [array-of-table of TOML](https://toml.io/en/v1.0.0-rc.3#array-of-tables)，
 意味着你可以在 crate 添加多个 `[[bin]]` 来生成多个可执行文件。
@@ -419,8 +414,8 @@ doctest = true         # 文档示例是否默认进行测试
 bench = true           # 是否默认进行性能测试
 doc = true             # 是否默认带有文档
 plugin = false         # 是否用作编译器插件(已弃用)
-proc-macro = false     # proc-macro 类库要设置为 `true` 
-harness = true         # 是否使用 libtest harness 
+proc-macro = false     # proc-macro 类库要设置为 `true`
+harness = true         # 是否使用 libtest harness
 edition = "2015"       # 构建目标的版本
 crate-type = ["lib"]   # 要生成的 crate 类型
 required-features = [] # 构建此目标需要使用的特性 (类库不适用)
@@ -515,7 +510,7 @@ The `doctest` field indicates whether or not [documentation examples] are
 tested by default by [`cargo test`]. This is only relevant for libraries, it
 has no effect on other sections. The default is `true` for the library.
 {==+==}
-`doctest` 字段指明 [documentation examples] 是否默认使用 [`cargo test`] 测试。
+`doctest` 字段指明 [文档例子(documentation examples)] 是否默认使用 [`cargo test`] 测试。
 这个字段只与类库有关，它对其他部分的配置没有任何作用。
 对类库来说，此字段默认为 `true` 。
 {==+==}
@@ -598,7 +593,7 @@ attribute][test-attribute] or benchmarks with the `#[bench]` attribute. The
 default is `true` for all targets.
 {==+==}
 `harness` 字段指明 [`--test` 参数] 会传递给 `rustc` 令其自动包含 libtest 类库。
-libtest 类库用来收集并运行标有 [`#[test]` attribute][test-attribute] 的测试或标有 `#[bench]` 属性的性能测试。
+libtest 类库用来收集并运行标有 [`#[test]` 属性][test-attribute] 的测试或标有 `#[bench]` 属性的性能测试。
 对所有构建目标来说，此字段默认为 `true` 。
 {==+==}
 
@@ -613,7 +608,7 @@ to run tests and benchmarks.
 Tests have the [`cfg(test)` conditional expression][cfg-test] enabled whether
 or not the harness is enabled.
 {==+==}
-无论 harness 字段是否启用，测试都会启用 [`cfg(test)` conditional expression][cfg-test] 字段。
+无论 harness 字段是否启用，测试都会启用 [`cfg(test)` 条件表达式][cfg-test] 字段。
 {==+==}
 
 {==+==}
@@ -630,7 +625,7 @@ advanced scenarios such as incrementally transitioning a large package to a
 new edition.
 {==+==}
 `edition` 字段定义了构建目标将会使用的 [Rust edition] 。
-若未指定，默认会使用 `[package]` 的 [`edition` field][package-edition] 。
+若未指定，默认会使用 `[package]` 的 [`edition` 字段][package-edition] 。
 此字段通常不需设置，它只用于类似大型包增量迁移到一个新版本这样的高级场景。
 {==+==}
 
@@ -707,6 +702,7 @@ name = "my-pg-tool"
 required-features = ["postgres", "tools"]
 ```
 {==+==}
+
 {==+==}
 
 
@@ -723,8 +719,8 @@ configuration tables, such as `[lib]`, `[[bin]]`, `[[test]]`, `[[bench]]`, or
 `[[example]]`, can be used to add additional targets that don't follow the
 standard directory layout.
 {==+==}
-Cargo 默认会根据文件系统上的 [layout of the files][package layout] 推断构建目标。
-可以在构建目标的配置表中添加不同于标准目录结构的额外构建目标，比如使用 
+Cargo 默认会根据文件系统上的 [文件结构][package layout] 推断构建目标。
+可以在构建目标的配置表中添加不同于标准目录结构的额外构建目标，比如使用
 `[lib]`, `[[bin]]`, `[[test]]`, `[[bench]]` 或 `[[example]]` 标记。
 {==+==}
 
@@ -749,6 +745,7 @@ autotests = false
 autobenches = false
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -773,6 +770,7 @@ layout of this scenario:
         └── mod.rs
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -789,6 +787,7 @@ To prevent Cargo from inferring `src/bin/mod.rs` as an executable, set
 autobins = false
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -826,4 +825,5 @@ autobins = false
 [procedural macro]: ../../book/ch19-06-macros.html
 [test-attribute]: ../../reference/attributes/testing.html#the-test-attribute
 {==+==}
+
 {==+==}

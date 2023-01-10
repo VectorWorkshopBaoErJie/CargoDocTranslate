@@ -23,7 +23,7 @@ To depend on a library hosted on [crates.io], add it to your `Cargo.toml`.
 {==+==}
 [crates.io]: https://crates.io/
 {==+==}
-[crates.io]: https://crates.io/
+
 {==+==}
 
 {==+==}
@@ -48,10 +48,7 @@ use. This example adds a dependency of the `time` crate:
 time = "0.1.12"
 ```
 {==+==}
-```toml
-[dependencies]
-time = "0.1.12"
-```
+
 {==+==}
 
 
@@ -66,7 +63,7 @@ the options you have here.
 {==+==}
 [SemVer]: https://semver.org
 {==+==}
-[SemVer]: https://semver.org
+
 {==+==}
 
 {==+==}
@@ -91,16 +88,7 @@ time = "0.1.12"
 regex = "0.1.41"
 ```
 {==+==}
-```toml
-[package]
-name = "hello_world"
-version = "0.1.0"
-edition = "2021"
 
-[dependencies]
-time = "0.1.12"
-regex = "0.1.41"
-```
 {==+==}
 
 {==+==}
@@ -130,23 +118,7 @@ $ cargo build
      Compiling hello_world v0.1.0 (file:///path/to/package/hello_world)
 ```
 {==+==}
-```console
-$ cargo build
-      Updating crates.io index
-   Downloading memchr v0.1.5
-   Downloading libc v0.1.10
-   Downloading regex-syntax v0.2.1
-   Downloading memchr v0.1.5
-   Downloading aho-corasick v0.3.0
-   Downloading regex v0.1.41
-     Compiling memchr v0.1.5
-     Compiling libc v0.1.10
-     Compiling regex-syntax v0.2.1
-     Compiling memchr v0.1.5
-     Compiling aho-corasick v0.3.0
-     Compiling regex v0.1.41
-     Compiling hello_world v0.1.0 (file:///path/to/package/hello_world)
-```
+
 {==+==}
 
 {==+==}
@@ -179,14 +151,7 @@ fn main() {
 }
 ```
 {==+==}
-```rust,ignore
-use regex::Regex;
 
-fn main() {
-    let re = Regex::new(r"^\d{4}-\d{2}-\d{2}$").unwrap();
-    println!("Did our date match? {}", re.is_match("2014-01-01"));
-}
-```
 {==+==}
 
 {==+==}
@@ -202,11 +167,7 @@ $ cargo run
 Did our date match? true
 ```
 {==+==}
-```console
-$ cargo run
-   Running `target/hello_world`
-Did our date match? true
-```
+
 {==+==}
 
 {==+==}
@@ -214,7 +175,5 @@ Did our date match? true
 [def-package]:           ../appendix/glossary.md#package           '"package" (glossary entry)'
 [def-package-registry]:  ../appendix/glossary.md#package-registry  '"package-registry" (glossary entry)'
 {==+==}
-[def-crate]:             ../appendix/glossary.md#crate             '"crate" (glossary entry)'
-[def-package]:           ../appendix/glossary.md#package           '"package" (glossary entry)'
-[def-package-registry]:  ../appendix/glossary.md#package-registry  '"package-registry" (glossary entry)'
+
 {==+==}

@@ -24,10 +24,7 @@ $ git clone https://github.com/rust-lang/regex.git
 $ cd regex
 ```
 {==+==}
-```console
-$ git clone https://github.com/rust-lang/regex.git
-$ cd regex
-```
+
 {==+==}
 
 {==+==}
@@ -42,10 +39,7 @@ $ cargo build
    Compiling regex v1.5.0 (file:///path/to/package/regex)
 ```
 {==+==}
-```console
-$ cargo build
-   Compiling regex v1.5.0 (file:///path/to/package/regex)
-```
+
 {==+==}
 
 {==+==}
@@ -58,5 +52,5 @@ package.
 {==+==}
 [def-package]:  ../appendix/glossary.md#package  '"package" (glossary entry)'
 {==+==}
-[def-package]:  ../appendix/glossary.md#package  '"package" (glossary entry)'
+
 {==+==}
