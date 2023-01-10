@@ -516,7 +516,7 @@ cargo test --target foo -Zdoctest-xcompile
 {==+==}
 #### New `dir-name` attribute
 {==+==}
-
+#### 新的 `dir-name` 属性
 {==+==}
 
 
@@ -526,7 +526,8 @@ protocol", where `cargo` is invoked as a part of a larger project build. So, to
 preserve the existing behavior, there is also a new attribute `dir-name`, which
 when left unspecified, defaults to the name of the profile. For example:
 {==+==}
-
+在 `target/` 下生成的一些路径是约定俗成的 "构建协议" ， 被 `cargo` 作为更大的项目构建的一部分来调用。
+因此，为了保留现有的行为，还有一个新的属性 `dir-name` ，当没有指定时，默认为配置文件的名称。比如说:
 {==+==}
 
 
@@ -538,7 +539,12 @@ dir-name = "lto"  # Emits to target/lto instead of target/release-lto
 lto = true
 ```
 {==+==}
-
+```toml
+[profile.release-lto]
+inherits = "release"
+dir-name = "lto"  # 发送到target/lto，而不是target/release-lto
+lto = true
+```
 {==+==}
 
 
@@ -556,7 +562,8 @@ information about which commands would be run without actually executing
 anything. This can be useful when integrating with another build tool.
 Example:
 {==+==}
-
+`build` 命令的 `--build-plan` 参数将输出JSON信息，说明哪些命令将被运行，而不需要实际执行。这在与其他构建工具集成时很有用。
+例子:
 {==+==}
 
 
@@ -585,7 +592,8 @@ a `build.rs` script, you specify a list of build dependencies in the
 that runs each build dependency in order. Metabuild packages can then read
 metadata from `Cargo.toml` to specify their behavior.
 {==+==}
-
+Metabuild是声明式构建脚本的特性。你不用写 `build.rs` 脚本，而是在 `Cargo.toml` 中的 `metabuild` 键中指定一个构建依赖项列表。
+构建脚本会自动生成，按顺序运行每个构建依赖项。Metabuild包可以从 `Cargo.toml` 中读取元数据以指定其行为。
 {==+==}
 
 
@@ -594,7 +602,9 @@ Include `cargo-features` at the top of `Cargo.toml`, a `metabuild` key in the
 `package`, list the dependencies in `build-dependencies`, and add any metadata
 that the metabuild packages require under `package.metadata`. Example:
 {==+==}
-
+在 `Cargo.toml` 的顶部包含 `cargo-features` ，在 `package` 中包含 `metabuild` 键，
+在 `build-dependencies` 中列出依赖项，并在 `package.metadata` 中添加metabuild包需要的元数据。
+例子:
 {==+==}
 
 
@@ -623,7 +633,7 @@ extra-info = "qwerty"
 Metabuild packages should have a public function called `metabuild` that
 performs the same actions as a regular `build.rs` script would perform.
 {==+==}
-
+Metabuild包应该有一个名为 `metabuild` 的公共函数，执行与普通 `build.rs` 脚本相同的动作。
 {==+==}
 
 
@@ -640,14 +650,14 @@ The 'public-dependency' feature allows marking dependencies as 'public'
 or 'private'. When this feature is enabled, additional information is passed to rustc to allow
 the 'exported_private_dependencies' lint to function properly.
 {==+==}
-
+'public-dependency' 特性允许将依赖标记为 'public' 或 'private' 。当这个特性被启用时，附加的信息会传递给 rustc，以使 'exported_private_dependencies' 链接项能够正常工作。
 {==+==}
 
 
 {==+==}
 This requires the appropriate key to be set in `cargo-features`:
 {==+==}
-
+这需要在 `cargo-features` 中设置适当的键。
 {==+==}
 
 
@@ -660,7 +670,13 @@ my_dep = { version = "1.2.3", public = true }
 private_dep = "2.0.0" # Will be 'private' by default
 ```
 {==+==}
+```toml
+cargo-features = ["public-dependency"]
 
+[dependencies]
+my_dep = { version = "1.2.3", public = true }
+private_dep = "2.0.0" # 默认情况下，将是 'private' 。
+```
 {==+==}
 
 
@@ -682,7 +698,9 @@ you're curious to stay up to date you'll want to follow the [tracking
 repository](https://github.com/rust-lang/wg-cargo-std-aware) and its set of
 issues.
 {==+==}
-
+`build-std` 特性使Cargo能够自己编译标准库，作为crate图编译的一部分。这个功能曾称为 "std-aware Cargo"。
+这个功能仍处于开发的早期阶段，也是Cargo可能增加的重要特性。这是大的特性文档，即使现在以最小形式存在，
+如果想保持最新，请关注[跟踪仓库](https://github.com/rust-lang/wg-cargo-std-aware)和issues。
 {==+==}
 
 
@@ -694,7 +712,8 @@ need to have the source code for the standard library available, and at this
 time the only supported method of doing so is to add the `rust-src` rust rustup
 component:
 {==+==}
-
+目前实现的功能是在名为 `-Z build-std` 的标志后。这个标志表明，Cargo应该使用与主构建本身相同的配置文件从源代码中编译标准库。
+请注意，要实现这个功能，你需要有标准库的源代码，目前唯一支持的方法是添加 `rust-src` rust rustup组件。
 {==+==}
 
 
@@ -712,14 +731,14 @@ It is also required today that the `-Z build-std` flag is combined with the
 `--target` flag. Note that you're not forced to do a cross compilation, you're
 just forced to pass `--target` in one form or another.
 {==+==}
-
+现在还要求 `-Z build-std` 标志与 `--target` 标志组合。请注意，并不是强制进行交叉编译，只是要求以某种形式传递 `--target` 。
 {==+==}
 
 
 {==+==}
 Usage looks like:
 {==+==}
-
+使用方法如下:
 {==+==}
 
 
@@ -744,7 +763,7 @@ Hello, world!
 Here we recompiled the standard library in debug mode with debug assertions
 (like `src/main.rs` is compiled) and everything was linked together at the end.
 {==+==}
-
+这里，在调试模式下重新编译了标准库，并带有调试断言(就像 `src/main.rs` 被编译一样) ，最后所有内容都被连接在一起。
 {==+==}
 
 
@@ -754,7 +773,8 @@ Using `-Z build-std` will implicitly compile the stable crates `core`, `std`,
 `test` crate. If you're working with an environment which does not support some
 of these crates, then you can pass an argument to `-Zbuild-std` as well:
 {==+==}
-
+使用 `-Z build-std` 将隐式地编译稳定版本 crate `core` 、 `std` 、 `alloc` 和 `proc_macro` 。
+如果你使用 `cargo test` ，它也将编译 `test` crate。如果你的工作环境不支持其中的一些crate，那么可以向 `-Zbuild-std` 传递参数。
 {==+==}
 
 
@@ -770,21 +790,21 @@ $ cargo +nightly build -Z build-std=core,alloc
 {==+==}
 The value here is a comma-separated list of standard library crates to build.
 {==+==}
-
+这里的值是以逗号分隔的要构建的标准库crate的列表。
 {==+==}
 
 
 {==+==}
 #### Requirements
 {==+==}
-
+#### 要求
 {==+==}
 
 
 {==+==}
 As a summary, a list of requirements today to use `-Z build-std` are:
 {==+==}
-
+总结起来，使用 `-Z build-std` 的需求清单是:
 {==+==}
 
 
@@ -794,14 +814,17 @@ As a summary, a list of requirements today to use `-Z build-std` are:
 * You must use both a nightly Cargo and a nightly rustc
 * The `-Z build-std` flag must be passed to all `cargo` invocations.
 {==+==}
-
+* 你必须通过 `rustup component add rust-src` 安装libstd的源代码。
+* 你必须传递 `--target` 。
+* 你必须同时使用每日构建 Cargo 和 Rustc
+* `-Z build-std` 标志必须传递给所有 `cargo` 调用。
 {==+==}
 
 
 {==+==}
 #### Reporting bugs and helping out
 {==+==}
-
+#### 报告错误并提供帮助
 {==+==}
 
 
@@ -811,7 +834,7 @@ feature for Cargo has an extremely long history and is very large in scope, and
 this is just the beginning. If you'd like to report bugs please either report
 them to:
 {==+==}
-
+`-Z build-std` 特性正处于开发的早期阶段! Cargo的这项功能有非常长的历史，范围也非常大，而这只是一个开始。如果你想报告bug，请把它们报告给:
 {==+==}
 
 
@@ -831,7 +854,8 @@ something doesn't quite work the way you'd like it to, feel free to check out
 the [issue tracker](https://github.com/rust-lang/wg-cargo-std-aware/issues) of
 the tracking repository, and if it's not there please file a new issue!
 {==+==}
-
+此外，如果你想查看尚未实现的特性，或者如果某些内容没有完全按照你希望的方式工作，
+请随时查看库的[问题跟踪](https://github.com/rust-lang/wg-cargo-std-aware/issues)，如果那里没有，请提交新问题！
 {==+==}
 
 
@@ -850,7 +874,8 @@ library. The default enabled features, at this time, are `backtrace` and
 `panic_unwind`. This flag expects a comma-separated list and, if provided, will
 override the default list of features enabled.
 {==+==}
-
+这个标志是 `-Zbuild-std` 特性标志的成员。这将配置在构建标准库时为标准库本身启用的特性。
+目前默认启用的特性是 `backtrace` 和 `panic_unwind` 。这个标志期望逗号分隔的列表，如果提供的话，将覆盖默认启用的特性列表。
 {==+==}
 
 
@@ -871,7 +896,9 @@ the crate will be rebuilt). The primary use case is for building the compiler
 itself, which has implicit dependencies on the standard library that would
 otherwise be untracked for change-detection.
 {==+==}
-
+`-Z binary-dep-depinfo` 标志使 Cargo 将同样的标志转发给 `rustc` ，这将使 `rustc` 在 "dep info" 文件(扩展名为 `.d` )中包含所有二进制依赖的路径。
+Cargo会使用这些信息进行变化检测(如果有任何二进制的依赖发生变化，那么crate就会被重新构建)。
+主要的用例是编译器本身，它对标准库有隐含的依赖，否则就不会追踪到变化检测。
 {==+==}
 
 
@@ -892,7 +919,8 @@ and everything they depend on, with `-Cpanic=unwind` because it's the only way
 the `test` crate supports `-C panic=abort` with a test-per-process, and can help
 avoid compiling crate graphs multiple times.
 {==+==}
-
+`-Z panic-abort-tests` 标志将启用每日构建支持，以 `-Cpanic=abort` 编译测试连接crate。如果没有这个标志，Cargo会用 `-Cpanic=unwind` 来编译测试，
+以及所有依赖，因为这是 `test`-the-rate 知道如何操作的唯一方式。然而，从[rust-lang/rust#64158]开始，`test`-crate 支持 `-C panic=abort` ，并支持每个进程的测试，可以帮助避免多次编译crate图。
 {==+==}
 
 
@@ -900,7 +928,7 @@ avoid compiling crate graphs multiple times.
 It's currently unclear how this feature will be stabilized in Cargo, but we'd
 like to stabilize it somehow!
 {==+==}
-
+目前还不清楚如何在Cargo中稳定这一特性，但我们希望能以某种方式稳定下来。
 {==+==}
 
 
@@ -924,7 +952,7 @@ like to stabilize it somehow!
 many crates in the dependency graph as possible, rather than aborting the build
 at the first one that fails to build.
 {==+==}
-
+`cargo build --keep-going` (以及类似的 `check` 、 `test` 等)将尽可能多地构建依赖图中的crate，而不是在第一个失败的crate中止构建。
 {==+==}
 
 
@@ -935,7 +963,7 @@ succeeds (depending on which one of the two builds Cargo picked to run first),
 whereas `cargo check -j1 --keep-going` would definitely run both builds, even if
 the one run first fails.
 {==+==}
-
+例如，如果当前包依赖于 `fails` 和 `works` 两个依赖项，其中一个构建失败，`cargo check -j1` 可能也可能不会构建成功(取决于Cargo选择先运行哪一个构建)，而 `cargo check -j1 --keep-going` 肯定会同时运行两个构建，即使先运行的那个构建失败。
 {==+==}
 
 
@@ -943,7 +971,7 @@ the one run first fails.
 The `-Z unstable-options` command-line option must be used in order to use
 `--keep-going` while it is not yet stable:
 {==+==}
-
+必须使用 `-Z unstable-options` 命令行选项，以便在尚未稳定时使用 `--keep-going` 。
 {==+==}
 
 
@@ -969,7 +997,7 @@ The `include` key in a config file can be used to load another config file. It
 takes a string for a path to another file relative to the config file, or a
 list of strings. It requires the `-Zconfig-include` command-line option.
 {==+==}
-
+配置文件中的 `include` 键可以用来加载另一个配置文件。它需要相对于配置文件的另一个文件路径的字符串，或者字符串列表。需要 `-Zconfig-include` 命令行选项。
 {==+==}
 
 
