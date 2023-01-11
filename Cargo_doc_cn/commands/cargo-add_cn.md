@@ -112,7 +112,7 @@ dependency will be listed in the command's output.
 
 {==+==}
 <dt class="option-term" id="option-cargo-add---git"><a class="option-anchor" href="#option-cargo-add---git"></a><code>--git</code> <em>url</em></dt>
-<dd class="option-desc"><a href="../reference/specifying-dependencies.html#specifying-dependencies-from-git-repositories">Git URL to add the specified crate from</a></dd>
+<dd class="option-desc"><a href="../reference/specifying-dependencies.html#specifying-dependencies-from-git-repositories">Git URL to add the specified crate from</a>.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-add---git"><a class="option-anchor" href="#option-cargo-add---git"></a><code>--git</code> <em>url</em></dt>
 <dd class="option-desc"><a href="../reference/specifying-dependencies.html#specifying-dependencies-from-git-repositories">从Git URL添加指定的crate</a>。</dd>
@@ -158,7 +158,8 @@ dependency will be listed in the command's output.
 <dt class="option-term" id="option-cargo-add---registry"><a class="option-anchor" href="#option-cargo-add---registry"></a><code>--registry</code> <em>registry</em></dt>
 <dd class="option-desc">Name of the registry to use. Registry names are defined in <a href="../reference/config.html">Cargo config
 files</a>. If not specified, the default registry is used,
-which is defined by the <code>registry.default</code> config key which defaults to <code>crates-io</code>.</dd>
+which is defined by the <code>registry.default</code> config key which defaults to
+<code>crates-io</code>.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-add---registry"><a class="option-anchor" href="#option-cargo-add---registry"></a><code>--registry</code> <em>registry</em></dt>
 <dd class="option-desc">注册中心所使用的名称。注册中心名称被定义在<a href="../reference/config.html">Cargo配置文件</a>中。如果未指定将会使用默认注册中心，该注册中心由registry.default配置项定义，默认为<code>crates-io</code>。</dd>
@@ -364,6 +365,7 @@ terminal.</li>
 {==+==}
 <dt class="option-term" id="option-cargo-add---package"><a class="option-anchor" href="#option-cargo-add---package"></a><code>--package</code> <em>spec</em></dt>
 <dd class="option-desc">Add dependencies to only the specified package.</dd>
+{==+==}
 <dt class="option-term" id="option-cargo-add---package"><a class="option-anchor" href="#option-cargo-add---package"></a><code>--package</code> <em>spec</em></dt>
 <dd class="option-desc">仅向指定的包添加依赖项。</dd>
 {==+==}

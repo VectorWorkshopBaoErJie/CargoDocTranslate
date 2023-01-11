@@ -14,7 +14,10 @@ func dir_contents(path,files:Array):
                 # print("发现目录:" + file_name)
                 dir_contents(path+"/"+file_name,files)
             else:
-                files.append({"目录":path,"文件":file_name})
+                #files.append({"目录":path,"文件":file_name})
+                var t=TFile.new()
+                t.init(path,file_name)
+                files.append(t)
                 # print("发现文件:" + file_name)
             file_name = dir.get_next()
     else:

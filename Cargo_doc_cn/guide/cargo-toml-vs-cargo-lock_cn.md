@@ -49,26 +49,6 @@ depend on another package:
 {==+==}
 
 {==+==}
-```toml
-[package]
-name = "hello_world"
-version = "0.1.0"
-
-[dependencies]
-regex = { git = "https://github.com/rust-lang/regex.git" }
-```
-{==+==}
-```toml
-[package]
-name = "hello_world"
-version = "0.1.0"
-
-[dependencies]
-regex = { git = "https://github.com/rust-lang/regex.git" }
-```
-{==+==}
-
-{==+==}
 This package has a single dependency, on the `regex` library. We’ve stated in
 this case that we’re relying on a particular Git repository that lives on
 GitHub. Since we haven’t specified any other information, Cargo assumes that
@@ -132,14 +112,7 @@ version = "0.1.0"
 regex = { git = "https://github.com/rust-lang/regex.git" }
 ```
 {==+==}
-```toml
-[package]
-name = "hello_world"
-version = "0.1.0"
 
-[dependencies]
-regex = { git = "https://github.com/rust-lang/regex.git" }
-```
 {==+==}
 
 {==+==}
