@@ -1015,7 +1015,7 @@ include = '../../some-common-config.toml'
 The config values are first loaded from the include path, and then the config
 file's own values are merged on top of it.
 {==+==}
-
+配置文件的值首先从包含路径中加载，然后在其上合并配置文件本身的值。
 {==+==}
 
 
@@ -1024,7 +1024,7 @@ This can be paired with [config-cli](#config-cli) to specify a file to load
 from the command-line. Pass a path to a config file as the argument to
 `--config`:
 {==+==}
-
+这可以与[config-cli](#config-cli)搭配使用，以指定从命令行加载的文件。传递一个配置文件的路径作为 `--config` 的参数:
 {==+==}
 
 
@@ -1040,7 +1040,7 @@ cargo +nightly -Zunstable-options -Zconfig-include --config somefile.toml build
 {==+==}
 CLI paths are relative to the current working directory.
 {==+==}
-
+CLI路径是相对于当前工作目录的。
 {==+==}
 
 
@@ -1067,7 +1067,7 @@ difficult to correctly configure builds where the host triple and the
 target triple happen to be the same, but artifacts intended to run on
 the build host should still be configured differently.
 {==+==}
-
+曾经，Cargo对环境变量中的 `linker` 和 `rustflags` 配置选项以及 `[target]` 是否遵从构建脚本、插件和其他始终为主机平台构建的制品的行为有些不一致。当 `--target` 没有通过时，Cargo会遵从构建脚本的 `linker` 和 `rustflags` ，与所有其他编译制品相同。然而，当 `--target` 通过时，Cargo遵从 `[target.<host triple>]` 的 `linker` ，而不接受任何 `rustflags` 配置。这种双重行为让人困惑，也让人难以正确地配置构建，在这种情况下，主机三元组和目标三元组恰好是相同的，但打算在构建主机上运行的制品仍应以不同方式配置。
 {==+==}
 
 
@@ -1083,7 +1083,7 @@ it is set to `false`, no options from `[target.<host triple>]`,
 whether `--target` is passed to Cargo. To customize artifacts intended
 to be run on the host, use `[host]` ([`host-config`](#host-config)).
 {==+==}
-
+`-Ztarget-applies-to-host` 在Cargo配置文件中启用顶层的 `target-applies-to-host` 设置，允许用户为这些属性选择不同(和更一致)的行为。当 `target-applies-to-host`  在配置文件中未设置或设置为 `true` 时，现有的Cargo行为将被保留(不过请查看 `-Zhost-config` ，它改变了这个默认值)。当它被设置为 `false` 时，无论 `--target` 是否被传递给Cargo， `[target.<host triple>]` 、 `RUSTFLAGS` 或 `[build]` 的选项都不会被主机制品所尊从。要定制打算在主机上运行的制品，请使用 `[host]` ([`host-config`](#host-config))。
 {==+==}
 
 
@@ -1091,7 +1091,7 @@ to be run on the host, use `[host]` ([`host-config`](#host-config)).
 In the future, `target-applies-to-host` may end up defaulting to `false`
 to provide more sane and consistent default behavior.
 {==+==}
-
+将来， `target- appliesto -host` 可能最终会默认为 `false` ，以提供更健全和一致的默认行为。
 {==+==}
 
 
@@ -1129,7 +1129,8 @@ such as build scripts that must run on the host system instead of the target
 system when cross compiling. It supports both generic and host arch specific
 tables. Matching host arch tables take precedence over generic host tables.
 {==+==}
-
+配置文件中的 `host` 键可以用来向主机构建目标传递标志，比如交叉编译时必须在主机系统而不是目标系统上运行的构建脚本。
+它同时支持通用的和特定于主机架构的表。匹配的host arch表优先于通用的host表。
 {==+==}
 
 
@@ -1138,7 +1139,7 @@ It requires the `-Zhost-config` and `-Ztarget-applies-to-host`
 command-line options to be set, and that `target-applies-to-host =
 false` is set in the Cargo configuration file.
 {==+==}
-
+它需要设置 `-Zhost-config` 和 `-Ztarget-applies-to-host` 命令行选项，并且在Cargo配置文件中设置 `target-applies-to-host = false` 。
 {==+==}
 
 
@@ -1163,7 +1164,7 @@ The generic `host` table above will be entirely ignored when building on a
 `x86_64-unknown-linux-gnu` host as the `host.x86_64-unknown-linux-gnu` table
 takes precedence.
 {==+==}
-
+在 `x86_64-unknown-linux-gnu` 主机上构建时，上面的通用 `host` 表将被完全忽略，因为 `host.x86_64-unknown-linux-gnu` 表具有优先权。
 {==+==}
 
 
@@ -1171,7 +1172,7 @@ takes precedence.
 Setting `-Zhost-config` changes the default for `target-applies-to-host` to
 `false` from `true`.
 {==+==}
-
+设置 `-Zhost-config` 将 `target-applies-to-host` 的默认值从 `true` 改为 `false` 。
 {==+==}
 
 
@@ -1200,7 +1201,9 @@ command returns immediately after printing. Each "unit" corresponds to an
 execution of the compiler. These objects also include which unit each unit
 depends on.
 {==+==}
-
+`--unit-graph` 标志可以传递给任何构建命令(`build`、`check`、`run`、`test`、`bench`、`doc`等)，
+以向标准输出发送JSON对象，表示Cargo的内部单元图。实际上没有任何内容被构建，
+命令在打印后立即返回。每个 "单元" 对应于编译器的一次执行。这些对象还包含每个单元所依赖的单元。
 {==+==}
 
 
@@ -1223,14 +1226,16 @@ command is run and which packages and targets are selected. Additionally it
 can provide details about intra-package dependencies like build scripts or
 tests.
 {==+==}
-
+这种结构提供了Cargo所看到的更完整的依赖的视图。特别是，"features" 字段支持新的特性解析器，
+依赖可以用不同的特性构建多次。 `cargo metadata` 从根本上不能表示不同依赖种类之间的特性关系，
+当前特性取决于运行哪个命令，选择哪个包和目标。此外，它还可以提供包内依赖的细节，如构建脚本或测试。
 {==+==}
 
 
 {==+==}
 The following is a description of the JSON structure:
 {==+==}
-
+下面是对JSON结构的描述:
 {==+==}
 
 
@@ -1262,7 +1267,25 @@ The following is a description of the JSON structure:
         "doctest": true
       },
 {==+==}
-
+```javascript
+{
+  /* 是JSON输出结构的版本。如果有向后不兼容的变化，这个值将增加。 */
+  "version": 1,
+  /* 所有构建单位的数组。 */
+  "units": [
+    {
+      /* 一个不透明的字符串，表示该包。关于包的信息可以从 `cargo metadata` 中获得。 */
+      "pkg_id": "my-package 0.1.0 (path+file:///path/to/my-package)",
+      /* Cargo目标。关于这些字段的更多信息，请参见 `cargo metadata` 文档。 https://doc.rust-lang.org/cargo/commands/cargo-metadata.html */
+      "target": {
+        "kind": ["lib"],
+        "crate_types": ["lib"],
+        "name": "my-package",
+        "src_path": "/path/to/my-package/src/lib.rs",
+        "edition": "2018",
+        "test": true,
+        "doctest": true
+      },
 {==+==}
 
 
@@ -1299,7 +1322,30 @@ The following is a description of the JSON structure:
         "panic": "unwind"
       },
 {==+==}
-
+      /* 本单元的配置文件设置。这些值可能与配置清单中定义的配置文件不一致。
+         单位可以使用修改的配置文件设置。例如，"panic" 设置可以被覆盖，用于测试，以迫使它 "unwind" 。 */
+      "profile": {
+        /* 这些设置是由配置文件名称衍生而来。 */
+        "name": "dev",
+        /* 字符串表示的优化级别。 */
+        "opt_level": "0",
+        /* 字符串表示的LTO设置。 */
+        "lto": "false",
+        /* 编码单位是一个整数。 `null` 表示它应该使用编译器的默认值。 */
+        "codegen_units": null,
+        /* 整数表示的调试信息等级。 `null` 表示它应该使用编译器的默认值 (0) 。 */
+        "debuginfo": 2,
+        /* 是否启用了调试断言。 */
+        "debug_assertions": true,
+        /* 是否启用了溢出检查。 */
+        "overflow_checks": true,
+        /* 是否启用了rpath。 */
+        "rpath": false,
+        /* 是否启用了增量编译。 */
+        "incremental": true,
+        /* 恐慌的策略，"unwind" 或 "abort" 。 */
+        "panic": "unwind"
+      },
 {==+==}
 
 
@@ -1328,7 +1374,23 @@ The following is a description of the JSON structure:
       */
       "is_std": false,
 {==+==}
+      /* 为哪个平台建立的目标。如果值为 `null` ，则表明它是为主机建立的。
+         否则，它是目标三元组的字符串(如 "x86_64-unknown-linux-gnu" )。 */
+      "platform": null,
+      /* 该单元的 "mode" 。有效值:
 
+         * "test" — 使用 `rustc` 作为测试来构建。
+         * "build" — 使用 `rustc` 构建。
+         * "check" — 在 "check" 模式下使用 `rustc` 构建。
+         * "doc" — 使用 `rustdoc` 构建。
+         * "doctest" — 使用 `rustdoc` 进行测试。
+         * "run-custom-build" — 表示构建脚本的执行。
+      */
+      "mode": "build",
+      /* 在这个单元上启用的特性数组字符串。 */
+      "features": ["somefeat"],
+      /* 这是否是一个标准库单元，是不稳定的 build-std 功能的一部分。如果没有设置，视为 `false` 。 */
+      "is_std": false,
 {==+==}
 
 
@@ -1362,7 +1424,26 @@ The following is a description of the JSON structure:
 }
 ```
 {==+==}
-
+      /* 该单元的依赖数组。 */
+      "dependencies": [
+        {
+          /* 依赖的 "单位" 数组中的索引。 */
+          "index": 1,
+          /* 此依赖项将被称为的名称。 */
+          "extern_crate_name": "unicode_xid",
+          /* 这个依赖是否是 "public" 的，是不稳定的公共依赖特性的一部分。如果没有设置，则不启用公共依赖特性。*/
+          "public": false,
+          /* 该依赖是否被注入到 prelude 中，目前由 build-std 功能使用。如果没有设置，视为 `false` 。 */
+          "noprelude": false
+        }
+      ]
+    },
+    // ...
+  ],
+  /* "单位" 数组中作为依赖图 "根" 的索引数组。 */
+  "roots": [0],
+}
+```
 {==+==}
 
 
@@ -1380,7 +1461,7 @@ This feature provides a new option in the `[profile]` section to specify flags
 that are passed directly to rustc.
 This can be enabled like so:
 {==+==}
-
+这个特性在 "[profile]" 部分提供了新的选项，用来指定直接传递给rustc的标志。可以像这样启用:
 {==+==}
 
 
@@ -1412,7 +1493,8 @@ This feature adds configuration settings that are passed to `rustdoc` so that
 it can generate links to dependencies whose documentation is hosted elsewhere
 when the dependency is not documented. First, add this to `.cargo/config`:
 {==+==}
-
+这个特性增加了传递给 `rustdoc` 的配置，这样它就可以在依赖没有文档的情况下，
+生成指向文档托管在其他地方的依赖的链接。首先，将其添加到 `.cargo/config` 中。
 {==+==}
 
 
@@ -1430,7 +1512,7 @@ crates-io = "https://docs.rs/"
 Then, when building documentation, use the following flags to cause links
 to dependencies to link to [docs.rs](https://docs.rs/):
 {==+==}
-
+然后，在构建文档时，使用以下标志，使链接的依赖链接到 [docs.rs](https://docs.rs/) 。
 {==+==}
 
 
@@ -1449,7 +1531,8 @@ to. The URL may have the markers `{pkg_name}` and `{version}` which will get
 replaced with the corresponding values. If neither are specified, then Cargo
 defaults to appending `{pkg_name}/{version}/` to the end of the URL.
 {==+==}
-
+`registries` 表包含了注册中心名称与要链接的URL的映射。URL可以有 `{pkg_name}` 和 `{version}` 的标记，
+这些标记会被替换成相应的值。如果两者都没有指定，那么Cargo默认会在URL的末尾添加 `{pkg_name}/{version}/` 。
 {==+==}
 
 
@@ -1458,7 +1541,8 @@ Another config setting is available to redirect standard library links. By
 default, rustdoc creates links to <https://doc.rust-lang.org/nightly/>. To
 change this behavior, use the `doc.extern-map.std` setting:
 {==+==}
-
+另一个配置设置可用于重定向标准库链接。默认情况下，rustdoc 创建链接到 <https://doc.rust-lang.org/nightly/> 。
+要改变这种行为，请使用 `doc.extern-map.std` 设置。
 {==+==}
 
 
@@ -1477,7 +1561,7 @@ A value of `"local"` means to link to the documentation found in the `rustc`
 sysroot. If you are using rustup, this documentation can be installed with
 `rustup component add rust-docs`.
 {==+==}
-
+值为 `"local"` 意味着链接到在 `rustc` 系统根中找到的文档。如果你使用的是rustup，这个文档可以用 `rustup component add rust-docs` 来安装。  
 {==+==}
 
 
@@ -1486,7 +1570,9 @@ The default value is `"remote"`.
 
 The value may also take a URL for a custom location.
 {==+==}
+默认值是 `"remote"` 。
 
+该值也可以接受一个自定义位置的URL。
 {==+==}
 
 
@@ -1507,7 +1593,8 @@ the package be compiled by default (ie. when no `--target` argument is
 passed) for some target. The second one makes the package always be
 compiled for the target.
 {==+==}
-
+`per-package-target` 特性在配置清单中增加了两个键：`package.default-target` 和  `package.forced-target` 。
+第一个键使包在默认情况下 (即没有传递 `--target` 参数时)为某个目标进行编译。第二种是使包总是为该目标编译。
 {==+==}
 
 
@@ -1529,7 +1616,7 @@ In this example, the crate is always built for
 as a plugin for a main program that runs on the host (or provided on
 the command line) target.
 {==+==}
-
+在这个例子中，crate总是为 `wasm32-unknown-unknown` 构建的，例如，因为它将被用作运行在主机(或在命令行上提供)目标上的主程序的插件。
 {==+==}
 
 
@@ -1552,21 +1639,21 @@ the command line) target.
 Allow Cargo packages to depend on `bin`, `cdylib`, and `staticlib` crates,
 and use the artifacts built by those crates at compile time.
 {==+==}
-
+允许 Cargo 包依赖 `bin` 、 `cdylib` 和 `staticlib` crate，并在编译时使用这些crate构建的制品。
 {==+==}
 
 
 {==+==}
 Run `cargo` with `-Z bindeps` to enable this functionality.
 {==+==}
-
+使用 `-Z bindeps` 运行 `cargo` 来启用这一功能。
 {==+==}
 
 
 {==+==}
 **Example:** use _cdylib_ artifact in build script
 {==+==}
-
+**示例:** 在构建脚本中使用 _cdylib_ 制品
 {==+==}
 
 
@@ -1574,7 +1661,7 @@ Run `cargo` with `-Z bindeps` to enable this functionality.
 The `Cargo.toml` in the consuming package, building the `bar` library as `cdylib`
 for a specific build target…
 {==+==}
-
+消耗包中的 `Cargo.toml` ，为特定的构建目标将 `bar` 库构建为 `cdylib` 
 {==+==}
 
 
