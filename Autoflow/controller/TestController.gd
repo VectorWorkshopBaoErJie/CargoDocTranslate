@@ -21,7 +21,8 @@ func Test_all_TF():
         var TL_S=it.get_TL_entrys()
         
         for op in TL_S:
-            if op.translation_text=="":
+            if op.translation_text=="" : # or op.translation_text=="\n"
+                print(op.translation_text)
                 op.translation_text=op.source_text
                 #var str_:String=Ui.get_text()
                 #Ui.show_text(str_+str(op))

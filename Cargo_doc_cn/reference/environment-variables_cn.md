@@ -673,7 +673,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
                          current working directory of the build script when it
                          starts.
 {==+==}
-* `CARGO` — Path to the `cargo` binary performing the build.
+* `CARGO` — 执行构建的 `cargo` 二进制文件的路径。
 * `CARGO_MANIFEST_DIR` — 包含正在构建的包的配置清单的目录(包含构建脚本的软件包)。还要注意，这是构建脚本启动时的当前工作目录的值。
 {==+==}
 

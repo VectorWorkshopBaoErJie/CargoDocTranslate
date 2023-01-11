@@ -137,7 +137,8 @@ directory = "vendor"
 
 
 {==+==}
-# The `replace-with` key can also reference an alternative registry name defined in the `[registries]` table.
+# The `replace-with` key can also reference an alternative registry name
+# defined in the `[registries]` table.
 [source.crates-io]
 replace-with = "my-vendor-source"
 {==+==}

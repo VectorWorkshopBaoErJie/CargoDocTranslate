@@ -471,18 +471,15 @@ unyank端点将在索引中将给定版本的crate的 `yank` 字段设置为 `fa
 
 {==+==}
 ### Owners
-{==+==}
-### 所有者
-{==+==}
 
-
-{==+==}
 Cargo does not have an inherent notion of users and owners, but it does
 provide the `owner` command to assist managing who has authorization to
 control a crate. It is up to the registry to decide exactly how users and
 owners are handled. See the [publishing documentation] for a description of
 how [crates.io] handles owners via GitHub users and teams.
 {==+==}
+### 所有者
+
 Cargo没有固有的用户和所有者的概念，但它提供 `owner` 命令来帮助管理谁有控制crate的授权。
 具体如何处理用户和所有者，由注册中心决定。
 关于[crates.io]如何通过GitHub用户和团队处理所有者的描述，请参见[发布文档]。
