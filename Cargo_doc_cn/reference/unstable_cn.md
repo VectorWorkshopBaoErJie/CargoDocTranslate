@@ -2889,10 +2889,11 @@ for more information about renaming dependencies.
 
 
 {==+==}
+Support for alternate registries has been stabilized in the 1.34 release.
+See the [Registries chapter](registries.md) for more information about alternate registries.
+{==+==}
 在1.34版本中，对备用注册中心的支持已经稳定下来了。
 请参阅 [Registries chapter](registries.md) 了解更多关于备用注册中心的信息。
-{==+==}
-
 {==+==}
 
 

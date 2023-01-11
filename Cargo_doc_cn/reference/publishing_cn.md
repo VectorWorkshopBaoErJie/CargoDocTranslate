@@ -435,8 +435,8 @@ just a bit more secure against owners becoming malicious.
 
 {==+==}
 The syntax for teams is currently `github:org:team` (see examples above).
-In order to invite a team as an owner one must be a member of that team.
-No such restriction applies to removing a team as an owner.
+In order to invite a team as an owner one must be a member of that team. No
+such restriction applies to removing a team as an owner.
 {==+==}
 目前团队的语法是 `github:org:team` (见上面的例子)。
 为了邀请一个团队成为所有者，其必须是该团队的成员。
