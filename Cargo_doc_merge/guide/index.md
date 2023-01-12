@@ -1,7 +1,6 @@
-## Cargo Guide
+## Cargo 指南
 
-This guide will give you all that you need to know about how to use Cargo to
-develop Rust packages.
+本文档会展示如何使用 Cargo 开发 Rust 包。
 
 * [Why Cargo Exists](why-cargo-exists.md)
 * [Creating a New Package](creating-a-new-project.md)

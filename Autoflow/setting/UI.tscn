@@ -14,7 +14,9 @@ margin_bottom = 40.0
 margin_top = 184.0
 margin_right = 1020.0
 margin_bottom = 592.0
+focus_mode = 2
 custom_fonts/normal_font = ExtResource( 1 )
+selection_enabled = true
 
 [node name="ButtonA" type="Button" parent="Control"]
 margin_left = 65.0

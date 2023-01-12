@@ -21,7 +21,8 @@ func Test_all_TF():
         var TL_S=it.get_TL_entrys()
         
         for op in TL_S:
-            if op.translation_text=="":
+            if op.translation_text=="" : # or op.translation_text=="\n"
+                print(op.translation_text)
                 op.translation_text=op.source_text
                 #var str_:String=Ui.get_text()
                 #Ui.show_text(str_+str(op))
@@ -55,7 +56,7 @@ func TL_flow_obj_in_test(_TLL):
         for u in range(length):
             if _TLL[u].translation_text.find(_TLL[length].source_text)!=-1:
                 is_pass=false
-                Ui.add_test("该词条反包含：\n"+_TLL[length].source_text)
+                Ui.add_test("该词条反包含：\n"+"原文:"+_TLL[length].source_text+"\n译文\n"+_TLL[length].translation_text)
             pass
         length-=1
     return is_pass

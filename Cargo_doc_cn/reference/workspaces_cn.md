@@ -188,11 +188,17 @@ the workspace:
 `members` 和 `exclude`字段定义哪些package是工作空间的成员:
 {==+==}
 
+{==+==}
 ```toml
 [workspace]
 members = ["member1", "path/to/member2", "crates/*"]
 exclude = ["crates/foo", "path/to/other"]
 ```
+{==+==}
+
+{==+==}
+
+
 {==+==}
 All [`path` dependencies] residing in the workspace directory automatically
 become members. Additional members can be listed with the `members` key, which
@@ -361,6 +367,7 @@ documentation.workspace = true
 
 {==+==}
 
+
 {==+==}
 ### The `dependencies` table
 {==+==}
@@ -416,6 +423,7 @@ regex = { version = "1.6.0", default-features = false, features = ["std"] }
 
 {==+==}
 
+
 {==+==}
 ```toml
 # [PROJECT_DIR]/bar/Cargo.toml
@@ -437,11 +445,13 @@ rand.workspace = true
 {==+==}
 
 
+
 {==+==}
 ### The `metadata` table
 {==+==}
 ### `metadata`表
 {==+==}
+
 
 {==+==}
 The `workspace.metadata` table is ignored by Cargo and will not be warned
@@ -451,6 +461,7 @@ configuration in `Cargo.toml`. For example:
 `workspace.metadata`表会被Cargo忽略，不会被警告。这一部分可以用于那些想在`Cargo.toml`中存储工作空间配置的工具。比如说:
 {==+==}
 
+{==+==}
 ```toml
 [workspace]
 members = ["member1", "member2"]
@@ -460,6 +471,11 @@ root = "path/to/webproject"
 tool = ["npm", "run", "build"]
 # ...
 ```
+{==+==}
+
+{==+==}
+
+
 {==+==}
 There is a similar set of tables at the package level at
 [`package.metadata`][package-metadata]. While cargo does not specify a
