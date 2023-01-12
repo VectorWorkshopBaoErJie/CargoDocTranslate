@@ -56,7 +56,7 @@ func TL_flow_obj_in_test(_TLL):
         for u in range(length):
             if _TLL[u].translation_text.find(_TLL[length].source_text)!=-1:
                 is_pass=false
-                Ui.add_test("该词条反包含：\n"+_TLL[length].source_text)
+                Ui.add_test("该词条反包含：\n"+"原文:"+_TLL[length].source_text+"\n译文\n"+_TLL[length].translation_text)
             pass
         length-=1
     return is_pass

@@ -40,6 +40,7 @@ resolver.
 [Specifying Dependencies]: specifying-dependencies.md
 [`cargo tree`]: ../commands/cargo-tree.md
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -122,6 +123,7 @@ bitflags = "1.0"
 bitflags = "1.1"
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -152,6 +154,7 @@ rand = "0.7"
 rand = "0.6"
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -183,6 +186,7 @@ log = "=0.4.11"
 log = "=0.4.8"
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -197,6 +201,7 @@ the `0.4` release of the `log` package.
 [SemVer Compatibility]: semver.md
 [Version-incompatibility hazards]: #version-incompatibility-hazards
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -303,6 +308,7 @@ release. Non-numeric components are compared lexicographically.
 {==+==}
 [`cargo install`]: ../commands/cargo-install.md
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -325,6 +331,7 @@ SemVer 有“版本元数据” 的概念，会在版本后随着一个加号出
 [known issue]: https://github.com/rust-lang/crates.io/issues/1059
 [crates.io]: https://crates.io/
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -344,6 +351,7 @@ the other constraints that can affect resolution.
 {==+==}
 ### Features
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -359,7 +367,7 @@ The resolver runs a second time to determine the actual features used when
 {==+==}
 
 {==+==}
-dependencies are resolved with the union of all features enabled on them. for
+Dependencies are resolved with the union of all features enabled on them. For
 example, if one package depends on the [`im`] package with the [`serde`
 dependency] enabled and another package depends on it with the [`rayon`
 dependency] enabled, then `im` will be built with both features enabled, and
@@ -409,6 +417,7 @@ optional dependency].
 [removing an optional dependency]: semver.md#cargo-remove-opt-dep
 [workspace]: workspaces.md
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -446,6 +455,7 @@ situations:
   features = ["f2"]
   ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -471,6 +481,7 @@ situations:
   log = {version = "0.4", features=['std']}
   ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -498,6 +509,7 @@ situations:
   serde = {version = "1.0", features = ["std"]}
   ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -516,11 +528,13 @@ situations:
 [dev-dependencies]: specifying-dependencies.md#development-dependencies
 [resolver-field]: features.md#resolver-versions
 {==+==}
+
 {==+==}
 
 {==+==}
 ### `links`
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -546,11 +560,13 @@ the `links` field if your library is in common use.
 [`links` field]: manifest.md#the-links-field
 [`libgit2-sys`]: https://crates.io/crates/libgit2-sys
 {==+==}
+
 {==+==}
 
 {==+==}
 ### Yanked versions
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -564,6 +580,7 @@ releases unless they already exist in the `Cargo.lock` file.
 {==+==}
 [yank]: publishing.md#cargo-yank
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -610,6 +627,7 @@ be used to control how versions are selected.
 [`cargo build`]: ../commands/cargo-build.md
 [`cargo update`]: ../commands/cargo-update.md
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -630,6 +648,7 @@ Cargo有多种机制来覆盖依赖图中的依赖项， [Overriding Dependencie
 {==+==}
 [Overriding Dependencies]: overriding-dependencies.md
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -660,11 +679,13 @@ or `cfg` expression.
 [dev-dependencies]: specifying-dependencies.md#development-dependencies
 [Platform-specific dependencies]: specifying-dependencies.md#platform-specific-dependencies
 {==+==}
+
 {==+==}
 
 {==+==}
 ### dev-dependency cycles
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -721,6 +742,7 @@ version = "1.0.0"
 resolver = "2"
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -756,12 +778,14 @@ members = ["member1", "member2"]
 resolver = "2"
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
 [virtual workspace]: workspaces.md#virtual-workspace
 [features-2]: features.md#feature-resolver-version-2
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -853,6 +877,7 @@ break the build.
 {==+==}
 [SemVer guidelines]: semver.md
 {==+==}
+
 {==+==}
 
 {==+==}
