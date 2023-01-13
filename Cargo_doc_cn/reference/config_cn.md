@@ -752,7 +752,7 @@ the `<triple>` part can be any target triple like
 `target.x86_64-pc-windows-msvc`.
 {==+==}
 本节记录了所有的配置键。带有可变部分的键的描述用角括号标注，如 `target.<triple>` ，
-其中 `<triple>` 部分可以是任何目标三元组，如 `target.x86_64-pc-windows-msvc` 。
+其中 `<triple>` 部分可以是任意目标三元组，如 `target.x86_64-pc-windows-msvc` 。
 {==+==}
 
 
@@ -801,7 +801,7 @@ arguments. It may also be a string, which will be split on spaces into
 subcommand and arguments. The following aliases are built-in to Cargo:
 {==+==}
 `[alias]` 表定义了CLI命令的别名。例如，运行 `cargo b` 是运行 `cargo build` 的别名。表中的每个键是子命令，而值是实际要运行的命令。
-值可以是一个字符串数组，其中第一个元素是命令，后面的元素是参数。它也可以是一个字符串，它将在空格处被分割成子命令和参数。以下是Cargo内置的别名。
+值可以是一个字符串数组，其中第一个元素是命令，后面的元素是参数。它也可以是一个字符串，按空格分割成子命令和参数。以下是Cargo内置的别名:
 {==+==}
 
 
@@ -826,12 +826,14 @@ r = "run"
 rm = "remove"
 ```
 {==+==}
+
 
 {==+==}
 Aliases are not allowed to redefine existing built-in commands.
 {==+==}
 别名不允许重新定义现有的内置命令。
 {==+==}
+
 
 {==+==}
 Aliases are recursive:
@@ -846,12 +848,9 @@ rr = "run --release"
 recursive_example = "rr --example recursions"
 ```
 {==+==}
-```toml
-[alias]
-rr = "run --release"
-recursive_example = "rr --example recursions"
-```
+
 {==+==}
+
 
 {==+==}
 #### `[build]`
@@ -862,6 +861,7 @@ The `[build]` table controls build-time operations and compiler settings.
 
 `[build]` 表控制构建时的操作和编译器设置。
 {==+==}
+
 
 {==+==}
 ##### `build.jobs`
@@ -875,19 +875,22 @@ The `[build]` table controls build-time operations and compiler settings.
 * Environment: `CARGO_BUILD_JOBS`
 {==+==}
 
+
 {==+==}
 Sets the maximum number of compiler processes to run in parallel. If negative,
 it sets the maximum number of compiler processes to the number of logical CPUs
 plus provided value. Should not be 0.
 {==+==}
-设定并行运行的最大编译器进程数。如果是负数，它将编译器进程的最大数量设置为逻辑CPU的数量加上所提供的值。不应该是0。
+设定并行运行的最大编译器进程数。如果是负数，它将编译器进程的最大数量设置为逻辑CPU的数量加上所提供的值。不应为0。
 {==+==}
+
 
 {==+==}
 Can be overridden with the `--jobs` CLI option.
 {==+==}
 可以用 `--jobs` CLI选项覆盖。
 {==+==}
+
 
 {==+==}
 ##### `build.rustc`
@@ -901,11 +904,13 @@ Can be overridden with the `--jobs` CLI option.
 * Environment: `CARGO_BUILD_RUSTC` 或 `RUSTC`
 {==+==}
 
+
 {==+==}
 Sets the executable to use for `rustc`.
 {==+==}
 设置用于 `rustc` 的可执行文件。
 {==+==}
+
 
 {==+==}
 ##### `build.rustc-wrapper`
@@ -919,6 +924,7 @@ Sets the executable to use for `rustc`.
 * Environment: `CARGO_BUILD_RUSTC_WRAPPER` 或 `RUSTC_WRAPPER`
 {==+==}
 
+
 {==+==}
 Sets a wrapper to execute instead of `rustc`. The first argument passed to the
 wrapper is the path to the actual executable to use
@@ -926,6 +932,7 @@ wrapper is the path to the actual executable to use
 {==+==}
 设置包装器来代替 `rustc` 执行。传递给包装器的第一个参数是要使用的实际可执行文件的路径(即 `build.rustc` ，如果它被设置了，或者 `"rustc"` 以其它方式)。
 {==+==}
+
 
 {==+==}
 ##### `build.rustc-workspace-wrapper`
@@ -939,16 +946,18 @@ wrapper is the path to the actual executable to use
 * Environment: `CARGO_BUILD_RUSTC_WORKSPACE_WRAPPER` 或 `RUSTC_WORKSPACE_WRAPPER`
 {==+==}
 
+
 {==+==}
 Sets a wrapper to execute instead of `rustc`, for workspace members only.
 The first argument passed to the wrapper is the path to the actual
 executable to use (i.e., `build.rustc`, if that is set, or `"rustc"` otherwise).
 It affects the filename hash so that artifacts produced by the wrapper are cached separately.
 {==+==}
-设置包装器来代替 `rustc` 执行，仅适用于工作区成员。
-传递给包装器的第一个参数是要使用的实际可执行文件的路径(即`build.rustc`，如果它被设置了，或 `"rustc"` 以其它方式)。
+设置包装器来代替 `rustc` 执行，仅适用于工作空间成员。
+传递给包装器的第一个参数是要使用的实际可执行文件的路径(即 `build.rustc` ，如果它被设置了，或 `"rustc"` 以其它方式)。
 它影响文件名hash，以便包装器产生的制品被单独缓存。
 {==+==}
+
 
 {==+==}
 ##### `build.rustdoc`
@@ -962,11 +971,13 @@ It affects the filename hash so that artifacts produced by the wrapper are cache
 * Environment: `CARGO_BUILD_RUSTDOC` 或 `RUSTDOC`
 {==+==}
 
+
 {==+==}
 Sets the executable to use for `rustdoc`.
 {==+==}
 设置用于 `rustdoc` 的可执行文件。
 {==+==}
+
 
 {==+==}
 ##### `build.target`
@@ -980,11 +991,13 @@ Sets the executable to use for `rustdoc`.
 * Environment: `CARGO_BUILD_TARGET`
 {==+==}
 
+
 {==+==}
 The default target platform triples to compile to.
 {==+==}
 默认的目标平台三元组编译。
 {==+==}
+
 
 {==+==}
 This allows passing either a string or an array of strings. Each string value
@@ -994,11 +1007,13 @@ of the selected architectures.
 这允许传递字符串或字符串数组。每个字符串值是目标平台三元组。将为每个选定的架构构建目标。
 {==+==}
 
+
 {==+==}
 The string value may also be a relative path to a `.json` target spec file.
 {==+==}
 该字符串值也可以是 `.json` 目标规格文件的相对路径。
 {==+==}
+
 
 {==+==}
 Can be overridden with the `--target` CLI option.
@@ -1006,17 +1021,16 @@ Can be overridden with the `--target` CLI option.
 可以用 `--target` CLI选项覆盖。
 {==+==}
 
+
 {==+==}
 ```toml
 [build]
 target = ["x86_64-unknown-linux-gnu", "i686-unknown-linux-gnu"]
 ```
 {==+==}
-```toml
-[build]
-target = ["x86_64-unknown-linux-gnu", "i686-unknown-linux-gnu"]
-```
+
 {==+==}
+
 
 {==+==}
 ##### `build.target-dir`
@@ -1030,11 +1044,12 @@ target = ["x86_64-unknown-linux-gnu", "i686-unknown-linux-gnu"]
 * Environment: `CARGO_BUILD_TARGET_DIR` 或 `CARGO_TARGET_DIR`
 {==+==}
 
+
 {==+==}
 The path to where all compiler output is placed. The default if not specified
 is a directory named `target` located at the root of the workspace.
 {==+==}
-放置所有编译器输出的路径。如果没有指定，默认是位于工作区根的名为 `target` 的目录。
+放置所有编译器输出的路径。如果没有指定，默认是位于工作空间根名为 `target` 的目录。
 {==+==}
 
 {==+==}
@@ -1062,12 +1077,14 @@ strings or a space-separated string.
 额外的命令行标志，传递给 `rustc` 。该值可以是字符串数组或以空格分隔的字符串。
 {==+==}
 
+
 {==+==}
 There are four mutually exclusive sources of extra flags. They are checked in
 order, with the first one being used:
 {==+==}
-有四个互相排斥的额外标志源，依次检查，首先使用第一个:
+有四个互相排斥的额外标志来源，依次检查，首先使用第一个:
 {==+==}
+
 
 {==+==}
 1. `CARGO_ENCODED_RUSTFLAGS` environment variable.
@@ -1082,11 +1099,13 @@ order, with the first one being used:
 4. `build.rustflags` 配置值。
 {==+==}
 
+
 {==+==}
 Additional flags may also be passed with the [`cargo rustc`] command.
 {==+==}
 额外的标志也可以通过 [`cargo rustc`] 命令传递。
 {==+==}
+
 
 {==+==}
 If the `--target` flag (or [`build.target`](#buildtarget)) is used, then the
@@ -1097,10 +1116,11 @@ Without `--target`, the flags will be passed to all compiler invocations
 you have args that you do not want to pass to build scripts or proc macros and
 are building for the host, pass `--target` with the host triple.
 {==+==}
-如果使用 `--target` 标志(或[`build.target`](#buildtarget))，那么这些标志将只传递给目标的编译器。为主机构建的东西，如构建脚本或proc macros，将不会收到这些args。
-如果不使用 `--target` ，标志将被传递给所有编译器调用(包括构建脚本和proc macros)，因为依赖是共享的。
-如果你有不想传递给构建脚本或proc macros的args，并且是为主机构建的，请将 `--target` 与主机三元组一起传递。
+如果使用 `--target` 标志(或[`build.target`](#buildtarget))，那么这些标志将只传递给目标的编译器。为主机构建的内容，如构建脚本或过程宏，将不会收到这些参数。
+如果不使用 `--target` ，标志将被传递给所有编译器调用(包括构建脚本和过程宏)，因为依赖是共享的。
+如果你有不想传递给构建脚本或过程宏的参数，并且是为主机构建的，请将 `--target` 与主机三元组一起传递。
 {==+==}
+
 
 {==+==}
 It is not recommended to pass in flags that Cargo itself usually manages. For
@@ -1110,6 +1130,7 @@ appropriate profile setting.
 我们不建议传入Cargo本身通常管理的标志。
 例如，由[profiles](profiles.md)决定的标志，最好通过设置适当的配置文件来处理。
 {==+==}
+
 
 {==+==}
 > **Caution**: Due to the low-level nature of passing flags directly to the
@@ -1121,6 +1142,7 @@ appropriate profile setting.
 > **警告**: 由于直接向编译器传递标志的低阶特性，这可能会与未来版本的Cargo产生冲突，后者可能会自行发布相同或类似的标志，这可能会干扰你指定的标志。
 > 这是Cargo可能总是不会向后兼容的领域。
 {==+==}
+
 
 {==+==}
 ##### `build.rustdocflags`
@@ -1134,6 +1156,7 @@ appropriate profile setting.
 * Environment: `CARGO_BUILD_RUSTDOCFLAGS` 或 `CARGO_ENCODED_RUSTDOCFLAGS` 或 `RUSTDOCFLAGS`
 {==+==}
 
+
 {==+==}
 Extra command-line flags to pass to `rustdoc`. The value may be an array of
 strings or a space-separated string.
@@ -1145,7 +1168,7 @@ strings or a space-separated string.
 There are three mutually exclusive sources of extra flags. They are checked in
 order, with the first one being used:
 {==+==}
-有三个相互排斥的额外标志源。依次检查它们，首先使用第一个。
+有三个相互排斥的额外标志来源。依次检查它们，首先使用第一个:
 {==+==}
 
 {==+==}
@@ -1164,6 +1187,7 @@ Additional flags may also be passed with the [`cargo rustdoc`] command.
 附加标志也可以通过 [`cargo rustdoc`] 命令传递。
 {==+==}
 
+
 {==+==}
 ##### `build.incremental`
 * Type: bool
@@ -1176,6 +1200,7 @@ Additional flags may also be passed with the [`cargo rustdoc`] command.
 * Environment: `CARGO_BUILD_INCREMENTAL` 或 `CARGO_INCREMENTAL`
 {==+==}
 
+
 {==+==}
 Whether or not to perform [incremental compilation]. The default if not set is
 to use the value from the [profile](profiles.md#incremental). Otherwise this overrides the setting of
@@ -1184,6 +1209,7 @@ all profiles.
 是否执行[增量编译]。如果没有设置，默认是使用 [profile](profiles.md#incremental) 中的值。否则这将覆盖所有配置文件的设置。
 {==+==}
 
+
 {==+==}
 The `CARGO_INCREMENTAL` environment variable can be set to `1` to force enable
 incremental compilation for all profiles, or `0` to disable it. This env var
@@ -1191,6 +1217,7 @@ overrides the config setting.
 {==+==}
  `CARGO_INCREMENTAL` 环境变量可以设置为 `1` 以强制启用所有配置文件的增量编译，或 `0` 以禁用它。这个环境变量覆盖配置设置。
 {==+==}
+
 
 {==+==}
 ##### `build.dep-info-basedir`
@@ -1214,6 +1241,7 @@ relative paths.
 这个配置的目的是为需要相对路径的工具，将绝对路径转换成相对路径。
 {==+==}
 
+
 {==+==}
 The setting itself is a config-relative path. So, for example, a value of
 `"."` would strip all paths starting with the parent directory of the `.cargo`
@@ -1221,6 +1249,7 @@ directory.
 {==+==}
 这个设置自身是与配置相对的路径。举例来说，`"."` 的值将分割所有以 `.cargo` 目录的父目录为起点的路径。
 {==+==}
+
 
 {==+==}
 ##### `build.pipelining`
@@ -1243,11 +1272,13 @@ The `[doc]` table defines options for the [`cargo doc`] command.
 `[doc]` 表定义了 [`cargo doc`] 命令的选项。
 {==+==}
 
+
 {==+==}
 ##### `doc.browser`
 {==+==}
 ##### `doc.browser`
 {==+==}
+
 
 {==+==}
 * Type: string or array of strings ([program path with args])
@@ -1258,6 +1289,7 @@ The `[doc]` table defines options for the [`cargo doc`] command.
 * Default: `BROWSER` 环境变量，如果缺少该变量，则以系统特定的方式打开链接
 {==+==}
 
+
 {==+==}
 This option sets the browser to be used by [`cargo doc`], overriding the
 `BROWSER` environment variable when opening documentation with the `--open`
@@ -1265,6 +1297,7 @@ option.
 {==+==}
 这个选项设置 [`cargo doc`] 使用的浏览器，在用 `--open` 选项打开文档时，覆盖 `BROWSER` 环境变量。
 {==+==}
+
 
 {==+==}
 #### `[cargo-new]`
@@ -1341,10 +1374,7 @@ build scripts, rustc invocations, `cargo run` and `cargo build`.
 OPENSSL_DIR = "/opt/openssl"
 ```
 {==+==}
-```toml
-[env]
-OPENSSL_DIR = "/opt/openssl"
-```
+
 {==+==}
 
 
@@ -1362,7 +1392,7 @@ is relative to the parent directory of the `.cargo` directory that contains the
 `config.toml` file. The value of the environment variable will be the full
 absolute path.
 {==+==}
-设置 `relative` 标志会将该值评估为相对配置路径，它是相对于包含`config.toml` 文件的 `.cargo` 目录的父目录而言的。环境变量的值将是完整的绝对路径。
+设置 `relative` 标志会将该值评估为相对配置路径，它是相对于包含 `config.toml` 文件的 `.cargo` 目录的父目录而言的。环境变量的值将是完整的绝对路径。
 {==+==}
 
 
@@ -1373,11 +1403,7 @@ TMPDIR = { value = "/home/tmp", force = true }
 OPENSSL_DIR = { value = "vendor/openssl", relative = true }
 ```
 {==+==}
-```toml
-[env]
-TMPDIR = { value = "/home/tmp", force = true }
-OPENSSL_DIR = { value = "vendor/openssl", relative = true }
-```
+
 {==+==}
 
 
@@ -1439,10 +1465,7 @@ crate dependencies and accessing remote git repositories.
 * Default: false
 * Environment: `CARGO_HTTP_DEBUG`
 {==+==}
-##### `http.debug`
-* Type: boolean
-* Default: false
-* Environment: `CARGO_HTTP_DEBUG`
+
 {==+==}
 
 
@@ -1537,10 +1560,7 @@ CA证书绑定文件的路径，用于验证TLS证书。如果没有指定，Car
 * Default: true (Windows) false (all others)
 * Environment: `CARGO_HTTP_CHECK_REVOKE`
 {==+==}
-##### `http.check-revoke`
-* Type: boolean
-* Default: true (Windows) false (all others)
-* Environment: `CARGO_HTTP_CHECK_REVOKE`
+
 {==+==}
 
 
@@ -1558,10 +1578,7 @@ performed. This only works on Windows.
 * Default: none
 * Environment: `CARGO_HTTP_SSL_VERSION`
 {==+==}
-##### `http.ssl-version`
-* Type: string 或 min/max table
-* Default: none
-* Environment: `CARGO_HTTP_SSL_VERSION`
+
 {==+==}
 
 
@@ -1579,7 +1596,7 @@ This may alternatively take a table with two keys, `min` and `max`, which each
 take a string value of the same kind that specifies the minimum and maximum
 range of TLS versions to use.
 {==+==}
-这可能是有两个键的表，`min` 和 `max` ，每个键都有相同的字符串值，指定要使用的TLS版本的最小和最大范围。
+这可能是有两个键的表， `min` 和 `max` ，每个键都有相同的字符串值，指定要使用的TLS版本的最小和最大范围。
 {==+==}
 
 
@@ -1621,10 +1638,7 @@ connection is considered too slow and Cargo will abort and retry.
 * Default: true
 * Environment: `CARGO_HTTP_MULTIPLEXING`
 {==+==}
-##### `http.multiplexing`
-* Type: boolean
-* Default: true
-* Environment: `CARGO_HTTP_MULTIPLEXING`
+
 {==+==}
 
 
@@ -1657,7 +1671,7 @@ without pipelining.
 Specifies a custom user-agent header to use. The default if not specified is a
 string that includes Cargo's version.
 {==+==}
-指定要使用的自定义user-agent header。如果没有指定，默认是一个包括Cargo版本的字符串。
+指定要使用的自定义user-agent 头。如果没有指定，默认是一个包括Cargo版本的字符串。
 {==+==}
 
 
@@ -1786,10 +1800,7 @@ setting up git authentication.
 * Default: false
 * Environment: `CARGO_NET_OFFLINE`
 {==+==}
-##### `net.offline`
-* Type: boolean
-* Default: false
-* Environment: `CARGO_NET_OFFLINE`
+
 {==+==}
 
 
@@ -1813,7 +1824,7 @@ Can be overridden with the `--offline` command-line option.
 {==+==}
 #### `[patch]`
 {==+==}
-#### `[patch]`
+
 {==+==}
 
 
@@ -1837,8 +1848,8 @@ environments. Patching through cargo configuration files is generally
 only appropriate when the patch section is automatically generated by an
 external build tool.
 {==+==}
-由于 `.cargo/config.toml` 文件通常不会被检查到源代码控制中，你应该尽可能选择使用 `Cargo.toml` 来打补丁，以确保其他开发者可以在自己的环境中编译你的crate。
-一般来说，只有当补丁部分由外部构建工具自动生成时，通过cargo配置文件进行修补才是合适的。
+由于 `.cargo/config.toml` 文件通常不会检出到源代码控制中，你应该尽可能选择使用 `Cargo.toml` 来打补丁，以确保其他开发者可以在自己的环境中编译你的crate。
+一般来说，只有当补丁部分由外部构建工具自动生成时，才合适通过cargo配置文件进行修补。
 {==+==}
 
 
@@ -1860,7 +1871,7 @@ lowest precedence.
 Relative `path` dependencies in such a `[patch]` section are resolved
 relative to the configuration file they appear in.
 {==+==}
-在这样的 `[patch]` 部分中的相对 `path` 依赖是相对于它们出现配置文件的。
+在这样的 `[patch]` 部分中的相对的 `path` 依赖是相对于它们出现的配置文件。
 {==+==}
 
 
@@ -1874,9 +1885,9 @@ details about the options.
 {==+==}
 #### `[profile]`
 
-`[profile]` 表可以用来全局改变配置文件的设置，并覆盖 `Cargo.toml` 中指定的设置。
-它的语法和选项与 `Cargo.toml` 中指定的配置文件相同。
-关于选项的详细信息，请参阅 [配置文件章节] 。
+`[profile]` 表可以用来全局改变编译设置，并覆盖 `Cargo.toml` 中指定的设置。
+它的语法和选项与 `Cargo.toml` 中指定的编译设置相同。
+关于选项的详细信息，请参阅 [编译设置章节] 。
 {==+==}
 
 
@@ -1886,10 +1897,7 @@ details about the options.
 ##### `[profile.<name>.build-override]`
 * Environment: `CARGO_PROFILE_<name>_BUILD_OVERRIDE_<key>`
 {==+==}
-[Profiles chapter]: profiles.md
 
-##### `[profile.<name>.build-override]`
-* Environment: `CARGO_PROFILE_<name>_BUILD_OVERRIDE_<key>`
 {==+==}
 
 
@@ -1898,9 +1906,8 @@ The build-override table overrides settings for build scripts, proc macros,
 and their dependencies. It has the same keys as a normal profile. See the
 [overrides section](profiles.md#overrides) for more details.
 {==+==}
-构建覆盖表覆盖构建脚本、进程宏和其依赖的设置。
-它的键值与普通配置文件相同。
-参见 [覆盖部分](profiles.md#overrides) 以了解更多细节。
+build-override 表覆盖构建脚本、过程宏和其依赖的设置。
+它的键值与常规profile相同。参见 [覆盖部分](profiles.md#overrides) 以了解更多细节。
 {==+==}
 
 
@@ -1918,10 +1925,10 @@ The package table overrides settings for specific packages. It has the same
 keys as a normal profile, minus the `panic`, `lto`, and `rpath` settings. See
 the [overrides section](profiles.md#overrides) for more details.
 {==+==}
-包表覆盖特定包的设置。
-它和普通的配置文件有相同的键，除 `panic` 、 `lto` 和 `rpath` 设置。
+包的表覆盖特定包的设置。它和常规的profile有相同的键，除了 `panic` 、 `lto` 和 `rpath` 设置。
 参阅 [overrides section](profiles.md#overrides) 以了解更多细节。
 {==+==}
+
 
 {==+==}
 ##### `profile.<name>.codegen-units`
@@ -2125,8 +2132,7 @@ consists of a sub-table for each named registry.
 {==+==}
 #### `[registries]`
 
-`[注册表]` 表用于指定附加的[注册中心]。
-它由各个命名的注册中心的子表组成。
+`[registries]` 表用于指定额外的[注册中心]。它由各个命名的注册中心的子表组成。
 {==+==}
 
 
@@ -2168,7 +2174,7 @@ Specifies the authentication token for the given registry. This value should
 only appear in the [credentials](#credentials) file. This is used for registry
 commands like [`cargo publish`] that require authentication.
 {==+==}
-指定给定注册中心的认证令牌。
+指定特定注册中心的认证令牌。
 这个值应该只出现在 [credentials](#credentials) 文件中。
 这用于需要认证的注册中心命令，如 [`cargo publish`] 。
 {==+==}
@@ -2189,7 +2195,7 @@ specified.
 {==+==}
 #### `[registry]`
 
-`[注册中心]` 表控制在没有指定的情况下使用的默认注册中心。
+`[registry]` 表控制在没有指定的情况下使用的默认注册中心。
 {==+==}
 
 
@@ -2265,10 +2271,8 @@ local-registry, or git).
 {==+==}
 #### `[source]`
 
-`[source]` 表定义了可用的注册中心源。
-更多信息见[源替换]。
-它由每个命名的源的一个子表组成。
-源应该只定义为一种(目录、注册中心、本地注册或git)。
+`[source]` 表定义了可用的注册中心源。更多信息见[源替换]。
+它由每个命名的源的子表组成。源应该只定义为目录、注册中心、本地注册或git中的一种。
 {==+==}
 
 
@@ -2411,11 +2415,13 @@ Sets the tag name to use for a git repository.
 设置用于git仓库的tag名称。
 {==+==}
 
+
 {==+==}
 If none of `branch`, `tag`, or `rev` is set, defaults to the `master` branch.
 {==+==}
 如果没有设置 `branch` 、 `tag` 或 `rev` ，则默认为 `master` 分支。
 {==+==}
+
 
 {==+==}
 ##### `source.<name>.rev`
@@ -2429,11 +2435,13 @@ If none of `branch`, `tag`, or `rev` is set, defaults to the `master` branch.
 * Environment: 不支持
 {==+==}
 
+
 {==+==}
 Sets the [revision] to use for a git repository.
 {==+==}
-设置用于git仓库的[修订]。
+设置用于git仓库的[revision]。
 {==+==}
+
 
 {==+==}
 #### `[target]`
@@ -2450,6 +2458,7 @@ matches either the `<triple>` value or the `<cfg>` expression.
 如果目标平台与 `<triple>` 值或 `<cfg>` 表达式匹配，将使用给定的值。
 {==+==}
 
+
 {==+==}
 ```toml
 [target.thumbv7m-none-eabi]
@@ -2462,16 +2471,7 @@ runner = "my-arm-wrapper"
 rustflags = ["…", "…"]
 ```
 {==+==}
-```toml
-[target.thumbv7m-none-eabi]
-linker = "arm-none-eabi-gcc"
-runner = "my-emulator"
-rustflags = ["…", "…"]
 
-[target.'cfg(all(target_arch = "arm", target_os = "none"))']
-runner = "my-arm-wrapper"
-rustflags = ["…", "…"]
-```
 {==+==}
 
 {==+==}
@@ -2481,15 +2481,14 @@ to view), values set by [build scripts], and extra `--cfg` flags passed to
 `debug_assertions` or Cargo features like `feature="foo"`.
 {==+==}
 `cfg` 值来自编译器内置的值 (运行 `rustc --print=cfg` 查看)，由[构建脚本]设置的值，以及传递给 `rustc` 的附加 `--cfg` 标志(例如在 `RUSTFLAGS` 中定义的标志)。
-不要在 `debug_assertions` 或 Cargo 特性(如 `feature="foo"` )上尝试match。
+不要在 `debug_assertions` 或 Cargo 特性(如 `feature="foo"` )上尝试match匹配。
 {==+==}
 
 {==+==}
 If using a target spec JSON file, the `<triple>` value is the filename stem.
 For example `--target foo/bar.json` would match `[target.bar]`.
 {==+==}
-如果使用目标规格的JSON文件，`<triple>` 值是文件名。
-例如， `--target foo/bar.json` 将匹配 `[target.bar]` 。
+如果使用目标规格的JSON文件，`<triple>` 值是文件名。例如， `--target foo/bar.json` 将匹配 `[target.bar]` 。
 {==+==}
 
 {==+==}
@@ -2518,8 +2517,7 @@ This option is deprecated and unused.
 Specifies the linker which is passed to `rustc` (via [`-C linker`]) when the
 `<triple>` is being compiled for. By default, the linker is not overridden.
 {==+==}
-指定在编译 `<triple>` 时传递给 `rustc` (通过[`-C linker`]) 的链接器。
-默认情况下，链接器不可覆盖。
+指定在编译 `<triple>` 时传递给 `rustc` (通过[`-C linker`]) 的链接器。默认情况下，链接器不可覆盖。
 {==+==}
 
 {==+==}
@@ -2548,7 +2546,7 @@ commands. By default, compiled executables are executed directly.
 {==+==}
 ##### `target.<cfg>.runner`
 {==+==}
-##### `target.<cfg>.runner`
+
 {==+==}
 
 {==+==}
@@ -2562,6 +2560,7 @@ the `<triple>` will take precedence. It is an error if more than one
 如果有一个以上的 `<cfg>` 运行器与当前目标匹配，则错误。
 {==+==}
 
+
 {==+==}
 ##### `target.<triple>.rustflags`
 * Type: string or array of strings
@@ -2574,13 +2573,14 @@ the `<triple>` will take precedence. It is an error if more than one
 * Environment: `CARGO_TARGET_<triple>_RUSTFLAGS`
 {==+==}
 
+
 {==+==}
 Passes a set of custom flags to the compiler for this `<triple>`. The value
 may be an array of strings or a space-separated string.
 {==+==}
-为这个 `<triple>` 向编译器传递一组自定义标志。
-该值可以是字符串数组或以空格分隔的字符串。
+为这个 `<triple>` 向编译器传递一组自定义标志。该值可以是字符串数组或以空格分隔的字符串。
 {==+==}
+
 
 {==+==}
 See [`build.rustflags`](#buildrustflags) for more details on the different
@@ -2589,10 +2589,11 @@ ways to specific extra flags.
 参阅 [`build.rustflags`](#buildrustflags) ，以了解更多关于特定附加标志的不同方式的细节。
 {==+==}
 
+
 {==+==}
 ##### `target.<cfg>.rustflags`
 {==+==}
-##### `target.<cfg>.rustflags`
+
 {==+==}
 
 {==+==}
@@ -2601,13 +2602,13 @@ using a [`cfg()` expression]. If several `<cfg>` and `<triple>` entries
 match the current target, the flags are joined together.
 {==+==}
 这类似于 [target rustflags](#targettriplerustflags) ，但使用 [`cfg()` 表达式] 。
-如果有几个 `<cfg>` 和 `<triple>` 条目与当前的目标相匹配，这些标志就会被连在一起。
+如果有几个 `<cfg>` 和 `<triple>` 条目与当前的目标相匹配，这些标志就会被关连在一起。
 {==+==}
 
 {==+==}
 ##### `target.<triple>.<links>`
 {==+==}
-##### `target.<triple>.<links>`
+
 {==+==}
 
 {==+==}
@@ -2632,18 +2633,9 @@ metadata_key1 = "value"
 metadata_key2 = "value"
 ```
 {==+==}
-```toml
-[target.x86_64-unknown-linux-gnu.foo]
-rustc-link-lib = ["foo"]
-rustc-link-search = ["/path/to/foo"]
-rustc-flags = "-L /some/path"
-rustc-cfg = ['key="value"']
-rustc-env = {key = "value"}
-rustc-cdylib-link-arg = ["…"]
-metadata_key1 = "value"
-metadata_key2 = "value"
-```
+
 {==+==}
+
 
 {==+==}
 #### `[term]`
@@ -2703,8 +2695,8 @@ Controls whether or not extra detailed messages are displayed by Cargo.
 Specifying the `--quiet` flag will override and disable verbose output.
 Specifying the `--verbose` flag will override and force verbose output.
 {==+==}
-指定 `--quiet` 标志将覆盖并禁用粗略输出。
-指定 `--verbose` 标志将覆盖并强制进行粗略输出。
+指定 `--quiet` 标志将覆盖并禁用信息输出。
+指定 `--verbose` 标志将覆盖并强制进行信息输出。
 {==+==}
 
 {==+==}
@@ -2719,11 +2711,13 @@ Specifying the `--verbose` flag will override and force verbose output.
 * Environment: `CARGO_TERM_COLOR`
 {==+==}
 
+
 {==+==}
 Controls whether or not colored output is used in the terminal. Possible values:
 {==+==}
 控制是否在终端中使用彩色输出。可能的值:
 {==+==}
+
 
 {==+==}
 * `auto` (default): Automatically detect if color support is available on the
@@ -2742,6 +2736,7 @@ Can be overridden with the `--color` command-line option.
 可以用 `--color` 命令行选项来覆盖。
 {==+==}
 
+
 {==+==}
 ##### `term.progress.when`
 * Type: string
@@ -2754,11 +2749,13 @@ Can be overridden with the `--color` command-line option.
 * Environment: `CARGO_TERM_PROGRESS_WHEN`
 {==+==}
 
+
 {==+==}
 Controls whether or not progress bar is shown in the terminal. Possible values:
 {==+==}
 控制是否在终端中显示进度条。可能的值:
 {==+==}
+
 
 {==+==}
 * `auto` (default): Intelligently guess whether to show progress bar.
@@ -2769,6 +2766,7 @@ Controls whether or not progress bar is shown in the terminal. Possible values:
 * `always`: 允许显示进度条。
 * `never`: 不允许显示进度条。
 {==+==}
+
 
 {==+==}
 ##### `term.progress.width`
@@ -2833,7 +2831,7 @@ Sets the width for progress bar.
 [带参数的程序路径]: #executable-paths-with-arguments
 [libcurl format]: https://everything.curl.dev/libcurl/proxies#proxy-types
 [源替换]: source-replacement.md
-[修订]: https://git-scm.com/docs/gitrevisions
+[revision]: https://git-scm.com/docs/gitrevisions
 [registries]: registries.md
 [crates.io]: https://crates.io/
 {==+==}
