@@ -9,7 +9,7 @@ This document explains how Cargo’s configuration system works, as well as
 available keys or configuration. For configuration of a package through its
 manifest, see the [manifest format](manifest.md).
 {==+==}
-本文档解释了Cargo的配置系统如何工作，以及可用的键或配置。关于通过包的配置清单进行的配置，参阅[配置清单格式](manifest.md)。
+此文档解释Cargo的配置系统，以及可用的键或配置项。关于包的配置清单，参阅[manifest format](manifest.md)。
 {==+==}
 
 {==+==}
@@ -18,6 +18,7 @@ manifest, see the [manifest format](manifest.md).
 ### 层次结构
 {==+==}
 
+
 {==+==}
 Cargo allows local configuration for a particular package as well as global
 configuration. It looks for configuration files in the current directory and
@@ -25,8 +26,10 @@ all parent directories. If, for example, Cargo were invoked in
 `/projects/foo/bar/baz`, then the following configuration files would be
 probed for and unified in this order:
 {==+==}
-Cargo允许对某一特定包进行本地配置，也允许进行全局配置。它在当前目录和所有父目录下寻找配置文件。例如，如果在`/projects/foo/bar/baz`中调用Cargo，那么以下的配置文件会被探测到，并按照这个顺序统一起来。
+Cargo允许对特定的包进行本地配置和全局配置，会在当前目录和所有父目录下寻找配置文件。
+比如，如果在 `/projects/foo/bar/baz` 中调用Cargo，那么以下的配置文件会被探测到，并按照这个顺序统一管理:
 {==+==}
+
 
 {==+==}
 * `/projects/foo/bar/baz/.cargo/config.toml`
@@ -48,13 +51,15 @@ Cargo允许对某一特定包进行本地配置，也允许进行全局配置。
     * Unix: `$HOME/.cargo/config.toml`
 {==+==}
 
+
 {==+==}
 With this structure, you can specify configuration per-package, and even
 possibly check it into version control. You can also specify personal defaults
 with a configuration file in your home directory.
 {==+==}
-有了这种结构，你可以指定每个包的配置，甚至可以将其检查到版本控制中。你也可以在你的主目录下用一个配置文件指定个人默认值。
+按照这种结构，可以指定每个包的配置，可以将其检出到版本控制中。可以在主目录下用一个配置文件指定个人的默认值。
 {==+==}
+
 
 {==+==}
 If a key is specified in multiple config files, the values will get merged
@@ -62,8 +67,9 @@ together. Numbers, strings, and booleans will use the value in the deeper
 config directory taking precedence over ancestor directories, where the
 home directory is the lowest priority. Arrays will be joined together.
 {==+==}
-如果一个键在多个配置文件中被指定，这些值将被合并在一起。数字、字符串和布尔值将使用更深层级配置目录中的值，其优先于祖先目录的，其主目录的优先级最低。数组将被连接在一起。
+如果一个键在多个配置文件中被指定，将合并这些值。数字、字符串和布尔值将使用更深层级配置目录中的值，其优先于祖先目录中的，主目录的优先级最低。数组将连接在一起。
 {==+==}
+
 
 {==+==}
 At present, when being invoked from a workspace, Cargo does not read config
@@ -74,8 +80,10 @@ and `/projects/foo/bar/baz/mybin/.cargo/config.toml`, Cargo does not read
 those configuration files if it is invoked from the workspace root
 (`/projects/foo/bar/baz/`).
 {==+==}
-目前，当从工作区调用时，Cargo不会从工作区的crates中读取配置文件，即如果一个工作区有两个crates，分别名为 `/projects/foo/bar/baz/mylib` 和 `/projects/foo/bar/baz/mybin` ，并且存在 `/projects/foo/bar/baz/mylib/.cargo/config.toml` 和 `/projects/foo/bar/baz/mybin/.cargo/config.toml` ，如果从工作区根(`/projects/foo/bar/baz/`)调用，Cargo就不会读取这些配置文件。
+目前，当从工作空间调用时，Cargo不会从工作空间的crate中读取配置文件，比如，工作空间有两个crate，分别为 `/projects/foo/bar/baz/mylib` 和 `/projects/foo/bar/baz/mybin` ，
+并且存在 `/projects/foo/bar/baz/mylib/.cargo/config.toml` 和 `/projects/foo/bar/baz/mybin/.cargo/config.toml` ，如果从工作空间根(`/projects/foo/bar/baz/`)调用，Cargo就不会读取这些配置文件。
 {==+==}
+
 
 {==+==}
 > **Note:** Cargo also reads config files without the `.toml` extension, such as
@@ -84,9 +92,9 @@ those configuration files if it is invoked from the workspace root
 > without the extension.
 {==+==}
 > **注意:** Cargo 也可以读取没有 `.toml` 扩展名的配置文件，如`.cargo/config`。
-> 对`.toml`扩展的支持是在1.39版本中加入的，是首选的形式。
-> 如果两个文件都存在，Cargo 将使用没有扩展名的文件。
+> 对 `.toml` 扩展的支持是在1.39版本中加入的，是首选的形式。如果两个文件都存在，Cargo 将使用没有扩展名的文件。
 {==+==}
+
 
 {==+==}
 ### Configuration format
@@ -100,7 +108,7 @@ manifest), with simple key-value pairs inside of sections (tables). The
 following is a quick overview of all settings, with detailed descriptions
 found below.
 {==+==}
-配置文件是以 [TOML格式][toml] 编写的，在表内有简洁的键值对。以下是对所有设置的快速概述，详细说明见下文。
+配置文件是以 [TOML格式][toml] 编写，在表内有简洁的键值对。以下是对所有设置的概述，详细说明见下文。
 {==+==}
 
 {==+==}
@@ -109,6 +117,7 @@ paths = ["/path/to/override"] # path dependency overrides
 {==+==}
 paths = ["/path/to/override"] # 路径依赖覆盖
 {==+==}
+
 
 {==+==}
 [alias]     # command aliases
@@ -130,6 +139,7 @@ recursive_example = "rr --example recursions"
 space_example = ["run", "--release", "--", "\"command list\""]
 {==+==}
 
+
 {==+==}
 [build]
 jobs = 1                      # number of parallel jobs, defaults to # of CPUs
@@ -146,17 +156,18 @@ dep-info-basedir = "…"        # path for the base directory for targets in dep
 {==+==}
 [build]
 jobs = 1                      # 并行任务数, 默认为 CPU 数
-rustc = "rustc"               # rust  编译器工具
+rustc = "rustc"               # rust 编译器工具
 rustc-wrapper = "…"           # 运行这个包装器，而不是 `rustc`
-rustc-workspace-wrapper = "…" # 运行这个包装器，而不是 `rustc` ，对于工作区成员
+rustc-workspace-wrapper = "…" # 运行这个包装器，而不是 `rustc` ，对于工作空间成员
 rustdoc = "rustdoc"           # 文档生成工具
-target = "triple"             # 构建 target triple (被 `cargo install` 忽略)
+target = "triple"             # 构建目标三元组 (被 `cargo install` 忽略)
 target-dir = "target"         # 放置所有生成制品的路径
 rustflags = ["…", "…"]        # 要传递给所有编译器调用的自定义标志
 rustdocflags = ["…", "…"]     # 传递给rustdoc的自定义标志
 incremental = true            # 是否启用增量编译
 dep-info-basedir = "…"        # 开发文件中目标的基础目录路径
 {==+==}
+
 
 {==+==}
 [doc]
@@ -279,7 +290,7 @@ rpath = false            # Sets the rpath linking option.
 [profile.<name>.package.<name>]  # Override profile for a package.
 # Same keys for a normal profile (minus `panic`, `lto`, and `rpath`).
 {==+==}
-[profile.<name>]         # 通过配置来修改配置文件设置。
+[profile.<name>]         # 通过配置来修改编译设置。
 opt-level = 0            # 优化级别。
 debug = true             # 包括调试信息。
 split-debuginfo = '...'  # 调试信息拆分行为。
@@ -293,7 +304,7 @@ rpath = false            # 设置rpath链接选项。
 [profile.<name>.build-override]  # 覆盖build-script的设置。
 # profile下的键是一样的。
 [profile.<name>.package.<name>]  # 覆盖包的配置文件。
-# profile下的键是一样的 (减去 `panic`, `lto`, 和 `rpath`)。
+# profile下的键是一样的 (没有 `panic`, `lto`, 和 `rpath`)。
 {==+==}
 
 
@@ -336,9 +347,9 @@ directory = "…"      # 目录源的路径
 registry = "…"       # 注册中心源的 URL
 local-registry = "…" # 本地注册源的路径
 git = "…"            # git 源的 URL
-branch = "…"         # git仓库的分支名称
-tag = "…"            # git仓库的tag名称
-rev = "…"            # git仓库的修订
+branch = "…"         # git 仓库的分支名称
+tag = "…"            # git 仓库的 tag 名称
+rev = "…"            # git 仓库的修订
 {==+==}
 
 
@@ -423,7 +434,7 @@ defined by the `CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_RUNNER` environment
 variable.
 {==+==}
 除了TOML配置文件，Cargo还可以通过环境变量进行配置。对于每个形如 `foo.bar` 的配置键，也可以用环境变量 `CARGO_FOO_BAR` 定义值。
-键被转换为大写字母，点和破折号被转换为下划线。例如，`target.x86_64-unknown-linux-gnu.runner` 键也可以由 `CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_RUNNER` 环境变量定义。
+键将转换为大写字母，点和破折号将转换为下划线。例如，`target.x86_64-unknown-linux-gnu.runner` 键也可以由 `CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_RUNNER` 环境变量定义。
 {==+==}
 
 {==+==}
@@ -463,10 +474,9 @@ Cargo也可以通过 `--config` 命令行选项接受任意的配置覆盖。参
 cargo --config net.git-fetch-with-cli=true fetch
 ```
 {==+==}
-```console
-cargo --config net.git-fetch-with-cli=true fetch
-```
+
 {==+==}
+
 
 {==+==}
 The `--config` option may be specified multiple times, in which case the
@@ -475,15 +485,17 @@ that is used when multiple configuration files apply. Configuration
 values specified this way take precedence over environment variables,
 which take precedence over configuration files.
 {==+==}
-`--config` 选项可以被多次指定，在这种情况下，这些值将按照从左到右的顺序合并，使用与适用多个配置文件时相同的合并逻辑。
+`--config` 选项可以多次指定，在这种情况下，这些值将按照从左到右的顺序合并，合并逻辑与多个配置文件时相同。
 以这种方式指定的配置值优先于环境变量，环境变量优先于配置文件。
 {==+==}
+
 
 {==+==}
 Some examples of what it looks like using Bourne shell syntax:
 {==+==}
 一些看起像什么Bourne shell语法使用的例子:
 {==+==}
+
 
 {==+==}
 ```console
@@ -495,6 +507,7 @@ cargo --config http.proxy=\"http://example.com\" …
 cargo --config http.proxy=\"http://example.com\" …
 {==+==}
 
+
 {==+==}
 # Spaces may be used.
 cargo --config "net.git-fetch-with-cli = true" …
@@ -503,6 +516,7 @@ cargo --config "net.git-fetch-with-cli = true" …
 cargo --config "net.git-fetch-with-cli = true" …
 {==+==}
 
+
 {==+==}
 # TOML array example. Single quotes make it easier to read and write.
 cargo --config 'build.rustdocflags = ["--html-in-header", "header.html"]' …
@@ -510,6 +524,7 @@ cargo --config 'build.rustdocflags = ["--html-in-header", "header.html"]' …
 # TOML数组例子。单引号使其更容易读写。
 cargo --config 'build.rustdocflags = ["--html-in-header", "header.html"]' …
 {==+==}
+
 
 {==+==}
 # Example of a complex TOML key.
@@ -529,6 +544,7 @@ cargo --config profile.dev.package.image.opt-level=3 …
 ```
 {==+==}
 
+
 {==+==}
 The `--config` option can also be used to pass paths to extra
 configuration files that Cargo should use for a specific invocation.
@@ -538,6 +554,7 @@ precedence rules as other options specified directly with `--config`.
  `--config` 选项也可以用来传递额外的配置文件的路径，Cargo应该在特定的调用中使用这些文件。
 通过这种方式加载的配置文件中的选项与直接用 `--config` 指定的其他选项遵循同样的优先级规则。
 {==+==}
+
 
 {==+==}
 ### Config-relative paths
@@ -554,6 +571,7 @@ Paths for non-executables will be relative to where the config value is defined.
 没有路径分隔符的可执行文件的路径将使用 `PATH` 环境变量来搜索可执行文件。
 非可执行文件的路径将相对于配置值定义位置。
 {==+==}
+
 
 {==+==}
 In particular, rules are:
@@ -574,6 +592,7 @@ In particular, rules are:
 * 对于配置文件，路径是相对于定义配置文件的目录的父目录而言的，无论这些文件是来自 [层级检索](#hierarchical-structure) 还是 [`--config <path>`](#command-line-overrides) 选项。
 {==+==}
 
+
 {==+==}
 > **Note:** To maintain consistency with existing `.cargo/config.toml` probing behavior,
 > it is by design that a path in a config file passed via `--config <path>`
@@ -585,10 +604,11 @@ In particular, rules are:
 > it is recommended to put config files under `/my/project/.cargo`
 > or a new directory at the same level, such as `/my/project/.config`.
 {==+==}
-> **注意:** 为了与现有的 `.cargo/config.toml` 检索行为保持一致，在设计上，通过 `--config <path>` 传递的配置文件中的路径也是相对于配置文件本身两级。
+> **注意:** 为了与现有的 `.cargo/config.toml` 检索行为保持一致，在设计上，通过 `--config <path>` 传递的配置文件中的路径是相对于配置文件本身两级。
 > 为了避免意外的结果，经验方法是把你的额外配置文件放在项目中发现的 `.cargo/config.toml` 的同一级别。
 > 例如，给定项目 `/my/project` ，建议把配置文件放在 `/my/project/.cargo` 下，或者在同一级别上新建一个目录，如 `/my/project/.config` 。
 {==+==}
+
 
 {==+==}
 ```toml
@@ -598,6 +618,7 @@ In particular, rules are:
 # 相对路径例子。
 {==+==}
 
+
 {==+==}
 [target.x86_64-unknown-linux-gnu]
 runner = "foo"  # Searches `PATH` for `foo`.
@@ -605,6 +626,7 @@ runner = "foo"  # Searches `PATH` for `foo`.
 [target.x86_64-unknown-linux-gnu]
 runner = "foo"  # 在 `PATH` 中搜索 `foo` .
 {==+==}
+
 
 {==+==}
 [source.vendored-sources]
@@ -620,26 +642,31 @@ directory = "vendor"
 ```
 {==+==}
 
+
 {==+==}
 ### Executable paths with arguments
 {==+==}
 ### 带参数的可执行路径
 {==+==}
 
+
 {==+==}
 Some Cargo commands invoke external programs, which can be configured as a path
 and some number of arguments.
 {==+==}
-一些Cargo命令调用外部程序，可以将其配置为路径和一些参数。
+一些Cargo命令调用外部程序，可以为其配置路径和一些参数。
 {==+==}
+
 
 {==+==}
 The value may be an array of strings like `['/path/to/program', 'somearg']` or
 a space-separated string like `'/path/to/program somearg'`. If the path to the
 executable contains a space, the list form must be used.
 {==+==}
-该值可以是一个字符串数组，如 `['/path/to/program', 'somearg']` 或一个空格分隔的字符串，如 `'/path/to/program somearg'` 。如果可执行文件的路径包含一个空格，则必须使用列表形式。
+该值可以是一个字符串数组，如 `['/path/to/program', 'somearg']` 或一个空格分隔的字符串，如 `'/path/to/program somearg'` 。
+如果可执行文件的路径包含空格，则必须使用列表形式。
 {==+==}
+
 
 {==+==}
 If Cargo is passing other arguments to the program such as a path to open or
@@ -647,8 +674,10 @@ run, they will be passed after the last specified argument in the value of an
 option of this format. If the specified program does not have path separators,
 Cargo will search `PATH` for its executable.
 {==+==}
-如果Cargo向程序传递其他参数，比如打开或运行的路径，它们将在这种格式的选项值中最后指定的参数之后传递。如果指定的程序没有路径分隔符，Cargo会在 `PATH` 中搜索其可执行文件。
+如果Cargo向程序传递其他参数，比如打开或运行的路径，它们将在这种格式的选项值中最后指定的参数之后传递。
+如果指定的程序没有路径分隔符，Cargo会在 `PATH` 中搜索其可执行文件。
 {==+==}
+
 
 {==+==}
 ### Credentials
@@ -656,13 +685,16 @@ Cargo will search `PATH` for its executable.
 ### 证书
 {==+==}
 
+
 {==+==}
 Configuration values with sensitive information are stored in the
 `$CARGO_HOME/credentials.toml` file. This file is automatically created and updated
 by [`cargo login`]. It follows the same format as Cargo config files.
 {==+==}
-带有敏感信息的配置值存储在 `$CARGO_HOME/credentials.toml` 文件中。这个文件由 [`cargo login`] 自动创建和更新。它遵循与Cargo配置文件相同的格式。
+带有敏感信息的配置值存储在 `$CARGO_HOME/credentials.toml` 文件中。
+这个文件由 [`cargo login`] 自动创建和更新。它遵循与Cargo配置文件相同的格式。
 {==+==}
+
 
 {==+==}
 ```toml
@@ -682,13 +714,16 @@ token = "…"   # 具名注册中心访问 token
 ```
 {==+==}
 
+
 {==+==}
 Tokens are used by some Cargo commands such as [`cargo publish`] for
 authenticating with remote registries. Care should be taken to protect the
 tokens and to keep them secret.
 {==+==}
-一些Cargo命令使用令牌，例如[`cargo publish`]，用于与远程注册中心进行认证。应该注意保护令牌，使其私密。
+一些Cargo命令使用令牌，例如 [`cargo publish`] ，用于与远程注册中心进行认证。
+应该注意保护令牌，使其私密。
 {==+==}
+
 
 {==+==}
 As with most other config values, tokens may be specified with environment
@@ -703,6 +738,7 @@ all capital letters.
 其他注册中心的令牌可以用 `CARGO_REGISTRIES_<name>_TOKEN` 形式的环境变量来指定，其中 `<name>` 是大写的注册中心的名称。
 {==+==}
 
+
 {==+==}
 ### Configuration keys
 {==+==}
@@ -715,8 +751,10 @@ variable parts are annotated with angled brackets like `target.<triple>` where
 the `<triple>` part can be any target triple like
 `target.x86_64-pc-windows-msvc`.
 {==+==}
-本节记录了所有的配置键。带有可变部分的键的描述用角括号标注，如 `target.<triple>` ，其中 `<triple>` 部分可以是任何目标三元组，如 `target.x86_64-pc-windows-msvc` 。
+本节记录了所有的配置键。带有可变部分的键的描述用角括号标注，如 `target.<triple>` ，
+其中 `<triple>` 部分可以是任何目标三元组，如 `target.x86_64-pc-windows-msvc` 。
 {==+==}
+
 
 {==+==}
 #### `paths`
@@ -730,14 +768,16 @@ the `<triple>` part can be any target triple like
 * Environment: 不受支持
 {==+==}
 
+
 {==+==}
 An array of paths to local packages which are to be used as overrides for
 dependencies. For more information see the [Overriding Dependencies
 guide](overriding-dependencies.md#paths-overrides).
 {==+==}
-一个本地包的路径数组，这些包将被用作依赖覆盖。
+一个本地包的路径数组，这些包将用作依赖覆盖。
 更多信息请参阅 [覆盖依赖指南](overriding-dependencies.md#paths-overrides) 。
 {==+==}
+
 
 {==+==}
 #### `[alias]`
@@ -751,6 +791,7 @@ guide](overriding-dependencies.md#paths-overrides).
 * Environment: `CARGO_ALIAS_<name>`
 {==+==}
 
+
 {==+==}
 The `[alias]` table defines CLI command aliases. For example, running `cargo
 b` is an alias for running `cargo build`. Each key in the table is the
@@ -762,6 +803,7 @@ subcommand and arguments. The following aliases are built-in to Cargo:
 `[alias]` 表定义了CLI命令的别名。例如，运行 `cargo b` 是运行 `cargo build` 的别名。表中的每个键是子命令，而值是实际要运行的命令。
 值可以是一个字符串数组，其中第一个元素是命令，后面的元素是参数。它也可以是一个字符串，它将在空格处被分割成子命令和参数。以下是Cargo内置的别名。
 {==+==}
+
 
 {==+==}
 ```toml
