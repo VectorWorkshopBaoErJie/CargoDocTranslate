@@ -40,7 +40,7 @@ be used.
 {==+==}
 ### The `[features]` section
 {==+==}
-###  `[features]` 部分
+### `[features]` 部分
 {==+==}
 
 
@@ -53,7 +53,7 @@ included:
 {==+==}
 特性在 `Cargo.toml` 的 `[features]` 表中定义。
 每个特性都指定了一个其他特性的数组，或者它所启用的可选依赖。
-下面的例子说明了如何将特性用于二维图像处理库，其中对不同图像格式的支持可以选择性地包含在内。
+下面的例子说明了如何将特性应用于二维图像处理库，其中对不同图像格式的支持可以选择性地包含在内:
 {==+==}
 
 
@@ -89,7 +89,7 @@ pub mod webp;
 ```
 {==+==}
 ```rust
-// 有条件地包含实现WEBP支持的模块。
+// 以条件性包含实现WEBP支持的模块。
 #[cfg(feature = "webp")]
 pub mod webp;
 ```
@@ -196,7 +196,7 @@ webp = []
 When the package is built, the `default` feature is enabled which in turn
 enables the listed features. This behavior can be changed by:
 {==+==}
-当包被构建时， `default` 特性被启用，这反过来又启用了所列出的特性。这种行为可以通过以下方式改变:
+当包被构建时，启用 `default` 特性，从而又启用了所列出的特性。这种行为可以通过以下方式改变:
 {==+==}
 
 
@@ -207,7 +207,7 @@ enables the listed features. This behavior can be changed by:
 * The `default-features = false` option can be specified in a [dependency
   declaration](#dependency-features).
 {==+==}
-* `--no-default-features`[command-line flag](#command-line-feature-options)禁用包的默认功能。
+* `--no-default-features`[command-line flag](#command-line-feature-options)禁用包的默认特性。
 * 可以在 [依赖声明](#dependency-features) 中指定 `default-features = false` .
 {==+==}
 
@@ -229,7 +229,7 @@ enables the listed features. This behavior can be changed by:
 {==+==}
 > **注意**: 选择默认特性要小心。默认特性让用户更容易使用包，而不需要强迫用户仔细选择启用哪些常用特性，但也有一些缺点。
 > 除非指定 `default-features = false` ，否则依赖会自动启用默认特性。
-> 这可能会使我们难以确保默认特性不被启用，特别是对于在依赖图中出现多次的依赖。
+> 这可能会难以确保默认特性不被启用，特别是对于在依赖图中出现多次的依赖。
 > 每个包都必须确保指定 `default-features = false` 以避免启用它们。
 > 另一个问题是，从默认集合中删除特性可能是[语义版本不兼容的变化](#semver-compatibility)，所以你应该有信心时才保留这些特性。
 {==+==}
@@ -247,7 +247,7 @@ Dependencies can be marked "optional", which means they will not be compiled
 by default. For example, let's say that our 2D image processing library uses
 an external package to handle GIF images. This can be expressed like this:
 {==+==}
-依赖可以被标记为 "可选"，这意味着它们将不会被默认编译。
+依赖可以标记为 "可选"，这表示默认不会编译它们。
 例如，假设2D图像处理库使用一个外部包来处理GIF图像。可以这样表达:
 {==+==}
 
@@ -266,7 +266,7 @@ gif = { version = "0.11.1", optional = true }
 By default, this optional dependency implicitly defines a feature that looks
 like this:
 {==+==}
-默认情况下，这个可选依赖隐式地定义了一个看起来像这样的特征。
+默认，这个可选依赖隐式地定义了一个看起来像这样的特性。
 {==+==}
 
 
@@ -304,7 +304,7 @@ in the `[features]` table, that disables the implicit feature.
 {==+==}
 在某些情况下，你可能不想公开与可选依赖同名的特性。
 例如，也许这个可选依赖是一个内部细节，或者你想把多个可选依赖组合在一起，或者你只是想使用一个更好的名字。
-如果你在 `[features]` 表中的任何地方用 `dep:` 前缀来指定可选依赖，将禁用该隐含特征。
+如果你在 `[features]` 表中的任何地方用 `dep:` 前缀来指定可选依赖，将禁用该隐式特性。
 {==+==}
 
 
@@ -313,7 +313,7 @@ in the `[features]` table, that disables the implicit feature.
 > Previous versions can only use the implicit feature name.
 {==+==}
 > **注意**: `dep:` 语法仅从Rust 1.60开始可用。
-> 以前的版本只能使用隐含的特征名称。
+> 以前的版本只能使用隐式的特性名称。
 {==+==}
 
 
@@ -346,7 +346,7 @@ don't want users to enable those individually as they are internal details to
 our crate.
 {==+==}
 在这个例子中， `avif` 特性将启用两个列出的依赖。
-这也避免了创建隐式的 `ravif` 和 `rgb` 特性，因为我们不希望用户单独启用这些特性，因为它们是crate的内部细节。
+这也避免了创建隐式的 `ravif` 和 `rgb` 特性，因为不希望用户单独启用这些特性，它们是crate的内部细节。
 {==+==}
 
 
@@ -356,7 +356,7 @@ our crate.
 > conditional based on the target platform.
 {==+==}
 > **注意**: 另一种可选的包含依赖的方法是使用[特定平台依赖]。
-> 而不是使用特性，这些是基于目标平台的条件。
+> 而不是使用特性，是基于目标平台为条件。
 {==+==}
 
 
@@ -378,8 +378,7 @@ our crate.
 Features of dependencies can be enabled within the dependency declaration. The
 `features` key indicates which features to enable:
 {==+==}
-依赖特性可以在依赖声明中启用。
-`features` 键表示要启用哪些特性。
+依赖特性可以在依赖声明中启用。 `features` 键表示要启用哪些特性。
 {==+==}
 
 
@@ -585,7 +584,7 @@ all features enabled on that dependency when building it. This helps ensure
 that only a single copy of the dependency is used. See the [features section]
 of the resolver documentation for more details.
 {==+==}
-当依赖被多个软件包使用时，Cargo会在构建时使用该依赖上启用的所有特性的联合。
+当依赖被多个包使用时，Cargo会在构建时使用该依赖上启用的所有特性的联合。
 这有助于确保只使用该依赖的一个副本。
 更多细节请参见解析器文档中的 [特性部分] 。
 {==+==}
@@ -660,8 +659,7 @@ pub fn function_that_requires_std() {
 [`no_std`]: ../../reference/names/preludes.html#the-no_std-attribute
 [features section]: resolver.md#features
 {==+==}
-[`no_std`]: ../../reference/names/preludes.html#the-no_std-attribute
-[features部分]: resolver.md#features
+
 {==+==}
 
 
@@ -714,7 +712,7 @@ Instead of using mutually exclusive features, consider some other options:
 {==+==}
 * 将功能分成独立的包。
 * 当有冲突时，[选择其中之一][feature-precedence]。[`cfg-if`] 包可以帮助编写更复杂的 `cfg` 表达式。
-* 构建代码以允许同时启用这些功能，并使用运行时选项来控制使用哪个功能。例如，使用一个配置文件、命令行参数或环境变量来选择启用哪种行为。
+* 构建代码以允许同时启用这些特性，并使用运行时选项来控制使用哪个特性。例如，使用一个配置文件、命令行参数或环境变量来选择启用哪种行为。
 {==+==}
 
 
@@ -756,12 +754,10 @@ enabled. Some options to try:
   package and why. See the example at the bottom of the [`cargo tree`] page on
   how to read this.
 {==+==}
-* `cargo tree -e features`: 这将显示依赖图中的特征。
-  每个特性都会出现，显示哪个软件包启用了它。
+* `cargo tree -e features`: 这将显示依赖图中的特性。
+  每个特性都会出现，显示哪个包启用了它。
 * `cargo tree -f "{p} {f}"`: 这是更紧凑的视图，显示每个包上启用的特性的逗号分隔的列表。
-* `cargo tree -e features -i foo`: 这将反转树形图，显示特征如何流入给定的包 "foo"。这可能很有用，因为查看整个图表可能相当大，而且令人不知所措。
-当你试图弄清楚哪些特性在特定的包上被启用以及为什么要这样做时，可以使用这个方法。
-请看[`cargo tree`]页面底部的例子，了解阅读。
+* `cargo tree -e features -i foo`: 这将反转树形图，显示特性如何流入给定的包 "foo"。这可能很有用，因为查看整个图表可能相当大，而且令人不知所措。当你试图弄清楚哪些特性在特定的包上被启用以及为什么要这样做时，可以使用这个方法。请看[`cargo tree`]页面底部的例子，了解阅读。
 {==+==}
 
 
@@ -827,7 +823,7 @@ situations:
   needs them (like tests or examples).
 {==+==}
 * 对于目前没有被构建的目标，在[特定平台依赖]上启用的特性会被忽略。
-* [Build-dependencies] 和 proc-macros 不与常规依赖共享特性。
+* [Build-dependencies] 和过程宏不与常规依赖共享特性。
 * [Dev-dependencies] 不会激活特性，除非构建需要它们的目标(如测试或实例)。
 {==+==}
 
@@ -864,7 +860,7 @@ always built separately from normal dependencies in that scenario.
 当使用版本 `"2"` 解析器时，建议检查那些被多次构建的依赖，以减少整体构建时间。
 如果不是 *必须* 要用单独的特性来构建这些重复的包，可以考虑在[依赖声明](#dependency-features)中的 `特性` 列表中添加特性，
 这样重复的包最后就会有相同的特性(因此Cargo只会构建一次)。
-你可以用[`cargo tree --duplicates`][`cargo tree`]命令检测这些重复的依赖。它将显示哪些包被多次构建；
+你可以用 [`cargo tree --duplicates`][`cargo tree`] 命令检测这些重复的依赖。它将显示哪些包被多次构建；
 寻找任何列出相同版本的条目。参见 [Inspecting resolved features](#inspecting-resolved-features) 获取更多关于获取已解决特性的信息。
 对于构建依赖，如果你使用 `--target` 标志进行交叉编译，则没有必要这样做，因为在这种情况下，构建依赖总是与普通依赖分开构建。
 {==+==}
@@ -1190,5 +1186,5 @@ Because features are a form of conditional compilation, they require an exponent
 We encourage you to consider your strategy and tooling in regards to different feature combinations - Every project will have different requirements in conjunction with time, resources, and the cost-benefit of covering specific scenarios. Common configurations may be with / without default features, specific combinations of features, or all combinations of features.
 {==+==}
 我们鼓励你考虑你的策略和工具在不同的特性组合方面 - 每个项目将有不同的要求，结合时间、资源和覆盖特定场景的成本效益。
-常见的配置可能是有/无默认功能，特定的特性组合，或所有的特性组合。
+常见的配置可能是有/无默认特性，特定的特性组合，或所有的特性组合。
 {==+==}
