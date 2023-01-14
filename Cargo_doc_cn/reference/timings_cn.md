@@ -4,7 +4,7 @@ The `--timings` option gives some information about how long each compilation
 takes, and tracks concurrency information over time.
 {==+==}
 # 报告构建时间
-`--timings` 选项提供了一些关于每次编译所需时间的信息，并跟踪时间段的并发信息。
+`--timings` 选项提供了一些关于每次编译所需时间的信息，并跟踪时间推移的并发送信息。
 {==+==}
 
 
@@ -43,7 +43,7 @@ help visualize the critical path of dependencies. This may change between runs
 because the units may finish in different orders.
 {==+==}
 在输出中，有两个图表。"unit" 图显示每个单元随时间变化的持续时间。一个 "unit" 是单一的编译器调用。
-有几行显示了当一个单元结束时，哪些额外的单元被 "unlocked" 。也就是说，它显示了现在允许运行的新单元，因为它们的依赖已经全部完成。
+有几行显示了当一个单元结束时，哪些额外的单元被 "解锁" 。也就是说，它显示现在允许运行的新单元，因为它们的依赖已经全部完成。
 将鼠标悬停在一个单元上，可以突出这些线条。这可以帮助直观地看到依赖的关键路径。由于单元可能以不同的顺序完成，这在运行中可能会发生变化。
 {==+==}
 
@@ -63,7 +63,7 @@ units do not show when code generation starts).
 The "custom build" units are `build.rs` scripts, which when run are
 highlighted in orange.
 {==+==}
-"custom build" 单元是 "build.rs" 脚本，运行时以橙色显示。
+"custom build" 单元是 `build.rs` 脚本，运行时以橙色显示。
 {==+==}
 
 
@@ -93,7 +93,7 @@ Note: This does not show the concurrency in the compiler itself. `rustc`
 coordinates with Cargo via the "job server" to stay within the concurrency
 limit. This currently mostly applies to the code generation phase.
 {==+==}
-注意：这并不显示编译器本身的并发量。 `rustc` 通过 "作业服务器" 与Cargo协调，以保持在并发量限制之内。目前这主要适用于代码生成阶段。
+注意：这并不显示编译器本身的并发量。 `rustc` 通过 "作业服务" 与Cargo协调，以保持在并发量限制之内。目前这主要适用于代码生成阶段。
 {==+==}
 
 
