@@ -12,7 +12,7 @@ stop building in a future version of rustc. If any warnings are found, a small
 notice is displayed indicating that the warnings were found, and provides
 instructions on how to display a full report.
 {==+==}
-Cargo检查所有依赖中的未来不兼容的警告。
+Cargo检查所有依赖中的未来不兼容警告。
 这些警告是关于未来可能成为硬性错误的修改，导致依赖在未来的rustc版本中停止构建。
 如果发现任何警告，就会显示一个小通知，说明发现了这些警告，并提供如何显示完整报告的说明。
 {==+==}
@@ -78,7 +78,7 @@ frequency = "always"
 The supported values for the frequency are `"always"` and `"never"`, which control
 whether or not a message is printed out at the end of `cargo build` / `cargo check`.
 {==+==}
-支持的频次值是 `"always"` 和 `"never"` ，它们控制在 `cargo build` / `cargo check` 结束时是否打印出信息。
+支持的选择值是 `"always"` 和 `"never"` ，它们控制在 `cargo build` / `cargo check` 结束时是否打印出信息。
 {==+==}
 
 

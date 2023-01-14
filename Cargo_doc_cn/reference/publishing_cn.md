@@ -19,7 +19,7 @@ Take care when publishing a crate, because a publish is **permanent**. The
 version can never be overwritten, and the code cannot be deleted. There is no
 limit to the number of versions which can be published, however.
 {==+==}
-在发布crate时要小心，因为发布是**永久的**。该版本永远不能被覆盖，代码也不能被删除。然而，可以发布的版本数量是没有限制的。
+在发布crate时要小心，发布将是**永久的**，永远不能覆盖该版本，不能删除代码。然而，对可以发布的版本数量没有限制。
 {==+==}
 
 
@@ -72,7 +72,7 @@ shared with anyone else. If it leaks for any reason, you should revoke it
 immediately.
 {==+==}
 这个命令会将你的API token告知Cargo，并将其保存在你本地的 `~/.cargo/credentials.toml` 中。
-请注意，这个token是**私秘的**，不应该与其他人分享。如果它因某些原因被泄露，你应该立即撤销它。
+请注意，这个token是**私密的**，不应该与其他人分享。如果因某些原因泄露，你应该立即撤销它。
 {==+==}
 
 
@@ -87,7 +87,7 @@ immediately.
 Keep in mind that crate names on [crates.io] are allocated on a first-come-first-serve
 basis. Once a crate name is taken, it cannot be used for another crate.
 {==+==}
-[cates.io]上的crate名称是以先到先得的方式分配的。一旦一个crate的名字被占用，它就不能用于其他crate。
+[cates.io]上的crate名称是以先到先得的方式分配的。一旦一个crate的名字被占用，就不能用于其他crate。
 {==+==}
 
 
@@ -96,7 +96,7 @@ Check out the [metadata you can specify](manifest.md) in `Cargo.toml` to
 ensure your crate can be discovered more easily! Before publishing, make sure
 you have filled out the following fields:
 {==+==}
-查看 `Cargo.toml` 中的[你能指定的元数据](manifest.md)，让使用者更容易发现你crate! 在发布之前，请确保你已经填写了以下字段:
+检查 `Cargo.toml` 中的[你能指定的元数据](manifest.md)，让使用者更容易发现你crate! 在发布之前，请确保已经填写了以下字段:
 {==+==}
 
 
@@ -116,7 +116,7 @@ you have filled out the following fields:
 It would also be a good idea to include some [`keywords`] and [`categories`],
 though they are not required.
 {==+==}
-包含一些[`keywords`] 和 [`categories`] 也会很好，尽管不是必须的。
+尽管不是必须的，包含一些 [`keywords`] 和 [`categories`] 也会很好。
 {==+==}
 
 
@@ -156,8 +156,8 @@ steps:
 {==+==}
 1. 对包进行一些验证检查。
 2. 将源代码压缩成 `.crate` 文件。
-3. 将`.crate`文件解压缩到临时目录中，并验证它是否可以编译。
-4. 将`.crate`文件上传到[crates.io]。
+3. 将 `.crate` 文件解压缩到临时目录中，并验证它是否可以编译。
+4. 将 `.crate` 文件上传到[crates.io]。
 5. 注册中心将在添加之前对上传的包进行一些额外的检查。
 {==+==}
 
@@ -192,7 +192,7 @@ files are included with the following command:
 你可以在 `target/package` 目录下检查生成的 `.crate` 文件。
 [crates.io]目前对 `.crate` 文件有10MB的大小限制。你需要检查 `.crate` 文件的大小，
 以确保没有意外地打包了构建包所不需要的大型资产，如测试数据、网站文档或代码生成。
-你可以用下面的命令来检查哪些文件被包含:
+你可以用下面的命令来检查包含了哪些文件:
 {==+==}
 
 
@@ -211,8 +211,8 @@ when packaging, but if you want to specify an extra set of files to ignore you
 can use the [`exclude` key](manifest.md#the-exclude-and-include-fields) in the
 manifest:
 {==+==}
-Cargo在打包时将自动忽略您的版本控制系统所忽略的文件，但如果想额外指定一组要忽略的文件，
-您可以在配置清单中使用[`exclude` 键](manifest.md#the-exclude-and-include-fields)。
+Cargo在打包时将自动忽略您的版本控制系统所忽略的文件，如果想额外指定一组要忽略的文件，
+可以在配置清单中使用[`exclude` 键](manifest.md#the-exclude-and-include-fields)。
 {==+==}
 
 
@@ -295,9 +295,9 @@ In order to release a new version, change [the `version` value](manifest.md#the-
 Keep in mind [the SemVer rules](semver.md) which provide guidelines on what is a compatible change.
 Then run [`cargo publish`] as described above to upload the new version.
 {==+==}
-为了发布新版本，请更改 "Cargo.toml" 清单中指定的 [`version` 值](manifest.md#the-version-field)。
+为了发布新版本，请更改 `Cargo.toml` 清单中指定的 [`version` 值](manifest.md#the-version-field)。
 请记住 [语义化版本规范](semver.md)，该规范提供了关于什么是兼容性改变的指南。
-然后如上所述运行[`cargo publish`] 来上传新版本。
+然后如上所述运行 [`cargo publish`] 来上传新版本。
 {==+==}
 
 
@@ -351,7 +351,7 @@ A yank **does not** delete any code. This feature is not intended for deleting
 accidentally uploaded secrets, for example. If that happens, you must reset
 those secrets immediately.
 {==+==}
-yank **不会**删除任何代码。这个功能不能删除意外上传的秘密。如果发生这种情况，请立即重置这些秘密。
+yank **不会** 删除任何代码。这个功能不能删除意外上传的秘密。如果发生这种情况，请立即重置这些秘密。
 {==+==}
 
 
@@ -364,9 +364,9 @@ goal. Essentially a yank means that all packages with a `Cargo.lock` will not
 break, while any future `Cargo.lock` files generated will not list the yanked
 version.
 {==+==}
-被删除的版本的语义是，不能针对该版本创建新的依赖，但已有的依赖继续使用。
+被删除版本的语义是，不能针对该版本创建新的依赖，但继续使用已有的依赖。
 [crates.io]的主要目标之一是作为一个不随时间变化的永久档案，允许删除一个版本将违背这一目标。
-从本质上讲，yank 意味着所有带有 "Cargo.lock" 的包都不会损坏，而未来生成的任何 "Cargo.lock" 文件都不会列出被yank的版本。
+从本质上讲，yank 意味着所有带有 `Cargo.lock` 的包都不会损坏，而未来生成的任何 `Cargo.lock` 文件都不会列出被yank的版本。
 {==+==}
 
 
@@ -383,7 +383,7 @@ may change over time! The owner of a crate is the only person allowed to publish
 new versions of the crate, but an owner may designate additional owners.
 {==+==}
 crate通常是由多人开发的，或者主要的维护者可能会随着时间的推移而改变!
-crate的所有者是唯一被允许发布crate新版本的人，但所有者可以指定其他所有者。
+crate的所有者是唯一允许发布crate新版本的人，其所有者可以指定其他所有者。
 {==+==}
 
 
@@ -414,9 +414,9 @@ owner that made *them* an owner. Needless to say, you shouldn’t make people yo
 don’t fully trust into a named owner. In order to become a named owner, a user
 must have logged into [crates.io] previously.
 {==+==}
-如果一个用户名被赋予`--add`，该用户就会被邀请为 "命名" 的所有者，拥有对该crate的全部权利。
+如果一个用户名被赋予 `--add` ，该用户就会被邀请为 "命名" 的所有者，拥有对该crate的全部权利。
 除了能够发布或取消crate的版本外，他们还能够添加或删除所有者，*包括* 使他们成为所有者的所有者。
-不用说，你不应该把你不完全信任的人变成指定的所有者。为了成为指定的所有者，用户必须在之前登录过[cates.io]。
+不用说，你不应该把不完全信任的人变成指定的所有者。为了成为指定的所有者，用户必须在之前登录过[cates.io]。
 {==+==}
 
 
@@ -429,7 +429,7 @@ just a bit more secure against owners becoming malicious.
 {==+==}
 如果一个团队的名字被赋予 `--add` ，该团队被邀请为 "团队" 所有者，对crate的权利受到限制。
 虽然他们有权限发布或删除crate的版本，但他们*没有*能力添加或删除所有者。
-除了在管理所有者群体方面更方便外，团队在防止所有者成为恶意的方面也更安全。
+团队在管理所有者群体方面方便，在防止所有者成为恶意的。
 {==+==}
 
 
@@ -486,7 +486,7 @@ anything other than logging them in. However to query team membership on your
 behalf, we now require [the `read:org` scope][oauth-scopes].
 {==+==}
 最有可能的原因是，你最后一次登录是在这个功能添加之前。我们最初在认证用户时*没有*要求GitHub提供权限，
-因为我们除了登录用户外，实际上没有使用过用户的令牌。然而，为了代表你查询团队成员，我们现在需要 [`read:org` 域][oauth-scopes]。
+因为我们除了登录用户外，实际上没有使用过用户的令牌。然而，为了查询团队成员身份，我们现在需要 [`read:org` 域][oauth-scopes]。
 {==+==}
 
 
@@ -497,7 +497,7 @@ as an owner, or publish a crate as a team owner. If you ever attempt to do this,
 you will get the error above. You may also see this error if you ever try to
 publish a crate that you don’t own at all, but otherwise happens to have a team.
 {==+==}
-你可以自由地拒绝这个域，在引入团队之前的一切工作都将继续运作。
+你可以自由地拒绝这个域，在进入团队之前的一切工作都将继续。
 然而，你将无法作为所有者添加一个团队，或作为团队所有者发布crate。如果你试图这样做,会得到上面的错误。
 如果你试图发布一个根本不属于你的crate，但恰好有一个团队，也可能看到这个错误。
 {==+==}
@@ -510,7 +510,7 @@ which will prompt you for permission if [crates.io] doesn’t have all the scope
 it would like to.
 {==+==}
 如果你改变了主意，或者只是不确定[crates.io]是否有足够的权限，
-你可以随时去<https://crates.io/>重新认证，如果[crates.io]没有所有它想拥有的域，它会提示你的权限。
+你可以随时去<https://crates.io/>重新认证，如果[crates.io]没有所有它想拥有的域，会提示你的权限。
 {==+==}
 
 
@@ -582,7 +582,7 @@ the “Grant Access” button next to its name:
 {==+==}
 When trying to add a GitHub team as crate owner, you may see an error like:
 {==+==}
-当试图添加GitHub团队作为crate 所有者时，你可能会看到类似的错误:
+当试图添加GitHub团队作为 crate 所有者时，你可能会看到类似的错误:
 {==+==}
 
 
