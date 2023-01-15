@@ -10,7 +10,7 @@ One of the goals of Cargo is simple integration with third-party tools, like
 IDEs and other build systems. To make integration easier, Cargo has several
 facilities:
 {==+==}
-Cargo的目标之一是与第三方工具的简单集成，如IDE和其他构建系统。为了使集成更容易，Cargo有几个工具:
+Cargo的目标之一是能与第三方工具简单集成，如IDE和其他构建系统。为了使集成更容易，Cargo有几个工具:
 {==+==}
 
 
@@ -58,7 +58,7 @@ The format is stable and versioned. When calling `cargo metadata`, you should
 pass `--format-version` flag explicitly to avoid forward incompatibility
 hazard.
 {==+==}
-该格式是稳定的，有相应版本。当调用 "cargo metadata" 时，你应该明确传递 "--format-version" 标志以避免向前不兼容的风险。
+该格式是稳定的，有相应版本。当调用 `cargo metadata` 时，你应该明确传递 `--format-version` 标志以避免向前不兼容的风险。
 {==+==}
 
 
@@ -112,7 +112,7 @@ information during the build:
 The output goes to stdout in the JSON object per line format. The `reason` field
 distinguishes different kinds of messages.
 {==+==}
-在stdout以每行的JSON对象格式输出。`reason` 字段区分不同种类的信息。
+在标准输出以每行的JSON对象格式输出。`reason` 字段区分不同种类的信息。
 {==+==}
 
 
@@ -398,7 +398,7 @@ following structure:
     ],
     /* 创建的可执行文件的路径的字符串，如果该步骤没有生成可执行文件，则为空。 */
     "executable": null,
-    /* 这个步骤是否被实际执行。当 `true` 时，这意味着预先存在的制品是最新的，并且 `rustc` 没有被执行。当 `false` 时，这意味着 `rustc` 被运行以生成制品。 */
+    /* 这个步骤是否被实际执行。当 `true` 时，这意味着预先存在的制品是最新的，并且 `rustc` 没有被执行。当 `false` 时，这意味着运行 `rustc` 以生成制品。 */
     "fresh": true
 }
 
@@ -561,7 +561,7 @@ cargo `(?<command>[^ ]+)` into an invocation of an external tool
 `$PATH` directories.
 {==+==}
 Cargo被设计成可以扩展新的子命令，而不需要修改Cargo本身。
-这是通过将 cargo `(?<command>[^ ]+)` 形式的调用翻译成插件 `cargo-${command}` 的调用来实现的。
+这是通过将 cargo `(?<command>[^ ]+)` 形式的调用转换成插件 `cargo-${command}` 的调用来实现的。
 该插件必须存在于用户的 `$PATH` 目录中。
 {==+==}
 

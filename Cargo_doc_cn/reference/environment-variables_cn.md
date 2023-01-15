@@ -11,7 +11,7 @@ or override. Here is a list of the variables Cargo sets, organized by when it in
 with them:
 {==+==}
 Cargo设置和读取一些环境变量，你的代码可以检测或覆盖这些变量。
-下面是Cargo设置的变量列表，按照它与这些变量交互的时间排列:
+下面是Cargo设置的变量列表，按照与之交互的时间次序排列:
 {==+==}
 
 
@@ -26,7 +26,7 @@ Cargo设置和读取一些环境变量，你的代码可以检测或覆盖这些
 You can override these environment variables to change Cargo's behavior on your
 system:
 {==+==}
-你可以覆盖这些环境变量来改变Cargo在系统中的行为:
+你可以覆盖这些环境变量来改变Cargo所在系统中的行为:
 {==+==}
 
 
@@ -38,8 +38,8 @@ system:
   [Debug logging].
 {==+==}
 * `CARGO_LOG` - Cargo 使用 [`env_logger`] crate 来显示调试日志信息。
-  `CARGO_LOG` 环境变量可以被设置为启用调试日志，其值为 `trace` 、 `debug` 或 `warn` 。
-  通常情况下，它只在调试时使用。更多细节请参考[Debug logging]。
+  `CARGO_LOG` 环境变量可以设置为启用调试日志，其值为 `trace` 、 `debug` 或 `warn` 。
+  通常，其只在调试时使用。更多细节请参考[Debug logging]。
 {==+==}
 
 
@@ -63,7 +63,7 @@ system:
   relative to the current working directory. See [`build.target-dir`] to set
   via config.
 {==+==}
-* `CARGO_TARGET_DIR` — 放置所有生成制品的位置，相对于当前工作目录。见[`build.target-dir`]，通过配置来设置。
+* `CARGO_TARGET_DIR` — 放置所有生成制品的位置，相对于当前工作目录。见[`build.target-dir`]通过配置来设置。
 {==+==}
 
 
@@ -76,7 +76,7 @@ system:
   will be expecting.
 {==+==}
 * `CARGO` - 如果设置了这个变量，Cargo在构建crate以及执行构建脚本和外部子命令时，将转发这个值，而不是设置为自己的自动检测路径。
-  这个值不会被Cargo直接执行，它应该总是指向一个行为与 `cargo` 完全相同的命令，因为这也是该变量的用户所期望的。
+  这个值不会被Cargo直接执行，它应该总是指向一个行为与 `cargo` 完全相同的命令，因为这也是使用该变量的用户所期望的。
 {==+==}
 
 
@@ -97,7 +97,7 @@ system:
   overwrites the config and resets cargo to not use a wrapper.
 {==+==}
 * `RUSTC_WRAPPER` — Cargo将执行这个指定的包装器，而不是简单地运行 `rustc` ，将rustc的调用作为其命令行参数，第一个参数是实际rustc的路径。
-  这对设置构建缓存工具(如 `sccache`)很有用。见[`build.rustc-wrapper`]通过配置来设置。
+  这对设置构建缓存工具(如 `sccache`)很有用。见 [`build.rustc-wrapper`] 通过配置来设置。
   将其设置为空字符串会覆盖配置，并将crate重置为不使用包装器。
 {==+==}
 
@@ -112,7 +112,7 @@ system:
   overwrites the config and resets cargo to not use a wrapper for workspace members.
 {==+==}
 * `RUSTC_WORKSPACE_WRAPPER` — 对于工作空间成员，Cargo将执行这个指定的包装器，而不是简单地运行 `rustc`，将rustc的调用作为其命令行参数，第一个参数是实际rustc的路径。
-  它影响文件名hash，以便包装器产生的制品被单独缓存。参见[`build.rustc-workspace-wrapper`]，通过配置来设置。
+  它影响文件名hash，以便单独缓存包装器产生制品。参见 [`build.rustc-workspace-wrapper`] 通过配置来设置。
   将其设置为空字符串会覆盖配置，并将crate重置为不对工作空间成员使用包装器。
 {==+==}
 
@@ -134,8 +134,8 @@ system:
   see `CARGO_ENCODED_RUSTDOCFLAGS`.
 {==+==}
 * `RUSTDOCFLAGS` — 以空格分隔的自定义标志列表，用于传递给Cargo执行的所有 `rustdoc` 调用。
-  与 [`cargo rustdoc`] 不同的是，这对于向*所有* `rustdoc` 实例传递标志很有用。
-  参见[`build.rustdocflags`]以了解更多设置标志的方法。这个字符串被空格分割；如果要对多个参数进行更健壮的编码，请参见 `CARGO_ENCODED_RUSTDOCFLAGS` 。
+  与 [`cargo rustdoc`] 不同的是，这对于向 *所有* `rustdoc` 实例传递标志很有用。
+  参见 [`build.rustdocflags`] 以了解更多设置标志的方法。这个字符串用空格分割；如果要对多个参数进行更健壮的编码，请参见 `CARGO_ENCODED_RUSTDOCFLAGS` 。
 {==+==}
 
 
@@ -156,8 +156,8 @@ system:
   see `CARGO_ENCODED_RUSTFLAGS`.
 {==+==}
 * `RUSTFLAGS` — 以空格分隔的自定义标志列表，用于传递给Cargo执行的所有编译器调用。
-  与[`cargo rustc`]不同的是，这对于向*所有*编译器实例传递标志很有用。
-  参见[`build.rustflags`]以了解更多设置标志的方法。这个字符串是由空格分割的；如果要对多个参数进行更健壮的编码，见`CARGO_ENCODED_RUSTFLAGS` 。
+  与 [`cargo rustc`] 不同的是，这对于向 *所有* 编译器实例传递标志很有用。
+  参见 [`build.rustflags`] 以了解更多设置标志的方法。这个字符串是由空格分割；如果要对多个参数进行更健壮的编码，见`CARGO_ENCODED_RUSTFLAGS` 。
 {==+==}
 
 
@@ -224,7 +224,7 @@ system:
   [`cargo fmt`](https://github.com/rust-lang/rustfmt) will execute this specified
   `rustfmt` instance instead.
 {==+==}
-* `RUSTFMT` — 不运行 `rustfmt` ，[`cargo fmt`](https://github.com/rust-lang/rustfmt) 将执行这个指定的 `rustfmt` 实例来代替。
+* `RUSTFMT` — 代替 `rustfmt` ，[`cargo fmt`](https://github.com/rust-lang/rustfmt) 将执行这个指定的 `rustfmt` 实例。
 {==+==}
 
 
@@ -674,7 +674,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
                          starts.
 {==+==}
 * `CARGO` — 执行构建的 `cargo` 二进制文件的路径。
-* `CARGO_MANIFEST_DIR` — 包含正在构建的包的配置清单的目录(包含构建脚本的软件包)。还要注意，这是构建脚本启动时的当前工作目录的值。
+* `CARGO_MANIFEST_DIR` — 包含正在构建的包的配置清单的目录(包含构建脚本的包)。还要注意，这是构建脚本启动时的当前工作目录的值。
 {==+==}
 
 
@@ -782,7 +782,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
                of `CARGO_MAKEFLAGS` to activate the use of Cargo's GNU Make
                compatible [jobserver] for sub-make invocations.
 {==+==}
-* `NUM_JOBS` — 被指定为顶层并行性的并行性。这对于向 `make` 这样的系统传递 `-j` 参数很有用。注意，在解释这个环境变量的时候要注意。
+* `NUM_JOBS` — 被指定为顶层的并行性。这对于向 `make` 这样的系统传递 `-j` 参数很有用。注意，在解释这个环境变量的时候要注意。
                出于历史原因，仍然提供了这个变量，但最近的Cargo版本，例如，不需要运行 `make -j` ，而是可以将 `MAKEFLAGS` 环境变量设置为 `CARGO_MAKEFLAGS` 的内容，以激活使用Cargo的GNU Make兼容 [jobserver] 进行子make调用。
 {==+==}
 
@@ -898,7 +898,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
 {==+==}
 ### Environment variables Cargo sets for 3rd party subcommands
 {==+==}
-### 环境变量 Cargo为第三方子命令设置的环境变量
+### 环境变量 Cargo 为第三方子命令设置的环境变量
 {==+==}
 
 
