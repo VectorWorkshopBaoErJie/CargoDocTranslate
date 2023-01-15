@@ -448,7 +448,7 @@ error message (for example, <code>E0004</code>).</dd>
 includes extra output such as dependency warnings and build script output.
 May also be specified with the <code>term.verbose</code>
 {==+==}
-<dd class="option-desc">使用详细输出。可能指定两次，&quot;非常冗长&quot; 包含额外的输出，如依赖警告和构建脚本输出。也可以用 <code>term.verbose</code>
+<dd class="option-desc">使用详细输出。可能指定两次，&quot;非常详细&quot; 包含额外的内容，如依赖警告和构建脚本输出。也可以用 <code>term.verbose</code>
 {==+==}
 
 

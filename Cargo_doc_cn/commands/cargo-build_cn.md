@@ -506,9 +506,8 @@ May also be specified with the <code>term.verbose</code>
 <dl>
 <dt class="option-term" id="option-cargo-build--v"><a class="option-anchor" href="#option-cargo-build--v"></a><code>-v</code></dt>
 <dt class="option-term" id="option-cargo-build---verbose"><a class="option-anchor" href="#option-cargo-build---verbose"></a><code>--verbose</code></dt>
-<dd class="option-desc">输出冗余信息。 指定两次该选项表示 &quot;非常冗长&quot; 输出一些诸如依赖警告或是编译一脚本的输出一类的信息
-也可通过 <code>term.verbose</code> 配置项指定
-<a href="../reference/config.html">可选值</a>。</dd>
+<dd class="option-desc">输出详细信息。 指定两次该选项表示 &quot;非常详细&quot; 输出诸如依赖警告或编译脚本的输出等信息。
+也可通过 <code>term.verbose</code> 配置项指定 <a href="../reference/config.html">可选值</a>。</dd>
 {==+==}
 
 
