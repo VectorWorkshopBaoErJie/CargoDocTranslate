@@ -236,11 +236,11 @@ terminal.</li>
 <p>May also be specified with the <code>term.color</code>
 <a href="../reference/config.html">config value</a>.</dd>
 {==+==}
-<dd class="option-desc">使用彩色输出。 有效值:</p>
+<dd class="option-desc">使用彩色输出。有效值:</p>
 <ul>
-<li><code>auto</code> (默认):自动检测终端是否支持颜色。</li>
-<li><code>always</code>: 总是显示颜色。</li>
-<li><code>never</code>: 总不显示颜色。</li>
+<li><code>auto</code> (默认):自动检测终端是否支持彩色。</li>
+<li><code>always</code>: 总是显示彩色。</li>
+<li><code>never</code>: 总不显示彩色。</li>
 </ul>
 <p>也可以用 <code>term.color</code>
 <a href="../reference/config.html">配置</a>。</dd>

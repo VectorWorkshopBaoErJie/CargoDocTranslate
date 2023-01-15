@@ -472,7 +472,7 @@ May also be specified with the <code>term.quiet</code>
 {==+==}
 <a href="../reference/config.html">config value</a>.</dd>
 {==+==}
-
+<a href="../reference/config.html">配置</a>.</dd>
 {==+==}
 
 
@@ -561,7 +561,7 @@ offline.</p>
 <p>请注意，这可能会导致与在线模式不同的依赖解决。
 Cargo会将自己限制在本地下载的crate上，即使在本地拷贝的索引中可能有一个较新的版本。
 参见 <a href="cargo-fetch.html">cargo-fetch(1)</a> 命令在离线前下载依赖。</p>
-<p>也可以用 <code>net.offline</code> <a href="../reference/config.html">配置值</a>。</dd>
+<p>也可以用 <code>net.offline</code> <a href="../reference/config.html">配置</a>。</dd>
 {==+==}
 
 

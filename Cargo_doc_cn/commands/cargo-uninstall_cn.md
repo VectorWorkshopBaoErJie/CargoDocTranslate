@@ -1,6 +1,7 @@
 {==+==}
 # cargo-uninstall(1)
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -24,6 +25,7 @@ cargo-uninstall - 移除一个 Rust 二进制程序
 {==+==}
 `cargo uninstall` [_options_] [_spec_...]
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -80,10 +82,6 @@ The installation root is determined, in order of precedence:
 ### 安装选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-uninstall--p"><a class="option-anchor" href="#option-cargo-uninstall--p"></a><code>-p</code></dt>
@@ -113,21 +111,10 @@ The installation root is determined, in order of precedence:
 <dd class="option-desc">从哪个文件夹中移除该包。</dd>
 {==+==}
 
-
-{==+==}
-</dl>
-{==+==}
-{==+==}
-
 {==+==}
 ### Display Options
 {==+==}
 ### 显示选项
-{==+==}
-
-{==+==}
-<dl>
-{==+==}
 {==+==}
 
 {==+==}
@@ -140,8 +127,8 @@ May also be specified with the <code>term.verbose</code>
 {==+==}
 <dt class="option-term" id="option-cargo-install--v"><a class="option-anchor" href="#option-cargo-install--v"></a><code>-v</code></dt>
 <dt class="option-term" id="option-cargo-install---verbose"><a class="option-anchor" href="#option-cargo-install---verbose"></a><code>--verbose</code></dt>
-<dd class="option-desc">进行 verbose 输出。可以指定两遍来开启 &quot;very verbose&quot; 模式，输出更多的额外信息，像是依赖项的警告和构建脚本的输出信息。
-也可以通过 <code>term.verbose</code> <a href="../reference/config.html">配置选项</a> 来指定。</dd>
+<dd class="option-desc">进行详细输出。可以指定两次来开启 &quot;非常详细&quot; ，输出更多的额外信息，像是依赖项的警告和构建脚本的输出信息。
+也可以通过 <code>term.verbose</code> <a href="../reference/config.html">配置</a> 。</dd>
 {==+==}
 
 
@@ -155,7 +142,7 @@ May also be specified with the <code>term.quiet</code>
 <dt class="option-term" id="option-cargo-install--q"><a class="option-anchor" href="#option-cargo-install--q"></a><code>-q</code></dt>
 <dt class="option-term" id="option-cargo-install---quiet"><a class="option-anchor" href="#option-cargo-install---quiet"></a><code>--quiet</code></dt>
 <dd class="option-desc">不打印 cargo log 信息。
-也可以通过 <code>term.quiet</code> <a href="../reference/config.html">配置选项</a>来指定。</dd>
+也可以通过 <code>term.quiet</code> <a href="../reference/config.html">配置</a>。</dd>
 {==+==}
 
 
@@ -178,7 +165,7 @@ terminal.</li>
 <li><code>always</code>: 总是显示彩色。</li>
 <li><code>never</code>: 从不显示彩色。</li>
 </ul>
-<p>也可以在 <code>term.color</code> <a href="../reference/config.html">配置选项</a>中设置。</dd>
+<p>也可以在 <code>term.color</code> <a href="../reference/config.html">配置</a>。</dd>
 {==+==}
 
 
@@ -306,4 +293,5 @@ details on environment variables that Cargo reads.
 {==+==}
 [cargo(1)](cargo.html), [cargo-install(1)](cargo-install.html)
 {==+==}
+
 {==+==}
