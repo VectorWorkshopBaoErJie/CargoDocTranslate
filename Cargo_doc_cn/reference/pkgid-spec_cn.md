@@ -156,5 +156,5 @@ one or more packages. Most commands generate an error if more than one package
 could be referred to with the same specification.
 {==+==}
 这样做的目的是为了使在依赖图中引用包的语法既简明又详尽。模糊的引用可能指的是一个或多个包。
-如果有一个以上的包可以用相同的规范被引用，大多数命令会产生一个错误。
+如果有一个以上的包可以用相同的规范引用，大多数命令会产生一个错误。
 {==+==}

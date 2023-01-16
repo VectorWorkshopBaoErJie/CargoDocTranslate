@@ -424,7 +424,7 @@ target artifacts are placed in a separate directory. See the
 <dt class="option-term" id="option-cargo-install---target"><a class="option-anchor" href="#option-cargo-install---target"></a><code>--target</code> <em>triple</em></dt>
 <dd class="option-desc">为指定的架构安装，默认情况下是宿主架构。 通常的架构三元组格式为 <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>。 运行 <code>rustc --print target-list</code> 可以获取所有支持的架构的列表。</p>
 <p>也可以在 <code>build.target</code> 
-<a href="../reference/config.html"> 设置选项</a>中进行设置。</p>
+<a href="../reference/config.html"> 配置</a>。</p>
 <p> 注意，指定此标志会让 Cargo 工作在另一种模式上，构建产物被放在单独的文件夹。查看 <a href="../guide/build-cache.html">build cache</a> 文档来获取更多信息。</dd>
 {==+==}
 
@@ -554,7 +554,7 @@ offline.</p>
 <dd class="option-desc"> 阻止 Cargo 访问网络。如果没有这个 flag，当 Cargo 需要访问网络但是没有网络时，就会报错退出。加上这个 flag，Cargo 会尝试在不联网的情况下继续执行 (如果可以的话) 。 </p>
 <p>要小心这会导致与在线模式不同的解析结果。Cargo 会限制自己在本地已下载的 crate 中查找版本，即使在本地的 index 拷贝中表明还有更新的版本。
 <a href="cargo-fetch.html">cargo-fetch(1)</a> 命令可以在进入离线模式前下载依赖。</p>
-<p>同样的功能也可以通过设置 <code>net.offline</code> <a href="../reference/config.html">配置选项</a>来实现。</dd>
+<p>同样的功能也可以通过设置 <code>net.offline</code> <a href="../reference/config.html">配置</a>。</dd>
 {==+==}
 
 
@@ -585,7 +585,7 @@ Should not be 0.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-install--j"><a class="option-anchor" href="#option-cargo-install--j"></a><code>-j</code> <em>N</em></dt>
 <dt class="option-term" id="option-cargo-install---jobs"><a class="option-anchor" href="#option-cargo-install---jobs"></a><code>--jobs</code> <em>N</em></dt>
-<dd class="option-desc"> 并行执行的任务数。可以通过 <code>build.jobs</code> <a href="../reference/config.html">配置选项</a>来指定。默认值为逻辑CPU数。如果设置为负值，则最大的并行任务数为*逻辑CPU数*加*这个负数*。该值不能为0。</dd>
+<dd class="option-desc"> 并行执行的任务数。可以通过 <code>build.jobs</code> <a href="../reference/config.html">配置</a>。默认值为逻辑CPU数。如果设置为负值，则最大的并行任务数为*逻辑CPU数*加*这个负数*。该值不能为0。</dd>
 {==+==}
 
 
@@ -627,7 +627,7 @@ May also be specified with the <code>term.verbose</code>
 <dt class="option-term" id="option-cargo-install--v"><a class="option-anchor" href="#option-cargo-install--v"></a><code>-v</code></dt>
 <dt class="option-term" id="option-cargo-install---verbose"><a class="option-anchor" href="#option-cargo-install---verbose"></a><code>--verbose</code></dt>
 <dd class="option-desc">进行 verbose 输出。可以指定两遍来开启 &quot;very verbose&quot; 模式，输出更多的额外信息，像是依赖项的警告和构建脚本的输出信息。
-也可以通过 <code>term.verbose</code> <a href="../reference/config.html">配置选项</a> 来指定。</dd>
+也可以通过 <code>term.verbose</code> <a href="../reference/config.html">配置</a> 。</dd>
 {==+==}
 
 
@@ -641,7 +641,7 @@ May also be specified with the <code>term.quiet</code>
 <dt class="option-term" id="option-cargo-install--q"><a class="option-anchor" href="#option-cargo-install--q"></a><code>-q</code></dt>
 <dt class="option-term" id="option-cargo-install---quiet"><a class="option-anchor" href="#option-cargo-install---quiet"></a><code>--quiet</code></dt>
 <dd class="option-desc">不打印 cargo log 信息。
-也可以通过 <code>term.quiet</code> <a href="../reference/config.html">配置选项</a>来指定。</dd>
+也可以通过 <code>term.quiet</code> <a href="../reference/config.html">配置</a>。</dd>
 {==+==}
 
 
@@ -664,7 +664,7 @@ terminal.</li>
 <li><code>always</code>: 总是显示彩色。</li>
 <li><code>never</code>: 从不显示彩色。</li>
 </ul>
-<p>也可以在 <code>term.color</code> <a href="../reference/config.html">配置选项</a>中设置。</dd>
+<p>也可以在 <code>term.color</code> <a href="../reference/config.html">配置</a>。</dd>
 {==+==}
 
 

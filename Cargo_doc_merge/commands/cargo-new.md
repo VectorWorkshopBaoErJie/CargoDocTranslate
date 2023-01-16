@@ -62,7 +62,7 @@ This is the default behavior.</dd>
 <dl>
 <dt class="option-term" id="option-cargo-new--v"><a class="option-anchor" href="#option-cargo-new--v"></a><code>-v</code></dt>
 <dt class="option-term" id="option-cargo-new---verbose"><a class="option-anchor" href="#option-cargo-new---verbose"></a><code>--verbose</code></dt>
-<dd class="option-desc">采用冗长的输出. 可以被设置两次用来表示 &quot;非常冗长&quot; ，这将包含额外的输出信息，例如依赖的警告以及构建脚本的输出。
+<dd class="option-desc">采用详细的输出. 可以被设置两次用来表示 &quot;非常详细&quot; ，这将包含额外的输出信息，例如依赖的警告以及构建脚本的输出。
 也可以通过 <code>term.verbose</code> 来配置 <a href="../reference/config.html">可选值</a>。</dd>
 
 
