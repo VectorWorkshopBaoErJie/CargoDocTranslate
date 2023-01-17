@@ -626,7 +626,7 @@ May also be specified with the <code>term.verbose</code>
 {==+==}
 <dt class="option-term" id="option-cargo-install--v"><a class="option-anchor" href="#option-cargo-install--v"></a><code>-v</code></dt>
 <dt class="option-term" id="option-cargo-install---verbose"><a class="option-anchor" href="#option-cargo-install---verbose"></a><code>--verbose</code></dt>
-<dd class="option-desc">进行 verbose 输出。可以指定两遍来开启 &quot;very verbose&quot; 模式，输出更多的额外信息，像是依赖项的警告和构建脚本的输出信息。
+<dd class="option-desc">进行详细输出。可以指定两遍来开启 &quot;非常详细&quot; 模式，输出更多的额外信息，像是依赖项的警告和构建脚本的输出信息。
 也可以通过 <code>term.verbose</code> <a href="../reference/config.html">配置</a> 。</dd>
 {==+==}
 
@@ -640,7 +640,7 @@ May also be specified with the <code>term.quiet</code>
 {==+==}
 <dt class="option-term" id="option-cargo-install--q"><a class="option-anchor" href="#option-cargo-install--q"></a><code>-q</code></dt>
 <dt class="option-term" id="option-cargo-install---quiet"><a class="option-anchor" href="#option-cargo-install---quiet"></a><code>--quiet</code></dt>
-<dd class="option-desc">不打印 cargo log 信息。
+<dd class="option-desc">不打印 cargo 日志信息。
 也可以通过 <code>term.quiet</code> <a href="../reference/config.html">配置</a>。</dd>
 {==+==}
 
@@ -658,7 +658,7 @@ terminal.</li>
 <a href="../reference/config.html">config value</a>.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-install---color"><a class="option-anchor" href="#option-cargo-install---color"></a><code>--color</code> <em>when</em></dt>
-<dd class="option-desc">控制*何时*使用彩色输出。可选值有: </p>
+<dd class="option-desc">控制使用彩色输出。可选值有: </p>
 <ul>
 <li><code>auto</code> (默认值): 自动检测终端是否支持彩色输出。</li>
 <li><code>always</code>: 总是显示彩色。</li>
