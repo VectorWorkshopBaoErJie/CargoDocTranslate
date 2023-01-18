@@ -1,6 +1,7 @@
 {==+==}
 # cargo-login(1)
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -24,6 +25,7 @@ cargo-login - 将 registry 的 API token 保存到本地
 {==+==}
 `cargo login` [_options_] [_token_]
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -93,10 +95,6 @@ which is defined by the <code>registry.default</code> config key which defaults 
 ### 显示选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-login--v"><a class="option-anchor" href="#option-cargo-login--v"></a><code>-v</code></dt>
@@ -151,20 +149,11 @@ terminal.</li>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Common Options
 {==+==}
 ### 通用选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-login-+toolchain"><a class="option-anchor" href="#option-cargo-login-+toolchain"></a><code>+</code><em>toolchain</em></dt>
@@ -210,12 +199,6 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 {==+==}
 <dt class="option-term" id="option-cargo-install--Z"><a class="option-anchor" href="#option-cargo-install--Z"></a><code>-Z</code> <em>flag</em></dt>
 <dd class="option-desc">不稳定 (nightly-only) 的标志。 执行 <code>cargo -Z help</code> 获取详细信息。</dd>
-{==+==}
-
-
-{==+==}
-</dl>
-{==+==}
 {==+==}
 
 
@@ -273,4 +256,5 @@ details on environment variables that Cargo reads.
 {==+==}
 [cargo(1)](cargo.html), [cargo-publish(1)](cargo-publish.html)
 {==+==}
+
 {==+==}

@@ -168,23 +168,12 @@ terminal.</li>
 <p>也可以在 <code>term.color</code> <a href="../reference/config.html">配置</a>。</dd>
 {==+==}
 
-
-
-{==+==}
-</dl>
-{==+==}
-{==+==}
-
 {==+==}
 ### Common Options
 {==+==}
 ### 通用选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-uninstall-+toolchain"><a class="option-anchor" href="#option-cargo-uninstall-+toolchain"></a><code>+</code><em>toolchain</em></dt>
@@ -232,11 +221,6 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 <dd class="option-desc">不稳定 (nightly-only) 的标志。 执行 <code>cargo -Z help</code> 获取详细信息。</dd>
 {==+==}
 
-
-{==+==}
-</dl>
-{==+==}
-{==+==}
 
 
 {==+==}

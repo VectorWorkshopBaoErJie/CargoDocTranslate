@@ -1,6 +1,7 @@
 {==+==}
 # cargo-locate-project(1)
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -24,6 +25,7 @@ cargo-locate-project - 以 JSON 格式打印 Cargo.toml 文件的位置
 {==+==}
 `cargo locate-project` [_options_]
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -55,10 +57,6 @@ locating the manifest of a workspace member.
 ## 选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-locate-project---workspace"><a class="option-anchor" href="#option-cargo-locate-project---workspace"></a><code>--workspace</code></dt>
@@ -71,19 +69,9 @@ workspace member.</dd>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Display Options
 {==+==}
 ### 显示选项
-{==+==}
-
-{==+==}
-<dl>
-{==+==}
 {==+==}
 
 {==+==}
@@ -156,11 +144,6 @@ terminal.</li>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Manifest Options
 {==+==}
 ### 清单选项
@@ -189,10 +172,6 @@ terminal.</li>
 ### 通用选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-locate-project-+toolchain"><a class="option-anchor" href="#option-cargo-locate-project-+toolchain"></a><code>+</code><em>toolchain</em></dt>
@@ -238,12 +217,6 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 {==+==}
 <dt class="option-term" id="option-cargo-install--Z"><a class="option-anchor" href="#option-cargo-install--Z"></a><code>-Z</code> <em>flag</em></dt>
 <dd class="option-desc">不稳定 (nightly-only) 的标志。 执行 <code>cargo -Z help</code> 获取详细信息。</dd>
-{==+==}
-
-
-{==+==}
-</dl>
-{==+==}
 {==+==}
 
 
@@ -301,4 +274,5 @@ details on environment variables that Cargo reads.
 {==+==}
 [cargo(1)](cargo.html), [cargo-metadata(1)](cargo-metadata.html)
 {==+==}
+
 {==+==}

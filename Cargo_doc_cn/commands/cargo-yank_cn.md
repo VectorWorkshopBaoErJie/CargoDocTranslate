@@ -92,8 +92,7 @@ current directory.
 
 {==+==}
 <dt class="option-term" id="option-cargo-yank---vers"><a class="option-anchor" href="#option-cargo-yank---vers"></a><code>--vers</code> <em>version</em></dt>
-<dt class="option-term" id="option-cargo-yank---version"><a class="option-anchor" 
-href="#option-cargo-yank---version"></a><code>--version</code> <em>version</em></dt>
+<dt class="option-term" id="option-cargo-yank---version"><a class="option-anchor" href="#option-cargo-yank---version"></a><code>--version</code> <em>version</em></dt>
 {==+==}
 
 {==+==}

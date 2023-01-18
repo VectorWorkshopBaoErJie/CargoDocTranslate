@@ -1,6 +1,7 @@
 {==+==}
 # cargo-pkgid(1)
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -24,6 +25,7 @@ cargo-pkgid - 打印包的完整标准规格。
 {==+==}
 `cargo pkgid` [_options_] [_spec_]
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -68,6 +70,7 @@ _url_`#`_version_          | `https://github.com/rust-lang/cargo#0.33.0`
 _url_`#`_name_             | `https://github.com/rust-lang/crates.io-index#bitflags`
 _url_`#`_name_`:`_version_ | `https://github.com/rust-lang/cargo#crates-io@0.21.0`
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -82,10 +85,6 @@ _url_`#`_name_`:`_version_ | `https://github.com/rust-lang/cargo#crates-io@0.21.
 ### 包的选择
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-pkgid--p"><a class="option-anchor" href="#option-cargo-pkgid--p"></a><code>-p</code> <em>spec</em></dt>
@@ -99,20 +98,11 @@ _url_`#`_name_`:`_version_ | `https://github.com/rust-lang/cargo#crates-io@0.21.
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Display Options
 {==+==}
 ### 显示选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-pkgid--v"><a class="option-anchor" href="#option-cargo-pkgid--v"></a><code>-v</code></dt>
@@ -167,20 +157,11 @@ terminal.</li>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Manifest Options
 {==+==}
 ### 清单选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-pkgid---manifest-path"><a class="option-anchor" href="#option-cargo-pkgid---manifest-path"></a><code>--manifest-path</code> <em>path</em></dt>
@@ -232,22 +213,12 @@ offline.</p>
 {==+==}
 
 
-
-{==+==}
-</dl>
-{==+==}
-{==+==}
-
 {==+==}
 ### Common Options
 {==+==}
 ### 通用选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-pkgid-+toolchain"><a class="option-anchor" href="#option-cargo-pkgid-+toolchain"></a><code>+</code><em>toolchain</em></dt>
@@ -295,11 +266,6 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 <dd class="option-desc">不稳定 (nightly-only) 的标志。 执行 <code>cargo -Z help</code> 获取详细信息。</dd>
 {==+==}
 
-
-{==+==}
-</dl>
-{==+==}
-{==+==}
 
 
 {==+==}
@@ -380,4 +346,5 @@ details on environment variables that Cargo reads.
 {==+==}
 [cargo(1)](cargo.html), [cargo-generate-lockfile(1)](cargo-generate-lockfile.html), [cargo-metadata(1)](cargo-metadata.html)
 {==+==}
+
 {==+==}

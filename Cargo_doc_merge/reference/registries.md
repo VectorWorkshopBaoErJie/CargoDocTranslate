@@ -1,8 +1,8 @@
 ## 注册中心
 
-Cargo安装crates并从 "注册中心" 中获取依赖。
-默认的注册中心是[crates.io]。注册中心包含一个 "索引" ，其中包含可搜索的可用crates的列表。
-注册中心也可以提供一个网络API，支持直接从Cargo发布新的crates。
+Cargo安装crate并从 "注册中心" 中获取依赖。
+默认的注册中心是[crates.io]。注册中心包含一个 "索引" ，其中包含可搜索的可用crate的列表。
+注册中心也可以提供一个网络API，支持直接从Cargo发布新的crate。
 
 > 注意: 如果你对镜像或拓展现有的注册中心感兴趣，请看一下[源替换]。
 
@@ -10,7 +10,7 @@ Cargo安装crates并从 "注册中心" 中获取依赖。
 
 ### 使用备用注册中心
 
-要使用[crates.io]以外的注册中心，必须将注册中心的名称和索引URL添加到 [`.cargo/config.toml` file][config]。`registries`表对每个注册中心都有一个键，例如:
+要使用[crates.io]以外的注册中心，必须将注册中心的名称和索引URL添加到 [`.cargo/config.toml` file][config]。 `registries` 表对每个注册中心都有一个键，例如:
 
 ```toml
 [registries]
@@ -38,7 +38,7 @@ other-crate = { version = "1.0", registry = "my-registry" }
 CARGO_REGISTRIES_MY_REGISTRY_INDEX=https://my-intranet:8080/git/index
 ```
 
-> 注意: [crates.io]不接受依赖其他注册中心的crates的包。
+> 注意: [crates.io]不接受依赖其他注册中心的crate的包。
 
 ### 发布到备用注册中心
 
@@ -60,7 +60,7 @@ Cargo的一些命令，如[`cargo publish`]，需要一个 `--registry` 命令�
 default = "my-registry"
 ```
 
-在 `Cargo.toml` 配置清单中设置 `package.publish` 键，可以限制包发布到哪些注册中心。这对于防止不小心将闭源包发布到[crates.io]很有用。该值可以是一个注册中心名称的列表，例如。
+在 `Cargo.toml` 配置清单中设置 `package.publish` 键，可以限制包发布到哪些注册中心。这可以防止不小心将闭源包发布到[crates.io]。该值可以是一个注册中心名称的列表，例如。
 
 ```toml
 [package]

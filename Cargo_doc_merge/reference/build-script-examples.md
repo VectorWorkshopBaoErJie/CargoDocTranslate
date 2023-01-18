@@ -1,9 +1,9 @@
 ## 构建脚本示例
 
-下面小节是一些编写的构建脚本的示例演示。
+下面小节是一些编写的构建脚本的示例。
 
-在[crates.io]的crates构建脚本中可以找到一些常见的功能。
-查看 [`build-dependencies` keyword](https://crates.io/keywords/build-dependencies)，看看有那些可用。
+在[crates.io]的crate构建脚本中可以找到一些常见的功能。
+查看 [`build-dependencies` 键](https://crates.io/keywords/build-dependencies)，看看有那些可用。
 下面是一些流行的 crates[^†] 示例。
 
 * [`bindgen`](https://crates.io/crates/bindgen) — 自动生成Rust FFI与C库的绑定。
@@ -14,7 +14,7 @@
   [`rustc_version`](https://crates.io/crates/rustc_version),
   [`version_check`](https://crates.io/crates/version_check) — 这些crates提供了基于当前 `rustc` (如编译器的版本) 实现条件编译的方法。
 
-[^†]: 这个列表并不仅是一种签注。它评估你的依赖，看哪一个是更适合你的项目。
+[^†]: 这个列表并不仅是一种签注。评估你的依赖，看哪一个是更适合你的项目。
 
 ### Code 生成
 
@@ -93,7 +93,7 @@ fn main() {
 
 这就是真正奇妙的地方。该库使用rustc定义的 [`include!` macro][include-macro] 与 [`concat!`][concat-macro] 和 [`env!`][env-macro] 宏相结合，将生成的文件(`hello.rs`)纳入crate的编译。
 
-使用这里显示的结构，crates可以include来自构建脚本本身任意数量的生成文件。
+使用这里显示的结构，crate可以include来自构建脚本本身任意数量的生成文件。
 
 [include-macro]: ../../std/macro.include.html
 [concat-macro]: ../../std/macro.concat.html
@@ -172,7 +172,7 @@ fn main() {
 cc = "1.0"
 ```
 
-并重写构建脚本以使用这个crate。
+并重写构建脚本以使用这个crate:
 
 ```rust,ignore
 // build.rs
@@ -190,7 +190,7 @@ fn main() {
 * 它调用适当的编译器 (MSVC用于Windows， `gcc` 用于MinGW， `cc` 用于Unix平台，等等)。
 * 它通过向正在使用的编译器传递适当的标志，将 `TARGET` 变量考虑在内。
 * 其他环境变量，如 `OPT_LEVEL` 、 `DEBUG` 等，都是自动处理的。
-* stdout输出和 `OUT_DIR` 位置也由 `cc` 库处理。
+* 标准输出和 `OUT_DIR` 位置也由 `cc` 库处理。
 
 在这里，可以看到将尽可能多的功能移植到共同的构建依赖中，而不是在所有的构建脚本中重复逻辑的一些主要好处。
 
@@ -297,7 +297,7 @@ fn test_crc32() {
 
 很好! `pkg-config` 做了所有寻找库的工作，并告知Cargo它的位置。
 
-包包括库的源代码，如果在系统中找不到它，或者设置了某个特性或环境变量，就静态地构建它，这种情况并不罕见。
+包包含库的源代码，如果在系统中找不到它，或者设置了某个特性或环境变量，就静态地构建它，这种情况并不罕见。
 例如，实际的 [`libz-sys` crate] 检查环境变量 `LIBZ_SYS_STATIC` 或 `static` 特性，从源码构建而不是使用系统库。
 请查看 [the source][libz-source] 以了解更完整的例子。
 
@@ -307,10 +307,11 @@ fn test_crc32() {
 
 ### 使用另一个 `sys` crate
 
-当使用 `links` 键时，crates可以设置元数据，这些元数据可以被其他依赖它的crates读取。这提供了一种在crates之间通信的机制。在这个例子中，我们将创建一个C语言库，利用实际的 [`libz-sys` crate] 中的zlib。
+当使用 `links` 键时，crates可以设置metadata，其他依赖它的crates可以读取这些元数据。这提供了一种在crate之间通信的机制。
+在这个例子中，我们将创建一个C语言库，利用实际的 [`libz-sys` crate] 中的zlib。
 
-如果你有一个依赖于zlib的C库，你可以利用 [`libz-sys` crate] 来自动查找或构建它。这对于跨平台支持非常有用，比如通常不安装zlib的Windows。
-`libz-sys`[设置 `include` 元数据](https://github.com/rust-lang/libz-sys/blob/3c594e677c79584500da673f918c4d2101ac97a1/build.rs#L156) ，告诉其他软件包在哪里可以找到zlib的头文件。
+如果你有一个依赖于zlib的C库，你可以利用 [`libz-sys` crate] 来自动查找或构建它。这对于跨平台支持非常有用，比如在通常不安装zlib的Windows。
+ `libz-sys` [设置 `include` 元数据](https://github.com/rust-lang/libz-sys/blob/3c594e677c79584500da673f918c4d2101ac97a1/build.rs#L156) ，告诉其他包在哪里可以找到zlib的头文件。
 我们的构建脚本可以通过 `DEP_Z_INCLUDE` 环境变量读取该元数据。
 下面是一个例子:
 
@@ -370,7 +371,7 @@ fn main() {
 println!("cargo:version_number={:x}", openssl_version);
 ```
 
-这条指令使 `DEP_OPENSSL_VERSION_NUMBER` 环境变量在任何直接依赖 `openssl-sys` 的crates中被设置。
+这条指令使 `DEP_OPENSSL_VERSION_NUMBER` 环境变量在任何直接依赖 `openssl-sys` 的crate中被设置。
 
 `openssl` crate 提供了更高层次的接口，指定 `openssl-sys` 为依赖项。
 `openssl` 构建脚本可以通过 `DEP_OPENSSL_VERSION_NUMBER` 环境变量读取由 `openssl-sys` 构建脚本生成的版本信息。

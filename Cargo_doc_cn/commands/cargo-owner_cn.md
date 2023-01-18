@@ -1,6 +1,7 @@
 {==+==}
 # cargo-owner(1)
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -26,6 +27,7 @@ cargo-owner - 管理一个 crate 在 registry 上的所有者
 `cargo owner` [_options_] `--remove` _login_ [_crate_]\
 `cargo owner` [_options_] `--list` [_crate_]
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -75,10 +77,6 @@ information about owners and publishing.
 ### 所有者选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-owner--a"><a class="option-anchor" href="#option-cargo-owner--a"></a><code>-a</code></dt>
@@ -155,20 +153,11 @@ which is defined by the <code>registry.default</code> config key which defaults 
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Display Options
 {==+==}
 ### 显示选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-owner--v"><a class="option-anchor" href="#option-cargo-owner--v"></a><code>-v</code></dt>
@@ -223,20 +212,11 @@ terminal.</li>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Common Options
 {==+==}
 ### 通用选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-owner-+toolchain"><a class="option-anchor" href="#option-cargo-owner-+toolchain"></a><code>+</code><em>toolchain</em></dt>
@@ -284,11 +264,6 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 <dd class="option-desc">不稳定 (nightly-only) 的标志。 执行 <code>cargo -Z help</code> 获取详细信息。</dd>
 {==+==}
 
-
-{==+==}
-</dl>
-{==+==}
-{==+==}
 
 
 {==+==}
@@ -361,4 +336,5 @@ details on environment variables that Cargo reads.
 {==+==}
 [cargo(1)](cargo.html), [cargo-login(1)](cargo-login.html), [cargo-publish(1)](cargo-publish.html)
 {==+==}
+
 {==+==}

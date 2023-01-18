@@ -1,6 +1,7 @@
 {==+==}
 # cargo-generate-lockfile(1)
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -24,6 +25,7 @@ cargo-generate-lockfile - 为一个包生成 lockfile
 {==+==}
 `cargo generate-lockfile` [_options_]
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -59,10 +61,6 @@ lockfile and has more options for controlling update behavior.
 ### 显示选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-generate-lockfile--v"><a class="option-anchor" href="#option-cargo-generate-lockfile--v"></a><code>-v</code></dt>
@@ -117,20 +115,11 @@ terminal.</li>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Manifest Options
 {==+==}
 ### 清单选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-generate-lockfile---manifest-path"><a class="option-anchor" href="#option-cargo-generate-lockfile---manifest-path"></a><code>--manifest-path</code> <em>path</em></dt>
@@ -183,20 +172,11 @@ offline.</p>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Common Options
 {==+==}
 ### 通用选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-generate-lockfile-+toolchain"><a class="option-anchor" href="#option-cargo-generate-lockfile-+toolchain"></a><code>+</code><em>toolchain</em></dt>
@@ -242,12 +222,6 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 {==+==}
 <dt class="option-term" id="option-cargo-install--Z"><a class="option-anchor" href="#option-cargo-install--Z"></a><code>-Z</code> <em>flag</em></dt>
 <dd class="option-desc">不稳定 (nightly-only) 的标志。 执行 <code>cargo -Z help</code> 获取详细信息。</dd>
-{==+==}
-
-
-{==+==}
-</dl>
-{==+==}
 {==+==}
 
 
@@ -305,4 +279,5 @@ details on environment variables that Cargo reads.
 {==+==}
 [cargo(1)](cargo.html), [cargo-update(1)](cargo-update.html)
 {==+==}
+
 {==+==}

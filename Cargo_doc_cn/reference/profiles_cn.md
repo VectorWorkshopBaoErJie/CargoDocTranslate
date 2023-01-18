@@ -140,20 +140,17 @@ techniques.
 [`-C opt-level` flag]: ../../rustc/codegen-options/index.html#opt-level
 [Profile Guided Optimization]: ../../rustc/profile-guided-optimization.html
 {==+==}
-[`-C opt-level` flag]: ../../rustc/codegen-options/index.html#opt-level
-[Profile Guided Optimization]: ../../rustc/profile-guided-optimization.html
+
 {==+==}
 
 {==+==}
 #### debug
-{==+==}
-#### debug
-{==+==}
 
-{==+==}
 The `debug` setting controls the [`-C debuginfo` flag] which controls the
 amount of debug information included in the compiled binary.
 {==+==}
+#### debug
+
 `debug` 设置所控制的[ `-C debuginfo` flag]控制着编译之后的二进制调试信息的信息量。
 {==+==}
 
@@ -204,7 +201,8 @@ executable itself or adjacent to it.
 This option is a string and acceptable values are the same as those the
 [compiler accepts][`-C split-debuginfo` flag]. The default value for this option
 is `unpacked` on macOS for profiles that have debug information otherwise
-enabled. Otherwise the default for this option is [documented with rustc][`-C split-debuginfo` flag] and is platform-specific. Some options are only
+enabled. Otherwise the default for this option is [documented with rustc][`-C
+split-debuginfo` flag] and is platform-specific. Some options are only
 available on the [nightly channel]. The Cargo default may change in the future
 once more testing has been performed, and support for DWARF is stabilized.
 {==+==}
@@ -372,13 +370,13 @@ The valid options are:
 
 {==+==}
 * `false`: Performs "thin local LTO" which performs "thin" LTO on the local
-    crate only across its [codegen units](#codegen-units). No LTO is performed
-    if codegen units is 1 or [opt-level](#opt-level) is 0.
+  crate only across its [codegen units](#codegen-units). No LTO is performed
+  if codegen units is 1 or [opt-level](#opt-level) is 0.
 * `true` or `"fat"`: Performs "fat" LTO which attempts to perform
-    optimizations across all crates within the dependency graph.
+  optimizations across all crates within the dependency graph.
 * `"thin"`: Performs ["thin" LTO]. This is similar to "fat", but takes
-    substantially less time to run while still achieving performance gains
-    similar to "fat".
+  substantially less time to run while still achieving performance gains
+  similar to "fat".
 * `"off"`: Disables LTO.
 {==+==}
 * `false` ： 执行 "thin local LTO"，仅在本地箱子上的所有箱子上执行"thin"LTO[codegen units](#codegen-units). 如果codegen单位为1或[opt-level](#opt-level)是0，则不会进行LTO优化。
@@ -833,19 +831,14 @@ The profile used depends on the command, the command-line flags like
 {==+==}
 
 {==+==}
-| Command                                                      | Default Profile               |
-| ------------------------------------------------------------ | ----------------------------- |
-| [`cargo run`], [`cargo build`],<br>[`cargo check`], [`cargo rustc`] | [`dev` profile](#dev)         |
-| [`cargo test`]                                               | [`test` profile](#test)       |
-| [`cargo bench`]                                              | [`bench` profile](#bench)     |
-| [`cargo install`]                                            | [`release` profile](#release) |
+| Command | Default Profile |
+|---------|-----------------|
+| [`cargo run`], [`cargo build`],<br>[`cargo check`], [`cargo rustc`] | [`dev` profile](#dev) |
+| [`cargo test`] | [`test` profile](#test)
+| [`cargo bench`] | [`bench` profile](#bench)
+| [`cargo install`] | [`release` profile](#release)
 {==+==}
-| 命令                 | 默认编译配置               |
-| ------------------------------------------------------------ | ----------------------------- |
-| [`cargo run`], [`cargo build`],<br>[`cargo check`], [`cargo rustc`] | [`dev` profile](#dev)         |
-| [`cargo test`]                                               | [`test` profile](#test)       |
-| [`cargo bench`]                                              | [`bench` profile](#bench)     |
-| [`cargo install`]                                            | [`release` profile](#release) |
+
 {==+==}
 
 {==+==}
@@ -996,7 +989,7 @@ match wins):
 1. `[profile.dev.package.name]` — A named package.
 2. `[profile.dev.package."*"]` — For any non-workspace member.
 3. `[profile.dev.build-override]` — Only for build scripts, proc macros, and
-    their dependencies.
+   their dependencies.
 4. `[profile.dev]` — Settings in `Cargo.toml`.
 5. Default values built-in to Cargo.
 {==+==}

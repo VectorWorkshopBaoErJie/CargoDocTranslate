@@ -1,6 +1,7 @@
 {==+==}
 # cargo-install(1)
 {==+==}
+
 {==+==}
 
 
@@ -29,6 +30,7 @@ cargo-install - 构建和安装 Rust 二进制程序
 `cargo install` [_options_] `--git` _url_ [_crate_...]\
 `cargo install` [_options_] `--list`
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -156,11 +158,6 @@ available.
 ### Install Options
 {==+==}
 ### 安装选项
-{==+==}
-
-{==+==}
-<dl>
-{==+==}
 {==+==}
 
 {==+==}
@@ -330,12 +327,6 @@ which is defined by the <code>registry.default</code> config key which defaults 
 {==+==}
 
 
-
-{==+==}
-</dl>
-{==+==}
-{==+==}
-
 {==+==}
 ### Feature Selection
 {==+==}
@@ -357,10 +348,6 @@ for more details.
 查看 [features 文档](../reference/features.html#command-line-feature-options) 获取更多信息。
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-install--F"><a class="option-anchor" href="#option-cargo-install--F"></a><code>-F</code> <em>features</em></dt>
@@ -393,10 +380,6 @@ be specified multiple times, which enables all specified features.</dd>
 {==+==}
 
 
-{==+==}
-</dl>
-{==+==}
-{==+==}
 
 
 {==+==}
@@ -405,10 +388,6 @@ be specified multiple times, which enables all specified features.</dd>
 ### 编译选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-install---target"><a class="option-anchor" href="#option-cargo-install---target"></a><code>--target</code> <em>triple</em></dt>
@@ -500,22 +479,10 @@ information about timing information.</li>
 {==+==}
 
 
-
-
-{==+==}
-</dl>
-{==+==}
-{==+==}
-
 {==+==}
 ### Manifest Options
 {==+==}
 ### 清单选项
-{==+==}
-
-{==+==}
-<dl>
-{==+==}
 {==+==}
 
 
@@ -559,20 +526,11 @@ offline.</p>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Miscellaneous Options
 {==+==}
 ### 杂项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-install--j"><a class="option-anchor" href="#option-cargo-install--j"></a><code>-j</code> <em>N</em></dt>
@@ -601,20 +559,11 @@ the build on the first one that fails to build. Unstable, requires
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Display Options
 {==+==}
 ### 显示选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-install--v"><a class="option-anchor" href="#option-cargo-install--v"></a><code>-v</code></dt>
@@ -707,22 +656,12 @@ coming from rustc are still emitted. Cannot be used with <code>human</code> or <
 {==+==}
 
 
-
-{==+==}
-</dl>
-{==+==}
-{==+==}
-
 {==+==}
 ### Common Options
 {==+==}
 ### 通用选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-install-+toolchain"><a class="option-anchor" href="#option-cargo-install-+toolchain"></a><code>+</code><em>toolchain</em></dt>
@@ -768,12 +707,6 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 {==+==}
 <dt class="option-term" id="option-cargo-install--Z"><a class="option-anchor" href="#option-cargo-install--Z"></a><code>-Z</code> <em>flag</em></dt>
 <dd class="option-desc">不稳定 (nightly-only) 的标志。 执行 <code>cargo -Z help</code> 获取详细信息。</dd>
-{==+==}
-
-
-{==+==}
-</dl>
-{==+==}
 {==+==}
 
 
@@ -847,4 +780,5 @@ details on environment variables that Cargo reads.
 {==+==}
 [cargo(1)](cargo.html), [cargo-uninstall(1)](cargo-uninstall.html), [cargo-search(1)](cargo-search.html), [cargo-publish(1)](cargo-publish.html)
 {==+==}
+
 {==+==}

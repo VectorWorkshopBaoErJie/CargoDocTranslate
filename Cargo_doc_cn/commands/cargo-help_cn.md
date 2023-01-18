@@ -77,8 +77,9 @@ Prints a help message for the given command.
 
 
 {==+==}
-## 参阅
+## SEE ALSO
 [cargo(1)](cargo.html)
 {==+==}
-
+## 参阅
+[cargo(1)](cargo.html)
 {==+==}

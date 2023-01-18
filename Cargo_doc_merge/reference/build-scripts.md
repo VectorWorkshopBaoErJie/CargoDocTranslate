@@ -1,11 +1,11 @@
 ## 构建脚本
 
 有些包需要编译第三方的非Rust代码，例如C库。
-有些包需要链接到C库，这些库可能位于系统中，也可能需要从源代码中构建。
+有些包需要链接到C库，这些库可能位于系统中，也可能需要从源代码构建。
 还有包需要一些功能性工具，比如在构建前生成代码(想想语法分析生成器)。
 
-Cargo的目的并不是要取代其他为这些任务而优化的工具，但它可以通过定制构建脚本与这些工具进行整合。
-在软件包的根目录下放置一个名为 `build.rs` 的文件，就会使Cargo在构建软件包之前编译该脚本并执行。
+Cargo的目的并不是要取代为这些任务而优化的其他工具，Cargo可以通过定制构建脚本与这些工具进行整合。
+在包的根目录下放置一个名为 `build.rs` 的文件，就会使Cargo在构建包之前编译该脚本并执行。
 
 ```rust,ignore
 // 自定义构建脚本实例
@@ -28,20 +28,20 @@ fn main() {
 
 下面的章节描述了构建脚本的工作方式，[示例章节](build-script-examples.md) 展示了关于如何编写脚本的各种示例。
 
-> 注意: 可以使用 [`package.build` 配置清单key](manifest.md#package-build) 来改变构建脚本的名称，或完全禁用它。
+> 注意: 可以使用 [`package.build` 配置键](manifest.md#package-build) 来改变构建脚本的名称，或完全禁用它。
 
 ### 构建脚本的生命周期
 
 在构建包之前，Cargo会将构建脚本编译成可执行文件(如果还没有构建的话)。
-然后它将运行脚本，该脚本可以执行任意数量的任务。
+然后运行脚本，该脚本可以执行任意数量的任务。
 脚本可以通过将带有 `cargo:` 前缀的特殊格式化命令打印到标准输出来与Cargo通信。
 
 如果构建脚本的任意源文件或依赖项发生更改，将重新构建脚本。
 
-默认情况下，如果软件包中的任何文件发生变化，Cargo 会重新运行构建脚本。
-通常情况下，最好使用下面 [change detection](#change-detection) 一节中描述的 `rerun-if` 命令，以缩小触发构建脚本重新运行的关注点。
+默认情况下，如果包中的任何文件发生变化，Cargo 会重新运行构建脚本。
+通常，最好使用下面 [change detection](#change-detection) 一节中描述的 `rerun-if` 命令，以缩小触发构建脚本重新运行的关注点。
 
-一旦构建脚本成功执行完毕，包的其他部分就会被编译。
+一旦构建脚本成功执行完毕，就会编译包的其他部分。
 脚本应该以非零的退出代码退出，以便在出现错误时停止编译，在这种情况下，编译脚本的输出将显示在终端。
 
 ### 构建脚本的输入
@@ -57,8 +57,8 @@ fn main() {
 构建脚本可以将任何输出文件或中间构件保存在 [`OUT_DIR` 环境变量][build-env] 指定的目录中。
 脚本不应该修改该目录之外的任何文件。
 
-构建脚本通过打印到 stdout 来与Cargo交流。
-Cargo会把每一行以 `cargo:` 开头的字解释为影响包编译的指令。所有其他的行都会被忽略。
+构建脚本通过打印到标准输出与Cargo交流。
+Cargo会把每一行以 `cargo:` 开头的字解释为影响包编译的指令。忽略所有其他行。
 
 > 注意：构建脚本打印的 `cargo:` 指令的顺序 *可能* 会影响 `cargo` 传递给 `rustc` 的参数的顺序。
 > 反过来，传递给 `rustc` 的参数顺序也可能影响传递给链接器的参数顺序。
@@ -70,15 +70,15 @@ Cargo会把每一行以 `cargo:` 开头的字解释为影响包编译的指令�
 这只发生在编译脚本运行的时候。
 如果Cargo认为没有任何变化，它就不会重新运行脚本，更多信息请参见下面的 [变化检测](#change-detection) 。
 
-构建脚本打印到stdout的所有行都被写入一个文件，如 `target/debug/build/<pkg>/output`(确切位置可能取决于你的配置)。stderr输出也被保存在同一目录中。
+构建脚本打印到标准输出的所有行都被写入一个文件，如 `target/debug/build/<pkg>/output`(确切位置可能取决于你的配置)。标准错误输出也保存在同一目录。
 
 以下是 Cargo 所认识的指令摘要，每条指令都在下面详细说明。
 
 * [`cargo:rerun-if-changed=PATH`](#rerun-if-changed) — 告诉Cargo何时重新运行脚本。
 * [`cargo:rerun-if-env-changed=VAR`](#rerun-if-env-changed) — 告诉Cargo何时重新运行脚本。
-* [`cargo:rustc-link-arg=FLAG`](#rustc-link-arg) — 为基准、二进制文件、`cdylib` crates、例子和测试的链接器传递自定义标志。
-* [`cargo:rustc-link-arg-bin=BIN=FLAG`](#rustc-link-arg-bin) — 为二进制 `BIN` 的链接器传递自定义标志。
-* [`cargo:rustc-link-arg-bins=FLAG`](#rustc-link-arg-bins) — 向二进制文件的链接器传递自定义标志。
+* [`cargo:rustc-link-arg=FLAG`](#rustc-link-arg) — 为基准、二进制文件、`cdylib` crates、示例和测试的链接器传递自定义标志。
+* [`cargo:rustc-link-arg-bin=BIN=FLAG`](#rustc-link-arg-bin) — 将自定义标志传递给二进制 `BIN` 的链接器。
+* [`cargo:rustc-link-arg-bins=FLAG`](#rustc-link-arg-bins) — 将自定义标志传递给二进制文件的链接器。
 * [`cargo:rustc-link-arg-tests=FLAG`](#rustc-link-arg-tests) —  将自定义标志传递给链接器进行测试。
 * [`cargo:rustc-link-arg-examples=FLAG`](#rustc-link-arg-examples) — 将自定义标志传递给链接器的例子。
 * [`cargo:rustc-link-arg-benches=FLAG`](#rustc-link-arg-benches) — 将自定义的标志传递给链接器，用于基准测试。
@@ -87,15 +87,15 @@ Cargo会把每一行以 `cargo:` 开头的字解释为影响包编译的指令�
 * [`cargo:rustc-flags=FLAGS`](#rustc-flags) — 将特定标志传递给编译器。
 * [`cargo:rustc-cfg=KEY[="VALUE"]`](#rustc-cfg) — 启用编译时的 `cfg` 设置。
 * [`cargo:rustc-env=VAR=VALUE`](#rustc-env) — 设置一个环境变量。
-* [`cargo:rustc-cdylib-link-arg=FLAG`](#rustc-cdylib-link-arg) — 为cdylib crates的链接器传递自定义标志。
+* [`cargo:rustc-cdylib-link-arg=FLAG`](#rustc-cdylib-link-arg) — 为cdylib crate的链接器传递自定义标志。
 * [`cargo:warning=MESSAGE`](#cargo-warning) — 在终端上显示一个警告。
-* [`cargo:KEY=VALUE`](#the-links-manifest-key) — 元数据，由 `links` 脚本使用。
+* [`cargo:KEY=VALUE`](#the-links-manifest-key) —  `links` 脚本使用的Metadata。
 
 
 <a id="rustc-link-arg"></a>
 #### `cargo:rustc-link-arg=FLAG`
 
-`rustc-link-arg` 指令告诉Cargo将 [`-C link-arg=FLAG` option][link-arg] 传递给编译器，但只在构建支持的目标(基准、二进制文件、`cdylib`板条、例子和测试)时使用。
+`rustc-link-arg` 指令告诉Cargo将 [`-C link-arg=FLAG` option][link-arg] 传递给编译器，但只在构建支持的目标(基准、二进制文件、 `cdylib` crate、示例和测试)时使用。
 它的使用是高度平台化的。对设置共享库版本或链接器脚本很有用。
 
 [link-arg]: ../../rustc/codegen-options/index.md#link-arg
@@ -158,7 +158,7 @@ Cargo会把每一行以 `cargo:` 开头的字解释为影响包编译的指令�
 可选的 `KIND` 可以是 `dependency` 、 `crate` 、 `native` 、 `framework` 、 `all` 之一。更多细节见 [rustc book][option-search] 。
 
 如果这些路径在 `OUT_DIR` 内，它们也会被添加到 [动态库搜索路径环境变量](environment-variables.md#dynamic-library-paths) 。
-不鼓励依赖这种行为，因为这使得使用产生的二进制文件很困难。一般来说，最好避免在构建脚本中创建动态库(使用现有的系统库就可以了)。
+不鼓励依赖这种行为，因为这使得，使用产生的二进制文件很困难。一般来说，最好避免在构建脚本中创建动态库(使用现有的系统库就可以了)。
 
 [option-search]: ../../rustc/command-line-arguments.md#option-l-search-path
 
@@ -166,7 +166,7 @@ Cargo会把每一行以 `cargo:` 开头的字解释为影响包编译的指令�
 #### `cargo:rustc-flags=FLAGS`
 
 `rustc-flags` 指令告诉Cargo将给定的以空格分隔的标志传递给编译器。
-这只允许使用 `-l `和 `-L` 标志，相当于使用 [`rustc-link-lib`](#rustc-link-lib) 和 [`rustc-link-search`](#rustc-link-search) 。
+只允许使用 `-l `和 `-L` 标志，相当于使用 [`rustc-link-lib`](#rustc-link-lib) 和 [`rustc-link-search`](#rustc-link-search) 。
 
 <a id="rustc-cfg"></a>
 #### `cargo:rustc-cfg=KEY[="VALUE"]`
@@ -175,11 +175,11 @@ Cargo会把每一行以 `cargo:` 开头的字解释为影响包编译的指令�
 这可用于编译时检测功能，以启用 [条件编译] 。
 
 请注意，这并 *不* 影响Cargo的依赖解析。
-这不能用来启用一个可选的依赖，或启用其他Cargo功能。
+这不能用来启用一个可选的依赖，或启用其他Cargo特性。
 
 请注意，[Cargo features]使用的是 `feature="foo"` 的形式。
-用这个标志传递的 `cfg` 值不限于这种形式，可以只提供一个标识符，或任意的键/值对。例如，发送 `cargo:rustc-cfg=abc` 将允许代码使用 `#[cfg(abc)]` (注意缺少 `feature=` )。
-或者可以使用一个任意的键/值对与一个 `=` 号，如`cargo:rustc-cfg=my_component="foo"`。
+用这个标志传递的 `cfg` 值不限于这种形式，可以只提供一个标识符，或任意的键值对。例如，发送 `cargo:rustc-cfg=abc` 将允许代码使用 `#[cfg(abc)]` (注意缺少 `feature=` )。
+或者可以使用一个任意的键值对与一个 `=` 号，如`cargo:rustc-cfg=my_component="foo"`。
 键应该是一个Rust标识符，值应该是一个字符串。
 
 [cargo features]: features.md
@@ -213,12 +213,12 @@ Cargo会把每一行以 `cargo:` 开头的字解释为影响包编译的指令�
 #### `cargo:warning=MESSAGE`
 
 `warning` 指令告诉Cargo在构建脚本运行完毕后显示一个警告。
-警告只针对 `path` 依赖(也就是你在本地工作的那些依赖)，所以例如在[crates.io]crates中打印出来的警告，默认是不会发送的。
+警告只针对 `path` 依赖(也就是你在本地的那些依赖)，所以比如在[crates.io]crate中打印出来的警告，默认是不会发送的。
 `-vv` "very verbose" 标志可以用来让Cargo显示所有crate的警告。
 
 ### 构建依赖
 
-构建脚本也可以依赖其他基于Cargo的crates。
+构建脚本也可以依赖其他基于Cargo的crate。
 依赖是通过配置清单中的 `build-dependencies` 部分来声明的。
 
 ```toml
@@ -226,7 +226,7 @@ Cargo会把每一行以 `cargo:` 开头的字解释为影响包编译的指令�
 cc = "1.0.46"
 ```
 
-构建脚本*不*访问列在 `dependencies` 或 `dev-dependencies` 部分的依赖项(它们还没有被构建！)。
+构建脚本 *不* 访问列在 `dependencies` 或 `dev-dependencies` 部分的依赖项(它们还没有被构建！)。
 另外，除非在 `[dependencies]` 表中明确添加，否则构建的依赖项对包本身是不可用的。
 
 建议仔细考虑你添加的每个依赖，权衡对编译时间、许可、维护等的影响。
@@ -235,7 +235,7 @@ cc = "1.0.46"
 ### 变化检测
 
 当重建包时，Cargo不一定知道是否需要再次运行构建脚本。
-默认情况下，它采取一种保守的方法，即如果包中的任何文件被改变(或由 [`exclude` 和 `include` 字段] 控制的文件列表被改变)，则总是重新运行构建脚本。
+默认情况下，它采取一种保守的方法，即如果包中的任意文件被改变(或由 [`exclude` 和 `include` 字段] 控制的文件列表被改变)，则总是重新运行构建脚本。
 在大多数情况下，这不是一个好的选择，所以建议每个构建脚本至少发出一个 `rerun-if` 指令(如下所述)。
 如果发出了这些指令，那么Cargo只会在给定值发生变化时重新运行脚本。
 如果Cargo重新运行你自己的crate或依赖的构建脚本，而你又不知道为什么，请参见FAQ中的["为什么Cargo要重新构建我的代码？"](.../faq.md#why-is-cargo-rebuilding-my-code)。
@@ -251,9 +251,8 @@ cc = "1.0.46"
 
 如果路径指向一个目录，它将扫描整个目录的任何修改。
 
-如果构建脚本在任何情况下都不需要重新运行，那么发出 `cargo:rerun-if-changed=build.rs` 是防止其重新运行的简单方法(否则，如果没有发出 `rerun-if` 指令，则默认为扫描整个包目录的变化)。
-Cargo会自动处理脚本本身是否需要重新编译，当然，脚本在重新编译后会被重新运行。
-否则，指定 `build.rs` 是多余的，没有必要。
+如果构建脚本在任何情况下都不需要重新运行，那么发送 `cargo:rerun-if-changed=build.rs` 防止其重新运行(否则，如果没有发送 `rerun-if` 指令，则默认为扫描整个包目录的变化)。
+Cargo会自动处理脚本本身是否需要重新编译，当然，脚本在重新编译后会重新运行。否则，没有必要指定 `build.rs` 。
 
 <a id="rerun-if-env-changed"></a>
 #### `cargo:rerun-if-env-changed=NAME`
@@ -279,7 +278,7 @@ links = "foo"
 
 主要的是，Cargo要求每个 `links` 值最多只能有一个包。
 换句话说，禁止让两个包链接到同一个本地库。
-这有助于防止crates之间的重复符号。注意，有一些[已有的惯例](#-sys-packages)可以缓解这个问题。
+这有助于防止crate之间的重复符号。注意，有一些[已有的惯例](#-sys-packages)可以缓解这个问题。
 
 如上文在输出格式中提到的，每个构建脚本可以以键值对的形式生成一组任意的元数据。
 这些元数据被传递给 **依赖的** 包的构建脚本。
@@ -293,7 +292,7 @@ links = "foo"
 ### `*-sys` 包
 
 一些链接到系统库的Cargo包有后缀为 `-sys` 的命名惯例。
-任何名为 `foo-sys` 的包都应该提供两个主要功能。
+任何名为 `foo-sys` 的包都应该提供两个主要功能:
 
 * 库crate应该链接到本地库 `libfoo` 。这通常会在从源代码构建之前探测当前系统中的 `libfoo` 。
 * 这个库应该为 `libfoo` 中的类型和函数提供 **声明**，而**不是**更高级别的抽象。
@@ -333,20 +332,18 @@ metadata_key2 = "value"
 
 在这种配置下，如果包声明它链接到 `foo` ，那么构建脚本将 **不** 被编译或运行，而将使用指定的元数据。
 
-不应使用 `warning` 、 `rerun-if-changed` 和 `rerun-if-env-changed` 键，它们将被忽略。
+不应使用 `warning` 、 `rerun-if-changed` 和 `rerun-if-env-changed` 键，将忽略它们。
 
 ### Jobserver
 
-Cargo和 `rustc` 使用为GNU 制作开发的[jobserver 协议]来协调进程间的并发。
+Cargo和 `rustc` 使用为GNU制作开发的[jobserver 协议]来协调进程间的并发。
 它本质上是信号，控制同时运行的作业数量。
 并发性可以用 `--jobs` 标志来设置，默认为逻辑CPU的数量。
 
 每个构建脚本都从Cargo那里继承一个作业槽，并试图运行时只使用一个CPU。
 如果脚本想并行使用更多的CPU，应该使用[`jobserver` crate]来与Cargo协调。
 
-As an example, the [`cc` crate] may enable the optional `parallel` feature
-which will use the jobserver protocol to attempt to build multiple C files
-at the same time.
+举例来说，[`cc` crate] 可以启用可选的 `parallel` 特性，它将使用jobserver协议尝试同时构建多个C文件。
 
 [`cc` crate]: https://crates.io/crates/cc
 [`jobserver` crate]: https://crates.io/crates/jobserver

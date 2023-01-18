@@ -60,6 +60,7 @@ important minority of packages making use of git-based packages.
 [2]: https://bundler.io
 [3]: https://rubygems.org
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -158,6 +159,7 @@ Rust 本身提供了基于平台控制代码片段的功能。Cargo 也支持 [�
 {==+==}
 [target-deps]: reference/specifying-dependencies.md#platform-specific-dependencies
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -182,6 +184,7 @@ We support environments through the use of [profiles] to support:
 {==+==}
 [profiles]: reference/profiles.md
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -220,6 +223,7 @@ issue][3].
 {==+==}
 [3]: https://github.com/rust-lang/cargo/issues
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -328,6 +332,7 @@ Cargo 不允许使用其他的配置文件名如 `cargo.toml`、`Cargofile`，�
 {==+==}
 [crates.io]: https://crates.io/
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -403,6 +408,7 @@ replacement][replace].
 [`cargo fetch`]: commands/cargo-fetch.md
 [offline config]: reference/config.md#netoffline
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -435,6 +441,7 @@ environment variable:
 $ CARGO_LOG=cargo::core::compiler::fingerprint=info cargo build
 ```
 {==+==}
+
 {==+==}
 
 {==+==}

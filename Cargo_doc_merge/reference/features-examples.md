@@ -1,6 +1,6 @@
-## 特性实例
+## 特性示例
 
-下面说明一些实际中的特性实例。
+下面说明一些实际中的特性示例。
 
 ### 最大限度地减少构建时间和文件大小
 
@@ -25,7 +25,7 @@
 
 ### 扩展行为
 
-[`serde_json`]包有[`preserve_order`功能][serde_json-preserve_order]，它[改变JSON映射行为][serde_json-code]，以保持键的插入顺序。
+[`serde_json`]包有[`preserve_order` 特性][serde_json-preserve_order]，它[改变JSON映射行为][serde_json-code]，以保持键的插入顺序。
 请注意，它启用了一个可选的依赖项 [`indexmap`] 来实现新的行为。
 
 当改变这样的行为时，要注意确保这些改变是[语义版本兼容]的。
@@ -89,8 +89,8 @@
 
 ### 特性优先级
 
-一些包可能有相互排斥的特性。处理这个问题的选项是，在一个特性优先于另一个。
-[`log`] 包是一个例子。它有[几个特性][log-features]，用于在编译时选择最大的日志级别，[这里][log-docs]描述。
+一些包可能有相互排斥的特性。处理这个问题的选项是，一个特性优先于另一个。
+[`log`] 包是一个例子。它有[几个特性][log-features]，用于在编译时选择最大的日志级别，描述在[这里][log-docs]。
 它使用[`cfg-if`]来[选择一个优先级][log-cfg-if]。如果启用了多个特性，较高的 "max" 级别将优先于较低的级别。
 
 [`log`]: https://crates.io/crates/log
@@ -99,13 +99,13 @@
 [log-cfg-if]: https://github.com/rust-lang/log/blob/0.4.11/src/lib.rs#L1422-L1448
 [`cfg-if`]: https://crates.io/crates/cfg-if
 
-### 进程宏协同包
+### 过程宏协同包
 
-有些包有一个与之紧密相连的进程宏。然而，并不是所有的用户都需要使用这个进程宏。
-通过使进程宏成为可选的依赖，这允许你方便地选择是否包含它。
-这很有帮助，因为有时进程宏的版本必须与父包保持同步，而你不想强迫用户必须指定两个依赖并保持它们同步。
+有些包有一个与之紧密相连的过程宏。然而，并不是所有的用户都需要使用这个过程宏。
+通过使过程宏成为可选的依赖，这允许你方便地选择是否包含它。
+这很有帮助，因为有时过程宏的版本必须与父包保持同步，而你不想强迫用户必须指定两个依赖并保持它们同步。
 
-一个例子是 [`serde`] ，它有一个[`derive`][serde-derive]特性，可以启用[`serde_derive`]进程宏。
+一个例子是 [`serde`] ，它有一个[`derive`][serde-derive]特性，可以启用[`serde_derive`]过程宏。
 `serde_derive` crate与 `serde` 紧密相连，所以它使用[相同版本要求][serde-equals]来确保它们保持同步。
 
 [`serde`]: https://crates.io/crates/serde
@@ -116,7 +116,7 @@
 ### 每日构建特性
 
 一些包想要试验只有在 Rust [nightly channel]上才有的API或语言特性。
-然而，他们可能不希望要求他们的用户也使用nightly频道。
+然而，他们可能不希望要求用户也使用nightly频道。
 一个例子是[`wasm-bindgen`]，它有一个[`nightly` 特性][wasm-bindgen-nightly]，
 它启用了一个[扩展的API][wasm-bindgen-unsize]，使用[`Unsize`]标记特性，在写这篇文章时，只有在nightly频道中才有。
 
@@ -138,7 +138,7 @@
 ### 实验特性
 
 一些包有新的特性，他们可能想进行实验，而不必承诺这些API的稳定性。
-这些功能通常被记录在案，它们是实验性的，因此在未来可能会发生变化或损坏，甚至在一个次要的版本中。
+这些特性通常被记录在案，它们是实验性的，因此在未来可能会发生变化或损坏，甚至是在一个次要的版本中。
 一个例子是[async-std]包，它有一个[unstable]特性[async-std-unstable]，[gates new APIs][async-std-gate]，人们可以选择使用，但可能还没有完全准备好被依赖。
 
 [`async-std`]: https://crates.io/crates/async-std

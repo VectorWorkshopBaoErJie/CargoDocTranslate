@@ -1,6 +1,7 @@
 {==+==}
 # cargo-package(1)
 {==+==}
+
 {==+==}
 
 
@@ -27,6 +28,7 @@ cargo-package - 将本地的 package 打包为可分发的 tarball (tar 打包�
 {==+==}
 `cargo package` [_options_]
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -114,6 +116,7 @@ Will generate a `.cargo_vcs_info.json` in the following format
 }
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -135,10 +138,6 @@ in subdirectories of the version control repository.
 ### Package 选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-package--l"><a class="option-anchor" href="#option-cargo-package--l"></a><code>-l</code></dt>
@@ -180,11 +179,6 @@ or the license).</dd>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Package Selection
 {==+==}
 ### 包的选择
@@ -209,10 +203,6 @@ virtual workspace will include all workspace members (equivalent to passing
 可以通过 `workspace.default-members` 来显式设置一个工作空间的默认成员。如果没有设置，在虚拟工作空间下会选择所有的成员，在非虚拟工作空间下仅会选择根 package 。
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-package--p"><a class="option-anchor" href="#option-cargo-package--p"></a><code>-p</code> <em>spec</em>...</dt>
@@ -254,21 +244,11 @@ single quotes or double quotes around each pattern.</dd>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-
-{==+==}
 ### Compilation Options
 {==+==}
 ### 编译选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-package---target"><a class="option-anchor" href="#option-cargo-package---target"></a><code>--target</code> <em>triple</em></dt>
@@ -303,12 +283,6 @@ Defaults to <code>target</code> in the root of the workspace.</dd>
 {==+==}
 
 
-
-{==+==}
-</dl>
-{==+==}
-{==+==}
-
 {==+==}
 ### Feature Selection
 {==+==}
@@ -330,10 +304,6 @@ for more details.
 查看 [the features documentation](../reference/features.html#command-line-feature-options) 获取更多信息。
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-package--F"><a class="option-anchor" href="#option-cargo-package--F"></a><code>-F</code> <em>features</em></dt>
@@ -367,21 +337,11 @@ be specified multiple times, which enables all specified features.</dd>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-
-{==+==}
 ### Manifest Options
 {==+==}
 ### 清单选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-package---manifest-path"><a class="option-anchor" href="#option-cargo-package---manifest-path"></a><code>--manifest-path</code> <em>path</em></dt>
@@ -432,23 +392,12 @@ offline.</p>
 <p>同样的功能也可以通过设置 <code>net.offline</code> <a href="../reference/config.html">配置选项</a>来实现。</dd>
 {==+==}
 
-
-
-{==+==}
-</dl>
-{==+==}
-{==+==}
-
 {==+==}
 ### Miscellaneous Options
 {==+==}
 ### 杂项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-package--j"><a class="option-anchor" href="#option-cargo-package--j"></a><code>-j</code> <em>N</em></dt>
@@ -477,20 +426,11 @@ the build on the first one that fails to build. Unstable, requires
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Display Options
 {==+==}
 ### 显示选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-package--v"><a class="option-anchor" href="#option-cargo-package--v"></a><code>-v</code></dt>
@@ -545,20 +485,11 @@ terminal.</li>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Common Options
 {==+==}
 ### 通用选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-package-+toolchain"><a class="option-anchor" href="#option-cargo-package-+toolchain"></a><code>+</code><em>toolchain</em></dt>
@@ -604,12 +535,6 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 {==+==}
 <dt class="option-term" id="option-cargo-package--Z"><a class="option-anchor" href="#option-cargo-package--Z"></a><code>-Z</code> <em>flag</em></dt>
 <dd class="option-desc">不稳定 (nightly-only) 的标志。 执行 <code>cargo -Z help</code> 获取详细信息。</dd>
-{==+==}
-
-
-{==+==}
-</dl>
-{==+==}
 {==+==}
 
 
@@ -667,4 +592,5 @@ details on environment variables that Cargo reads.
 {==+==}
 [cargo(1)](cargo.html), [cargo-publish(1)](cargo-publish.html)
 {==+==}
+
 {==+==}

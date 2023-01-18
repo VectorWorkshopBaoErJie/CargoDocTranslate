@@ -1,6 +1,7 @@
 {==+==}
 # cargo-metadata(1)
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -24,6 +25,7 @@ cargo-metadata - 输出当前包的机器可读的元数据
 {==+==}
 `cargo metadata` [_options_]
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -600,10 +602,6 @@ The output has the following format:
 ### 输出选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-metadata---no-deps"><a class="option-anchor" href="#option-cargo-metadata---no-deps"></a><code>--no-deps</code></dt>
@@ -641,11 +639,6 @@ reproduction of the information within <code>Cargo.toml</code>.</dd>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Feature Selection
 {==+==}
 ### 选择 feature
@@ -666,10 +659,6 @@ for more details.
 查看 [features 文档](../reference/features.html#command-line-feature-options) 获取更多信息。
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-metadata--F"><a class="option-anchor" href="#option-cargo-metadata--F"></a><code>-F</code> <em>features</em></dt>
@@ -703,21 +692,11 @@ be specified multiple times, which enables all specified features.</dd>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-
-{==+==}
 ### Display Options
 {==+==}
 ### 显示选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-metadata--v"><a class="option-anchor" href="#option-cargo-metadata--v"></a><code>-v</code></dt>
@@ -772,20 +751,11 @@ terminal.</li>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Manifest Options
 {==+==}
 ### 清单选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-metadata---manifest-path"><a class="option-anchor" href="#option-cargo-metadata---manifest-path"></a><code>--manifest-path</code> <em>path</em></dt>
@@ -838,20 +808,11 @@ offline.</p>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Common Options
 {==+==}
 ### 通用选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-metadata-+toolchain"><a class="option-anchor" href="#option-cargo-metadata-+toolchain"></a><code>+</code><em>toolchain</em></dt>
@@ -897,12 +858,6 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 {==+==}
 <dt class="option-term" id="option-cargo-install--Z"><a class="option-anchor" href="#option-cargo-install--Z"></a><code>-Z</code> <em>flag</em></dt>
 <dd class="option-desc">不稳定 (nightly-only) 的标志。 执行 <code>cargo -Z help</code> 获取详细信息。</dd>
-{==+==}
-
-
-{==+==}
-</dl>
-{==+==}
 {==+==}
 
 
@@ -960,4 +915,5 @@ details on environment variables that Cargo reads.
 {==+==}
 [cargo(1)](cargo.html)
 {==+==}
+
 {==+==}
