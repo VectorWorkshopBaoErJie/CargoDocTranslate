@@ -1,6 +1,7 @@
 {==+==}
 # cargo-doc(1)
 {==+==}
+
 {==+==}
 
 
@@ -26,6 +27,7 @@ cargo-doc - 为包构建文档
 {==+==}
 `cargo doc` [_options_]
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -53,10 +55,6 @@ is placed in `target/doc` in rustdoc's usual format.
 ### 文档选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-doc---open"><a class="option-anchor" href="#option-cargo-doc---open"></a><code>--open</code></dt>
@@ -90,11 +88,6 @@ option.</dd>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Package Selection
 {==+==}
 ### 包的选择
@@ -119,10 +112,6 @@ virtual workspace will include all workspace members (equivalent to passing
 可以通过 `workspace.default-members` 来显式设置一个工作空间的默认成员。如果没有设置，在虚拟工作空间下会选择所有的成员，在非虚拟工作空间下仅会选择根 package 。
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-doc--p"><a class="option-anchor" href="#option-cargo-doc--p"></a><code>-p</code> <em>spec</em>...</dt>
@@ -173,12 +162,6 @@ single quotes or double quotes around each pattern.</dd>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-
-{==+==}
 ### Target Selection
 {==+==}
 ### 目标选择
@@ -201,10 +184,6 @@ flag and will always document the given target.
 可以通过在清单文件中为 target 设置 `doc = false` 来改变默认行为。使用目标选择选项时会忽略 `doc` 标志，并且总会为所提供的目标构建文档。
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-doc---lib"><a class="option-anchor" href="#option-cargo-doc---lib"></a><code>--lib</code></dt>
@@ -255,11 +234,6 @@ and supports common Unix glob patterns.</dd>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Feature Selection
 {==+==}
 ### feature 选择
@@ -280,10 +254,6 @@ for more details.
 查看 [the features documentation](../reference/features.html#command-line-feature-options) 获取更多信息。
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-doc--F"><a class="option-anchor" href="#option-cargo-doc--F"></a><code>-F</code> <em>features</em></dt>
@@ -317,21 +287,11 @@ be specified multiple times, which enables all specified features.</dd>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-
-{==+==}
 ### Compilation Options
 {==+==}
 ### 编译选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-doc---target"><a class="option-anchor" href="#option-cargo-doc---target"></a><code>--target</code> <em>triple</em></dt>
@@ -420,23 +380,13 @@ information about timing information.</li>
 {==+==}
 
 
-
-
-{==+==}
-</dl>
-{==+==}
-{==+==}
-
 {==+==}
 ### Output Options
 {==+==}
 ### 输出选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
+
 
 {==+==}
 <dt class="option-term" id="option-cargo-doc---target-dir"><a class="option-anchor" href="#option-cargo-doc---target-dir"></a><code>--target-dir</code> <em>directory</em></dt>
@@ -451,20 +401,11 @@ Defaults to <code>target</code> in the root of the workspace.</dd>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Display Options
 {==+==}
 ### 显示选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-doc--v"><a class="option-anchor" href="#option-cargo-doc--v"></a><code>-v</code></dt>
@@ -558,19 +499,9 @@ coming from rustc are still emitted. Cannot be used with <code>human</code> or <
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Manifest Options
 {==+==}
 ### 清单选项
-{==+==}
-
-{==+==}
-<dl>
-{==+==}
 {==+==}
 
 {==+==}
@@ -622,22 +553,12 @@ offline.</p>
 <p>同样的功能也可以通过设置 <code>net.offline</code> <a href="../reference/config.html">配置选项</a>来实现。</dd>
 {==+==}
 
-
-{==+==}
-</dl>
-{==+==}
-{==+==}
-
 {==+==}
 ### Common Options
 {==+==}
 ### 通用选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-doc-+toolchain"><a class="option-anchor" href="#option-cargo-doc-+toolchain"></a><code>+</code><em>toolchain</em></dt>
@@ -687,21 +608,11 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-
-{==+==}
 ### Miscellaneous Options
 {==+==}
 ### 杂项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-doc--j"><a class="option-anchor" href="#option-cargo-doc--j"></a><code>-j</code> <em>N</em></dt>
@@ -728,11 +639,6 @@ the build on the first one that fails to build. Unstable, requires
 <dd class="option-desc">依赖图中的 crate 能构建多少就构建多少，而不是一个失败就停止。功能还不稳定，需要 <code>-Zunstable-options</code>。</dd>
 {==+==}
 
-
-{==+==}
-</dl>
-{==+==}
-{==+==}
 
 {==+==}
 ## ENVIRONMENT
@@ -789,4 +695,5 @@ details on environment variables that Cargo reads.
 {==+==}
 [cargo(1)](cargo.html), [cargo-rustdoc(1)](cargo-rustdoc.html), [rustdoc(1)](https://doc.rust-lang.org/rustdoc/index.html)
 {==+==}
+
 {==+==}
