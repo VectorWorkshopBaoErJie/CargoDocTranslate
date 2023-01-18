@@ -1,7 +1,7 @@
 {==+==}
 ## Profiles
 {==+==}
-## 编译配置
+## 编译设置
 {==+==}
 
 
@@ -9,7 +9,7 @@
 Profiles provide a way to alter the compiler settings, influencing things like
 optimizations and debugging symbols.
 {==+==}
-编译配置提供了一种修改编译器设置的方法，可以影响如性能优化和调试符号等结果。
+编译设置提供了一种修改编译器设置的方法，从而影响性能优化和调试符号等。
 {==+==}
 
 {==+==}
@@ -19,8 +19,8 @@ profile is not specified on the command-line. In addition to the built-in
 profiles, custom user-defined profiles can also be specified.
 {==+==}
 Cargo有4种内置的编译设置： `dev` 、  `release` 、 `test`  和 `bench` 。
-如果命令行中并未指定具体的编译配置，Cargo会根据当前运行的命令来自动选择编译配置。
-除了内置的编译配置，也可以指定用户自定义的编译配置。
+如果命令行中并未指定具体的编译配置，Cargo会根据当前运行的命令来自动选择。
+除了内置，用户也可以自定义。
 {==+==}
 
 {==+==}
@@ -28,8 +28,8 @@ Profile settings can be changed in [`Cargo.toml`](manifest.md) with the
 `[profile]` table. Within each named profile, individual settings can be changed
 with key/value pairs like this:
 {==+==}
-编译配置的设置可以在 `Cargo.toml` 文件中的 `[profile]` 表格中进行修改。
-在每个命名的编译配置中，单独的设置可以像下面这样使用键/值对来修改：
+编译设置可以在 `Cargo.toml` 文件中 `[profile]` 表中进行修改。
+具体名称的编译设置中，单独的设置条目可以用键值对来修改：
 {==+==}
 
 {==+==}
@@ -41,7 +41,7 @@ overflow-checks = false     # Disable integer overflow checks.
 {==+==}
 ```toml
 [profile.dev]
-opt-level = 1               # 使用稍微好点的优化。
+opt-level = 1               # 使用较好的优化级别。
 overflow-checks = false     # 关闭整数溢出检查。
 ```
 {==+==}
@@ -51,8 +51,8 @@ Cargo only looks at the profile settings in the `Cargo.toml` manifest at the
 root of the workspace. Profile settings defined in dependencies will be
 ignored.
 {==+==}
-Cargo只会扫描工作空间根目录下 `Cargo.toml` 清单中的编译配置设置。
-在依赖中定义的编译配置的设置将会被忽略。
+Cargo只会扫描工作空间根目录下 `Cargo.toml` 配置清单中的编译设置。
+在依赖中定义的编译设置会被忽略。
 {==+==}
 
 {==+==}
@@ -60,32 +60,34 @@ Additionally, profiles can be overridden from a [config] definition.
 Specifying a profile in a config file or environment variable will override
 the settings from `Cargo.toml`.
 {==+==}
-除此之外，编译配置可以通过一个[config]的定义来来覆盖。
-在config文件或环境变量中指定一个编译配置将会覆盖 `Cargo.toml` 中的设置。
+此外，可以通过[config]的定义来覆盖编译设置。
+在config文件或环境变量中指定编译设置将会覆盖 `Cargo.toml` 中的。
 {==+==}
+
 
 {==+==}
 [config]: config.md
 {==+==}
-[config]: config.md
+
 {==+==}
+
 
 {==+==}
 ### Profile settings
 {==+==}
-### 编译配置的设置
+### 编译设置
 {==+==}
 
 {==+==}
 The following is a list of settings that can be controlled in a profile.
 {==+==}
-下面是一系列可以在编译配置里进行控制的设置。
+下面是可以在编译设置中进行控制的设置条目列表。
 {==+==}
 
 {==+==}
 #### opt-level
 {==+==}
-#### opt-level
+
 {==+==}
 
 {==+==}
@@ -94,13 +96,13 @@ of optimization. Higher optimization levels may produce faster runtime code at
 the expense of longer compiler times. Higher levels may also change and
 rearrange the compiled code which may make it harder to use with a debugger.
 {==+==}
-`opt-level` 设置所控制的[ `-C opt-level` flag]控制着优化的等级。高优化等级可以用更长的编译时间换来生成更快的运行时代码。更高的优化等级同时也可能改变或者重新布局编译过的代码，使得其更难被debugger使用。
+`opt-level` 设置控制 [`-C opt-level` flag] 优化级别。高优化级别通过更长的编译时间换来生成后更快的运行时代码。更高的优化级别同时也可能改变或者重新布局编译过的代码，从而更难调试。
 {==+==}
 
 {==+==}
 The valid options are:
 {==+==}
-有效选项包括：
+有效选项：
 {==+==}
 
 {==+==}
@@ -126,14 +128,14 @@ being slower than `2`, or the `"s"` and `"z"` levels not being necessarily
 smaller. You may also want to reevaluate your settings over time as newer
 versions of `rustc` changes optimization behavior.
 {==+==}
-推荐为你的项目尝试试用各种不同的优化等级来找到一个合理的平衡。也许你会惊讶于有时候等级 `3` 会比等级 `2` 慢或者 `"s"` 和 `"z"` 等级没能压缩二进制大小。在开发的过程中，由于更新版本的 `rustc` 可能改变了优化的行为，也许你也会需要重新评估你的用户设置。
+建议你的项目尝试用不同的优化级别，从而找到合理的平衡。也许你有时会惊讶级别 `3` 会比级别 `2` 慢，或者 `"s"` 和 `"z"` 级别未能压缩二进制的大小。在开发的过程中，由于 `rustc` 版本更新可能改变了优化行为，也许你也需要重新评估设置。
 {==+==}
 
 {==+==}
 See also [Profile Guided Optimization] for more advanced optimization
 techniques.
 {==+==}
-另请参阅[Profile Guided Optimization]了解更多的高级优化技术。
+另请参阅[Profile Guided Optimization]了解更多的高级优化技巧。
 {==+==}
 
 {==+==}
@@ -151,13 +153,13 @@ amount of debug information included in the compiled binary.
 {==+==}
 #### debug
 
-`debug` 设置所控制的[ `-C debuginfo` flag]控制着编译之后的二进制调试信息的信息量。
+`debug` 设置控制 [ `-C debuginfo` flag] 编译后的二进制调试的信息量。
 {==+==}
 
 {==+==}
 The valid options are:
 {==+==}
-有效选项包括：
+有效选项：
 {==+==}
 
 {==+==}
@@ -165,7 +167,7 @@ The valid options are:
 * `1`: line tables only
 * `2` or `true`: full debug info
 {==+==}
-* `0` 或 `false`： 无任何调试信息
+* `0` 或 `false`： 无调试信息
 * `1` ： 只包含行号表
 * `2` 或 `true` ： 包含完整的调试信息
 {==+==}
@@ -174,19 +176,19 @@ The valid options are:
 You may wish to also configure the [`split-debuginfo`](#split-debuginfo) option
 depending on your needs as well.
 {==+==}
-也许你同时会根据你的需要想要配置 [ `split-debuginfo` ](#split-debuginfo) 这一选项。
+也许根据需要，你同时会配置 [`split-debuginfo`](#split-debuginfo) 选项。
 {==+==}
 
 {==+==}
 [`-C debuginfo` flag]: ../../rustc/codegen-options/index.html#debuginfo
 {==+==}
-[`-C debuginfo` flag]: ../../rustc/codegen-options/index.html#debuginfo
+
 {==+==}
 
 {==+==}
 #### split-debuginfo
 {==+==}
-#### split-debuginfo
+
 {==+==}
 
 {==+==}
@@ -194,7 +196,7 @@ The `split-debuginfo` setting controls the [`-C split-debuginfo` flag] which
 controls whether debug information, if generated, is either placed in the
 executable itself or adjacent to it.
 {==+==}
-`split-debuginfo` 设置控制 [ `-C split-debuginfo` flag]，它控制调试信息(如果生成)是否放置在可执行文件本身或与其相邻。
+`split-debuginfo` 设置控制 [`-C split-debuginfo` flag] 调试信息，如果产生的话，是放在可执行文件本身，还是放在其旁边。
 {==+==}
 
 {==+==}
@@ -206,28 +208,34 @@ split-debuginfo` flag] and is platform-specific. Some options are only
 available on the [nightly channel]. The Cargo default may change in the future
 once more testing has been performed, and support for DWARF is stabilized.
 {==+==}
-此选项是一个字符串，可接受的值与那些相同[compiler accepts][`-C split-debuginfo` flag]。 此选项的默认值对于具有调试信息的配置文件，在 macOS 上是 `unpacked` 启用。 否则此选项的默认值是 [documented with rustc][`-C split-debuginfo` flag] 并且是特定于平台的。 有些选项只是在[nightly channel]上可用。 一旦进行再次测试，并且对DWARF的支持稳定，Cargo的默认值可能会在未来发生变化。
+这个选项是字符串，可接受的值与[编译器接受的][`-C split-debuginfo` flag]相同。
+在macOS上，这个选项的默认值是 `unpacked` ，用于已启用调试信息的编译设置。
+否则，这个选项的默认值是 [rustc文档][`-C split-debuginfo` flag]，并且是特定平台的。
+有些选项只在 [nightly channel] 中可用。
+一旦进行了更多的测试，并且对DWARF的支持稳定下来，Cargo的默认值可能会在未来发生变化。
 {==+==}
+
 
 {==+==}
 [nightly channel]: ../../book/appendix-07-nightly-rust.html
 [`-C split-debuginfo` flag]: ../../rustc/codegen-options/index.html#split-debuginfo
 {==+==}
-[nightly channel]: ../../book/appendix-07-nightly-rust.html
-[`-C split-debuginfo` flag]: ../../rustc/codegen-options/index.html#split-debuginfo
+
 {==+==}
+
 
 {==+==}
 #### strip
 {==+==}
-#### strip
+
 {==+==}
+
 
 {==+==}
 The `strip` option controls the [`-C strip` flag], which directs rustc to
 strip either symbols or debuginfo from a binary. This can be enabled like so:
 {==+==}
-`strip` 选项控制 [ `-C strip` flag]，它告诉 rustc 从二进制文件中去除符号或调试信息。 可以像这样启用：
+`strip` 选项控制 [ `-C strip` flag] 从而告知 rustc 从二进制文件中去除符号或调试信息。可以像这样启用：
 {==+==}
 
 {==+==}
@@ -239,13 +247,7 @@ strip either symbols or debuginfo from a binary. This can be enabled like so:
 strip = "debuginfo"
 ```
 {==+==}
-```toml
-[package]
-# ...
 
-[profile.release]
-strip = "debuginfo"
-```
 {==+==}
 
 {==+==}
@@ -265,17 +267,20 @@ equivalent to `strip = "none"` and disables `strip` completely.
 `strip = false` 等同于 `strip = "none"` 并完全禁用 `strip` 。
 {==+==}
 
-{==+==}
-[`-C strip` flag]: ../../rustc/codegen-options/index.html#strip
+
 {==+==}
 [`-C strip` flag]: ../../rustc/codegen-options/index.html#strip
 {==+==}
 
 {==+==}
-#### debug-assertions
+
+
 {==+==}
 #### debug-assertions
 {==+==}
+
+{==+==}
+
 
 {==+==}
 The `debug-assertions` setting controls the [`-C debug-assertions` flag] which
@@ -285,13 +290,14 @@ in debug/development builds. These may be things that are too expensive or
 otherwise undesirable in a release build. Debug assertions enables the
 [`debug_assert!` macro] in the standard library.
 {==+==}
-`debug-assertions` 设置控制 [ `-C debug-assertions` flag]，它可以打开或关闭  `cfg(debug_assertions)` [conditional compilation]。 调试断言旨在包含仅在调试/开发版本可用的运行时验证。 这些对于发布版本来说可能是代价太高的东西或者不需要的。 调试断言会开启标准库中的[ `debug_assert!` macro]。
+`debug-assertions` 设置控制 [ `-C debug-assertions` flag] ，从而可以打开或关闭  `cfg(debug_assertions)` [conditional compilation] "条件编译"。
+调试断言旨在包含仅在调试或开发版本可用的运行时验证。这些对于发布版本来说可能消耗过高或者并不需要。调试断言会开启标准库中的 [`debug_assert!` macro] 。
 {==+==}
 
 {==+==}
 The valid options are:
 {==+==}
-有效选项包括：
+有效选项：
 {==+==}
 
 {==+==}
@@ -307,30 +313,32 @@ The valid options are:
 [conditional compilation]: ../../reference/conditional-compilation.md#debug_assertions
 [`debug_assert!` macro]: ../../std/macro.debug_assert.html
 {==+==}
-[`-C debug-assertions` flag]: ../../rustc/codegen-options/index.html#debug-assertions
-[conditional compilation]: ../../reference/conditional-compilation.md#debug_assertions
-[`debug_assert!` macro]: ../../std/macro.debug_assert.html
+
 {==+==}
+
 
 {==+==}
 #### overflow-checks
 {==+==}
-#### overflow-checks
+
 {==+==}
+
 
 {==+==}
 The `overflow-checks` setting controls the [`-C overflow-checks` flag] which
 controls the behavior of [runtime integer overflow]. When overflow-checks are
 enabled, a panic will occur on overflow.
 {==+==}
-`overflow-checks` 设置控制[ `-C overflow-checks` flag]。它控制着[runtime integer overflow]的行为。当启用溢出检查时，溢出将发生导致系统发生严重错误，导致panic。
+`overflow-checks` 设置控制[ `-C overflow-checks` flag] ，控制 [runtime integer overflow] 的行为。当启用溢出检查时，溢出发生将导致系统发生严重错误，而panic恐慌。
 {==+==}
+
 
 {==+==}
 The valid options are:
 {==+==}
-有效选项包括：
+有效选项：
 {==+==}
+
 
 {==+==}
 * `true`: enabled
@@ -344,14 +352,13 @@ The valid options are:
 [`-C overflow-checks` flag]: ../../rustc/codegen-options/index.html#overflow-checks
 [runtime integer overflow]: ../../reference/expressions/operator-expr.md#overflow
 {==+==}
-[`-C overflow-checks` flag]: ../../rustc/codegen-options/index.html#overflow-checks
-[runtime integer overflow]: ../../reference/expressions/operator-expr.md#overflow
+
 {==+==}
 
 {==+==}
 #### lto
 {==+==}
-#### lto
+
 {==+==}
 
 {==+==}
@@ -359,13 +366,14 @@ The `lto` setting controls the [`-C lto` flag] which controls LLVM's [link
 time optimizations]. LTO can produce better optimized code, using
 whole-program analysis, at the cost of longer linking time.
 {==+==}
-`lto` 设置控制[ `-C lto` flag]。它控制着LLVM的[link time optimizations]。LTO可以使用全程序分析，以更长的链接时间换取生成更好的优化代码。
+`lto` 设置控制 [`-C lto` flag]，控制LLVM [link time optimizations] "链接时优化"。
+LTO可以使用全程序分析，以更长的链接时间换取生成更好的优化后的代码。
 {==+==}
 
 {==+==}
 The valid options are:
 {==+==}
-有效选项有：
+有效选项：
 {==+==}
 
 {==+==}
@@ -379,9 +387,9 @@ The valid options are:
   similar to "fat".
 * `"off"`: Disables LTO.
 {==+==}
-* `false` ： 执行 "thin local LTO"，仅在本地箱子上的所有箱子上执行"thin"LTO[codegen units](#codegen-units). 如果codegen单位为1或[opt-level](#opt-level)是0，则不会进行LTO优化。
-* `true` 或 `"fat"` ：执行"fat"LTO，尝试对依赖关系图中的所有crate执行优化。
-* `"thin"` ：执行"thin"LTO。这与"fat"类似，但运行时间大大缩短，同时仍能获得类似于"fat"的性能提升。
+* `false` ： 执行 "thin local LTO"，仅在本地的所有crate上执行 "thin" LTO[codegen units](#codegen-units)。如果codegen单位为1或[opt-level](#opt-level)是0，则不会进行LTO优化。
+* `true` 或 `"fat"` ：执行 "fat" LTO，尝试对依赖图中的所有crate执行优化。
+* `"thin"` ：执行 "thin" LTO。这与 "fat" 类似，但运行时间缩短，同时仍能获得类似于 "fat" 的性能提升。
 * `"off"` ： 禁用 LTO。
 {==+==}
 
@@ -397,30 +405,31 @@ See also the [`-C linker-plugin-lto`] `rustc` flag for cross-language LTO.
 [`-C linker-plugin-lto`]: ../../rustc/codegen-options/index.html#linker-plugin-lto
 ["thin" LTO]: http://blog.llvm.org/2016/06/thinlto-scalable-and-incremental-lto.html
 {==+==}
-[`-C lto` flag]: ../../rustc/codegen-options/index.html#lto
-[link time optimizations]: https://llvm.org/docs/LinkTimeOptimization.html
-[`-C linker-plugin-lto`]: ../../rustc/codegen-options/index.html#linker-plugin-lto
-["thin" LTO]: http://blog.llvm.org/2016/06/thinlto-scalable-and-incremental-lto.html
+
 {==+==}
+
 
 {==+==}
 #### panic
 {==+==}
-#### panic
+
 {==+==}
+
 
 {==+==}
 The `panic` setting controls the [`-C panic` flag] which controls which panic
 strategy to use.
 {==+==}
-`panic` 设置控制[ `-C panic` flag]，它控制着使用哪种panic策略。
+`panic` 设置控制 [ `-C panic` flag] ，控制使用哪种恐慌策略。
 {==+==}
+
 
 {==+==}
 The valid options are:
 {==+==}
-有效选项包括：
+有效选项：
 {==+==}
+
 
 {==+==}
 * `"unwind"`: Unwind the stack upon panic.
@@ -443,30 +452,32 @@ Tests, benchmarks, build scripts, and proc macros ignore the `panic` setting.
 The `rustc` test harness currently requires `unwind` behavior. See the
 [`panic-abort-tests`] unstable flag which enables `abort` behavior.
 {==+==}
-Tests，benchmarks，build scripts 和 proc macros 会忽略 `panic` 设置。
-`rust` 测试工具目前需要 `unwind` 行为。 见[ `panic-abort-tests` ] 启用 `abort` 行为的unstable flag。
+测试、基准、构建脚本、过程宏会忽略 `panic` 设置。
+`rust` 测试工具目前需要 `unwind` 行为。 见 [`panic-abort-tests`] 未稳定的标志启用 `abort` 行为。
 {==+==}
 
 {==+==}
 Additionally, when using the `abort` strategy and building a test, all of the
 dependencies will also be forced to build with the `unwind` strategy.
 {==+==}
-此外，当使用 `abort` 策略和构建测试时，所有依赖也将强制使用 `unwind` 策略来构筑。
+此外，当使用 `abort` 策略和构建测试时，所有依赖也将强制使用 `unwind` 策略来构建。
 {==+==}
+
 
 {==+==}
 [`-C panic` flag]: ../../rustc/codegen-options/index.html#panic
 [`panic-abort-tests`]: unstable.md#panic-abort-tests
 {==+==}
-[`-C panic` flag]: ../../rustc/codegen-options/index.html#panic
-[`panic-abort-tests`]: unstable.md#panic-abort-tests
+
 {==+==}
+
 
 {==+==}
 #### incremental
 {==+==}
-#### incremental
+
 {==+==}
+
 
 {==+==}
 The `incremental` setting controls the [`-C incremental` flag] which controls
@@ -475,14 +486,17 @@ causes `rustc` to save additional information to disk which will be reused
 when recompiling the crate, improving re-compile times. The additional
 information is stored in the `target` directory.
 {==+==}
-`incremental` 设置控制[ `-C incremental` flag]，它控制是否启用增量编译。增量编译会使 `rustc` 将额外的信息保存到磁盘，这些额外信息在重新编译crate时可重复使用，从而缩短重新编译时间。附加信息存储在 `target` 目录中。
+`incremental` 设置控制[ `-C incremental` flag]，控制是否启用增量编译。
+增量编译会使 `rustc` 将额外的信息保存到磁盘，这些额外信息在重新编译crate时可重复使用，从而缩短重新编译时间。附加信息存储在 `target` 目录中。
 {==+==}
+
 
 {==+==}
 The valid options are:
 {==+==}
-有效选项包括：
+有效选项：
 {==+==}
+
 
 {==+==}
 * `true`: enabled
@@ -496,20 +510,17 @@ The valid options are:
 Incremental compilation is only used for workspace members and "path"
 dependencies.
 {==+==}
-增量编译仅用于工作空间成员和"path"依赖项。
+增量编译仅用于工作空间成员和 "path" 依赖。
 {==+==}
 
 {==+==}
 The incremental value can be overridden globally with the `CARGO_INCREMENTAL`
 [environment variable] or the [`build.incremental`] config variable.
 {==+==}
-增量值可以用 `CARGO_INCREMENTAL` [environment variable] 或者[ `build.incremental` ] config 变量来进行全局覆盖。
+增量值可以用 `CARGO_INCREMENTAL` [environment variable] 或者 [ `build.incremental` ] config 变量来进行全局覆盖。
 {==+==}
 
-{==+==}
-[`-C incremental` flag]: ../../rustc/codegen-options/index.html#incremental
-[environment variable]: environment-variables.md
-[`build.incremental`]: config.md#buildincremental
+
 {==+==}
 [`-C incremental` flag]: ../../rustc/codegen-options/index.html#incremental
 [environment variable]: environment-variables.md
@@ -517,10 +528,14 @@ The incremental value can be overridden globally with the `CARGO_INCREMENTAL`
 {==+==}
 
 {==+==}
-#### codegen-units
+
+
 {==+==}
 #### codegen-units
 {==+==}
+
+{==+==}
+
 
 {==+==}
 The `codegen-units` setting controls the [`-C codegen-units` flag] which
@@ -528,7 +543,8 @@ controls how many "code generation units" a crate will be split into. More
 code generation units allows more of a crate to be processed in parallel
 possibly reducing compile time, but may produce slower code.
 {==+==}
-`codegen-units` 设置控制[ `-C codegen-units` flag]，它控制着一个crate会被分割到多少个"代码生成单元"。更多的代码生成单元允许并行处理更多的crate，这可能会减少编译时间，但可能会生成较慢的代码。
+`codegen-units` 设置控制[ `-C codegen-units` flag]，控制着crate分割到多少个"代码生成单元"。
+更多的代码生成单元允许并行处理更多的crate，这可能会减少编译时间，但可能会生成较慢的代码。
 {==+==}
 
 {==+==}
@@ -541,60 +557,67 @@ This option takes an integer greater than 0.
 The default is 256 for [incremental](#incremental) builds, and 16 for
 non-incremental builds.
 {==+==}
-默认值为256[incremental](#incremental)构建，16个用于非增量构建。
+默认值为256 [incremental](#incremental)构建 ，16用于非增量构建。
 {==+==}
+
 
 {==+==}
 [`-C codegen-units` flag]: ../../rustc/codegen-options/index.html#codegen-units
 {==+==}
-[`-C codegen-units` flag]: ../../rustc/codegen-options/index.html#codegen-units
+
 {==+==}
+
 
 {==+==}
 #### rpath
 {==+==}
-#### rpath
+
 {==+==}
+
 
 {==+==}
 The `rpath` setting controls the [`-C rpath` flag] which controls
 whether or not [`rpath`] is enabled.
 {==+==}
-`rpath` 设置控制[ `-C rpath` flag]，它控制着[ `rpath` ]是否启用。
+`rpath` 设置控制[ `-C rpath` flag]，控制是否启用 [ `rpath` ] 。
 {==+==}
+
 
 {==+==}
 [`-C rpath` flag]: ../../rustc/codegen-options/index.html#rpath
 [`rpath`]: https://en.wikipedia.org/wiki/Rpath
 {==+==}
-[`-C rpath` flag]: ../../rustc/codegen-options/index.html#rpath
-[`rpath`]: https://en.wikipedia.org/wiki/Rpath
+
 {==+==}
 
 {==+==}
 ### Default profiles
 {==+==}
-### 默认编译配置
+### 默认编译设置
 {==+==}
+
 
 {==+==}
 #### dev
 {==+==}
-#### dev
+
 {==+==}
+
 
 {==+==}
 The `dev` profile is used for normal development and debugging. It is the
 default for build commands like [`cargo build`], and is used for `cargo install --debug`.
 {==+==}
-`dev` 编译配置用于日常的开发和调试。它使构建指令如[ `cargo build` ]的默认参数，并且用于 `cargo install --debug` 。
+`dev` 编译设置用于日常的开发和调试。它是构建指令如[ `cargo build` ]的默认参数，并且用于 `cargo install --debug` 。
 {==+==}
+
 
 {==+==}
 The default settings for the `dev` profile are:
 {==+==}
-`dev` 编译配置的默认设置有：
+`dev` 编译设置的默认设置有：
 {==+==}
+
 
 {==+==}
 ```toml
@@ -629,21 +652,23 @@ rpath = false
 {==+==}
 #### release
 {==+==}
-#### release
+
 {==+==}
+
 
 {==+==}
 The `release` profile is intended for optimized artifacts used for releases
 and in production. This profile is used when the `--release` flag is used, and
 is the default for [`cargo install`].
 {==+==}
-`release` 编译配置旨在用于发布和生产中的优化工件。当使用 `--release` 标志时本编译配置将被使用，而且本编译配置是[ `cargo install` ]的默认设置。
+`release` 编译设置旨在发布和产生优化后的制品，当使用 `--release` 标志时启用，是[ `cargo install` ]的默认设置。
 {==+==}
+
 
 {==+==}
 The default settings for the `release` profile are:
 {==+==}
-`release` 编译配置的默认设置有：
+`release` 编译设置的默认条目有：
 {==+==}
 
 {==+==}
@@ -679,22 +704,23 @@ rpath = false
 {==+==}
 #### test
 {==+==}
-#### test
+
 {==+==}
 
 {==+==}
 The `test` profile is the default profile used by [`cargo test`].
 The `test` profile inherits the settings from the [`dev`](#dev) profile.
 {==+==}
-`test` 编译配置是 [ `cargo test` ] 的默认编译配置。
-`test` 编译配置继承了[`dev`](#dev)编译配置中的设置。
+`test` 编译设置是 [`cargo test`] 的默认配置。
+`test` 编译设置继承了 [`dev`](#dev) 编译设置项。
 {==+==}
 
 {==+==}
 #### bench
 {==+==}
-#### bench
+
 {==+==}
+
 
 {==+==}
 The `bench` profile is the default profile used by [`cargo bench`].
@@ -703,6 +729,7 @@ The `bench` profile inherits the settings from the [`release`](#release) profile
 `bench` 编译配置是 [ `cargo bench` ] 的默认编译配置。
 `bench` 编译配置继承了[ `release` ](#release)编译配置中的设置。
 {==+==}
+
 
 {==+==}
 #### Build Dependencies
@@ -715,9 +742,9 @@ All profiles, by default, do not optimize build dependencies (build scripts,
 proc macros, and their dependencies). The default settings for build overrides
 are:
 {==+==}
-默认情况下，所有的编译配置都不会优化构建依赖项(build scripts,
-proc macros 和它们的依赖)。构建覆盖的默认设置为：
+默认情况下，所有的编译设置都不会优化构建依赖(构建脚本、过程宏、它们的依赖)。构建覆盖的默认设置为：
 {==+==}
+
 
 {==+==}
 ```toml
@@ -730,28 +757,22 @@ opt-level = 0
 codegen-units = 256
 ```
 {==+==}
-```toml
-[profile.dev.build-override]
-opt-level = 0
-codegen-units = 256
 
-[profile.release.build-override]
-opt-level = 0
-codegen-units = 256
-```
 {==+==}
+
 
 {==+==}
 Build dependencies otherwise inherit settings from the active profile in use, as
 described in [Profile selection](#profile-selection).
 {==+==}
-构建依赖项以其他方式继承正在使用的配置文件中的设置，如[Profile selection](#profile-selection)所描述。
+构建依赖项以其他方式继承正在使用的编译设置条目，如[Profile selection](#profile-selection)所描述。
 {==+==}
+
 
 {==+==}
 ### Custom profiles
 {==+==}
-### 自定义编译配置
+### 自定义编译设置
 {==+==}
 
 {==+==}
@@ -761,7 +782,8 @@ modes. When defining a custom profile, you must specify the `inherits` key to
 specify which profile the custom profile inherits settings from when the
 setting is not specified.
 {==+==}
-除了内置编译配置外，还可以定义其他自定义的编译配置。在需要划分多个工作流和构建模式的时候，可能会用到自定义编译配置。在定义一个自定义的编译配置时，你必须指定一个 `inherits` 的键值，以便在设置没有指定时可以找到该自定义编译配置继承了哪个编译配置。
+除了内置编译设置，还可以自定义。在需要划分多个工作流和构建模式时，可能会用到自定义编译设置。
+在自定义编译设置时，必须指定 `inherits` 键，以便在条目没有指定时，可以找到自定义继承了的哪个编译设置。
 {==+==}
 
 {==+==}
@@ -769,8 +791,9 @@ For example, let's say you want to compare a normal release build with a
 release build with [LTO](#lto) optimizations, you can specify something like
 the following in `Cargo.toml`:
 {==+==}
-举例来说，假如你想将一个普通的发布构建与使用[LTO](#lto)优化的构建做比较，那么你可以像下面这样来在 `Cargo.toml` 中指定：
+举例来说，假如你想将一个普通的发布构建与使用[LTO](#lto)优化的构建做比较，那么可以如下在 `Cargo.toml` 指定：
 {==+==}
+
 
 {==+==}
 ```toml
@@ -779,47 +802,46 @@ inherits = "release"
 lto = true
 ```
 {==+==}
-```toml
-[profile.release-lto]
-inherits = "release"
-lto = true
-```
+
 {==+==}
+
 
 {==+==}
 The `--profile` flag can then be used to choose this custom profile:
 {==+==}
-这里的 `--profile` 标志可以被用来选择这个自定义编译配置：
+`--profile` 标志可用来选择自定义编译设置：
 {==+==}
+
 
 {==+==}
 ```console
 cargo build --profile release-lto
 ```
 {==+==}
-```console
-cargo build --profile release-lto
-```
+
 {==+==}
+
 
 {==+==}
 The output for each profile will be placed in a directory of the same name
 as the profile in the [`target` directory]. As in the example above, the
 output would go into the `target/release-lto` directory.
 {==+==}
-每个编译配置的输出将会被放在[ `target` 目录]下的一个和编译配置同名的一个文件夹下。对于上面的例子来说，编译配置产生的输出将会被放置在路径为 `target/release-lto` 文件夹下。
+每个编译设置的输出会放在[`target` directory]下和编译设置同名的文件夹下。对于上面的例子来说，编译设置产生的输出会放置在路径为 `target/release-lto` 文件夹下。
 {==+==}
+
 
 {==+==}
 [`target` directory]: ../guide/build-cache.md
 {==+==}
-[`target` directory]: ../guide/build-cache.md
+
 {==+==}
+
 
 {==+==}
 ### Profile selection
 {==+==}
-### 编译配置选择
+### 编译设置选择
 {==+==}
 
 {==+==}
@@ -827,7 +849,7 @@ The profile used depends on the command, the command-line flags like
 `--release` or `--profile`, and the package (in the case of
 [overrides](#overrides)). The default profile if none is specified is:
 {==+==}
-编译配置的使用依赖于指令、命令行标志如 `--release` 或 `--profile` 和包(如果是[overrides](#overrides))。如果没有指定那么默认的编译配置为：
+编译设置的使用依赖于指令、命令行标志如 `--release` 或 `--profile` 和包(比如[overrides](#overrides))。如果未指定那么默认的编译设置为：
 {==+==}
 
 {==+==}
@@ -845,7 +867,7 @@ The profile used depends on the command, the command-line flags like
 You can switch to a different profile using the `--profile=NAME` option which will used the given profile.
 The `--release` flag is equivalent to `--profile=release`.
 {==+==}
-你可以使用 `--profile=NAME` 来切换到一个不同的编译配置。 `--release` 这个标志等价于 `--profile=release` 。
+可以使用 `--profile=NAME` 来切换到不同的编译设置。 `--release` 标志等价于 `--profile=release` 。
 {==+==}
 
 {==+==}
@@ -856,18 +878,18 @@ including [library](./cargo-targets.md#library),
 [test](./cargo-targets.md#tests), 
 and [benchmark](./cargo-targets.md#benchmarks).
 {==+==}
-被选择的编译配置作用于整个Cargo的生成结果，包括 [library](./cargo-targets.md#library),
+选择的编译设置作用于Cargo所有的生成目标，包括 [library](./cargo-targets.md#library),
 [binary](./cargo-targets.md#binaries), 
 [example](./cargo-targets.md#examples), 
 [test](./cargo-targets.md#tests), 
-和 [benchmark](./cargo-targets.md#benchmarks)。
+[benchmark](./cargo-targets.md#benchmarks)。
 {==+==}
 
 {==+==}
 The profile for specific packages can be specified with
 [overrides](#overrides), described below.
 {==+==}
-对于特定包的编译配置可以使用[overrides](#overrides)来指定，描述如下。
+对于特定包的编译设置可以使用[overrides](#overrides)来指定，描述如下。
 {==+==}
 
 {==+==}
@@ -879,14 +901,9 @@ The profile for specific packages can be specified with
 [`cargo rustc`]: ../commands/cargo-rustc.md
 [`cargo test`]: ../commands/cargo-test.md
 {==+==}
-[`cargo bench`]: ../commands/cargo-bench.md
-[`cargo build`]: ../commands/cargo-build.md
-[`cargo check`]: ../commands/cargo-check.md
-[`cargo install`]: ../commands/cargo-install.md
-[`cargo run`]: ../commands/cargo-run.md
-[`cargo rustc`]: ../commands/cargo-rustc.md
-[`cargo test`]: ../commands/cargo-test.md
+
 {==+==}
+
 
 {==+==}
 ### Overrides
@@ -894,13 +911,15 @@ The profile for specific packages can be specified with
 ### 覆盖
 {==+==}
 
+
 {==+==}
 Profile settings can be overridden for specific packages and build-time
 crates. To override the settings for a specific package, use the `package`
 table to change the settings for the named package:
 {==+==}
-编译配置的设置可以对于特定的包和构建时的crate进行覆盖。如需对一个特定的包进行覆盖设置，使用 `package` 表来更改已命名的包的编译配置：
+编译设置可对特定包和构建时的crate进行覆盖。如需对特定的包进行覆盖，使用 `package` 表来更改已命名的包的编译设置：
 {==+==}
+
 
 {==+==}
 ```toml
@@ -910,25 +929,27 @@ opt-level = 3
 ```
 {==+==}
 ```toml
-# `foo`包会使用 -Copt-level=3 标志。
+# `foo` 包会使用 -Copt-level=3 标志。
 [profile.dev.package.foo]
 opt-level = 3
 ```
 {==+==}
+
 
 {==+==}
 The package name is actually a [Package ID Spec](pkgid-spec.md), so you can
 target individual versions of a package with syntax such as
 `[profile.dev.package."foo:2.1.0"]`.
 {==+==}
-包的名字实际上是一个[Package ID Spec](pkgid-spec.md)，所以你可以使用如 `[profile.dev.package."foo:2.1.0"]` 的语法定位到某个版本的包。
+包的名字实际为[Package ID Spec](pkgid-spec.md)，所以可以使用如 `[profile.dev.package."foo:2.1.0"]` 的语法定位到某个版本的包。
 {==+==}
+
 
 {==+==}
 To override the settings for all dependencies (but not any workspace member),
 use the `"*"` package name:
 {==+==}
-如需覆盖所有依赖的设置(但是并非任何工作空间的成员)，使用包名 `"*"` 。
+如需覆盖所有依赖的设置(但是并非任何工作空间的成员)，使用 `"*"` 包名 :
 {==+==}
 
 {==+==}
@@ -945,12 +966,14 @@ opt-level = 2
 ```
 {==+==}
 
+
 {==+==}
 To override the settings for build scripts, proc macros, and their
 dependencies, use the `build-override` table:
 {==+==}
 如需覆盖构建脚本、过程宏和相关依赖的设置，使用 `build-override` 表：
 {==+==}
+
 
 {==+==}
 ```toml
@@ -966,6 +989,7 @@ opt-level = 3
 ```
 {==+==}
 
+
 {==+==}
 > Note: When a dependency is both a normal dependency and a build dependency,
 > Cargo will try to only build it once when `--target` is not specified. When
@@ -973,17 +997,19 @@ opt-level = 3
 > normal dependency and once with the overridden build settings. This may
 > increase initial build times.
 {==+==}
-> 注意：当一个依赖既是一个普通依赖而且是一个构建依赖时， 
-> 如果 `--target` 没有被指定，Cargo 将会试图只构建一次。
-> 当使用 `build-override` 时，依赖可能需要构建两次， 一次作为正常依赖项，一次使用覆盖的生成设置。这可能会增加初始构建的时间。
+> 注意：当依赖既是普通依赖而且是构建依赖时， 
+> 如果 `--target` 未指定，Cargo 会试图只构建一次。
+> 当使用 `build-override` 时，依赖可能需要构建两次， 一次作为正常依赖项，一次使用覆盖的构建设置。这可能会增加初始构建的时间。
 {==+==}
+
 
 {==+==}
 The precedence for which value is used is done in the following order (first
 match wins):
 {==+==}
-使用值的优先顺序如下(先匹配到的胜出)：
+使用值的优先顺序如下(先匹配到的优先)：
 {==+==}
+
 
 {==+==}
 1. `[profile.dev.package.name]` — A named package.
@@ -993,24 +1019,27 @@ match wins):
 4. `[profile.dev]` — Settings in `Cargo.toml`.
 5. Default values built-in to Cargo.
 {==+==}
-1. `[profile.dev.package.name]` — 一个命名的包。
+1. `[profile.dev.package.name]` — 命名的包。
 2. `[profile.dev.package."*"]` — 对于任何非工作空间成员。
 3. `[profile.dev.build-override]` — 仅适用于构建脚本、过程宏及其依赖项。
-4. `[profile.dev]` — `Cargo.toml`中的设置。
+4. `[profile.dev]` — `Cargo.toml` 中的设置。
 5. Cargo中内置的默认值。
 {==+==}
+
 
 {==+==}
 Overrides cannot specify the `panic`, `lto`, or `rpath` settings.
 {==+==}
-覆盖不能指定 `panic` 、 `lto` 或 `rpath` 设置。
+覆盖不能指定 `panic` 、 `lto` 、 `rpath` 设置。
 {==+==}
+
 
 {==+==}
 #### Overrides and generics
 {==+==}
 #### 覆盖和泛型
 {==+==}
+
 
 {==+==}
 The location where generic code is instantiated will influence the
@@ -1022,7 +1051,10 @@ optimized when used in your local crate. This is because the code may be
 generated in the crate where it is instantiated, and thus may use the
 optimization settings of that crate.
 {==+==}
-实例化泛型代码的位置将会影响用于该泛型代码的优化配置。当使用编译配置覆盖去更改特定crate的优化级别时，这可能会导致微妙的影响。如果试图提高定义泛型函数的依赖项的优化级别，在本地crate中使用这些泛型函数时可能无法进行优化。这是因为代码可能会在其实例化的crate中生成，因此可能会使用该crate的优化设置。
+实例化泛型代码的位置会影响用于该泛型代码的优化配置。
+当使用编译配置覆盖去更改特定crate的优化级别时，这可能会导致微妙的影响。
+如果试图提高定义泛型函数依赖的优化级别，在本地crate中使用这些泛型函数时可能无法进行优化。
+这是因为代码可能会在其实例化的crate中生成，因而可能会使用该crate的优化设置。
 {==+==}
 
 {==+==}
@@ -1033,7 +1065,9 @@ code will be instantiated and built within your crate. Thus, if you attempt to
 increase the optimization level of `nalgebra` using a profile override, it may
 not result in faster performance.
 {==+==}
-举例来说，[nalgebra]是一个定义向量和矩阵的库，并且大量使用了泛型参数。如果你的本地代码定义了具体的nalgebra类型，比如 `Vector4<f64>` 并使用他们的方法，相应的nalgebra代码将被实例化并构建在你的crate中。因此，如果你试图使用覆盖编译配置来提高nalgebra的优化等级的话，可能并不会带来更快的性能。
+举例来说， [nalgebra] 是一个定义向量和矩阵的库，并且大量使用了泛型参数。
+如果你的本地代码定义了具体的nalgebra类型，比如 `Vector4<f64>` 并使用他们的方法，相应的nalgebra代码将被实例化并构建在你的crate中。
+因此，如果你试图使用覆盖编译配置来提高nalgebra的优化级别的话，可能并不会带来更快的性能。
 {==+==}
 
 {==+==}
@@ -1045,11 +1079,12 @@ crates. When experimenting with optimizing dependencies for development,
 consider trying opt-level 1, which will apply some optimizations while still
 allowing monomorphized items to be shared.
 {==+==}
-更复杂的是， `rustc` 有一些优化尝试在crate之间共享单态化的泛型。如果优化等级是2或3，那么crate将不会使用其他crate中的单态化的泛型，也不会导出本地定义的与其他crate共享的单态化内容。
+更复杂的是， `rustc` 有一些优化尝试在crate之间共享单态化的泛型。如果优化级别是2或3，
+那么crate将不会使用其他crate中单态化的泛型，也不会导出本地定义的与其他crate共享的单态化内容。
 {==+==}
 
 {==+==}
 [nalgebra]: https://crates.io/crates/nalgebra
 {==+==}
-[nalgebra]: https://crates.io/crates/nalgebra
+
 {==+==}
