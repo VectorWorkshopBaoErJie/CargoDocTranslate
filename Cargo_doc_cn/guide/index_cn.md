@@ -1,14 +1,14 @@
 {==+==}
 ## Cargo Guide
 {==+==}
-## Cargo 指南
+## Cargo指南
 {==+==}
 
 {==+==}
 This guide will give you all that you need to know about how to use Cargo to
 develop Rust packages.
 {==+==}
-本文档会展示如何使用 Cargo 开发 Rust 包。
+如何使用Cargo来开发Rust包。
 {==+==}
 
 {==+==}
@@ -23,5 +23,14 @@ develop Rust packages.
 * [Cargo Home](cargo-home.md)
 * [Build Cache](build-cache.md)
 {==+==}
-
+* [为何有Cargo](why-cargo-exists.md)
+* [创建新包](creating-a-new-project.md)
+* [拥有Cargo包](working-on-an-existing-project.md)
+* [依赖](dependencies.md)
+* [包的布局](project-layout.md)
+* [Cargo.toml vs Cargo.lock](cargo-toml-vs-cargo-lock.md)
+* [测试](tests.md)
+* [持续集成](continuous-integration.md)
+* [Cargo Home](cargo-home.md)
+* [构建缓存](build-cache.md)
 {==+==}

@@ -41,7 +41,7 @@
     * [创建新包](guide/creating-a-new-project.md)
     * [让包工作](guide/working-on-an-existing-project.md)
     * [依赖](guide/dependencies.md)
-    * [包的设计](guide/project-layout.md)
+    * [包的布局](guide/project-layout.md)
     * [Cargo.toml vs Cargo.lock](guide/cargo-toml-vs-cargo-lock.md)
     * [测试](guide/tests.md)
     * [持续集成](guide/continuous-integration.md)
