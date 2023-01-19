@@ -39,13 +39,13 @@
 * [Cargo指南](guide/index.md)
     * [为何有Cargo](guide/why-cargo-exists.md)
     * [创建新包](guide/creating-a-new-project.md)
-    * [让包工作](guide/working-on-an-existing-project.md)
+    * [拥有Cargo包](guide/working-on-an-existing-project.md)
     * [依赖](guide/dependencies.md)
     * [包的布局](guide/project-layout.md)
     * [Cargo.toml vs Cargo.lock](guide/cargo-toml-vs-cargo-lock.md)
     * [测试](guide/tests.md)
     * [持续集成](guide/continuous-integration.md)
-    * [Cargo主页](guide/cargo-home.md)
+    * [Cargo Home](guide/cargo-home.md)
     * [构建缓存](guide/build-cache.md)
 {==+==}
 
