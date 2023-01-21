@@ -97,7 +97,7 @@
 {==+==}
         * [构建脚本示例](reference/build-script-examples.md)
     * [发布到crates.io](reference/publishing.md)
-    * [包ID规范](reference/pkgid-spec.md)
+    * [规范包ID](reference/pkgid-spec.md)
     * [源替换](reference/source-replacement.md)
     * [插件](reference/external-tools.md)
     * [注册中心](reference/registries.md)

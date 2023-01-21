@@ -17,19 +17,22 @@ No. The plan for Cargo is to use [crates.io], like npm or Rubygems do with
 没有。Cargo 会使用 [crates.io]，就像 npm 的 [npmjs.com][1] 和 Rubygems 的 [rubygems.org][3] 。
 {==+==}
 
+
 {==+==}
 We plan to support git repositories as a source of packages forever,
 because they can be used for early development and temporary patches,
 even when people use the registry as the primary source of packages.
 {==+==}
-我们将永远支持使用 git 仓库作为包的一个来源，因为其可以用在早期开发和临时覆盖中，但是人们还是会将 registry 作为包的主要来源。
+我们将永远支持使用 git 仓库作为包的一个来源，因为其可以用在早期开发和临时覆盖中，但还是会将注册中心作为包的主要来源。
 {==+==}
+
 
 {==+==}
 ### Why build crates.io rather than use GitHub as a registry?
 {==+==}
 ### 为什么建立 crates.io 而不是使用 GitHub 作为 registry ？
 {==+==}
+
 
 {==+==}
 We think that it’s very important to support multiple ways to download
@@ -39,6 +42,7 @@ your package itself.
 我们认为支持多种下载包的方式是很重要的，其中包括从 GitHub 下载并将其拷贝到你的包中。
 {==+==}
 
+
 {==+==}
 That said, we think that [crates.io] offers a number of important benefits, and
 will likely become the primary way that people download packages in Cargo.
@@ -46,14 +50,16 @@ will likely become the primary way that people download packages in Cargo.
 尽管如此，我们还是认为 [crates.io] 提供了一些重要的便利，会成为人们用 Cargo 下载包的主要方式。 
 {==+==}
 
+
 {==+==}
 For precedent, both Node.js’s [npm][1] and Ruby’s [bundler][2] support both a
 central registry model as well as a Git-based model, and most packages
 are downloaded through the registry in those ecosystems, with an
 important minority of packages making use of git-based packages.
 {==+==}
-作为先例，Node.js 的 [npm][1] 和 Ruby 的 [bundler][2] 都同时支持一个中心化的 registry 模型和基于 git 的模型，大部分的包都是从它们生态的 registry 中下载的，少数的包使用基于 git 的下载。
+作为先例，Node.js 的 [npm][1] 和 Ruby 的 [bundler][2] 都同时支持一个中心化的注册中心模型和基于 git 的模型，大部分的包都是从它们生态的注册中心下载的，少数的包使用基于 git 的下载。
 {==+==}
+
 
 {==+==}
 [1]: https://www.npmjs.com
@@ -67,7 +73,7 @@ important minority of packages making use of git-based packages.
 Some of the advantages that make a central registry popular in other
 languages include:
 {==+==}
-让中心化 registry 在这些语言中得以流行的优势有:
+让中心化的注册中心在这些语言中得以流行的优势有:
 {==+==}
 
 {==+==}
@@ -84,14 +90,15 @@ languages include:
   down fast. Also remember that not everybody has a high-speed,
   low-latency Internet connection.
 {==+==}
-* **可发现性**。一个中心 registry 提供了一个方便的地方来查找已有的包。结合标记技术，一个 registry 可以提供生态广度的信息，诸如最受欢迎或最被依赖的包的列表。
-* **速度**。一个中心 registry 可以让我们快速有效地获取包的元数据，然后高效地只下载那些被发布的包，而不会下载那些碰巧保存在 git 仓库中的无用内容。这显著提高了依赖解析和下载的速度。随着依赖图的增大，从 git 仓库中下载的方式很快就会陷入困境。而且要明白不是每个人都拥有高速低延迟的网络。
+* **可发现性**。核心的注册中心提供了便捷的地方来查找已有的包。结合标记技术，注册中心可以提供生态广泛的信息，诸如最受欢迎或最被依赖的包的列表。
+* **速度**。核心的注册中心可以让我们快速有效地获取包的元数据，然后高效地只下载那些被发布的包，而不会下载那些恰巧保存在 git 仓库中的无用内容。这能显著提高依赖解析和下载的速度。随着依赖图的增大，从 git 仓库中下载的方式很快就会陷入困境。另外不是每个人都拥有高速低延迟的网络。
 {==+==}
+
 
 {==+==}
 ### Will Cargo work with C code (or other languages)?
 {==+==}
-### Cargo 可以和 C 代码(或者其他语言)一起工作吗
+### Cargo 可以和 C 代码(或者其他语言)一起工作吗?
 {==+==}
 
 {==+==}
@@ -101,12 +108,14 @@ Yes!
 {==+==}
 
 {==+==}
+
 Cargo handles compiling Rust code, but we know that many Rust packages
 link against C code. We also know that there are decades of tooling
 built up around compiling languages other than Rust.
 {==+==}
-Cargo 用于处理编译 Rust 代码，但我们也了解很多 Rust 包链接到 C 代码。我们也知道编译其他语言的工具已经发展了几十年的时间。
+Cargo 用于处理编译 Rust 代码，但我们也了解很多 Rust 包链接到 C 代码，编译其他语言的工具已经发展了几十年的时间。
 {==+==}
+
 
 {==+==}
 Our solution: Cargo allows a package to [specify a script](reference/build-scripts.md)
@@ -114,14 +123,16 @@ Our solution: Cargo allows a package to [specify a script](reference/build-scrip
 implement platform-specific configuration and refactor out common build
 functionality among packages.
 {==+==}
-我们的解决方案是：Cargo 允许一个包指定(用Rust写的)[一个脚本](reference/build-scripts.md)，在调用 `rustc` 之前执行。用于实现平台特定的设置和重构包之间的公共构建功能。
+我们的解决方案是：Cargo 允许包指定(用Rust写的)[脚本](reference/build-scripts.md)，在调用 `rustc` 之前执行。用于实现平台特定的设置和重构包之间的公共构建的功能。
 {==+==}
+
 
 {==+==}
 ### Can Cargo be used inside of `make` (or `ninja`, or ...)
 {==+==}
 ### Cargo 可以用在 `make` (或 `ninja`，...) 之中吗？
 {==+==}
+
 
 {==+==}
 Indeed. While we intend Cargo to be useful as a standalone way to
@@ -131,6 +142,7 @@ want to invoke Cargo from other build tools.
 当然。在我们设计让 Cargo 独立编译 Rust 包，也考虑到一些人想要在其他构建工具中调用 Cargo。
 {==+==}
 
+
 {==+==}
 We have designed Cargo to work well in those contexts, paying attention
 to things like error codes and machine-readable output modes. We still
@@ -138,8 +150,10 @@ have some work to do on those fronts, but using Cargo in the context of
 conventional scripts is something we designed for from the beginning and
 will continue to prioritize.
 {==+==}
-我们设计让Cargo在这些情境下很好地工作，花了很多精力在错误代码和机器可读的输出上。在这些上面我们还有很多工作要做，但是在常见的脚本中使用Cargo是我们从一开始就设计好的，并且会继续作为高优先级的任务。
+我们设计让Cargo在这些情境下很好地工作，花了很多精力在错误代码和机器可读的输出上。
+这些方面我们还有很多工作要做，在常见的脚本中使用Cargo是从一开始就设计好的，并且会继续作为高优先级的任务。
 {==+==}
+
 
 {==+==}
 ### Does Cargo handle multi-platform packages or cross-compilation?
@@ -147,14 +161,16 @@ will continue to prioritize.
 ### Cargo 可以处理多平台的包或者交叉编译吗？
 {==+==}
 
+
 {==+==}
 Rust itself provides facilities for configuring sections of code based
 on the platform. Cargo also supports [platform-specific
 dependencies][target-deps], and we plan to support more per-platform
 configuration in `Cargo.toml` in the future.
 {==+==}
-Rust 本身提供了基于平台控制代码片段的功能。Cargo 也支持 [平台特定依赖][target-deps]，而且我们计划在 `Cargo.toml` 中支持为不同平台进行更多设置。
+Rust 本身提供了基于平台控制代码段的功能。Cargo 也支持 [平台特定依赖][target-deps]，而且我们计划在 `Cargo.toml` 中支持为不同平台进行更多设置。
 {==+==}
+
 
 {==+==}
 [target-deps]: reference/specifying-dependencies.md#platform-specific-dependencies
@@ -187,6 +203,7 @@ We support environments through the use of [profiles] to support:
 
 {==+==}
 
+
 {==+==}
 * environment-specific flags (like `-g --opt-level=0` for development
   and `--opt-level=3` for production).
@@ -197,8 +214,9 @@ We support environments through the use of [profiles] to support:
 * 环境指定标志(如 `-g --opt-level=0` 用于开发环境，而 `--opt-level=3` 用于生产环境)。
 * 环境指定依赖，如 `hamcrest` 用于测试断言。
 * 环境指定 `#[cfg]`。
-* 一个 `cargo test` 命令。
+* `cargo test` 命令。
 {==+==}
+
 
 {==+==}
 ### Does Cargo work on Windows?
@@ -212,13 +230,15 @@ Yes!
 当然！
 {==+==}
 
+
 {==+==}
 All commits to Cargo are required to pass the local test suite on Windows.
 If you encounter an issue while running on Windows, we consider it a bug, so [please file an
 issue][3].
 {==+==}
-所有提交给 Cargo 的 commit 都要求通过 Windows 上的测试。如果你在 Windows 上运行 Cargo 时遇到问题，我们将其视为一个 bug，[请提一个 issue][3]。
+ Cargo 的所有 commits 提交都要求通过 Windows 上的测试。如果你在 Windows 上运行 Cargo 时遇到问题，我们将其视为一个 bug，[请提一个 issue][3]。
 {==+==}
+
 
 {==+==}
 [3]: https://github.com/rust-lang/cargo/issues
@@ -226,11 +246,13 @@ issue][3].
 
 {==+==}
 
+
 {==+==}
 ### Why do binaries have `Cargo.lock` in version control, but not libraries?
 {==+==}
 ### 为什么二进制 crate 有 `Cargo.lock`，而库 crate 却没有？
 {==+==}
+
 
 {==+==}
 The purpose of a `Cargo.lock` lockfile is to describe the state of the world at
@@ -239,8 +261,9 @@ deterministic builds on different times and different systems, by ensuring that
 the exact same dependencies and versions are used as when the `Cargo.lock` file
 was originally generated.
 {==+==}
-`Cargo.lock` 的目的在于描述一次成功构建发生时，当时世界的状态。Cargo 借助 lockfile 在不同时刻和不同系统中提供确定性的构建结果，保证使用的依赖版本与 `Cargo.lock` 被创建时使用的完全一致。
+`Cargo.lock` 的目的在于描述一次成功构建发生时，当时完整的状态。Cargo 借助 lockfile 在不同时刻和不同系统中提供确定性的构建结果，保证使用的依赖版本与 `Cargo.lock` 被创建时使用的完全一致。
 {==+==}
+
 
 {==+==}
 This property is most desirable from applications and packages which are at the
@@ -250,6 +273,7 @@ all binaries check in their `Cargo.lock`.
 这种特性最适合应用 (application) 以及那些处于依赖链末端的包 (二进制crate) 。因此，建议每个二进制 crate 都添加 `Cargo.lock`。
 {==+==}
 
+
 {==+==}
 For libraries the situation is somewhat different. A library is not only used by
 the library developers, but also any downstream consumers of the library. Users
@@ -257,8 +281,10 @@ dependent on the library will not inspect the library’s `Cargo.lock` (even if 
 exists). This is precisely because a library should **not** be deterministically
 recompiled for all users of the library.
 {==+==}
-对于库而言情况就有所不同了。一个库不仅仅是库的开发者在用，而是下游的所有使用者。依赖该库的用户不会检查这个库的 `Cargo.lock` (即使这个文件存在)。这是应该的，因为对于库的用户来说，一个库**不**应该被确定性地重新构建。
+对于库而言情况就有所不同了。一个库不仅仅是库的开发者在用，而会是下游的所有使用者。
+依赖该库的用户不会检查这个库的 `Cargo.lock` (即使这个文件存在)。这是应该的，因为对于库的用户来说，一个库**不**应该被确定性地重新构建。
 {==+==}
+
 
 {==+==}
 If a library ends up being used transitively by several dependencies, it’s
@@ -267,16 +293,20 @@ compatibility). If Cargo used all of the dependencies' `Cargo.lock` files,
 then multiple copies of the library could be used, and perhaps even a version
 conflict.
 {==+==}
-如果一个库被几个依赖传递性地使用，那么应该只保留该库的一份拷贝 (SemVer兼容的前提下)。如果 Cargo 使用所有依赖项的 `Cargo.lock`，就可能会使用到该库的多个版本，甚至造成版本冲突。
+如果一个库被几个依赖传递性地使用，那么应该只保留该库的一份拷贝 (SemVer兼容的前提下)。
+如果 Cargo 使用所有依赖的 `Cargo.lock` ，就可能会使用到该库的多个版本，甚至造成版本冲突。
 {==+==}
+
 
 {==+==}
 In other words, libraries specify SemVer requirements for their dependencies but
 cannot see the full picture. Only end products like binaries have a full
 picture to decide what versions of dependencies should be used.
 {==+==}
-换句话说，库指定了自己的依赖的 SemVer 版本，但是无法看到(依赖图的)全貌。只有像是二进制程序这样的末端产品才能看到全貌，决定使用依赖的哪个具体版本。
+换句话说，库指定了自己的依赖的 SemVer 语义化版本，但是无法看到(依赖图的)全貌。
+只有像是二进制程序这样的末端产品才能看到全貌，决定使用依赖的哪个具体版本。
 {==+==}
+
 
 {==+==}
 ### Can libraries use `*` as a version for their dependencies?
@@ -297,7 +327,7 @@ of `*` says “This will work with every version ever”, which is never going
 to be true. Libraries should always specify the range that they do work with,
 even if it’s something as general as “every 1.x.y version”.
 {==+==}
-库可以，但是，库不应该可以。一个 `*` 版本请求好像在说：“这东西在任何版本都会正常工作的”，但这是不可能的。库总是应该指定一个可以工作的版本范围，即使是“所有的 1.x.y 版本” 这种宽泛的范围。
+库可以，但是，库不应该可以。一个 `*` 版本请求好像在说："能在任何版本都会正常工作"，但这是不可能的。库总是应该指定可以工作的一个版本范围，即使是"所有的 1.x.y 版本" 这种宽泛的范围。
 {==+==}
 
 {==+==}
@@ -317,7 +347,8 @@ capital letters before lowercase letters, ensuring files like `Makefile` and
 the fact that the file is in the [TOML configuration
 format](https://toml.io/).
 {==+==}
-作为与 Cargo 交互最多的部分，关于为什么配置文件叫 `Cargo.toml` 的问题从来没有停过。开头的大写字母 `C` 是为了让这个清单文件和其他类似的配置文件(configuration file)放在一起。文件排序一般会把大写字母开头的文件放在小写字母开头的文件之前，这保证 `Cargo.toml` 会和 `Makefile` 这类文件放在一起。后面的 `.toml` 表示这是一个 [TOML 格式](https://toml.io/) 的配置文件。
+作为与 Cargo 交互最多的部分，关于为什么配置文件叫 `Cargo.toml` 的问题从来没有停过。开头的大写字母 `C` 是为了让这个配置清单文件和其他类似的配置文件(configuration file)放在一起。
+文件排序一般会把大写字母开头的文件放在小写字母开头的文件之前，这保证 `Cargo.toml` 会和 `Makefile` 这类文件放在一起。后面的 `.toml` 表示这是 [TOML 格式](https://toml.io/) 的文件。
 {==+==}
 
 {==+==}
@@ -326,7 +357,7 @@ emphasize the ease of how a Cargo repository can be identified. An option of
 many possible names has historically led to confusion where one case was handled
 but others were accidentally forgotten.
 {==+==}
-Cargo 不允许使用其他的配置文件名如 `cargo.toml`、`Cargofile`，从而让 Cargo 仓库更容易被识别。提供可选的其他名字在历史上经常导致某些情况被忘记处理，从而导致错误。
+Cargo 不允许使用其他的配置文件名如 `cargo.toml`、`Cargofile`，从而更容易识别 Cargo 仓库。提供可选的其他名字在历史上经常导致某些情况被忘记处理，从而导致错误。
 {==+==}
 
 {==+==}
@@ -335,11 +366,13 @@ Cargo 不允许使用其他的配置文件名如 `cargo.toml`、`Cargofile`，�
 
 {==+==}
 
+
 {==+==}
 ### How can Cargo work offline?
 {==+==}
 ### 如何在离线状态使用 Cargo ？
 {==+==}
+
 
 {==+==}
 Cargo is often used in situations with limited or no network access such as
@@ -349,6 +382,7 @@ hence the request for Cargo to work offline comes up frequently.
 {==+==}
 Cargo 经常被用于限制或者没有网络的场景，比如在飞机上、CI 环境、或者嵌入到大型的产品部署中。当 Cargo 尝试从网络获取资源时，用户经常感到惊讶，因此经常要求 Cargo 可以在离线环境中使用。
 {==+==}
+
 
 {==+==}
 Cargo, at its heart, will not attempt to access the network unless told to do
@@ -370,7 +404,7 @@ and a populated cache of the crates reflected in the lock file. If either of
 these components are missing, then they're required for the build to succeed and
 must be fetched remotely.
 {==+==}
-Cargo 会十分激进地缓存信息以最少化网络访问。它保证，如果 `cargo build` (或其他类似的指令) 执行成功，那么下一次 `cargo build` 绝不会再访问网络，除非 `Cargo.toml` 在这期间被修改。阻止网络访问的方法归结为一个 `Cargo.lock` 文件以及相对应的对 crate 的 cache。如果两者之一丢失，那么当下次构建时还是需要访问网络。
+Cargo 会十分激进地缓存信息以最少化网络访问。它保证，如果 `cargo build` (或其他类似的指令) 执行成功，那么下一次 `cargo build` 绝不会再访问网络，除非 `Cargo.toml` 在这期间被修改。阻止网络访问的方法归结为 `Cargo.lock` 文件以及相对应的对 crate 的 cache。如果两者之一丢失，那么当下次构建时需要访问网络。
 {==+==}
 
 {==+==}
@@ -383,7 +417,8 @@ not change the behavior of Cargo*, it simply asserts that Cargo shouldn't touch
 the network as a previous command has been run to ensure that network activity
 shouldn't be necessary.
 {==+==}
-从 Rust 1.11.0 开始，Cargo 可以使用一个新的标志 `--frozen`，其断言 Cargo 绝不会访问网络。一旦传递了这个标志，当 Cargo 试图访问网络时会立刻报错退出。错误信息中包含需要访问网络的原因以帮助排查错误。注意，这个标志 *不会改变 Cargo 的行为*，其仅仅是在之前的命令已经准备好相应的资源后，声明 Cargo 接下来不应该访问网络。
+从 Rust 1.11.0 开始，Cargo 可以使用一个新的标志 `--frozen`，其断言 Cargo 不能访问网络。一旦传递了这个标志，当 Cargo 试图访问网络时会立刻报错退出。
+错误信息中包含需要访问网络的原因以帮助排查错误。注意，这个标志 *不会改变 Cargo 的行为* ，其仅仅是在之前的命令已经准备好相应的资源后，声明 Cargo 接下来不应该访问网络。
 {==+==}
 
 {==+==}
@@ -393,14 +428,15 @@ You can use [`cargo fetch`] in one project to download dependencies before
 going offline, and then use those same dependencies in another project with
 the `--offline` flag (or [configuration value][offline config]).
 {==+==}
-在 Rust 1.36.0 中加入了 `--offline` 标志。这个标志告诉 Cargo 不要访问网络，同时尽可能用缓存的数据完成执行(如果可能的话)。你可以用 [`cargo fetch`] 在断网之前下载好需要的依赖，然后通过 `--offline` (或者 [cargo设置选项][offline config])) 将这些依赖用在另一个项目中。
+在 Rust 1.36.0 中加入了 `--offline` 标志。这个标志告诉 Cargo 不要访问网络，同时尽可能用缓存的数据完成执行(如果可能的话)。
+你可以用 [`cargo fetch`] 在断网之前下载好需要的依赖，然后通过 `--offline` (或者 [cargo设置选项][offline config])) 将这些依赖用在另一个项目中。
 {==+==}
 
 {==+==}
 For more information about vendoring, see documentation on [source
 replacement][replace].
 {==+==}
-在 [source replacement][replace] 获取更多信息。
+在 [源替换][replace] 获取更多信息。
 {==+==}
 
 {==+==}
@@ -426,6 +462,7 @@ sometimes rebuild code when you're not expecting it!
 Cargo 负责增量编译你项目中的 crate。这意味着如果你连续进行两次 `cargo build`，第二次运行不应该重新构建你的 crates.io 依赖。然而某些时候会发生 bug 导致 Cargo 重新构建你的代码。
 {==+==}
 
+
 {==+==}
 We've long [wanted to provide better diagnostics about
 this](https://github.com/rust-lang/cargo/issues/2904) but unfortunately haven't
@@ -436,6 +473,7 @@ environment variable:
 我们很长时间内都想[给这个问题提供更好的诊断信息](https://github.com/rust-lang/cargo/issues/2904)，但是还没有取得进展。与此同时，你至少可以通过设置 `CARGO_LOG` 来对重新构建(rebuild)的原因进行一些诊断。
 {==+==}
 
+
 {==+==}
 ```sh
 $ CARGO_LOG=cargo::core::compiler::fingerprint=info cargo build
@@ -443,6 +481,7 @@ $ CARGO_LOG=cargo::core::compiler::fingerprint=info cargo build
 {==+==}
 
 {==+==}
+
 
 {==+==}
 This will cause Cargo to print out a lot of information about diagnostics and
@@ -452,14 +491,17 @@ output isn't super easy to read just yet. Note that the `CARGO_LOG` needs to be
 set for the command that rebuilds when you think it should not. Unfortunately
 Cargo has no way right now of after-the-fact debugging "why was that rebuilt?"
 {==+==}
-这会使得 Cargo 打印出一大堆关于诊断和重新构建的信息，里面经常会有一点线索，但是大部分时候需要你费点力气去分析，因为这些信息暂时还不是那么容易阅读。注意 `CARGO_LOG` 需要设置在你认为不应该但是却导致了重新构建的命令上。不幸的是 Cargo 目前还不支持事后分析——“为什么会发生重新构建？”
+这会使得 Cargo 打印出一大堆关于诊断和重新构建的信息，里面经常会有一点线索，但是大部分时候需要你费点力气去分析，因为这些信息暂时还不是那么容易阅读。
+注意 `CARGO_LOG` 需要设置在你认为不应该但是却导致了重新构建的命令上。不幸的是 Cargo 目前还不支持事后分析——"为什么会发生重新构建？"
 {==+==}
+
 
 {==+==}
 Some issues we've seen historically which can cause crates to get rebuilt are:
 {==+==}
-历史上的一些issue告诉我们以下情况会导致 crate 被重新构建: 
+曾经的一些issue告诉我们以下情况会导致 crate 被重新构建: 
 {==+==}
+
 
 {==+==}
 * A build script prints `cargo:rerun-if-changed=foo` where `foo` is a file that
@@ -469,6 +511,7 @@ Some issues we've seen historically which can cause crates to get rebuilt are:
 {==+==}
 * 一个构建脚本打印了 `cargo:rerun-if-changed=foo` ，但是 `foo` 这个文件并不存在而且不会被生成。这导致 Cargo 一直执行构建脚本以生成这个文件，但是始终无法生成。这种情况的解决办法就是停止打印 `rerun-if-changed` 。
 {==+==}
+
 
 {==+==}
 * Two successive Cargo builds may differ in the set of features enabled for some
@@ -480,7 +523,7 @@ Some issues we've seen historically which can cause crates to get rebuilt are:
   features enabled on a crate constant regardless of what you're building in
   your workspace.
 {==+==}
-* 连续的两次 Cargo build 可能会在某个依赖上启用不同的 feature。例如第一个构建命令构建整个 workspace，第二个命令仅仅构建一个 crate，这可能会导致某个依赖使用了不同的 feature，导致这个依赖和依赖它的东西被重新构建。很遗憾这没有完美的解决办法，如果可能的话，最好使得，不管你在 workspace 中构建什么时，都让一个 crate 的 feature 保持不变。
+* 连续的两次 Cargo build 可能会在某个依赖上启用不同的特性。例如第一个构建命令构建整个工作空间，第二个命令仅仅构建一个 crate，这可能会导致某个依赖使用了不同的特性，导致这个依赖和依赖它的内容被重新构建。很遗憾这没有完美的解决办法，如果可能的话，最好使得，不管你在工作空间中构建什么时，都让一个 crate 的特性保持不变。
 {==+==}
 
 {==+==}
@@ -491,7 +534,7 @@ Some issues we've seen historically which can cause crates to get rebuilt are:
   feel free to open an issue and we can see if we can accommodate the filesystem
   somehow.
 {==+==}
-* 一些文件系统在时间戳(timestamp)上显示出不寻常的行为。Cargo 主要利用文件的时间戳来决定重新构建是否应该发生，但是如果你用的是一个非标准的文件系统，其可能会影响到时间戳 (例如截断，或者漂移)。在这种情况下，可以开一个 issue ，我们会试着看看能否以某种方法适配这个文件系统。
+* 一些文件系统在时间戳(timestamp)上显示出不寻常的行为。Cargo 主要利用文件的时间戳来决定重新构建是否应该发生，但是如果你用的是一个非标准的文件系统，其可能会影响到时间戳 (例如截断或偏离)。在这种情况下，可以开一个 issue ，我们会试着看看能否以某种方法适配这个文件系统。
 {==+==}
 
 {==+==}
@@ -502,7 +545,7 @@ Some issues we've seen historically which can cause crates to get rebuilt are:
   rebuilds to look spurious! The best fix here would be to wrangle the
   background process to avoid clashing with your work.
 {==+==}
-* 一个并发的构建进程要么在删除构建产物，要么在修改文件。有时你有一个后台进程尝试 build 或者 check 你的项目。这个后台进程可能令人惊讶的删除了某些构建产物或者改变了文件，这会导致奇怪的重新构建。最好的解决方法是调整后台进程，避免与你的工作发生冲突。
+* 一个并发的构建进程要么在删除构建制品，要么在修改文件。有时你有一个后台进程尝试构建或者检查项目。这个后台进程可能令人惊讶的删除了某些构建制品或者改变了文件，这会导致奇怪的重新构建。最好的解决方法是调整后台进程，避免与你的工作发生冲突。
 {==+==}
 
 {==+==}
@@ -510,5 +553,5 @@ If after trying to debug your issue, however, you're still running into problems
 then feel free to [open an
 issue](https://github.com/rust-lang/cargo/issues/new)!
 {==+==}
-如果在尝试 debug 你的问题后，还是无法解决，请随意[开一个 issue](https://github.com/rust-lang/cargo/issues/new)。
+如果在尝试 debug 你的问题后，还是无法解决，请[开一个issue](https://github.com/rust-lang/cargo/issues/new)。
 {==+==}
