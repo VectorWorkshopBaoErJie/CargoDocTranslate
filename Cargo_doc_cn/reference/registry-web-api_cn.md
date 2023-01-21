@@ -9,7 +9,7 @@
 A registry may host a web API at the location defined in `config.json` to
 support any of the actions listed below.
 {==+==}
-注册机构可以在 `config.json` 中定义的位置托管一个网络API，以支持下面列出的任何动作。
+注册中心可以在 `config.json` 定义主机网络API位置，以支持下面列出的任何动作。
 {==+==}
 
 
@@ -21,7 +21,7 @@ visit the registry's website to obtain a token, and Cargo can store the token
 using the [`cargo login`] command, or by passing the token on the
 command-line.
 {==+==}
-对于需要认证的请求，Cargo包含 `Authorization` 头。该头的值是API token。如果 token 无效，服务器应以403代码进行响应。用户应该访问注册中心的网站来获得token ，Cargo可以使用 [`cargo login`] 命令来存储token，或者在命令行中传递token。
+对于需要认证的请求，Cargo包含 `Authorization` 头。该头的值是API token "令牌"。如果令牌无效，服务器应以403代码进行响应。用户应该访问注册中心的网站来获得令牌 ，Cargo可以使用 [`cargo login`] 命令来存储令牌，或者在命令行中传递令牌。
 {==+==}
 
 
@@ -31,7 +31,7 @@ Errors should use an appropriate response code, such as 404.
 Failure
 responses should have a JSON object with the following structure:
 {==+==}
-响应使用200代码表示成功。
+响应使用代码200表示成功。
 错误应使用适当的响应代码，如404。
 失败响应应该有一个JSON对象，其结构如下:
 {==+==}
@@ -70,8 +70,8 @@ If the response code indicates an error and the content does not have this struc
  message intended to help debugging the server error. A server returning an `errors` object allows a registry to provide a more
 detailed or user-centric error message.
 {==+==}
-如果响应有这种结构，Cargo会向用户显示详细的信息，即使响应代码是200。
-如果响应代码表明有错误，而且内容没有这种结构，Cargo会向用户显示一条旨在帮助调试服务器错误的信息。
+如果响应中有这种结构，Cargo会向用户显示详细信息，即使响应代码是200。
+如果响应代码表示有错误，而且内容中没有这种结构，Cargo会向用户显示一条旨在帮助调试服务器错误的信息。
 服务器返回一个 `errors` 对象，允许注册中心提供更详细的或以用户为中心的错误信息。
 {==+==}
 
@@ -84,7 +84,7 @@ Cargo is responsible for handling backwards compatibility fallbacks should any
 be required in the future.
 {==+==}
 为了向后兼容，服务器应该忽略任何意外的查询参数或JSON字段。
-如果缺少的JSON字段，应该假定它为空。端点以路径中的 `v1` 部分为版本，如果将来有任何需要，Cargo负责处理向后兼容的回调。
+如果缺少的JSON字段，应该假定它为空。终端使用路径的 `v1` 部分进行版本控制，如果将来有需要，Cargo负责处理向后兼容的回调。
 {==+==}
 
 
@@ -127,7 +127,7 @@ The publish endpoint is used to publish a new version of a crate. The server
 should validate the crate, make it available for download, and add it to the
 index.
 {==+==}
-发布端点用于发布新版本的crate。服务器应该验证该crate，使其可供下载，并将其添加到索引中。
+发布终端用于发布新版本的crate。服务器应该验证该crate，使其可供下载，并将其添加到索引中。
 {==+==}
 
 
@@ -209,7 +209,7 @@ considered as an exhaustive list of restrictions [crates.io] imposes.
     "name": "foo",
     // 发布的包的版本。
     "vers": "0.1.0",
-    // 包的直接依赖的数组。
+    // 包直接依赖的数组。
     "deps": [
         {
             // 依赖的名称。
@@ -403,7 +403,7 @@ A successful response includes the JSON object:
 The yank endpoint will set the `yank` field of the given version of a crate to
 `true` in the index.
 {==+==}
-yank端点将在索引中将给定版本的crate的 `yank` 字段设置为 `true` 。
+yank终端在索引中将给定版本的crate的 `yank` 字段设置为 `true` 。
 {==+==}
 
 
@@ -446,7 +446,7 @@ yank端点将在索引中将给定版本的crate的 `yank` 字段设置为 `true
 The unyank endpoint will set the `yank` field of the given version of a crate
 to `false` in the index.
 {==+==}
-unyank端点将在索引中将给定版本的crate的 `yank` 字段设置为 `false` 。
+unyank终端在索引中将给定版本的crate的 `yank` 字段设置为 `false` 。
 {==+==}
 
 
@@ -505,7 +505,7 @@ Cargo没有固有的用户和所有者的概念，但它提供 `owner` 命令来
 {==+==}
 The owners endpoint returns a list of owners of the crate.
 {==+==}
-owners端点返回crate的所有者列表。
+owners终端返回crate的所有者列表。
 {==+==}
 
 
@@ -771,7 +771,7 @@ The "login" endpoint is not an actual API request. It exists solely for the
 [`cargo login`] command to display a URL to instruct a user to visit in a web
 browser to log in and retrieve an API token.
 {==+==}
-"login" 端点不是实际的API请求。
+"login" 终端不是实际的API请求。
 它的存在仅仅是为了 [`cargo login`] 命令显示URL，指示用户在网络浏览器中访问以登录并获取API令牌。
 {==+==}
 
