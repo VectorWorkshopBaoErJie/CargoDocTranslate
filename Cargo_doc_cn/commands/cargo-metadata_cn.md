@@ -649,7 +649,7 @@ The feature flags allow you to control which features are enabled. When no
 feature options are given, the `default` feature is activated for every
 selected package.
 {==+==}
-feature 标志可以用于控制启用哪些 feature。当没有提供这个选项时，会使用 `default` feature。
+特性标志允许你控制开启哪些特性。当没有提供特性选项时，会为每个选择的包启用 `default` 特性。
 {==+==}
 
 {==+==}

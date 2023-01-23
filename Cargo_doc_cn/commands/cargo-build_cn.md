@@ -57,8 +57,8 @@ depend on the selected manifest file (based on the current working directory if
 the workspaces default members are selected, otherwise only the package defined
 by the manifest will be selected.
 {==+==}
-默认情况下，当package选择选项没有给出时，package的选择依赖于指定的清单文件(若没有给出 `--manifest-path` 参数，则为当前目录下的清单文件)。
-如果清单文件是workspace的根，那么workspace的默认成员被选择，否则，只有被定义在清单文件中的package会被选择。
+默认情况下，如果没有提供选择包的选项，那么会按照选择的配置清单文件来选择包(当没有指定 `--manifest-path` 时，按照当前工目录来查找配置清单文件)。
+如果工作空间根目录的配置清单文件，则会选择该工作空间的默认成员，否则仅选取配置清单文件所在的那个包。
 {==+==}
 
 {==+==}
@@ -303,7 +303,7 @@ The feature flags allow you to control which features are enabled. When no
 feature options are given, the `default` feature is activated for every
 selected package.
 {==+==}
-特性选择标识可以用来控制哪些特性被启用。当没有设置特性选项时， `default` 特性将在所有被选择的package中被激活。
+特性标志允许你控制开启哪些特性。当没有提供特性选项时，会为每个选择的包启用 `default` 特性。
 {==+==}
 
 
@@ -372,9 +372,8 @@ target artifacts are placed in a separate directory. See the
 <dt class="option-term" id="option-cargo-build---target"><a class="option-anchor" href="#option-cargo-build---target"></a><code>--target</code> <em>triple</em></dt>
 <dd class="option-desc">为指定的CPU架构构建. 默认情况下是当前主机的架构. 参数中的三元组的一般格式是
 <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>. 运行 <code>rustc --print target-list</code> 来获取支持的架构列表 </p>
-<p>也可以用 <code>build.target</code> <a href="../reference/config.html"> 配置 </a>。</p>
-<p>需要注意的是，指定该标识将令Cargo在不同的模式下运行，其中目标产物将放到单独的目录中，详情查看
-<a href="../guide/build-cache.html">build cache</a></dd>
+<p>也可以通过 <code>build.target</code> <a href="../reference/config.html">配置</a>。</p>
+<p>注意，指定这个标志会使Cargo在不同的模式下运行，目标制品放在单独目录。 参见 <a href="../guide/build-cache.html">构建缓存</a> 文档了解详情。</dd>
 {==+==}
 
 
