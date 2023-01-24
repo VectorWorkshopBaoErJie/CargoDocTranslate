@@ -37,9 +37,10 @@ cargo-doc - 为包构建文档
 
 ### 包的选择
 
-默认情况下，如果没有提供选择包的选项，那么会按照选择的清单文件来选择包(当没有指定 `--manifest-path` 时，按照当前工目录来查找清单文件)。如果工作空间根目录的清单文件，则会选择该工作空间的默认成员，否则仅选取清单文件所在的那个包。
+默认情况下，如果没有提供选择包的选项，那么会按照选择的配置清单文件来选择包(当没有指定 `--manifest-path` 时，按照当前工目录来查找配置清单文件)。
+如果工作空间根目录的配置清单文件，则会选择该工作空间的默认成员，否则仅选取配置清单文件所在的那个包。
 
-可以通过 `workspace.default-members` 来显式设置一个工作空间的默认成员。如果没有设置，在虚拟工作空间下会选择所有的成员，在非虚拟工作空间下仅会选择根 package 。
+可以通过 `workspace.default-members` 来显式设置工作空间的默认成员。如果没有设置，在虚拟工作空间下会选择所有的成员，在非虚拟工作空间下仅会选择根 package 。
 
 <dl>
 
@@ -97,7 +98,7 @@ cargo-doc - 为包构建文档
 
 ### feature 选择
 
-feature 标志允许你控制开启哪些 feature。当没有提供 feature 选项时，会使用 为每个选择的包启用 `default` feature。
+特性标志允许你控制开启哪些特性。当没有提供特性选项时，会为每个选择的包启用 `default` 特性。
 
 查看 [the features documentation](../reference/features.html#command-line-feature-options) 获取更多信息。
 
@@ -126,9 +127,8 @@ feature 标志允许你控制开启哪些 feature。当没有提供 feature 选�
 <dt class="option-term" id="option-cargo-doc---target"><a class="option-anchor" href="#option-cargo-doc---target"></a><code>--target</code> <em>triple</em></dt>
 <dd class="option-desc">为指定的架构而构建文档，默认为宿主架构。triple 的格式为 
 <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>。 执行 <code>rustc --print target-list</code> 可以展示支持的 target 的列表。该标志可以指定多次。</p>
-<p>此功能也可以通过指定 <code>build.target</code> <a href="../reference/config.html">设置选项</a>来进行设置。</p>
-<p>注意，该标志使得 Cargo 运行在不同的模式下，其会将构建产物放在单独的文件夹中。
-查看 <a href="../guide/build-cache.html">build cache</a> 文档来获取更多信息。</dd>
+<p>也可以通过 <code>build.target</code> <a href="../reference/config.html">配置</a>。</p>
+<p>注意，指定这个标志会使Cargo在不同的模式下运行，目标制品放在单独目录。 参见 <a href="../guide/build-cache.html">构建缓存</a> 文档了解详情。</dd>
 
 
 

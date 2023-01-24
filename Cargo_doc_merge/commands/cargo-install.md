@@ -124,7 +124,7 @@ cargo-install - 构建和安装 Rust 二进制程序
 
 ### 选择 feature
 
-feature 标志可以用于控制启用哪些 feature。当没有提供这个选项时，会使用 `default` feature。
+特性标志允许你控制开启哪些特性。当没有提供特性选项时，会为每个选择的包启用 `default` 特性。
 
 查看 [features 文档](../reference/features.html#command-line-feature-options) 获取更多信息。
 
@@ -152,9 +152,8 @@ feature 标志可以用于控制启用哪些 feature。当没有提供这个选�
 
 <dt class="option-term" id="option-cargo-install---target"><a class="option-anchor" href="#option-cargo-install---target"></a><code>--target</code> <em>triple</em></dt>
 <dd class="option-desc">为指定的架构安装，默认情况下是宿主架构。 通常的架构三元组格式为 <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>。 运行 <code>rustc --print target-list</code> 可以获取所有支持的架构的列表。</p>
-<p>也可以在 <code>build.target</code> 
-<a href="../reference/config.html"> 配置</a>。</p>
-<p> 注意，指定此标志会让 Cargo 工作在另一种模式上，构建产物被放在单独的文件夹。查看 <a href="../guide/build-cache.html">build cache</a> 文档来获取更多信息。</dd>
+<p>也可以通过 <code>build.target</code> <a href="../reference/config.html">配置</a>。</p>
+<p>注意，指定这个标志会使Cargo在不同的模式下运行，目标制品放在单独目录。 参见 <a href="../guide/build-cache.html">构建缓存</a> 文档了解详情。</dd>
 
 
 

@@ -50,7 +50,7 @@ cargo-run - 运行当前包
 
 ### 特性选择
 
-特性标志允许你控制启用哪些特性。当未给出特性选项时，每个选定的包都会激活 `default` 特性。
+特性标志允许你控制开启哪些特性。当没有提供特性选项时，会为每个选择的包启用 `default` 特性。
 
 参阅 [特性文档](../reference/features.html#command-line-feature-options) 了解更多内容。
 

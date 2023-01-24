@@ -64,14 +64,11 @@ example if you'd like to apply all fixes to the current package, you can run:
 
 {==+==}
     cargo fix
-{==+==}
 
-{==+==}
-
-
-{==+==}
 which behaves the same as `cargo check --all-targets`.
 {==+==}
+    cargo fix
+
 其行为与 `cargo check --all-targets` 相同。
 {==+==}
 

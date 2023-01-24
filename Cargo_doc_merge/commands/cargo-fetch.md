@@ -29,9 +29,8 @@ cargo-fetch - 从网络中下载一个包的依赖。
 <dt class="option-term" id="option-cargo-fetch---target"><a class="option-anchor" href="#option-cargo-fetch---target"></a><code>--target</code> <em>triple</em></dt>
 <dd class="option-desc">为指定的架构而下载依赖，默认为所有架构下载。triple 的格式为 
 <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>。 执行 <code>rustc --print target-list</code> 可以展示支持的 target 的列表。该标志可以指定多次。</p>
-<p>此功能也可以通过指定 <code>build.target</code> <a href="../reference/config.html">设置选项</a>来进行设置。</p>
-<p>注意，该标志使得 Cargo 运行在不同的模式下，其会将构建产物放在单独的文件夹中。
-查看 <a href="../guide/build-cache.html">build cache</a> 文档来获取更多信息。</dd>
+<p>也可以通过 <code>build.target</code> <a href="../reference/config.html">配置</a>。</p>
+<p>注意，指定这个标志会使Cargo在不同的模式下运行，目标制品放在单独目录。 参见 <a href="../guide/build-cache.html">构建缓存</a> 文档了解详情。</dd>
 
 
 </dl>

@@ -295,7 +295,7 @@ cargo-metadata - 输出当前包的机器可读的元数据
 
 ### 选择 feature
 
-feature 标志可以用于控制启用哪些 feature。当没有提供这个选项时，会使用 `default` feature。
+特性标志允许你控制开启哪些特性。当没有提供特性选项时，会为每个选择的包启用 `default` 特性。
 
 查看 [features 文档](../reference/features.html#command-line-feature-options) 获取更多信息。
 

@@ -82,9 +82,8 @@ crates.io的令牌可以用<code>CARGO_REGISTRY_TOKEN</code>环境变量指定�
 <dt class="option-term" id="option-cargo-publish---target"><a class="option-anchor" href="#option-cargo-publish---target"></a><code>--target</code> <em>triple</em></dt>
 <dd class="option-desc">对于给定架构发布。默认是主机的架构。常规格式是三元组 <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>。
 运行<code>rustc --print target-list</code>获得支持的目标列表。 这个标志可被多次指定。</p>
-<p>也可以用 <code>build.target</code> <a href="../reference/config.html">配置</a>。</p>
-<p>注意，指定这个标志会使Cargo在不同的模式下运行，目标制品放在单独的目录中。
-见 <a href="../guide/build-cache.html">构建缓存</a> 文档，了解更多内容。</dd>
+<p>也可以通过 <code>build.target</code> <a href="../reference/config.html">配置</a>。</p>
+<p>注意，指定这个标志会使Cargo在不同的模式下运行，目标制品放在单独目录。 参见 <a href="../guide/build-cache.html">构建缓存</a> 文档了解详情。</dd>
 
 
 
@@ -98,7 +97,7 @@ crates.io的令牌可以用<code>CARGO_REGISTRY_TOKEN</code>环境变量指定�
 
 ### 特性选择
 
-特性标志允许你控制启用哪些特性。当没有给出特性选项时，每个选定的包都会激活 `default` 特性。
+特性标志允许你控制开启哪些特性。当没有提供特性选项时，会为每个选择的包启用 `default` 特性。
 
 见 [特性文档](../reference/features.html#command-line-feature-options) 了解更多内容。
 

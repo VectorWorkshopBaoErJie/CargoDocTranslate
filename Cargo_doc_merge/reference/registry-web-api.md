@@ -1,11 +1,11 @@
 
 ## Web API
 
-注册机构可以在 `config.json` 中定义的位置托管一个网络API，以支持下面列出的任何动作。
+注册中心可以在 `config.json` 定义主机网络API位置，以支持下面列出的任何动作。
 
-对于需要认证的请求，Cargo包含 `Authorization` 头。该头的值是API token。如果 token 无效，服务器应以403代码进行响应。用户应该访问注册中心的网站来获得token ，Cargo可以使用 [`cargo login`] 命令来存储token，或者在命令行中传递token。
+对于需要认证的请求，Cargo包含 `Authorization` 头。该头的值是API token "令牌"。如果令牌无效，服务器应以403代码进行响应。用户应该访问注册中心的网站来获得令牌 ，Cargo可以使用 [`cargo login`] 命令来存储令牌，或者在命令行中传递令牌。
 
-响应使用200代码表示成功。
+响应使用代码200表示成功。
 错误应使用适当的响应代码，如404。
 失败响应应该有一个JSON对象，其结构如下:
 
@@ -21,12 +21,12 @@
 }
 ```
 
-如果响应有这种结构，Cargo会向用户显示详细的信息，即使响应代码是200。
-如果响应代码表明有错误，而且内容没有这种结构，Cargo会向用户显示一条旨在帮助调试服务器错误的信息。
+如果响应中有这种结构，Cargo会向用户显示详细信息，即使响应代码是200。
+如果响应代码表示有错误，而且内容中没有这种结构，Cargo会向用户显示一条旨在帮助调试服务器错误的信息。
 服务器返回一个 `errors` 对象，允许注册中心提供更详细的或以用户为中心的错误信息。
 
 为了向后兼容，服务器应该忽略任何意外的查询参数或JSON字段。
-如果缺少的JSON字段，应该假定它为空。端点以路径中的 `v1` 部分为版本，如果将来有任何需要，Cargo负责处理向后兼容的回调。
+如果缺少的JSON字段，应该假定它为空。终端使用路径的 `v1` 部分进行版本控制，如果将来有需要，Cargo负责处理向后兼容的回调。
 
 Cargo为所有请求设置了以下头信息:
 
@@ -42,7 +42,7 @@ Cargo为所有请求设置了以下头信息:
 - Method: PUT
 - Authorization: Included
 
-发布端点用于发布新版本的crate。服务器应该验证该crate，使其可供下载，并将其添加到索引中。
+发布终端用于发布新版本的crate。服务器应该验证该crate，使其可供下载，并将其添加到索引中。
 
 Cargo发送的数据体:
 
@@ -60,7 +60,7 @@ Cargo发送的数据体:
     "name": "foo",
     // 发布的包的版本。
     "vers": "0.1.0",
-    // 包的直接依赖的数组。
+    // 包直接依赖的数组。
     "deps": [
         {
             // 依赖的名称。
@@ -159,7 +159,7 @@ Cargo发送的数据体:
 - Method: DELETE
 - Authorization: Included
 
-yank端点将在索引中将给定版本的crate的 `yank` 字段设置为 `true` 。
+yank终端在索引中将给定版本的crate的 `yank` 字段设置为 `true` 。
 
 响应成功包括JSON对象:
 
@@ -176,7 +176,7 @@ yank端点将在索引中将给定版本的crate的 `yank` 字段设置为 `true
 - Method: PUT
 - Authorization: Included
 
-unyank端点将在索引中将给定版本的crate的 `yank` 字段设置为 `false` 。
+unyank终端在索引中将给定版本的crate的 `yank` 字段设置为 `false` 。
 
 响应成功包括JSON对象:
 
@@ -199,7 +199,7 @@ Cargo没有固有的用户和所有者的概念，但它提供 `owner` 命令来
 - Method: GET
 - Authorization: Included
 
-owners端点返回crate的所有者列表。
+owners终端返回crate的所有者列表。
 
 响应成功包括JSON对象:
 
@@ -311,7 +311,7 @@ DELETE请求将从crate中删除一个所有者。该请求应包括以下JSON�
 
 - Endpoint: `/me`
 
-"login" 端点不是实际的API请求。
+"login" 终端不是实际的API请求。
 它的存在仅仅是为了 [`cargo login`] 命令显示URL，指示用户在网络浏览器中访问以登录并获取API令牌。
 
 [`cargo login`]: ../commands/cargo-login.md
