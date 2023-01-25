@@ -1,43 +1,97 @@
+{==+==}
 # cargo-rustc(1)
+{==+==}
+{==+==}
 
 
 
+{==+==}
 ## NAME
+{==+==}
+## 定义
+{==+==}
 
+{==+==}
 cargo-rustc - Compile the current package, and pass extra options to the compiler
+{==+==}
+cargo-rustc - 编译当前包，并将额外参数传递给编译器
+{==+==}
 
+{==+==}
 ## SYNOPSIS
+{==+==}
+## 概要
+{==+==}
 
+{==+==}
 `cargo rustc` [_options_] [`--` _args_]
+{==+==}
+`cargo rustc` [_选项_] [`--` _参数_]
+{==+==}
 
+{==+==}
 ## DESCRIPTION
+{==+==}
+## 说明
+{==+==}
 
+{==+==}
 The specified target for the current package (or package specified by `-p` if
 provided) will be compiled along with all of its dependencies. The specified
 _args_ will all be passed to the final compiler invocation, not any of the
 dependencies. Note that the compiler will still unconditionally receive
 arguments such as `-L`, `--extern`, and `--crate-type`, and the specified
 _args_ will simply be added to the compiler invocation.
+{==+==}
 
+{==+==}
+
+{==+==}
 See <https://doc.rust-lang.org/rustc/index.html> for documentation on rustc
 flags.
+{==+==}
+有关 rustc 的标志位的文档请查看 <https://doc.rust-lang.org/rustc/index.html>
+{==+==}
 
+{==+==}
 This command requires that only one target is being compiled when additional
 arguments are provided. If more than one target is available for the current
 package the filters of `--lib`, `--bin`, etc, must be used to select which
 target is compiled.
+{==+==}
 
+{==+==}
+
+{==+==}
 To pass flags to all compiler processes spawned by Cargo, use the `RUSTFLAGS`
 [environment variable](../reference/environment-variables.html) or the
 `build.rustflags` [config value](../reference/config.html).
+{==+==}
+使用`RUSTFLAGS` [environment variable](../reference/environment-variables.html)
+或者 `build.rustflags` [config value](../reference/config.html)
+来给 Cargo 创建的所有编译器进程传递标志位。
+{==+==}
 
+{==+==}
 ## OPTIONS
+{==+==}
+## 选项
+{==+==}
 
+{==+==}
 ### Package Selection
+{==+==}
+### 选择包
+{==+==}
 
+{==+==}
 By default, the package in the current working directory is selected. The `-p`
 flag can be used to choose a different package in a workspace.
+{==+==}
+当前工作目录下的包是默认选中的。可以使用 `-p` 选项来选择工作空间中不同的包。
+{==+==}
 
+{==+==}
 <dl>
 
 <dt class="option-term" id="option-cargo-rustc--p"><a class="option-anchor" href="#option-cargo-rustc--p"></a><code>-p</code> <em>spec</em></dt>
@@ -47,31 +101,62 @@ format.</dd>
 
 
 </dl>
+{==+==}
+<dl>
+
+<dt class="option-term" id="option-cargo-rustc--p"><a class="option-anchor" href="#option-cargo-rustc--p"></a><code>-p</code> <em>spec</em></dt>
+<dt class="option-term" id="option-cargo-rustc---package"><a class="option-anchor" href="#option-cargo-rustc---package"></a><code>--package</code> <em>spec</em></dt>
+<dd class="option-desc">要构建的包。请在 <a href="cargo-pkgid.html">cargo-pkgid(1)</a> 查看 SPEC 格式</dd>
 
 
+</dl>
+{==+==}
+
+
+{==+==}
 ### Target Selection
+{==+==}
+### 选择构建目标
+{==+==}
 
+{==+==}
 When no target selection options are given, `cargo rustc` will build all
 binary and library targets of the selected package.
+{==+==}
+当没有提供构建目标选择的选项时， `cargo rustc` 会构建选中包的所有二进制程序和类库目标。
+{==+==}
 
+{==+==}
 Binary targets are automatically built if there is an integration test or
 benchmark being selected to build. This allows an integration
-test to execute the binary to exercise and test its behavior. 
+test to execute the binary to exercise and test its behavior.
 The `CARGO_BIN_EXE_<name>`
 [environment variable](../reference/environment-variables.html#environment-variables-cargo-sets-for-crates)
 is set when the integration test is built so that it can use the
 [`env` macro](https://doc.rust-lang.org/std/macro.env.html) to locate the
 executable.
+{==+==}
+
+{==+==}
 
 
+{==+==}
 Passing target selection flags will build only the specified
-targets. 
+targets.
+{==+==}
+传递目标选中标志可以仅编译指定的目标。
+{==+==}
 
-Note that `--bin`, `--example`, `--test` and `--bench` flags also 
-support common Unix glob patterns like `*`, `?` and `[]`. However, to avoid your 
-shell accidentally expanding glob patterns before Cargo handles them, you must 
+{==+==}
+Note that `--bin`, `--example`, `--test` and `--bench` flags also
+support common Unix glob patterns like `*`, `?` and `[]`. However, to avoid your
+shell accidentally expanding glob patterns before Cargo handles them, you must
 use single quotes or double quotes around each glob pattern.
+{==+==}
 
+{==+==}
+
+{==+==}
 <dl>
 
 <dt class="option-term" id="option-cargo-rustc---lib"><a class="option-anchor" href="#option-cargo-rustc---lib"></a><code>--lib</code></dt>
@@ -132,17 +217,89 @@ manifest settings for the target.</dd>
 
 
 </dl>
+{==+==}
+
+<dl>
+
+<dt class="option-term" id="option-cargo-rustc---lib"><a class="option-anchor" href="#option-cargo-rustc---lib"></a><code>--lib</code></dt>
+<dd class="option-desc">构建包的类库</dd>
 
 
+<dt class="option-term" id="option-cargo-rustc---bin"><a class="option-anchor" href="#option-cargo-rustc---bin"></a><code>--bin</code> <em>名称</em>...</dt>
+<dd class="option-desc">构建指定的二进制程序。这个标志位可以多次指定并且支持通用的 Unix glob 匹配格式。</dd>
+
+
+<dt class="option-term" id="option-cargo-rustc---bins"><a class="option-anchor" href="#option-cargo-rustc---bins"></a><code>--bins</code></dt>
+<dd class="option-desc">构建所有二进制目标</dd>
+
+
+
+<dt class="option-term" id="option-cargo-rustc---example"><a class="option-anchor" href="#option-cargo-rustc---example"></a><code>--example</code> <em>名称</em>...</dt>
+<dd class="option-desc">构建指定的例子。这个标志位可以多次指定并且支持通用的 Unix glob 匹配格式。</dd>
+
+
+<dt class="option-term" id="option-cargo-rustc---examples"><a class="option-anchor" href="#option-cargo-rustc---examples"></a><code>--examples</code></dt>
+<dd class="option-desc">构建所有例子目标</dd>
+
+
+<dt class="option-term" id="option-cargo-rustc---test"><a class="option-anchor" href="#option-cargo-rustc---test"></a><code>--test</code> <em>名称</em>...</dt>
+<dd class="option-desc">构建指定的集成测试。这个标志位可以多次指定并且支持通用的 Unix glob 匹配格式。</dd>
+
+
+<dt class="option-term" id="option-cargo-rustc---tests"><a class="option-anchor" href="#option-cargo-rustc---tests"></a><code>--tests</code></dt>
+<dd class="option-desc">Build all targets in test mode that have the <code>test = true</code> manifest
+flag set. By default this includes the library and binaries built as
+unittests, and integration tests. Be aware that this will also build any
+required dependencies, so the lib target may be built twice (once as a
+unittest, and once as a dependency for binaries, integration tests, etc.).
+Targets may be enabled or disabled by setting the <code>test</code> flag in the
+manifest settings for the target.</dd>
+
+
+<dt class="option-term" id="option-cargo-rustc---bench"><a class="option-anchor" href="#option-cargo-rustc---bench"></a><code>--bench</code> <em>名称</em>...</dt>
+<dd class="option-desc">构建指定的性能测试。这个标志位可以多次指定并且支持通用的 Unix glob 匹配格式。</dd>
+
+
+<dt class="option-term" id="option-cargo-rustc---benches"><a class="option-anchor" href="#option-cargo-rustc---benches"></a><code>--benches</code></dt>
+<dd class="option-desc">Build all targets in benchmark mode that have the <code>bench = true</code>
+manifest flag set. By default this includes the library and binaries built
+as benchmarks, and bench targets. Be aware that this will also build any
+required dependencies, so the lib target may be built twice (once as a
+benchmark, and once as a dependency for binaries, benchmarks, etc.).
+Targets may be enabled or disabled by setting the <code>bench</code> flag in the
+manifest settings for the target.</dd>
+
+
+<dt class="option-term" id="option-cargo-rustc---all-targets"><a class="option-anchor" href="#option-cargo-rustc---all-targets"></a><code>--all-targets</code></dt>
+<dd class="option-desc">构建所有目标。 相当于指定 <code>--lib --bins --tests --benches --examples</code>.</dd>
+
+
+</dl>
+{==+==}
+
+
+{==+==}
 ### Feature Selection
+{==+==}
+### 选择特性
+{==+==}
 
+{==+==}
 The feature flags allow you to control which features are enabled. When no
 feature options are given, the `default` feature is activated for every
 selected package.
+{==+==}
 
+{==+==}
+
+{==+==}
 See [the features documentation](../reference/features.html#command-line-feature-options)
 for more details.
+{==+==}
+更多细节查看 [the features documentation](../reference/features.html#command-line-feature-options)
+{==+==}
 
+{==+==}
 <dl>
 
 <dt class="option-term" id="option-cargo-rustc--F"><a class="option-anchor" href="#option-cargo-rustc--F"></a><code>-F</code> <em>features</em></dt>
@@ -161,10 +318,35 @@ be specified multiple times, which enables all specified features.</dd>
 
 
 </dl>
+{==+==}
+<dl>
+
+<dt class="option-term" id="option-cargo-rustc--F"><a class="option-anchor" href="#option-cargo-rustc--F"></a><code>-F</code> <em>特性</em></dt>
+<dt class="option-term" id="option-cargo-rustc---features"><a class="option-anchor" href="#option-cargo-rustc---features"></a><code>--features</code> <em>特性</em></dt>
+<dd class="option-desc">Space or comma separated list of features to activate. Features of workspace
+members may be enabled with <code>package-name/feature-name</code> syntax. This flag may
+be specified multiple times, which enables all specified features.</dd>
 
 
+<dt class="option-term" id="option-cargo-rustc---all-features"><a class="option-anchor" href="#option-cargo-rustc---all-features"></a><code>--all-features</code></dt>
+<dd class="option-desc">为全部选择的包启用所有可用的特性。</dd>
+
+
+<dt class="option-term" id="option-cargo-rustc---no-default-features"><a class="option-anchor" href="#option-cargo-rustc---no-default-features"></a><code>--no-default-features</code></dt>
+<dd class="option-desc">不要为选择的包 <code>默认</code> 启用默认特性。</dd>
+
+
+</dl>
+{==+==}
+
+
+{==+==}
 ### Compilation Options
+{==+==}
+### 编译选项
+{==+==}
 
+{==+==}
 <dl>
 
 <dt class="option-term" id="option-cargo-rustc---target"><a class="option-anchor" href="#option-cargo-rustc---target"></a><code>--target</code> <em>triple</em></dt>
@@ -239,9 +421,17 @@ the command-line argument value will override what is in the manifest.</p>
 
 
 </dl>
+{==+==}
 
+{==+==}
+
+{==+==}
 ### Output Options
+{==+==}
 
+{==+==}
+
+{==+==}
 <dl>
 <dt class="option-term" id="option-cargo-rustc---target-dir"><a class="option-anchor" href="#option-cargo-rustc---target-dir"></a><code>--target-dir</code> <em>directory</em></dt>
 <dd class="option-desc">Directory for all generated artifacts and intermediate files. May also be
@@ -251,10 +441,19 @@ Defaults to <code>target</code> in the root of the workspace.</dd>
 
 
 </dl>
+{==+==}
 
+{==+==}
+
+{==+==}
 ### Display Options
+{==+==}
 
+{==+==}
+
+{==+==}
 <dl>
+
 
 <dt class="option-term" id="option-cargo-rustc--v"><a class="option-anchor" href="#option-cargo-rustc--v"></a><code>-v</code></dt>
 <dt class="option-term" id="option-cargo-rustc---verbose"><a class="option-anchor" href="#option-cargo-rustc---verbose"></a><code>--verbose</code></dt>
@@ -309,10 +508,19 @@ coming from rustc are still emitted. Cannot be used with <code>human</code> or <
 
 
 </dl>
+{==+==}
 
+{==+==}
+
+{==+==}
 ### Manifest Options
+{==+==}
 
+{==+==}
+
+{==+==}
 <dl>
+
 
 <dt class="option-term" id="option-cargo-rustc---manifest-path"><a class="option-anchor" href="#option-cargo-rustc---manifest-path"></a><code>--manifest-path</code> <em>path</em></dt>
 <dd class="option-desc">Path to the <code>Cargo.toml</code> file. By default, Cargo searches for the
@@ -346,10 +554,19 @@ offline.</p>
 
 
 </dl>
+{==+==}
 
+{==+==}
+
+{==+==}
 ### Common Options
+{==+==}
 
+{==+==}
+
+{==+==}
 <dl>
+
 
 <dt class="option-term" id="option-cargo-rustc-+toolchain"><a class="option-anchor" href="#option-cargo-rustc-+toolchain"></a><code>+</code><em>toolchain</em></dt>
 <dd class="option-desc">If Cargo has been installed with rustup, and the first argument to <code>cargo</code>
@@ -375,10 +592,19 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 
 
 </dl>
+{==+==}
+
+{==+==}
 
 
+
+{==+==}
 ### Miscellaneous Options
+{==+==}
 
+{==+==}
+
+{==+==}
 <dl>
 <dt class="option-term" id="option-cargo-rustc--j"><a class="option-anchor" href="#option-cargo-rustc--j"></a><code>-j</code> <em>N</em></dt>
 <dt class="option-term" id="option-cargo-rustc---jobs"><a class="option-anchor" href="#option-cargo-rustc---jobs"></a><code>--jobs</code> <em>N</em></dt>
@@ -402,33 +628,79 @@ produced during execution of this command</p>
 
 
 </dl>
+{==+==}
+{==+==}
 
+{==+==}
 ## ENVIRONMENT
+{==+==}
 
+{==+==}
+
+{==+==}
 See [the reference](../reference/environment-variables.html) for
 details on environment variables that Cargo reads.
+{==+==}
+
+{==+==}
 
 
+{==+==}
 ## EXIT STATUS
+{==+==}
 
+{==+==}
+
+{==+==}
 * `0`: Cargo succeeded.
 * `101`: Cargo failed to complete.
+{==+==}
+
+{==+==}
 
 
+{==+==}
 ## EXAMPLES
+{==+==}
 
+{==+==}
+
+{==+==}
 1. Check if your package (not including dependencies) uses unsafe code:
+{==+==}
 
+{==+==}
+
+{==+==}
        cargo rustc --lib -- -D unsafe-code
+{==+==}
+{==+==}
 
+{==+==}
 2. Try an experimental flag on the nightly compiler, such as this which prints
    the size of every type:
+{==+==}
 
+{==+==}
+
+{==+==}
        cargo rustc --lib -- -Z print-type-sizes
+{==+==}
+{==+==}
 
+{==+==}
 3. Override `crate-type` field in Cargo.toml with command-line option:
+{==+==}
 
+{==+==}
+
+{==+==}
        cargo rustc --lib --crate-type lib,cdylib
+{==+==}
+{==+==}
 
+{==+==}
 ## SEE ALSO
-[cargo(1)](cargo.html), [cargo-build(1)](cargo-build.html), [rustc(1)](https://doc.rust-lang.org/rustc/index.html)
+[cargo(1)](cargo.html), [cargo-build(1)](cargo-build.html), [rustc(1)](https://doc.rust-lang.org/rustc/index.html{==+==})
+{==+==}
+{==+==}
