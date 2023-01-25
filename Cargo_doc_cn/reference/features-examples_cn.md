@@ -1,14 +1,14 @@
 {==+==}
 ## Features Examples
 {==+==}
-## 特性实例
+## 特性示例
 {==+==}
 
 
 {==+==}
 The following illustrates some real-world examples of features in action.
 {==+==}
-下面说明一些实际中的特性实例。
+下面说明一些实际中的特性示例。
 {==+==}
 
 
@@ -93,7 +93,7 @@ which [changes the behavior][serde_json-code] of JSON maps to preserve the
 order that keys are inserted. Notice that it enables an optional dependency
 [`indexmap`] to implement the new behavior.
 {==+==}
-[`serde_json`]包有[`preserve_order`功能][serde_json-preserve_order]，它[改变JSON映射行为][serde_json-code]，以保持键的插入顺序。
+[`serde_json`]包有[`preserve_order` 特性][serde_json-preserve_order]，它[改变JSON映射行为][serde_json-code]，以保持键的插入顺序。
 请注意，它启用了一个可选的依赖项 [`indexmap`] 来实现新的行为。
 {==+==}
 
@@ -264,8 +264,8 @@ compile-time described [here][log-docs]. It uses [`cfg-if`] to [choose a
 precedence][log-cfg-if]. If multiple features are enabled, the higher "max"
 levels will be preferred over the lower levels.
 {==+==}
-一些包可能有相互排斥的特性。处理这个问题的选项是，在一个特性优先于另一个。
-[`log`] 包是一个例子。它有[几个特性][log-features]，用于在编译时选择最大的日志级别，[这里][log-docs]描述。
+一些包可能有相互排斥的特性。处理这个问题的选项是，一个特性优先于另一个。
+[`log`] 包是一个例子。它有[几个特性][log-features]，用于在编译时选择最大的日志级别，描述在[这里][log-docs]。
 它使用[`cfg-if`]来[选择一个优先级][log-cfg-if]。如果启用了多个特性，较高的 "max" 级别将优先于较低的级别。
 {==+==}
 
@@ -284,7 +284,7 @@ levels will be preferred over the lower levels.
 {==+==}
 ### Proc-macro companion package
 {==+==}
-### 进程宏协同包
+### 过程宏协同包
 {==+==}
 
 
@@ -296,9 +296,9 @@ is included. This is helpful, because sometimes the proc-macro version must
 stay in sync with the parent package, and you don't want to force the users to
 have to specify both dependencies and keep them in sync.
 {==+==}
-有些包有一个与之紧密相连的进程宏。然而，并不是所有的用户都需要使用这个进程宏。
-通过使进程宏成为可选的依赖，这允许你方便地选择是否包含它。
-这很有帮助，因为有时进程宏的版本必须与父包保持同步，而你不想强迫用户必须指定两个依赖并保持它们同步。
+有些包有一个与之紧密相连的过程宏。然而，并不是所有的用户都需要使用这个过程宏。
+通过使过程宏成为可选的依赖，这允许你方便地选择是否包含它。
+这很有帮助，因为有时过程宏的版本必须与父包保持同步，而你不想强迫用户必须指定两个依赖并保持它们同步。
 {==+==}
 
 
@@ -308,7 +308,7 @@ enables the [`serde_derive`] proc-macro. The `serde_derive` crate is very
 tightly tied to `serde`, so it uses an [equals version
 requirement][serde-equals] to ensure they stay in sync.
 {==+==}
-一个例子是 [`serde`] ，它有一个[`derive`][serde-derive]特性，可以启用[`serde_derive`]进程宏。
+一个例子是 [`serde`] ，它有一个[`derive`][serde-derive]特性，可以启用[`serde_derive`]过程宏。
 `serde_derive` crate与 `serde` 紧密相连，所以它使用[相同版本要求][serde-equals]来确保它们保持同步。
 {==+==}
 
@@ -339,7 +339,7 @@ which has a [`nightly` feature][wasm-bindgen-nightly] which enables an
 is only available on the nightly channel at the time of this writing.
 {==+==}
 一些包想要试验只有在 Rust [nightly channel]上才有的API或语言特性。
-然而，他们可能不希望要求他们的用户也使用nightly频道。
+然而，他们可能不希望要求用户也使用nightly频道。
 一个例子是[`wasm-bindgen`]，它有一个[`nightly` 特性][wasm-bindgen-nightly]，
 它启用了一个[扩展的API][wasm-bindgen-unsize]，使用[`Unsize`]标记特性，在写这篇文章时，只有在nightly频道中才有。
 {==+==}
@@ -396,7 +396,7 @@ new APIs][async-std-gate] that people can opt-in to using, but may not be
 completely ready to be relied upon.
 {==+==}
 一些包有新的特性，他们可能想进行实验，而不必承诺这些API的稳定性。
-这些功能通常被记录在案，它们是实验性的，因此在未来可能会发生变化或损坏，甚至在一个次要的版本中。
+这些特性通常被记录在案，它们是实验性的，因此在未来可能会发生变化或损坏，甚至是在一个次要的版本中。
 一个例子是[async-std]包，它有一个[unstable]特性[async-std-unstable]，[gates new APIs][async-std-gate]，人们可以选择使用，但可能还没有完全准备好被依赖。
 {==+==}
 

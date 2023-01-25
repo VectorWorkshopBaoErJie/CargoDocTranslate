@@ -39,7 +39,7 @@ func Test_all_TF():
         ##### 检索单文件内的反包含。
         for op in TL_S:
             if source.content.find(op.source_text)==-1:
-                Ui.add_test("错误："+op.source_text+"\n源内容不存在")
+                Ui.add_test("错误："+op.source_text+"\n"+it.file_name+"源内容不存在")
                 Data.is_err=true
                 return 1  ## 反向包含将退出
     
@@ -56,7 +56,7 @@ func TL_flow_obj_in_test(_TLL):
         for u in range(length):
             if _TLL[u].translation_text.find(_TLL[length].source_text)!=-1:
                 is_pass=false
-                Ui.add_test("该词条反包含：\n"+_TLL[length].source_text)
+                Ui.add_test("该词条反包含：\n"+"原文:"+_TLL[length].source_text+"\n译文\n"+_TLL[length].translation_text)
             pass
         length-=1
     return is_pass

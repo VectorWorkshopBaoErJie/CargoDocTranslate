@@ -12,8 +12,8 @@ introduced them. Older versions of Cargo may not be able to use packages that
 make use of new features. However, the format for older packages should not
 change, so older versions of Cargo should be able to use them.
 {==+==}
-下面定义了索引的格式。有时会增加一些新的功能，这些新功能将从新版本 Cargo 开始识别。
-旧版本的Cargo可能无法使用利用了新特性的包。而旧版本的包的格式不应改变，旧版本的Cargo应能使用它们。
+下面定义了索引的格式。有时会增加一些新的功能，这些新功能将从新版本的 Cargo 开始识别。
+旧版本的Cargo可能无法使用利用了新特性的包。而旧版本的包的格式不应改变，旧版本Cargo应能使用它们。
 {==+==}
 
 
@@ -87,7 +87,7 @@ Cargo supports https, http, and file URLs, HTTP redirects, HTTP1 and HTTP2.
 The exact specifics of TLS support depend on the platform that Cargo is
 running on, the version of Cargo, and how it was compiled.
 {==+==}
-下载端点应发送所请求包的 `.crate` 文件。
+下载端应发送所请求包的 `.crate` 文件。
 Cargo支持https、http和文件URL、HTTP重定向、HTTP1和HTTP2。
 TLS支持的具体细节取决于Cargo所运行的平台、Cargo的版本以及它的编译方式。
 {==+==}
@@ -100,7 +100,7 @@ has a separate line in the file. The files are organized in a tier of
 directories:
 {==+==}
 索引库的其余部分包含每个包的一个文件，其中文件名是小写包的名称。
-包的每个版本在文件中都有一个单独的行。这些文件被组织在一个层级的目录中。
+包的每个版本在文件中都有一个单独的行。这些文件被组织在分层级的目录中。
 {==+==}
 
 

@@ -1,10 +1,11 @@
 ## 配置
 
-本文档解释了Cargo的配置系统如何工作，以及可用的键或配置。关于通过包的配置清单进行的配置，参阅[配置清单格式](manifest.md)。
+此文档解释Cargo的配置系统，以及可用的键或配置项。关于包的配置清单，参阅[manifest format](manifest.md)。
 
 ### 层次结构
 
-Cargo允许对某一特定包进行本地配置，也允许进行全局配置。它在当前目录和所有父目录下寻找配置文件。例如，如果在`/projects/foo/bar/baz`中调用Cargo，那么以下的配置文件会被探测到，并按照这个顺序统一起来。
+Cargo允许对特定的包进行本地配置和全局配置，会在当前目录和所有父目录下寻找配置文件。
+比如，如果在 `/projects/foo/bar/baz` 中调用Cargo，那么以下的配置文件会被探测到，并按照这个顺序统一管理:
 
 * `/projects/foo/bar/baz/.cargo/config.toml`
 * `/projects/foo/bar/.cargo/config.toml`
@@ -15,19 +16,19 @@ Cargo允许对某一特定包进行本地配置，也允许进行全局配置。
     * Windows: `%USERPROFILE%\.cargo\config.toml`
     * Unix: `$HOME/.cargo/config.toml`
 
-有了这种结构，你可以指定每个包的配置，甚至可以将其检查到版本控制中。你也可以在你的主目录下用一个配置文件指定个人默认值。
+按照这种结构，可以指定每个包的配置，可以将其检出到版本控制中。可以在主目录下用一个配置文件指定个人的默认值。
 
-如果一个键在多个配置文件中被指定，这些值将被合并在一起。数字、字符串和布尔值将使用更深层级配置目录中的值，其优先于祖先目录的，其主目录的优先级最低。数组将被连接在一起。
+如果一个键在多个配置文件中被指定，将合并这些值。数字、字符串和布尔值将使用更深层级配置目录中的值，其优先于祖先目录中的，主目录的优先级最低。数组将连接在一起。
 
-目前，当从工作区调用时，Cargo不会从工作区的crates中读取配置文件，即如果一个工作区有两个crates，分别名为 `/projects/foo/bar/baz/mylib` 和 `/projects/foo/bar/baz/mybin` ，并且存在 `/projects/foo/bar/baz/mylib/.cargo/config.toml` 和 `/projects/foo/bar/baz/mybin/.cargo/config.toml` ，如果从工作区根(`/projects/foo/bar/baz/`)调用，Cargo就不会读取这些配置文件。
+目前，当从工作空间调用时，Cargo不会从工作空间的crate中读取配置文件，比如，工作空间有两个crate，分别为 `/projects/foo/bar/baz/mylib` 和 `/projects/foo/bar/baz/mybin` ，
+并且存在 `/projects/foo/bar/baz/mylib/.cargo/config.toml` 和 `/projects/foo/bar/baz/mybin/.cargo/config.toml` ，如果从工作空间根(`/projects/foo/bar/baz/`)调用，Cargo就不会读取这些配置文件。
 
 > **注意:** Cargo 也可以读取没有 `.toml` 扩展名的配置文件，如`.cargo/config`。
-> 对`.toml`扩展的支持是在1.39版本中加入的，是首选的形式。
-> 如果两个文件都存在，Cargo 将使用没有扩展名的文件。
+> 对 `.toml` 扩展的支持是在1.39版本中加入的，是首选的形式。如果两个文件都存在，Cargo 将使用没有扩展名的文件。
 
 ### 配置格式
 
-配置文件是以 [TOML格式][toml] 编写的，在表内有简洁的键值对。以下是对所有设置的快速概述，详细说明见下文。
+配置文件是以 [TOML格式][toml] 编写，在表内有简洁的键值对。以下是对所有设置的概述，详细说明见下文。
 
 paths = ["/path/to/override"] # 路径依赖覆盖
 
@@ -42,11 +43,11 @@ space_example = ["run", "--release", "--", "\"command list\""]
 
 [build]
 jobs = 1                      # 并行任务数, 默认为 CPU 数
-rustc = "rustc"               # rust  编译器工具
+rustc = "rustc"               # rust 编译器工具
 rustc-wrapper = "…"           # 运行这个包装器，而不是 `rustc`
-rustc-workspace-wrapper = "…" # 运行这个包装器，而不是 `rustc` ，对于工作区成员
+rustc-workspace-wrapper = "…" # 运行这个包装器，而不是 `rustc` ，对于工作空间成员
 rustdoc = "rustdoc"           # 文档生成工具
-target = "triple"             # 构建 target triple (被 `cargo install` 忽略)
+target = "triple"             # 构建目标三元组 (被 `cargo install` 忽略)
 target-dir = "target"         # 放置所有生成制品的路径
 rustflags = ["…", "…"]        # 要传递给所有编译器调用的自定义标志
 rustdocflags = ["…", "…"]     # 传递给rustdoc的自定义标志
@@ -94,7 +95,7 @@ offline = true              # 不接入网络
 [patch.<registry>]
 # 与Cargo.toml中 [patch] 的键相同。
 
-[profile.<name>]         # 通过配置来修改配置文件设置。
+[profile.<name>]         # 通过配置来修改编译设置。
 opt-level = 0            # 优化级别。
 debug = true             # 包括调试信息。
 split-debuginfo = '...'  # 调试信息拆分行为。
@@ -108,7 +109,7 @@ rpath = false            # 设置rpath链接选项。
 [profile.<name>.build-override]  # 覆盖build-script的设置。
 # profile下的键是一样的。
 [profile.<name>.package.<name>]  # 覆盖包的配置文件。
-# profile下的键是一样的 (减去 `panic`, `lto`, 和 `rpath`)。
+# profile下的键是一样的 (没有 `panic`, `lto`, 和 `rpath`)。
 
 [registries.<name>]  # crates.io外的其他注册中心
 index = "…"          # 注册中心的URL索引
@@ -124,9 +125,9 @@ directory = "…"      # 目录源的路径
 registry = "…"       # 注册中心源的 URL
 local-registry = "…" # 本地注册源的路径
 git = "…"            # git 源的 URL
-branch = "…"         # git仓库的分支名称
-tag = "…"            # git仓库的tag名称
-rev = "…"            # git仓库的修订
+branch = "…"         # git 仓库的分支名称
+tag = "…"            # git 仓库的 tag 名称
+rev = "…"            # git 仓库的修订
 
 [target.<triple>]
 linker = "…"            # 要使用的链接器
@@ -158,7 +159,7 @@ progress.width = 80    # 进度条的宽度
 ### 环境变量
 
 除了TOML配置文件，Cargo还可以通过环境变量进行配置。对于每个形如 `foo.bar` 的配置键，也可以用环境变量 `CARGO_FOO_BAR` 定义值。
-键被转换为大写字母，点和破折号被转换为下划线。例如，`target.x86_64-unknown-linux-gnu.runner` 键也可以由 `CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_RUNNER` 环境变量定义。
+键将转换为大写字母，点和破折号将转换为下划线。例如，`target.x86_64-unknown-linux-gnu.runner` 键也可以由 `CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_RUNNER` 环境变量定义。
 
 环境变量将优先于TOML配置文件。目前只有整数、布尔值、字符串和一些数组值支持由环境变量定义。
 [下面描述](#configuration-keys)表明哪些键支持环境变量，否则由于[技术问题](https://github.com/rust-lang/cargo/issues/5416)而不受支持。
@@ -173,7 +174,7 @@ Cargo也可以通过 `--config` 命令行选项接受任意的配置覆盖。参
 cargo --config net.git-fetch-with-cli=true fetch
 ```
 
-`--config` 选项可以被多次指定，在这种情况下，这些值将按照从左到右的顺序合并，使用与适用多个配置文件时相同的合并逻辑。
+`--config` 选项可以多次指定，在这种情况下，这些值将按照从左到右的顺序合并，合并逻辑与多个配置文件时相同。
 以这种方式指定的配置值优先于环境变量，环境变量优先于配置文件。
 
 一些看起像什么Bourne shell语法使用的例子:
@@ -210,7 +211,7 @@ cargo --config profile.dev.package.image.opt-level=3 …
 * 对于直接从 [`--config KEY=VALUE`](#command-line-overrides) 选项加载的配置值，路径是相对于当前工作目录的。
 * 对于配置文件，路径是相对于定义配置文件的目录的父目录而言的，无论这些文件是来自 [层级检索](#hierarchical-structure) 还是 [`--config <path>`](#command-line-overrides) 选项。
 
-> **注意:** 为了与现有的 `.cargo/config.toml` 检索行为保持一致，在设计上，通过 `--config <path>` 传递的配置文件中的路径也是相对于配置文件本身两级。
+> **注意:** 为了与现有的 `.cargo/config.toml` 检索行为保持一致，在设计上，通过 `--config <path>` 传递的配置文件中的路径是相对于配置文件本身两级。
 > 为了避免意外的结果，经验方法是把你的额外配置文件放在项目中发现的 `.cargo/config.toml` 的同一级别。
 > 例如，给定项目 `/my/project` ，建议把配置文件放在 `/my/project/.cargo` 下，或者在同一级别上新建一个目录，如 `/my/project/.config` 。
 
@@ -228,15 +229,18 @@ directory = "vendor"
 
 ### 带参数的可执行路径
 
-一些Cargo命令调用外部程序，可以将其配置为路径和一些参数。
+一些Cargo命令调用外部程序，可以为其配置路径和一些参数。
 
-该值可以是一个字符串数组，如 `['/path/to/program', 'somearg']` 或一个空格分隔的字符串，如 `'/path/to/program somearg'` 。如果可执行文件的路径包含一个空格，则必须使用列表形式。
+该值可以是一个字符串数组，如 `['/path/to/program', 'somearg']` 或一个空格分隔的字符串，如 `'/path/to/program somearg'` 。
+如果可执行文件的路径包含空格，则必须使用列表形式。
 
-如果Cargo向程序传递其他参数，比如打开或运行的路径，它们将在这种格式的选项值中最后指定的参数之后传递。如果指定的程序没有路径分隔符，Cargo会在 `PATH` 中搜索其可执行文件。
+如果Cargo向程序传递其他参数，比如打开或运行的路径，它们将在这种格式的选项值中最后指定的参数之后传递。
+如果指定的程序没有路径分隔符，Cargo会在 `PATH` 中搜索其可执行文件。
 
 ### 证书
 
-带有敏感信息的配置值存储在 `$CARGO_HOME/credentials.toml` 文件中。这个文件由 [`cargo login`] 自动创建和更新。它遵循与Cargo配置文件相同的格式。
+带有敏感信息的配置值存储在 `$CARGO_HOME/credentials.toml` 文件中。
+这个文件由 [`cargo login`] 自动创建和更新。它遵循与Cargo配置文件相同的格式。
 
 ```toml
 [registry]
@@ -246,7 +250,8 @@ token = "…"   # crates.io 访问 token
 token = "…"   # 具名注册中心访问 token
 ```
 
-一些Cargo命令使用令牌，例如[`cargo publish`]，用于与远程注册中心进行认证。应该注意保护令牌，使其私密。
+一些Cargo命令使用令牌，例如 [`cargo publish`] ，用于与远程注册中心进行认证。
+应该注意保护令牌，使其私密。
 
 与其他大多数配置值一样，令牌可以用环境变量来指定。
 [crates.io]的令牌可以用 `CARGO_REGISTRY_TOKEN` 环境变量来指定。
@@ -254,14 +259,15 @@ token = "…"   # 具名注册中心访问 token
 
 ### 配置键
 
-本节记录了所有的配置键。带有可变部分的键的描述用角括号标注，如 `target.<triple>` ，其中 `<triple>` 部分可以是任何目标三元组，如 `target.x86_64-pc-windows-msvc` 。
+本节记录了所有的配置键。带有可变部分的键的描述用角括号标注，如 `target.<triple>` ，
+其中 `<triple>` 部分可以是任意目标三元组，如 `target.x86_64-pc-windows-msvc` 。
 
 #### `paths`
 * Type: 字符串数组 (paths)
 * Default: none
 * Environment: 不受支持
 
-一个本地包的路径数组，这些包将被用作依赖覆盖。
+一个本地包的路径数组，这些包将用作依赖覆盖。
 更多信息请参阅 [覆盖依赖指南](overriding-dependencies.md#paths-overrides) 。
 
 #### `[alias]`
@@ -270,7 +276,7 @@ token = "…"   # 具名注册中心访问 token
 * Environment: `CARGO_ALIAS_<name>`
 
 `[alias]` 表定义了CLI命令的别名。例如，运行 `cargo b` 是运行 `cargo build` 的别名。表中的每个键是子命令，而值是实际要运行的命令。
-值可以是一个字符串数组，其中第一个元素是命令，后面的元素是参数。它也可以是一个字符串，它将在空格处被分割成子命令和参数。以下是Cargo内置的别名。
+值可以是一个字符串数组，其中第一个元素是命令，后面的元素是参数。它也可以是一个字符串，按空格分割成子命令和参数。以下是Cargo内置的别名:
 
 ```toml
 [alias]
@@ -301,7 +307,7 @@ recursive_example = "rr --example recursions"
 * Default: 逻辑CPU的数量
 * Environment: `CARGO_BUILD_JOBS`
 
-设定并行运行的最大编译器进程数。如果是负数，它将编译器进程的最大数量设置为逻辑CPU的数量加上所提供的值。不应该是0。
+设定并行运行的最大编译器进程数。如果是负数，它将编译器进程的最大数量设置为逻辑CPU的数量加上所提供的值。不应为0。
 
 可以用 `--jobs` CLI选项覆盖。
 
@@ -324,8 +330,8 @@ recursive_example = "rr --example recursions"
 * Default: none
 * Environment: `CARGO_BUILD_RUSTC_WORKSPACE_WRAPPER` 或 `RUSTC_WORKSPACE_WRAPPER`
 
-设置包装器来代替 `rustc` 执行，仅适用于工作区成员。
-传递给包装器的第一个参数是要使用的实际可执行文件的路径(即`build.rustc`，如果它被设置了，或 `"rustc"` 以其它方式)。
+设置包装器来代替 `rustc` 执行，仅适用于工作空间成员。
+传递给包装器的第一个参数是要使用的实际可执行文件的路径(即 `build.rustc` ，如果它被设置了，或 `"rustc"` 以其它方式)。
 它影响文件名hash，以便包装器产生的制品被单独缓存。
 
 ##### `build.rustdoc`
@@ -358,7 +364,7 @@ target = ["x86_64-unknown-linux-gnu", "i686-unknown-linux-gnu"]
 * Default: "target"
 * Environment: `CARGO_BUILD_TARGET_DIR` 或 `CARGO_TARGET_DIR`
 
-放置所有编译器输出的路径。如果没有指定，默认是位于工作区根的名为 `target` 的目录。
+放置所有编译器输出的路径。如果没有指定，默认是位于工作空间根名为 `target` 的目录。
 
 可以用 `--target-dir` CLI选项覆盖。
 
@@ -369,7 +375,7 @@ target = ["x86_64-unknown-linux-gnu", "i686-unknown-linux-gnu"]
 
 额外的命令行标志，传递给 `rustc` 。该值可以是字符串数组或以空格分隔的字符串。
 
-有四个互相排斥的额外标志源，依次检查，首先使用第一个:
+有四个互相排斥的额外标志来源，依次检查，首先使用第一个:
 
 1. `CARGO_ENCODED_RUSTFLAGS` 环境变量。
 2. `RUSTFLAGS`  环境变量。
@@ -378,9 +384,9 @@ target = ["x86_64-unknown-linux-gnu", "i686-unknown-linux-gnu"]
 
 额外的标志也可以通过 [`cargo rustc`] 命令传递。
 
-如果使用 `--target` 标志(或[`build.target`](#buildtarget))，那么这些标志将只传递给目标的编译器。为主机构建的东西，如构建脚本或proc macros，将不会收到这些args。
-如果不使用 `--target` ，标志将被传递给所有编译器调用(包括构建脚本和proc macros)，因为依赖是共享的。
-如果你有不想传递给构建脚本或proc macros的args，并且是为主机构建的，请将 `--target` 与主机三元组一起传递。
+如果使用 `--target` 标志(或[`build.target`](#buildtarget))，那么这些标志将只传递给目标的编译器。为主机构建的内容，如构建脚本或过程宏，将不会收到这些参数。
+如果不使用 `--target` ，标志将被传递给所有编译器调用(包括构建脚本和过程宏)，因为依赖是共享的。
+如果你有不想传递给构建脚本或过程宏的参数，并且是为主机构建的，请将 `--target` 与主机三元组一起传递。
 
 我们不建议传入Cargo本身通常管理的标志。
 例如，由[profiles](profiles.md)决定的标志，最好通过设置适当的配置文件来处理。
@@ -395,7 +401,7 @@ target = ["x86_64-unknown-linux-gnu", "i686-unknown-linux-gnu"]
 
 额外的命令行标志，传递给 `rustdoc` 。该值可以是字符串数组或以空格分隔的字符串。
 
-有三个相互排斥的额外标志源。依次检查它们，首先使用第一个。
+有三个相互排斥的额外标志来源。依次检查它们，首先使用第一个:
 
 1. `CARGO_ENCODED_RUSTDOCFLAGS` 环境变量。
 2. `RUSTDOCFLAGS` 环境变量。
@@ -468,7 +474,7 @@ OPENSSL_DIR = "/opt/openssl"
 
 默认情况下，指定的变量将不会覆盖环境中已经存在的值。可以通过设置 `force` 标志来改变这种行为。
 
-设置 `relative` 标志会将该值评估为相对配置路径，它是相对于包含`config.toml` 文件的 `.cargo` 目录的父目录而言的。环境变量的值将是完整的绝对路径。
+设置 `relative` 标志会将该值评估为相对配置路径，它是相对于包含 `config.toml` 文件的 `.cargo` 目录的父目录而言的。环境变量的值将是完整的绝对路径。
 
 ```toml
 [env]
@@ -534,13 +540,13 @@ CA证书绑定文件的路径，用于验证TLS证书。如果没有指定，Car
 这决定了是否应该进行TLS证书撤销检查。仅适用于Windows。
 
 ##### `http.ssl-version`
-* Type: string 或 min/max table
+* Type: string or min/max table
 * Default: none
 * Environment: `CARGO_HTTP_SSL_VERSION`
 
 此设置要使用的最小TLS版本。它需要一个字符串，可能的值是 "default"、"tlsv1"、"tlsv1.0"、"tlsv1.1"、"tlsv1.2"、"tlsv1.3" 之一。
 
-这可能是有两个键的表，`min` 和 `max` ，每个键都有相同的字符串值，指定要使用的TLS版本的最小和最大范围。
+这可能是有两个键的表， `min` 和 `max` ，每个键都有相同的字符串值，指定要使用的TLS版本的最小和最大范围。
 
 默认情况下，最小版本为 "tlsv1.0" ，最大版本为你的平台上支持的最新版本，通常为 "tlsv1.3" 。
 
@@ -566,7 +572,7 @@ CA证书绑定文件的路径，用于验证TLS证书。如果没有指定，Car
 * Default: Cargo的版本
 * Environment: `CARGO_HTTP_USER_AGENT`
 
-指定要使用的自定义user-agent header。如果没有指定，默认是一个包括Cargo版本的字符串。
+指定要使用的自定义user-agent 头。如果没有指定，默认是一个包括Cargo版本的字符串。
 
 #### `[install]`
 
@@ -621,35 +627,33 @@ CA证书绑定文件的路径，用于验证TLS证书。如果没有指定，Car
 就像你可以用[`[patch]` in `Cargo.toml`](overriding-dependencies.md#the-patch-section)覆盖依赖一样，
 你可以在cargo配置文件中覆盖它们，将这些补丁应用于任何受影响的构建。其格式与 `Cargo.toml` 中的格式相同。
 
-由于 `.cargo/config.toml` 文件通常不会被检查到源代码控制中，你应该尽可能选择使用 `Cargo.toml` 来打补丁，以确保其他开发者可以在自己的环境中编译你的crate。
-一般来说，只有当补丁部分由外部构建工具自动生成时，通过cargo配置文件进行修补才是合适的。
+由于 `.cargo/config.toml` 文件通常不会检出到源代码控制中，你应该尽可能选择使用 `Cargo.toml` 来打补丁，以确保其他开发者可以在自己的环境中编译你的crate。
+一般来说，只有当补丁部分由外部构建工具自动生成时，才合适通过cargo配置文件进行修补。
 
 如果特定的依赖在cargo配置文件和 `Cargo.toml` 文件中都有补丁，则使用配置文件中的补丁。
 如果多个配置文件对同一个依赖打了补丁，则使用标准的cargo配置合并，它更倾向于使用离当前目录最近的定义值。
 `$HOME/.cargo/config.toml` 的优先级最低。
 
-在这样的 `[patch]` 部分中的相对 `path` 依赖是相对于它们出现配置文件的。
+在这样的 `[patch]` 部分中的相对的 `path` 依赖是相对于它们出现的配置文件。
 
 #### `[profile]`
 
-`[profile]` 表可以用来全局改变配置文件的设置，并覆盖 `Cargo.toml` 中指定的设置。
-它的语法和选项与 `Cargo.toml` 中指定的配置文件相同。
-关于选项的详细信息，请参阅 [配置文件章节] 。
+`[profile]` 表可以用来全局改变编译设置，并覆盖 `Cargo.toml` 中指定的设置。
+它的语法和选项与 `Cargo.toml` 中指定的编译设置相同。
+关于选项的详细信息，请参阅 [编译设置章节] 。
 
 [Profiles chapter]: profiles.md
 
 ##### `[profile.<name>.build-override]`
 * Environment: `CARGO_PROFILE_<name>_BUILD_OVERRIDE_<key>`
 
-构建覆盖表覆盖构建脚本、进程宏和其依赖的设置。
-它的键值与普通配置文件相同。
-参见 [覆盖部分](profiles.md#overrides) 以了解更多细节。
+build-override 表覆盖构建脚本、过程宏和其依赖的设置。
+它的键值与常规profile相同。参见 [覆盖部分](profiles.md#overrides) 以了解更多细节。
 
 ##### `[profile.<name>.package.<name>]`
 * Environment: 不支持
 
-包表覆盖特定包的设置。
-它和普通的配置文件有相同的键，除 `panic` 、 `lto` 和 `rpath` 设置。
+包的表覆盖特定包的设置。它和常规的profile有相同的键，除了 `panic` 、 `lto` 和 `rpath` 设置。
 参阅 [overrides section](profiles.md#overrides) 以了解更多细节。
 
 ##### `profile.<name>.codegen-units`
@@ -725,8 +729,7 @@ CA证书绑定文件的路径，用于验证TLS证书。如果没有指定，Car
 
 #### `[registries]`
 
-`[注册表]` 表用于指定附加的[注册中心]。
-它由各个命名的注册中心的子表组成。
+`[registries]` 表用于指定额外的[注册中心]。它由各个命名的注册中心的子表组成。
 
 ##### `registries.<name>.index`
 * Type: 字符串 (url)
@@ -740,7 +743,7 @@ CA证书绑定文件的路径，用于验证TLS证书。如果没有指定，Car
 * Default: none
 * Environment: `CARGO_REGISTRIES_<name>_TOKEN`
 
-指定给定注册中心的认证令牌。
+指定特定注册中心的认证令牌。
 这个值应该只出现在 [credentials](#credentials) 文件中。
 这用于需要认证的注册中心命令，如 [`cargo publish`] 。
 
@@ -748,7 +751,7 @@ CA证书绑定文件的路径，用于验证TLS证书。如果没有指定，Car
 
 #### `[registry]`
 
-`[注册中心]` 表控制在没有指定的情况下使用的默认注册中心。
+`[registry]` 表控制在没有指定的情况下使用的默认注册中心。
 
 ##### `registry.index`
 
@@ -776,10 +779,8 @@ CA证书绑定文件的路径，用于验证TLS证书。如果没有指定，Car
 
 #### `[source]`
 
-`[source]` 表定义了可用的注册中心源。
-更多信息见[源替换]。
-它由每个命名的源的一个子表组成。
-源应该只定义为一种(目录、注册中心、本地注册或git)。
+`[source]` 表定义了可用的注册中心源。更多信息见[源替换]。
+它由每个命名的源的子表组成。源应该只定义为目录、注册中心、本地注册或git中的一种。
 
 ##### `source.<name>.replace-with`
 * Type: 字符串
@@ -839,7 +840,7 @@ CA证书绑定文件的路径，用于验证TLS证书。如果没有指定，Car
 * Default: none
 * Environment: 不支持
 
-设置用于git仓库的[修订]。
+设置用于git仓库的[revision]。
 
 如果没有设置 `branch` 、 `tag` 或 `rev` ，则默认为 `master` 分支。
 
@@ -862,10 +863,9 @@ rustflags = ["…", "…"]
 ```
 
 `cfg` 值来自编译器内置的值 (运行 `rustc --print=cfg` 查看)，由[构建脚本]设置的值，以及传递给 `rustc` 的附加 `--cfg` 标志(例如在 `RUSTFLAGS` 中定义的标志)。
-不要在 `debug_assertions` 或 Cargo 特性(如 `feature="foo"` )上尝试match。
+不要在 `debug_assertions` 或 Cargo 特性(如 `feature="foo"` )上尝试match匹配。
 
-如果使用目标规格的JSON文件，`<triple>` 值是文件名。
-例如， `--target foo/bar.json` 将匹配 `[target.bar]` 。
+如果使用目标规格的JSON文件，`<triple>` 值是文件名。例如， `--target foo/bar.json` 将匹配 `[target.bar]` 。
 
 ##### `target.<triple>.ar`
 
@@ -876,8 +876,7 @@ rustflags = ["…", "…"]
 * Default: none
 * Environment: `CARGO_TARGET_<triple>_LINKER`
 
-指定在编译 `<triple>` 时传递给 `rustc` (通过[`-C linker`]) 的链接器。
-默认情况下，链接器不可覆盖。
+指定在编译 `<triple>` 时传递给 `rustc` (通过[`-C linker`]) 的链接器。默认情况下，链接器不可覆盖。
 
 ##### `target.<triple>.runner`
 * Type: 字符串或者字符串数组 ([带参数的程序路径])
@@ -899,15 +898,14 @@ rustflags = ["…", "…"]
 * Default: none
 * Environment: `CARGO_TARGET_<triple>_RUSTFLAGS`
 
-为这个 `<triple>` 向编译器传递一组自定义标志。
-该值可以是字符串数组或以空格分隔的字符串。
+为这个 `<triple>` 向编译器传递一组自定义标志。该值可以是字符串数组或以空格分隔的字符串。
 
 参阅 [`build.rustflags`](#buildrustflags) ，以了解更多关于特定附加标志的不同方式的细节。
 
 ##### `target.<cfg>.rustflags`
 
 这类似于 [target rustflags](#targettriplerustflags) ，但使用 [`cfg()` 表达式] 。
-如果有几个 `<cfg>` 和 `<triple>` 条目与当前的目标相匹配，这些标志就会被连在一起。
+如果有几个 `<cfg>` 和 `<triple>` 条目与当前的目标相匹配，这些标志就会被关连在一起。
 
 ##### `target.<triple>.<links>`
 
@@ -947,8 +945,8 @@ metadata_key2 = "value"
 
 控制Cargo是否显示附加的详细信息。
 
-指定 `--quiet` 标志将覆盖并禁用粗略输出。
-指定 `--verbose` 标志将覆盖并强制进行粗略输出。
+指定 `--quiet` 标志将覆盖并禁用信息输出。
+指定 `--verbose` 标志将覆盖并强制进行信息输出。
 
 ##### `term.color`
 * Type: 字符串
@@ -1001,6 +999,6 @@ metadata_key2 = "value"
 [带参数的程序路径]: #executable-paths-with-arguments
 [libcurl format]: https://everything.curl.dev/libcurl/proxies#proxy-types
 [源替换]: source-replacement.md
-[修订]: https://git-scm.com/docs/gitrevisions
+[revision]: https://git-scm.com/docs/gitrevisions
 [registries]: registries.md
 [crates.io]: https://crates.io/

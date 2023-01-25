@@ -302,7 +302,7 @@ May also be specified with the <code>term.verbose</code>
 <a href="../reference/config.html">config value</a>.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-add---verbose"><a class="option-anchor" href="#option-cargo-add---verbose"></a><code>--verbose</code></dt>
-<dd class="option-desc">使用详细输出。对于包括额外输出(如依赖关系警告和构建脚本输出)的“非常详细”输出，可以指定两次。也可以用<code>term.verbose</code><a href="../reference/config.html">配置值</a>指定。</dd>
+<dd class="option-desc">使用详细输出。对于包括额外输出(如依赖关系警告和构建脚本输出)的“非常详细”输出，可以指定两次。也可以用<code>term.verbose</code><a href="../reference/config.html">配置</a>指定。</dd>
 {==+==}
 
 
@@ -314,7 +314,7 @@ May also be specified with the <code>term.quiet</code>
 <a href="../reference/config.html">config value</a>.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-add---quiet"><a class="option-anchor" href="#option-cargo-add---quiet"></a><code>--quiet</code></dt>
-<dd class="option-desc">不要打印cargo日志信息。也可以用<code>term.quiet</code><a href="../reference/config.html">配置值</a>指定。</dd>
+<dd class="option-desc">不要打印cargo日志信息。也可以用<code>term.quiet</code><a href="../reference/config.html">配置</a>。</dd>
 {==+==}
 
 
@@ -337,7 +337,7 @@ terminal.</li>
 <li><code>always</code>: 总是显示颜色</li>
 <li><code>never</code>: 从不显示颜色</li>
 </ul>
-<p>也可以用<code>term.quiet</code><a href="../reference/config.html">配置值</a>指定。</dd>
+<p>也可以用<code>term.quiet</code><a href="../reference/config.html">配置</a>。</dd>
 {==+==}
 
 
@@ -404,7 +404,7 @@ offline.</p>
 <dt class="option-term" id="option-cargo-add---offline"><a class="option-anchor" href="#option-cargo-add---offline"></a><code>--offline</code></dt>
 <dd class="option-desc">防止 Cargo 以任何理由访问网络。如果没有这个标志，当 Cargo 需要访问网络而网络不可用时，Cargo 将出错停止。有了这个标志，如果可能的话，Cargo 将试图在没有网络的情况下前进。</p>
 请注意，这可能会导致与在线模式不同的依赖关系解析。Cargo 将自己限制在本地下载的 crate 中，即使在索引的本地副本中可能有更新的版本。请参阅 <a href="cargo-fetch.html">cargo-fetch(1)</a> 命令，以便在脱机之前下载依赖项。</p>
-也可以用 <code>net.offline</code> <a href="../reference/config.html">配置值</a>指定。</dd>
+也可以用 <code>net.offline</code> <a href="../reference/config.html">配置</a>。</dd>
 {==+==}
 
 

@@ -1,4 +1,4 @@
-## 接手已有的 Cargo 包
+## 拥有Cargo包
 
 使用 Cargo 下载已有的 [package][def-package] 非常简单。
 

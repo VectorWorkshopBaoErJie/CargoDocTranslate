@@ -1,37 +1,37 @@
 ## 环境变量
 
 Cargo设置和读取一些环境变量，你的代码可以检测或覆盖这些变量。
-下面是Cargo设置的变量列表，按照它与这些变量交互的时间排列:
+下面是Cargo设置的变量列表，按照与之交互的时间次序排列:
 
 ### Cargo读取环境变量
 
-你可以覆盖这些环境变量来改变Cargo在系统中的行为:
+你可以覆盖这些环境变量来改变Cargo所在系统中的行为:
 
 * `CARGO_LOG` - Cargo 使用 [`env_logger`] crate 来显示调试日志信息。
-  `CARGO_LOG` 环境变量可以被设置为启用调试日志，其值为 `trace` 、 `debug` 或 `warn` 。
-  通常情况下，它只在调试时使用。更多细节请参考[Debug logging]。
+  `CARGO_LOG` 环境变量可以设置为启用调试日志，其值为 `trace` 、 `debug` 或 `warn` 。
+  通常，其只在调试时使用。更多细节请参考[Debug logging]。
 * `CARGO_HOME` — Cargo 维护着注册中心索引和git签出crate的本地缓存。
   默认情况下，这些数据存储在 `$HOME/.cargo` 下(Windows下为 `%USERPROFILE%\.cargo`)，但这个变量可以覆盖这个目录位置。
   一旦crate被缓存，就不会被clean命令删除。
   更多细节请参考[指南](.../guide/cargo-home.md)。
-* `CARGO_TARGET_DIR` — 放置所有生成制品的位置，相对于当前工作目录。见[`build.target-dir`]，通过配置来设置。
+* `CARGO_TARGET_DIR` — 放置所有生成制品的位置，相对于当前工作目录。见[`build.target-dir`]通过配置来设置。
 * `CARGO` - 如果设置了这个变量，Cargo在构建crate以及执行构建脚本和外部子命令时，将转发这个值，而不是设置为自己的自动检测路径。
-  这个值不会被Cargo直接执行，它应该总是指向一个行为与 `cargo` 完全相同的命令，因为这也是该变量的用户所期望的。
+  这个值不会被Cargo直接执行，它应该总是指向一个行为与 `cargo` 完全相同的命令，因为这也是使用该变量的用户所期望的。
 * `RUSTC` — Cargo将执行这个指定的编译器，而不是运行 `rustc` 。见[`build.rustc`]通过配置来设置。
 * `RUSTC_WRAPPER` — Cargo将执行这个指定的包装器，而不是简单地运行 `rustc` ，将rustc的调用作为其命令行参数，第一个参数是实际rustc的路径。
-  这对设置构建缓存工具(如 `sccache`)很有用。见[`build.rustc-wrapper`]通过配置来设置。
+  这对设置构建缓存工具(如 `sccache`)很有用。见 [`build.rustc-wrapper`] 通过配置来设置。
   将其设置为空字符串会覆盖配置，并将crate重置为不使用包装器。
 * `RUSTC_WORKSPACE_WRAPPER` — 对于工作空间成员，Cargo将执行这个指定的包装器，而不是简单地运行 `rustc`，将rustc的调用作为其命令行参数，第一个参数是实际rustc的路径。
-  它影响文件名hash，以便包装器产生的制品被单独缓存。参见[`build.rustc-workspace-wrapper`]，通过配置来设置。
+  它影响文件名hash，以便单独缓存包装器产生制品。参见 [`build.rustc-workspace-wrapper`] 通过配置来设置。
   将其设置为空字符串会覆盖配置，并将crate重置为不对工作空间成员使用包装器。
 * `RUSTDOC` — Cargo将执行这个指定的 `rustdoc` 实例，而不是运行 `rustdoc `。见 [`build.rustdoc`] 通过配置来设置。
 * `RUSTDOCFLAGS` — 以空格分隔的自定义标志列表，用于传递给Cargo执行的所有 `rustdoc` 调用。
-  与 [`cargo rustdoc`] 不同的是，这对于向*所有* `rustdoc` 实例传递标志很有用。
-  参见[`build.rustdocflags`]以了解更多设置标志的方法。这个字符串被空格分割；如果要对多个参数进行更健壮的编码，请参见 `CARGO_ENCODED_RUSTDOCFLAGS` 。
+  与 [`cargo rustdoc`] 不同的是，这对于向 *所有* `rustdoc` 实例传递标志很有用。
+  参见 [`build.rustdocflags`] 以了解更多设置标志的方法。这个字符串用空格分割；如果要对多个参数进行更健壮的编码，请参见 `CARGO_ENCODED_RUSTDOCFLAGS` 。
 * `CARGO_ENCODED_RUSTDOCFLAGS` - 用 `0x1f` (ASCII单位分隔符)分隔的自定义标志列表，用于传递给Cargo执行的所有 `rustdoc` 调用。
 * `RUSTFLAGS` — 以空格分隔的自定义标志列表，用于传递给Cargo执行的所有编译器调用。
-  与[`cargo rustc`]不同的是，这对于向*所有*编译器实例传递标志很有用。
-  参见[`build.rustflags`]以了解更多设置标志的方法。这个字符串是由空格分割的；如果要对多个参数进行更健壮的编码，见`CARGO_ENCODED_RUSTFLAGS` 。
+  与 [`cargo rustc`] 不同的是，这对于向 *所有* 编译器实例传递标志很有用。
+  参见 [`build.rustflags`] 以了解更多设置标志的方法。这个字符串是由空格分割；如果要对多个参数进行更健壮的编码，见`CARGO_ENCODED_RUSTFLAGS` 。
 * `CARGO_ENCODED_RUSTFLAGS` - 用 `0x1f` (ASCII单元分隔符) 分隔的自定义标志列表，用于传递给Cargo执行的所有编译器调用。
 * `CARGO_INCREMENTAL` — 如果设置为1，那么Cargo将强制在当前编译中启用[incremental compilation] ，设置为0时，
   将强制禁用增量编译。如果这个环境变量不存在，那么将使用cargo的默认值。另请参见 [`build.incremental`] 配置值。
@@ -40,7 +40,7 @@ Cargo设置和读取一些环境变量，你的代码可以检测或覆盖这些
 * `HTTP_TIMEOUT` — HTTP超时，以秒为单位，详见 [`http.timeout`] 。
 * `TERM` — 如果这个设置为 `dumb` ，将禁用进度条。
 * `BROWSER` — 用 [`cargo doc`]的 `--open` 标志打开文档时要执行的网络浏览器，更多细节见 [`doc.browser`] 。
-* `RUSTFMT` — 不运行 `rustfmt` ，[`cargo fmt`](https://github.com/rust-lang/rustfmt) 将执行这个指定的 `rustfmt` 实例来代替。
+* `RUSTFMT` — 代替 `rustfmt` ，[`cargo fmt`](https://github.com/rust-lang/rustfmt) 将执行这个指定的 `rustfmt` 实例。
 
 #### 配置环境变量
 
@@ -226,7 +226,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
 `out_dir` 现在将包含 `OUT_DIR` 的值。
 
 * `CARGO` — 执行构建的 `cargo` 二进制文件的路径。
-* `CARGO_MANIFEST_DIR` — 包含正在构建的包的配置清单的目录(包含构建脚本的软件包)。还要注意，这是构建脚本启动时的当前工作目录的值。
+* `CARGO_MANIFEST_DIR` — 包含正在构建的包的配置清单的目录(包含构建脚本的包)。还要注意，这是构建脚本启动时的当前工作目录的值。
 * `CARGO_MANIFEST_LINKS` — 配置清单 `links` 值。
 * `CARGO_MAKEFLAGS` — 包含Cargo的[jobserver]实现所需的参数，以使子进程并行化。Rustc或build.rs中的cargo调用已经可以读取 `CARGO_MAKEFLAGS` ，但GNU Make要求这些标志直接作为参数指定，或通过 `MAKEFLAGS` 环境变量指定。目前Cargo并没有设置 `MAKEFLAGS`变量，但GNU Make的编译脚本可以将其设置为 `CARGO_MAKEFLAGS` 的内容。
 * `CARGO_FEATURE_<name>` — 对于正在构建的包的每个激活的特性，这个环境变量将出现，其中 `<name>` 是特性的名称，为大写字母， `-` 转换成 `_` 。
@@ -246,7 +246,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
 * `OUT_DIR` — 所有输出和中间制品应该放在哪个文件夹里。这个文件夹位于正在构建的包的构建目录内，而且对相关的包来说是唯一的。
 * `TARGET` — 正在被编译的目标三元组。本地代码应该为这个三元组进行编译。更多信息请参见 [Target Triple] 的描述。
 * `HOST` — 是Rust编译器的主机三元组。
-* `NUM_JOBS` — 被指定为顶层并行性的并行性。这对于向 `make` 这样的系统传递 `-j` 参数很有用。注意，在解释这个环境变量的时候要注意。
+* `NUM_JOBS` — 被指定为顶层的并行性。这对于向 `make` 这样的系统传递 `-j` 参数很有用。注意，在解释这个环境变量的时候要注意。
                出于历史原因，仍然提供了这个变量，但最近的Cargo版本，例如，不需要运行 `make -j` ，而是可以将 `MAKEFLAGS` 环境变量设置为 `CARGO_MAKEFLAGS` 的内容，以激活使用Cargo的GNU Make兼容 [jobserver] 进行子make调用。
 * `OPT_LEVEL`, `DEBUG` — 目前正在建立的配置文件的相应变量的值。
 * `PROFILE` — `release` 用于发布版本， `debug` 用于其他版本。这是根据 [profile] 是否继承自 [`dev`] 或 [`release`] 配置文件来决定的。不建议使用这个环境变量。使用其他环境变量，如 `OPT_LEVEL` ，可以更准确地了解正在使用的实际设置。
@@ -280,7 +280,7 @@ let out_dir = env::var("OUT_DIR").unwrap();
 [`dev`]: profiles.md#dev
 [`release`]: profiles.md#release
 
-### 环境变量 Cargo为第三方子命令设置的环境变量
+### 环境变量 Cargo 为第三方子命令设置的环境变量
 
 Cargo将这个环境变量暴露给第三方子命令(即放在 `$PATH` 中的名为 `cargo-foobar` 的程序):
 

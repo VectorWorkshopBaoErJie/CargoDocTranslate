@@ -1,4 +1,4 @@
-# Manifest Commands
+# 配置命令
 * [cargo add](cargo-add.md)
 * [cargo generate-lockfile](cargo-generate-lockfile.md)
 * [cargo locate-project](cargo-locate-project.md)

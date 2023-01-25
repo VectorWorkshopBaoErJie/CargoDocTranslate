@@ -37,7 +37,7 @@ edition = "2021"
 
 它被称为[***manifest***][def-manifest] "配置清单"，它包含Cargo编译包所需的所有元数据。
 
-以下`src/main.rs` 的内容:
+以下为 `src/main.rs` 的内容:
 
 ```rust
 fn main() {
@@ -45,7 +45,7 @@ fn main() {
 }
 ```
 
-Cargo 为我们生成了一个 “hello world” 程序，也就是[***binary crate***][def-crate] "二进制crate"。
+Cargo 为我们生成了一个 "hello world" 程序，也就是[***binary crate***][def-crate] "二进制crate"。
 编译这个程序:
 
 ```console
@@ -60,7 +60,7 @@ $ ./target/debug/hello_world
 Hello, world!
 ```
 
-可以使用 `cargo run` 来编译后运行，来一步完成:
+可以使用 `cargo run` 来编译后运行，一步完成:
 
 ```console
 $ cargo run
@@ -69,7 +69,7 @@ $ cargo run
 Hello, world!
 ```
 
-### 进一步
+### 继续了解
 
 关于Cargo的更多细节，查阅 [Cargo 指南](../guide/index.md)
 

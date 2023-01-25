@@ -8,7 +8,7 @@
 {==+==}
 The following sections illustrate some examples of writing build scripts.
 {==+==}
-下面小节是一些编写的构建脚本的示例演示。
+下面小节是一些编写的构建脚本的示例。
 {==+==}
 
 
@@ -18,8 +18,8 @@ Check out the [`build-dependencies`
 keyword](https://crates.io/keywords/build-dependencies) to see what is
 available. The following is a sample of some popular crates[^†]:
 {==+==}
-在[crates.io]的crates构建脚本中可以找到一些常见的功能。
-查看 [`build-dependencies` keyword](https://crates.io/keywords/build-dependencies)，看看有那些可用。
+在[crates.io]的crate构建脚本中可以找到一些常见的功能。
+查看 [`build-dependencies` 键](https://crates.io/keywords/build-dependencies)，看看有那些可用。
 下面是一些流行的 crates[^†] 示例。
 {==+==}
 
@@ -51,7 +51,7 @@ available. The following is a sample of some popular crates[^†]:
 [^†]: This list is not an endorsement. Evaluate your dependencies to see which
 is right for your project.
 {==+==}
-[^†]: 这个列表并不仅是一种签注。它评估你的依赖，看哪一个是更适合你的项目。
+[^†]: 这个列表并不仅是一种签注。评估你的依赖，看哪一个是更适合你的项目。
 {==+==}
 
 
@@ -90,15 +90,7 @@ First, let’s take a look at the directory structure of this package:
 1 directory, 3 files
 ```
 {==+==}
-```text
-.
-├── Cargo.toml
-├── build.rs
-└── src
-    └── main.rs
 
-1 directory, 3 files
-```
 {==+==}
 
 
@@ -120,14 +112,7 @@ version = "0.1.0"
 edition = "2021"
 ```
 {==+==}
-```toml
-# Cargo.toml
 
-[package]
-name = "hello-from-generated-code"
-version = "0.1.0"
-edition = "2021"
-```
 {==+==}
 
 
@@ -160,26 +145,7 @@ fn main() {
 }
 ```
 {==+==}
-```rust,no_run
-// build.rs
 
-use std::env;
-use std::fs;
-use std::path::Path;
-
-fn main() {
-    let out_dir = env::var_os("OUT_DIR").unwrap();
-    let dest_path = Path::new(&out_dir).join("hello.rs");
-    fs::write(
-        &dest_path,
-        "pub fn message() -> &'static str {
-            \"Hello, World!\"
-        }
-        "
-    ).unwrap();
-    println!("cargo:rerun-if-changed=build.rs");
-}
-```
 {==+==}
 
 
@@ -255,15 +221,7 @@ fn main() {
 }
 ```
 {==+==}
-```rust,ignore
-// src/main.rs
 
-include!(concat!(env!("OUT_DIR"), "/hello.rs"));
-
-fn main() {
-    println!("{}", message());
-}
-```
 {==+==}
 
 
@@ -281,7 +239,7 @@ generated file (`hello.rs`) into the crate’s compilation.
 Using the structure shown here, crates can include any number of generated files
 from the build script itself.
 {==+==}
-使用这里显示的结构，crates可以include来自构建脚本本身任意数量的生成文件。
+使用这里显示的结构，crate可以include来自构建脚本本身任意数量的生成文件。
 {==+==}
 
 
@@ -290,9 +248,7 @@ from the build script itself.
 [concat-macro]: ../../std/macro.concat.html
 [env-macro]: ../../std/macro.env.html
 {==+==}
-[include-macro]: ../../std/macro.include.html
-[concat-macro]: ../../std/macro.concat.html
-[env-macro]: ../../std/macro.env.html
+
 {==+==}
 
 
@@ -334,16 +290,7 @@ Like above, let’s first take a look at the package layout:
 1 directory, 4 files
 ```
 {==+==}
-```text
-.
-├── Cargo.toml
-├── build.rs
-└── src
-    ├── hello.c
-    └── main.rs
 
-1 directory, 4 files
-```
 {==+==}
 
 
@@ -364,14 +311,7 @@ version = "0.1.0"
 edition = "2021"
 ```
 {==+==}
-```toml
-# Cargo.toml
 
-[package]
-name = "hello-world-from-c"
-version = "0.1.0"
-edition = "2021"
-```
 {==+==}
 
 
@@ -409,30 +349,7 @@ fn main() {
 }
 ```
 {==+==}
-```rust,no_run
-// build.rs
 
-use std::process::Command;
-use std::env;
-use std::path::Path;
-
-fn main() {
-    let out_dir = env::var("OUT_DIR").unwrap();
-
-    // Note that there are a number of downsides to this approach, the comments
-    // below detail how to improve the portability of these commands.
-    Command::new("gcc").args(&["src/hello.c", "-c", "-fPIC", "-o"])
-                       .arg(&format!("{}/hello.o", out_dir))
-                       .status().unwrap();
-    Command::new("ar").args(&["crus", "libhello.a", "hello.o"])
-                      .current_dir(&Path::new(&out_dir))
-                      .status().unwrap();
-
-    println!("cargo:rustc-link-search=native={}", out_dir);
-    println!("cargo:rustc-link-lib=static=hello");
-    println!("cargo:rerun-if-changed=src/hello.c");
-}
-```
 {==+==}
 
 
@@ -486,17 +403,14 @@ crate](https://crates.io/crates/cc) from [crates.io]. First, add it to the
 cc = "1.0"
 ```
 {==+==}
-```toml
-[build-dependencies]
-cc = "1.0"
-```
+
 {==+==}
 
 
 {==+==}
 And rewrite the build script to use this crate:
 {==+==}
-并重写构建脚本以使用这个crate。
+并重写构建脚本以使用这个crate:
 {==+==}
 
 
@@ -512,16 +426,7 @@ fn main() {
 }
 ```
 {==+==}
-```rust,ignore
-// build.rs
 
-fn main() {
-    cc::Build::new()
-        .file("src/hello.c")
-        .compile("hello");
-    println!("cargo:rerun-if-changed=src/hello.c");
-}
-```
 {==+==}
 
 
@@ -545,7 +450,7 @@ The [`cc` crate] abstracts a range of build script requirements for C code:
 * 它调用适当的编译器 (MSVC用于Windows， `gcc` 用于MinGW， `cc` 用于Unix平台，等等)。
 * 它通过向正在使用的编译器传递适当的标志，将 `TARGET` 变量考虑在内。
 * 其他环境变量，如 `OPT_LEVEL` 、 `DEBUG` 等，都是自动处理的。
-* stdout输出和 `OUT_DIR` 位置也由 `cc` 库处理。
+* 标准输出和 `OUT_DIR` 位置也由 `cc` 库处理。
 {==+==}
 
 
@@ -577,15 +482,7 @@ void hello() {
 }
 ```
 {==+==}
-```c
-// src/hello.c
 
-#include <stdio.h>
-
-void hello() {
-    printf("Hello, World!\n");
-}
-```
 {==+==}
 
 
@@ -637,7 +534,7 @@ dependency purely for the build process and not for the crate itself at runtime.
 {==+==}
 [`cc` crate]: https://crates.io/crates/cc
 {==+==}
-[`cc` crate]: https://crates.io/crates/cc
+
 {==+==}
 
 
@@ -709,18 +606,7 @@ links = "z"
 pkg-config = "0.3.16"
 ```
 {==+==}
-```toml
-# Cargo.toml
 
-[package]
-name = "libz-sys"
-version = "0.1.0"
-edition = "2021"
-links = "z"
-
-[build-dependencies]
-pkg-config = "0.3.16"
-```
 {==+==}
 
 
@@ -752,14 +638,7 @@ fn main() {
 }
 ```
 {==+==}
-```rust,ignore
-// build.rs
 
-fn main() {
-    pkg_config::Config::new().probe("zlib").unwrap();
-    println!("cargo:rerun-if-changed=build.rs");
-}
-```
 {==+==}
 
 
@@ -770,6 +649,7 @@ Let's round out the example with a basic FFI binding:
 {==+==}
 
 
+
 {==+==}
 ```rust,ignore
 // src/lib.rs
@@ -789,24 +669,9 @@ fn test_crc32() {
 }
 ```
 {==+==}
-```rust,ignore
-// src/lib.rs
 
-use std::os::raw::{c_uint, c_ulong};
-
-extern "C" {
-    pub fn crc32(crc: c_ulong, buf: *const u8, len: c_uint) -> c_ulong;
-}
-
-#[test]
-fn test_crc32() {
-    let s = "hello";
-    unsafe {
-        assert_eq!(crc32(0, s.as_ptr(), s.len() as c_uint), 0x3610a686);
-    }
-}
-```
 {==+==}
+
 
 
 {==+==}
@@ -824,11 +689,7 @@ with `libz` already installed, it may look something like this:
 [libz-sys 0.1.0] cargo:rerun-if-changed=build.rs
 ```
 {==+==}
-```text
-[libz-sys 0.1.0] cargo:rustc-link-search=native=/usr/lib
-[libz-sys 0.1.0] cargo:rustc-link-lib=z
-[libz-sys 0.1.0] cargo:rerun-if-changed=build.rs
-```
+
 {==+==}
 
 
@@ -848,7 +709,7 @@ environment variable `LIBZ_SYS_STATIC` or the `static` feature to build it
 from source instead of using the system library. Check out [the
 source][libz-source] for a more complete example.
 {==+==}
-包包括库的源代码，如果在系统中找不到它，或者设置了某个特性或环境变量，就静态地构建它，这种情况并不罕见。
+包包含库的源代码，如果在系统中找不到它，或者设置了某个特性或环境变量，就静态地构建它，这种情况并不罕见。
 例如，实际的 [`libz-sys` crate] 检查环境变量 `LIBZ_SYS_STATIC` 或 `static` 特性，从源码构建而不是使用系统库。
 请查看 [the source][libz-source] 以了解更完整的例子。
 {==+==}
@@ -859,9 +720,7 @@ source][libz-source] for a more complete example.
 [`pkg-config` crate]: https://crates.io/crates/pkg-config
 [libz-source]: https://github.com/rust-lang/libz-sys
 {==+==}
-[`libz-sys` crate]: https://crates.io/crates/libz-sys
-[`pkg-config` crate]: https://crates.io/crates/pkg-config
-[libz-source]: https://github.com/rust-lang/libz-sys
+
 {==+==}
 
 
@@ -878,7 +737,8 @@ crates that depend on it. This provides a mechanism to communicate information
 between crates. In this example, we'll be creating a C library that makes use
 of zlib from the real [`libz-sys` crate].
 {==+==}
-当使用 `links` 键时，crates可以设置元数据，这些元数据可以被其他依赖它的crates读取。这提供了一种在crates之间通信的机制。在这个例子中，我们将创建一个C语言库，利用实际的 [`libz-sys` crate] 中的zlib。
+当使用 `links` 键时，crates可以设置metadata，其他依赖它的crates可以读取这些元数据。这提供了一种在crate之间通信的机制。
+在这个例子中，我们将创建一个C语言库，利用实际的 [`libz-sys` crate] 中的zlib。
 {==+==}
 
 
@@ -892,8 +752,8 @@ to tell other packages where to find the header files for zlib. Our build
 script can read that metadata with the `DEP_Z_INCLUDE` environment variable.
 Here's an example:
 {==+==}
-如果你有一个依赖于zlib的C库，你可以利用 [`libz-sys` crate] 来自动查找或构建它。这对于跨平台支持非常有用，比如通常不安装zlib的Windows。
-`libz-sys`[设置 `include` 元数据](https://github.com/rust-lang/libz-sys/blob/3c594e677c79584500da673f918c4d2101ac97a1/build.rs#L156) ，告诉其他软件包在哪里可以找到zlib的头文件。
+如果你有一个依赖于zlib的C库，你可以利用 [`libz-sys` crate] 来自动查找或构建它。这对于跨平台支持非常有用，比如在通常不安装zlib的Windows。
+ `libz-sys` [设置 `include` 元数据](https://github.com/rust-lang/libz-sys/blob/3c594e677c79584500da673f918c4d2101ac97a1/build.rs#L156) ，告诉其他包在哪里可以找到zlib的头文件。
 我们的构建脚本可以通过 `DEP_Z_INCLUDE` 环境变量读取该元数据。
 下面是一个例子:
 {==+==}
@@ -915,20 +775,7 @@ libz-sys = "1.0.25"
 cc = "1.0.46"
 ```
 {==+==}
-```toml
-# Cargo.toml
 
-[package]
-name = "zuser"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-libz-sys = "1.0.25"
-
-[build-dependencies]
-cc = "1.0.46"
-```
 {==+==}
 
 
@@ -956,19 +803,7 @@ fn main() {
 }
 ```
 {==+==}
-```rust,ignore
-// build.rs
 
-fn main() {
-    let mut cfg = cc::Build::new();
-    cfg.file("src/zuser.c");
-    if let Some(include) = std::env::var_os("DEP_Z_INCLUDE") {
-        cfg.include(include);
-    }
-    cfg.compile("zuser");
-    println!("cargo:rerun-if-changed=src/zuser.c");
-}
-```
 {==+==}
 
 
@@ -1040,9 +875,7 @@ this](https://github.com/sfackler/rust-openssl/blob/dc72a8e2c429e46c275e528b61a7
 println!("cargo:version_number={:x}", openssl_version);
 ```
 {==+==}
-```rust,ignore
-println!("cargo:version_number={:x}", openssl_version);
-```
+
 {==+==}
 
 
@@ -1050,7 +883,7 @@ println!("cargo:version_number={:x}", openssl_version);
 This instruction causes the `DEP_OPENSSL_VERSION_NUMBER` environment variable
 to be set in any crates that directly depend on `openssl-sys`.
 {==+==}
-这条指令使 `DEP_OPENSSL_VERSION_NUMBER` 环境变量在任何直接依赖 `openssl-sys` 的crates中被设置。
+这条指令使 `DEP_OPENSSL_VERSION_NUMBER` 环境变量在任何直接依赖 `openssl-sys` 的crate中被设置。
 {==+==}
 
 
@@ -1093,29 +926,7 @@ if let Ok(version) = env::var("DEP_OPENSSL_VERSION_NUMBER") {
 }
 ```
 {==+==}
-```rust,ignore
-// (portion of build.rs)
 
-if let Ok(version) = env::var("DEP_OPENSSL_VERSION_NUMBER") {
-    let version = u64::from_str_radix(&version, 16).unwrap();
-
-    if version >= 0x1_00_01_00_0 {
-        println!("cargo:rustc-cfg=ossl101");
-    }
-    if version >= 0x1_00_02_00_0 {
-        println!("cargo:rustc-cfg=ossl102");
-    }
-    if version >= 0x1_01_00_00_0 {
-        println!("cargo:rustc-cfg=ossl110");
-    }
-    if version >= 0x1_01_00_07_0 {
-        println!("cargo:rustc-cfg=ossl110g");
-    }
-    if version >= 0x1_01_01_00_0 {
-        println!("cargo:rustc-cfg=ossl111");
-    }
-}
-```
 {==+==}
 
 
@@ -1141,14 +952,7 @@ pub fn sha3_224() -> MessageDigest {
 }
 ```
 {==+==}
-```rust,ignore
-// (portion of openssl crate)
 
-#[cfg(ossl111)]
-pub fn sha3_224() -> MessageDigest {
-    unsafe { MessageDigest(ffi::EVP_sha3_224()) }
-}
-```
 {==+==}
 
 
@@ -1181,5 +985,5 @@ libraries, which could cause problems.
 {==+==}
 [crates.io]: https://crates.io/
 {==+==}
-[crates.io]: https://crates.io/
+
 {==+==}

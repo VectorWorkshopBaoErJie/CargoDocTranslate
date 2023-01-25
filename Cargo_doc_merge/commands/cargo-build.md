@@ -18,8 +18,8 @@ cargo-build - 编译当前package
 
 ### Package 的选择
 
-默认情况下，当package选择选项没有给出时，package的选择依赖于指定的清单文件(若没有给出 `--manifest-path` 参数，则为当前目录下的清单文件)。
-如果清单文件是workspace的根，那么workspace的默认成员被选择，否则，只有被定义在清单文件中的package会被选择。
+默认情况下，如果没有提供选择包的选项，那么会按照选择的配置清单文件来选择包(当没有指定 `--manifest-path` 时，按照当前工目录来查找配置清单文件)。
+如果工作空间根目录的配置清单文件，则会选择该工作空间的默认成员，否则仅选取配置清单文件所在的那个包。
 
 workspace默认的成员可以通过根清单文件中的 `workspace.default-members` 键指定，
 如果没有指定该键，则会生成一个虚拟的workspace包含所有的workspace成员
@@ -122,7 +122,7 @@ workspace默认的成员可以通过根清单文件中的 `workspace.default-mem
 
 ### 特性选择
 
-特性选择标识可以用来控制哪些特性被启用。当没有设置特性选项时， `default` 特性将在所有被选择的package中被激活。
+特性标志允许你控制开启哪些特性。当没有提供特性选项时，会为每个选择的包启用 `default` 特性。
 
 查阅 [the features documentation](../reference/features.html#command-line-feature-options) 以获取更多细节
 
@@ -152,10 +152,8 @@ workspace默认的成员可以通过根清单文件中的 `workspace.default-mem
 <dt class="option-term" id="option-cargo-build---target"><a class="option-anchor" href="#option-cargo-build---target"></a><code>--target</code> <em>triple</em></dt>
 <dd class="option-desc">为指定的CPU架构构建. 默认情况下是当前主机的架构. 参数中的三元组的一般格式是
 <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>. 运行 <code>rustc --print target-list</code> 来获取支持的架构列表 </p>
-<p>也可以通过 <code>build.target</code> 来指定，
-<a href="../reference/config.html"> 可能的值 </a>.</p>
-<p>需要注意的是，指定该标识将令Cargo在不同的模式下运行，其中目标产物将放到单独的目录中，详情查看
-<a href="../guide/build-cache.html">build cache</a></dd>
+<p>也可以通过 <code>build.target</code> <a href="../reference/config.html">配置</a>。</p>
+<p>注意，指定这个标志会使Cargo在不同的模式下运行，目标制品放在单独目录。 参见 <a href="../guide/build-cache.html">构建缓存</a> 文档了解详情。</dd>
 
 
 
@@ -197,7 +195,7 @@ HTML 输出只适合人类阅读，并且不会提供适合机器阅读的耗时
 
 <dl>
 <dt class="option-term" id="option-cargo-build---target-dir"><a class="option-anchor" href="#option-cargo-build---target-dir"></a><code>--target-dir</code> <em>directory</em></dt>
-<dd class="option-desc"> 所有生成目标产物以及中间文件存放的目录，也可通过 <code>CARGO_TARGET_DIR</code> 环境变量指定, 又或者通过 <code>build.target-dir</code> <a href="../reference/config.html">配置值</a>。
+<dd class="option-desc"> 所有生成目标产物以及中间文件存放的目录，也可通过 <code>CARGO_TARGET_DIR</code> 环境变量指定, 又或者通过 <code>build.target-dir</code> <a href="../reference/config.html">配置</a>。
 默认将保存到workspace根目录下的<code>target</code> 目录下 </dd>
 
 
@@ -217,9 +215,8 @@ HTML 输出只适合人类阅读，并且不会提供适合机器阅读的耗时
 <dl>
 <dt class="option-term" id="option-cargo-build--v"><a class="option-anchor" href="#option-cargo-build--v"></a><code>-v</code></dt>
 <dt class="option-term" id="option-cargo-build---verbose"><a class="option-anchor" href="#option-cargo-build---verbose"></a><code>--verbose</code></dt>
-<dd class="option-desc">输出冗余信息。 指定两次该选项表示 &quot;非常冗长&quot; 输出一些诸如依赖警告或是编译一脚本的输出一类的信息
-也可通过 <code>term.verbose</code> 配置项指定
-<a href="../reference/config.html">可选值</a>。</dd>
+<dd class="option-desc">输出详细信息。 指定两次该选项表示 &quot;非常详细&quot; 输出诸如依赖警告或编译脚本的输出等信息。
+也可通过 <code>term.verbose</code> 配置项指定 <a href="../reference/config.html">可选值</a>。</dd>
 
 
 <dt class="option-term" id="option-cargo-build--q"><a class="option-anchor" href="#option-cargo-build--q"></a><code>-q</code></dt>
@@ -277,16 +274,16 @@ HTML 输出只适合人类阅读，并且不会提供适合机器阅读的耗时
 
 <dt class="option-term" id="option-cargo-build---frozen"><a class="option-anchor" href="#option-cargo-build---frozen"></a><code>--frozen</code></dt>
 <dt class="option-term" id="option-cargo-build---locked"><a class="option-anchor" href="#option-cargo-build---locked"></a><code>--locked</code></dt>
-<dd class="option-desc">这些标志中的每一个都要求 <code>Cargo.lock</code> 文件是最新的。
-如果lock文件丢失, 或是需要被更新, Cargo会返回错误并退出， <code>--frozen</code> 选项还会阻止cargo通过网络来判断它是否过期。</p>
-<p> 这些可能用于你希望断言 <code>Cargo.lock</code> 文件是最新的(例如CI构建)或希望避免网络访问的环境。</dd>
+<dd class="option-desc">这些标志都要求 <code>Cargo.lock</code> 文件是最新的。
+如果lock文件丢失, 或是需要更新, Cargo会返回错误并退出，<code>--frozen</code> 选项还会阻止cargo通过网络来判断其是否过期。</p>
+<p> 可以用于断言 <code>Cargo.lock</code> 文件是否最新状态(例如CI构建)或避免网络访问。</dd>
 
 
 <dt class="option-term" id="option-cargo-build---offline"><a class="option-anchor" href="#option-cargo-build---offline"></a><code>--offline</code></dt>
-<dd class="option-desc">组织Cargo以任何原因访问互联网。如果不指定该选项，Cargo将会在需要使用网络但网络不可用时停止构建并返回错误。该标识被设置时，Cargo将尽可能不使用网络完成构建。 </p>
-<p>需要注意的是，这样可能会导致在不同于online模式的依赖处理，Cargo将限制只使用已经下载到本地的crate，即使索引的本地副本中可能有更新版本。
-查阅 <a href="cargo-fetch.html">cargo-fetch(1)</a> 命令在脱机前下载依赖。 </p>
-<p>也可以使用 <code>net.offline</code> 配置 <a href="../reference/config.html">可选值</a>。</dd>
+<dd class="option-desc">阻止Cargo访问网络。如果不指定该选项，Cargo会在需要使用网络但不可用时停止构建并返回错误。设置该标识，Cargo将尽可能不使用网络完成构建。 </p>
+<p>需注意，这样可能会导致与在线模式不同的依赖处理，Cargo将限制仅使用已下载到本地的crate，即使本地索引中有更新版本。
+查阅 <a href="cargo-fetch.html">cargo-fetch(1)</a> 命令，在脱机前下载依赖。 </p>
+<p>也可以使用 <code>net.offline</code> <a href="../reference/config.html">配置</a>。</dd>
 
 
 </dl>
@@ -296,16 +293,16 @@ HTML 输出只适合人类阅读，并且不会提供适合机器阅读的耗时
 <dl>
 
 <dt class="option-term" id="option-cargo-build-+toolchain"><a class="option-anchor" href="#option-cargo-build-+toolchain"></a><code>+</code><em>toolchain</em></dt>
-<dd class="option-desc">如果Cargo已经通过rustup安装，并且第一个传入 <code>cargo</code> 的参数以 <code>+</code> 开头，
-则它将被视作rustup的一个工具链名称。（例如 <code>+stable</code> 或者 <code>+nightly</code>).
+<dd class="option-desc">如果Cargo已经通过rustup安装，并且第一个传给 <code>cargo</code> 的参数以 <code>+</code> 开头，
+则当作rustup的工具链名称。(例如 <code>+stable</code> 或 <code>+nightly</code>).
 查阅 <a href="https://rust-lang.github.io/rustup/overrides.html">rustup 文档</a>
-获取关于工具链重载如何工作的信息。</dd>
+了解关于工具链覆盖的信息。</dd>
 
 
 <dt class="option-term" id="option-cargo-build---config"><a class="option-anchor" href="#option-cargo-build---config"></a><code>--config</code> <em>KEY=VALUE</em> or <em>PATH</em></dt>
-<dd class="option-desc">重写一个Cargo配置项的值，该参数应当为TOML的 <code>KEY=VALUE</code> 的语法，
-或者提供一个附加的配置文件的路径，该标识可以被指定多次，
-查阅 <a href="../reference/config.html#command-line-overrides">命令行重写部分</a> 获取更多信息</dd>
+<dd class="option-desc">覆盖Cargo配置项的值，该参数应当为TOML <code>KEY=VALUE</code> 语法，
+或者提供附加的配置文件的路径。该标识可以多次指定。
+查阅 <a href="../reference/config.html#command-line-overrides">命令行覆盖部分</a> 获取更多信息</dd>
 
 
 <dt class="option-term" id="option-cargo-build--h"><a class="option-anchor" href="#option-cargo-build--h"></a><code>-h</code></dt>
@@ -314,7 +311,7 @@ HTML 输出只适合人类阅读，并且不会提供适合机器阅读的耗时
 
 
 <dt class="option-term" id="option-cargo-build--Z"><a class="option-anchor" href="#option-cargo-build--Z"></a><code>-Z</code> <em>flag</em></dt>
-<dd class="option-desc">不稳定的(只在nightly下可用的)标志。运行 <code>cargo -Z help</code> 获取细节。</dd>
+<dd class="option-desc">Cargo不稳定的(每日构建)标志。运行 <code>cargo -Z help</code> 了解详情。</dd>
 
 
 </dl>
@@ -325,7 +322,7 @@ HTML 输出只适合人类阅读，并且不会提供适合机器阅读的耗时
 <dl>
 <dt class="option-term" id="option-cargo-build--j"><a class="option-anchor" href="#option-cargo-build--j"></a><code>-j</code> <em>N</em></dt>
 <dt class="option-term" id="option-cargo-build---jobs"><a class="option-anchor" href="#option-cargo-build---jobs"></a><code>--jobs</code> <em>N</em></dt>
-<dd class="option-desc">并行执行的数量。也可以通过 <code>build.jobs</code> 配置 <a href="../reference/config.html">可选值</a> 
+<dd class="option-desc">并行执行的数量。也可以用 <code>build.jobs</code> 配置 <a href="../reference/config.html">可选值</a> 
 默认为逻辑CPU个数。如果是给出负数，将采用逻辑逻辑CPU数量+传入的负数。</dd>
 
 

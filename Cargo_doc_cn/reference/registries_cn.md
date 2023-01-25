@@ -10,9 +10,9 @@ registry is [crates.io]. A registry contains an "index" which contains a
 searchable list of available crates. A registry may also provide a web API to
 support publishing new crates directly from Cargo.
 {==+==}
-Cargo安装crates并从 "注册中心" 中获取依赖。
-默认的注册中心是[crates.io]。注册中心包含一个 "索引" ，其中包含可搜索的可用crates的列表。
-注册中心也可以提供一个网络API，支持直接从Cargo发布新的crates。
+Cargo安装crate并从 "注册中心" 中获取依赖。
+默认的注册中心是[crates.io]。注册中心包含一个 "索引" ，其中包含可搜索的可用crate的列表。
+注册中心也可以提供一个网络API，支持直接从Cargo发布新的crate。
 {==+==}
 
 {==+==}
@@ -40,7 +40,7 @@ To use a registry other than [crates.io], the name and index URL of the
 registry must be added to a [`.cargo/config.toml` file][config]. The `registries`
 table has a key for each registry, for example:
 {==+==}
-要使用[crates.io]以外的注册中心，必须将注册中心的名称和索引URL添加到 [`.cargo/config.toml` file][config]。`registries`表对每个注册中心都有一个键，例如:
+要使用[crates.io]以外的注册中心，必须将注册中心的名称和索引URL添加到 [`.cargo/config.toml` file][config]。 `registries` 表对每个注册中心都有一个键，例如:
 {==+==}
 
 {==+==}
@@ -102,7 +102,7 @@ CARGO_REGISTRIES_MY_REGISTRY_INDEX=https://my-intranet:8080/git/index
 > Note: [crates.io] does not accept packages that depend on crates from other
 > registries.
 {==+==}
-> 注意: [crates.io]不接受依赖其他注册中心的crates的包。
+> 注意: [crates.io]不接受依赖其他注册中心的crate的包。
 {==+==}
 
 {==+==}
@@ -168,7 +168,7 @@ registries the package is allowed to be published to. This is useful to
 prevent accidentally publishing a closed-source package to [crates.io]. The
 value may be a list of registry names, for example:
 {==+==}
-在 `Cargo.toml` 配置清单中设置 `package.publish` 键，可以限制包发布到哪些注册中心。这对于防止不小心将闭源包发布到[crates.io]很有用。该值可以是一个注册中心名称的列表，例如。
+在 `Cargo.toml` 配置清单中设置 `package.publish` 键，可以限制包发布到哪些注册中心。这可以防止不小心将闭源包发布到[crates.io]。该值可以是一个注册中心名称的列表，例如。
 {==+==}
 
 {==+==}

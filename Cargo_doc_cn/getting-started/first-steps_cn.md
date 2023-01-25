@@ -26,9 +26,7 @@ To start a new package with Cargo, use `cargo new`:
 $ cargo new hello_world
 ```
 {==+==}
-```console
-$ cargo new hello_world
-```
+
 {==+==}
 
 
@@ -46,6 +44,7 @@ Let’s check out what Cargo has generated for us:
 让我们来查看 Cargo 所生成的:
 {==+==}
 
+
 {==+==}
 ```console
 $ cd hello_world
@@ -58,16 +57,7 @@ $ tree .
 1 directory, 2 files
 ```
 {==+==}
-```console
-$ cd hello_world
-$ tree .
-.
-├── Cargo.toml
-└── src
-    └── main.rs
 
-1 directory, 2 files
-```
 {==+==}
 
 
@@ -88,14 +78,7 @@ edition = "2021"
 [dependencies]
 ```
 {==+==}
-```toml
-[package]
-name = "hello_world"
-version = "0.1.0"
-edition = "2021"
 
-[dependencies]
-```
 {==+==}
 
 
@@ -110,8 +93,9 @@ metadata that Cargo needs to compile your package.
 {==+==}
 Here’s what’s in `src/main.rs`:
 {==+==}
-以下`src/main.rs` 的内容:
+以下为 `src/main.rs` 的内容:
 {==+==}
+
 
 {==+==}
 ```rust
@@ -120,11 +104,7 @@ fn main() {
 }
 ```
 {==+==}
-```rust
-fn main() {
-    println!("Hello, world!");
-}
-```
+
 {==+==}
 
 
@@ -132,9 +112,10 @@ fn main() {
 Cargo generated a “hello world” program for us, otherwise known as a
 [***binary crate***][def-crate]. Let’s compile it:
 {==+==}
-Cargo 为我们生成了一个 “hello world” 程序，也就是[***binary crate***][def-crate] "二进制crate"。
+Cargo 为我们生成了一个 "hello world" 程序，也就是[***binary crate***][def-crate] "二进制crate"。
 编译这个程序:
 {==+==}
+
 
 {==+==}
 ```console
@@ -142,10 +123,7 @@ $ cargo build
    Compiling hello_world v0.1.0 (file:///path/to/package/hello_world)
 ```
 {==+==}
-```console
-$ cargo build
-   Compiling hello_world v0.1.0 (file:///path/to/package/hello_world)
-```
+
 {==+==}
 
 
@@ -162,16 +140,14 @@ $ ./target/debug/hello_world
 Hello, world!
 ```
 {==+==}
-```console
-$ ./target/debug/hello_world
-Hello, world!
-```
+
 {==+==}
+
 
 {==+==}
 We can also use `cargo run` to compile and then run it, all in one step:
 {==+==}
-可以使用 `cargo run` 来编译后运行，来一步完成:
+可以使用 `cargo run` 来编译后运行，一步完成:
 {==+==}
 
 
@@ -183,19 +159,14 @@ $ cargo run
 Hello, world!
 ```
 {==+==}
-```console
-$ cargo run
-     Fresh hello_world v0.1.0 (file:///path/to/package/hello_world)
-   Running `target/hello_world`
-Hello, world!
-```
+
 {==+==}
 
 
 {==+==}
 ### Going further
 {==+==}
-### 进一步
+### 继续了解
 {==+==}
 
 
@@ -211,7 +182,5 @@ For more details on using Cargo, check out the [Cargo Guide](../guide/index.md)
 [def-manifest]:  ../appendix/glossary.md#manifest  '"manifest" (glossary entry)'
 [def-package]:   ../appendix/glossary.md#package   '"package" (glossary entry)'
 {==+==}
-[def-crate]:     ../appendix/glossary.md#crate     '"crate" (glossary entry)'
-[def-manifest]:  ../appendix/glossary.md#manifest  '"manifest" (glossary entry)'
-[def-package]:   ../appendix/glossary.md#package   '"package" (glossary entry)'
+
 {==+==}
