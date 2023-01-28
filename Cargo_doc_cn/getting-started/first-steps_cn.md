@@ -18,7 +18,7 @@ its ability to run the resulting program.
 {==+==}
 To start a new package with Cargo, use `cargo new`:
 {==+==}
-使用 `cargo new` 可创建新包。
+使用 `cargo new` 可创建新包:
 {==+==}
 
 {==+==}
@@ -34,14 +34,14 @@ $ cargo new hello_world
 Cargo defaults to `--bin` to make a binary program. To make a library, we
 would pass `--lib`, instead.
 {==+==}
-Cargo 默认为 `--bin` 来构建二进制程序，通过 `--lib` 来构建库。
+Cargo 默认以 `--bin` 来构建二进制程序，可通过 `--lib` 来构建库。
 {==+==}
 
 
 {==+==}
 Let’s check out what Cargo has generated for us:
 {==+==}
-让我们来查看 Cargo 所生成的:
+让我们来查看 Cargo 所生成的内容:
 {==+==}
 
 
@@ -86,7 +86,7 @@ edition = "2021"
 This is called a [***manifest***][def-manifest], and it contains all of the
 metadata that Cargo needs to compile your package.
 {==+==}
-它被称为[***manifest***][def-manifest] "配置清单"，它包含Cargo编译包所需的所有元数据。
+其内容称为 [***manifest***][def-manifest] "配置清单"，包含了Cargo编译包时所需的所有元数据。
 {==+==}
 
 
@@ -112,7 +112,7 @@ fn main() {
 Cargo generated a “hello world” program for us, otherwise known as a
 [***binary crate***][def-crate]. Let’s compile it:
 {==+==}
-Cargo 为我们生成了一个 "hello world" 程序，也就是[***binary crate***][def-crate] "二进制crate"。
+Cargo 为我们生成了一个 "hello world" 程序，是 [***binary crate***][def-crate] "二进制crate"。
 编译这个程序:
 {==+==}
 
@@ -173,7 +173,7 @@ Hello, world!
 {==+==}
 For more details on using Cargo, check out the [Cargo Guide](../guide/index.md)
 {==+==}
-关于Cargo的更多细节，查阅 [Cargo 指南](../guide/index.md)
+关于Cargo的更多细节，查阅 [Cargo 指南](../guide/index.md) 。
 {==+==}
 
 

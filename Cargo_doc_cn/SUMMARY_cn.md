@@ -17,7 +17,7 @@
     * [Installation](getting-started/installation.md)
     * [First Steps with Cargo](getting-started/first-steps.md)
 {==+==}
-* [入门指南](getting-started/index.md)
+* [初步准备](getting-started/index.md)
     * [安装](getting-started/installation.md)
     * [Cargo起步](getting-started/first-steps.md)
 {==+==}
@@ -97,7 +97,7 @@
 {==+==}
         * [构建脚本示例](reference/build-script-examples.md)
     * [发布到crates.io](reference/publishing.md)
-    * [规范包ID](reference/pkgid-spec.md)
+    * [包ID规范](reference/pkgid-spec.md)
     * [源替换](reference/source-replacement.md)
     * [插件](reference/external-tools.md)
     * [注册中心](reference/registries.md)

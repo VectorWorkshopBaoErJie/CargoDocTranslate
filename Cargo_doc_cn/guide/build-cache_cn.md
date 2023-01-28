@@ -12,8 +12,8 @@ this is the directory named `target` in the root of your
 `CARGO_TARGET_DIR` [environment variable], the [`build.target-dir`] config
 value, or the `--target-dir` command-line flag.
 {==+==}
-Cargo会把构建输出保存在"target"文件夹中。默认情况下这个文件夹是你的[*workspace*][def-workspace]根目录下的 `target`文件夹。
-如果要改变输出位置，可以设置 `CARGO_TARGET_DIR` [环境变量][environment variable]， [`build.target-dir`] config参数，或者 `--target-dir` 命令行标志(flag)。
+Cargo会把构建输出保存在 "target" 文件夹中。默认情况下这个文件夹是你的 [*workspace*][def-workspace] 根目录下的 `target` 文件夹。
+如果要改变输出位置，可以设置 `CARGO_TARGET_DIR` [environment variable] "环境变量"、 [`build.target-dir`] config参数，或者 `--target-dir` 命令行标志(flag)。
 {==+==}
 
 
@@ -24,8 +24,8 @@ runs in a mode where it builds for the host architecture. The output goes into
 the root of the target directory, with each [profile] stored in a separate
 subdirectory:
 {==+==}
-这个文件夹的布局取决于你是否使用 `--target` 标志来为特定平台构建。如果没有设置 `--target` 标志，Cargo 会为宿主架构进行构建。
-输出文件保存在target文件夹，每个特定编译设置([profile])的输出文件会在放在单独的子文件夹中。
+这个文件夹的布局取决于你是否使用 `--target` 标志来为特定平台构建。如果没有设置 `--target` 标志，Cargo 会按宿主机的架构进行构建。
+输出文件保存在target文件夹，每个特定编译设置 ([profile]) 的输出文件会在放在单独的子文件夹中。
 {==+==}
 
 
@@ -38,9 +38,9 @@ Directory | Description
 {==+==}
 文件夹 | 描述
 ----------|------------
-<code style="white-space: nowrap">target/debug/</code> | 包含 `dev` 预设的输出文件。
-<code style="white-space: nowrap">target/release/</code> | 包含 `release` 预设 (构建时带 `--release` 选项) 的输出文件。
-<code style="white-space: nowrap">target/foo/</code> | 包含 `foo` 预设 (构建时带 `--profile=foo` 选项) 的输出文件。
+<code style="white-space: nowrap">target/debug/</code> | 包含 `dev` 编译设置的输出文件。
+<code style="white-space: nowrap">target/release/</code> | 包含 `release` 编译设置 (构建时带 `--release` 选项) 的输出文件。
+<code style="white-space: nowrap">target/foo/</code> | 包含 `foo` 编译设置 (构建时带 `--profile=foo` 选项) 的输出文件。
 {==+==}
 
 
@@ -50,7 +50,7 @@ For historical reasons, the `dev` and `test` profiles are stored in the
 `release` directory. User-defined profiles are stored in a directory with the
 same name as the profile.
 {==+==}
-由于历史原因， `dev` 和 `test` 预设的输出文件被放在 `debug` 文件夹中， `release` 和 `bench` 预设的输出文件被放在 `release` 文件夹。用户自定义预设的输出文件放在同名的文件夹中。
+由于历史原因， `dev` 和 `test` 编译设置的输出文件被放在 `debug` 文件夹中， `release` 和 `bench` 编译设置的输出文件被放在 `release` 文件夹。用户自定义编译设置的输出文件放在同名的文件夹中。
 {==+==}
 
 
@@ -90,7 +90,7 @@ Directory | Example
 Within the profile directory (such as `debug` or `release`), artifacts are
 placed into the following directories:
 {==+==}
-在每个预设(profile)的输出文件夹中 (比如 `debug` 或 `release`)，制品会被放在以下几个文件夹中:
+在每个编译设置(profile)的输出文件夹中 (比如 `debug` 或 `release`)，制品会被放在以下几个文件夹中:
 {==+==}
 
 
@@ -132,7 +132,7 @@ Cargo also creates several other directories and files needed for the build
 process. Their layout is considered internal to Cargo, and is subject to
 change. Some of these directories are:
 {==+==}
-Cargo还会生成构建过程需要的其他文件和文件夹，它们的组织结构看做Cargo内部信息，可能会更改。其中几个文件夹:
+Cargo还会生成构建过程需要的其他文件和文件夹，它们的组织结构看做Cargo内部项，可能会更改。其中几个文件夹:
 {==+==}
 
 {==+==}

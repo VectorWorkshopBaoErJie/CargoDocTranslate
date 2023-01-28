@@ -19,8 +19,8 @@ dependencies, compiles your packages, makes distributable packages, and uploads 
 to this book on [GitHub].
 {==+==}
 Cargo是 [Rust] [*包管理器*][def-package-manager]，能够下载、编译Rust所依赖的包 [package][def-package],
-制作可分享的包，并上传到[crates.io](Rust [*包注册中心*][def-package-registry] )。 
-您可以在 [GitHub] 为本书做出贡献。或者参与完善此 [Cargo中文手册][CargoCnBook] 。
+能制作可分享的包，可以上传到[crates.io](Rust [*包注册中心*][def-package-registry] )。 
+您可以在 [GitHub] 为本书贡献内容。或者参与完善此 [Cargo之书中文译本][CargoCnBook] 。
 {==+==}
 
 
@@ -42,7 +42,7 @@ Cargo是 [Rust] [*包管理器*][def-package-manager]，能够下载、编译Rus
 To get started with Cargo, install Cargo (and Rust) and set up your first
 [*crate*][def-crate].
 {==+==}
-开始使用Cargo，安装Cargo和Rust并设置您的第一个[*crate*][def-crate]。
+开始使用Cargo，安装Cargo和Rust，并设置您的第一个[*crate*][def-crate]。
 {==+==}
 
 
@@ -57,7 +57,7 @@ To get started with Cargo, install Cargo (and Rust) and set up your first
 The guide will give you all you need to know about how to use Cargo to develop
 Rust packages.
 {==+==}
-该指南提供有关使用Cargo开发Rust包所需的知识。
+本指南提供有关使用Cargo开发Rust包所需的知识。
 {==+==}
 
 
