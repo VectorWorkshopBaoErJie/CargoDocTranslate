@@ -20,7 +20,7 @@ to this book on [GitHub].
 {==+==}
 Cargo是 [Rust] [*包管理器*][def-package-manager]，能够下载、编译Rust所依赖的包 [package][def-package],
 制作可分享的包，并上传到[crates.io](Rust [*包注册中心*][def-package-registry] )。 
-您可以在 [GitHub] 为本书做出贡献。或者参与完善此[Cargo中文手册]。
+您可以在 [GitHub] 为本书做出贡献。或者参与完善此 [Cargo中文手册][CargoCnBook] 。
 {==+==}
 
 
@@ -135,5 +135,5 @@ The commands will let you interact with Cargo using its command-line interface.
 [rust]: https://www.rust-lang.org/
 [crates.io]: https://crates.io/
 [GitHub]: https://github.com/rust-lang/cargo/tree/master/src/doc
-[中文翻译]: https://github.com/VectorWorkshopBaoErJie/CargoDocTranslate
+[CargoCnBook]: https://github.com/VectorWorkshopBaoErJie/CargoDocTranslate
 {==+==}

@@ -210,6 +210,7 @@
 * [Appendix: Git Authentication](appendix/git-authentication.md)
 {==+==}
 * [常见问题](faq.md)
+* [译者补充](supplement.md)
 * [附录: 词汇表](appendix/glossary.md)
 * [附录: Git认证](appendix/git-authentication.md)
 {==+==}
