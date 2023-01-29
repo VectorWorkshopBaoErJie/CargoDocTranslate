@@ -32,17 +32,17 @@
   * [`autobins`](cargo-targets.md#target-auto-discovery) — 禁用二进制自动搜索。
   * [`autoexamples`](cargo-targets.md#target-auto-discovery) — 禁用实例自动搜索。
   * [`autotests`](cargo-targets.md#target-auto-discovery) — 禁用测试自动搜索。
-  * [`autobenches`](cargo-targets.md#target-auto-discovery) — 禁用基准自动搜索。
+  * [`autobenches`](cargo-targets.md#target-auto-discovery) — 禁用性能测试自动搜索。
   * [`resolver`](resolver.md#resolver-versions) — 设置要使用的依赖解析器。
 * 目标表: (参阅 [configuration](cargo-targets.md#configuring-a-target) )
   * [`[lib]`](cargo-targets.md#library) — 库目标设置。
   * [`[[bin]]`](cargo-targets.md#binaries) — 二进制目标设置。
   * [`[[example]]`](cargo-targets.md#examples) — 实例目标设置。
   * [`[[test]]`](cargo-targets.md#tests) — 测试目标设置。
-  * [`[[bench]]`](cargo-targets.md#benchmarks) — 基准目标设置。
+  * [`[[bench]]`](cargo-targets.md#benchmarks) — 性能测试目标设置。
 * 依赖表:
   * [`[dependencies]`](specifying-dependencies.md) — 包的库依赖。
-  * [`[dev-dependencies]`](specifying-dependencies.md#development-dependencies) — 实例、测试、基准的依赖。
+  * [`[dev-dependencies]`](specifying-dependencies.md#development-dependencies) — 实例、测试、性能测试的依赖。
   * [`[build-dependencies]`](specifying-dependencies.md#build-dependencies) — 构建脚本依赖。
   * [`[target]`](specifying-dependencies.md#platform-specific-dependencies) — 特定平台依赖。
 * [`[badges]`](#the-badges-section) — 显示在注册中心的标志。
@@ -121,7 +121,7 @@ authors = ["Graydon Hoare", "Fnu Lnu <no-reply@rust-lang.org>"]
 ####  `edition` 字段
 
 `edition` 是可选的键，影响包编译的 [Rust Edition] "版次"。
-在 `[package]` 中设置 `edition` 键会影响到包中的所有targets/crates，包括测试套件、基准、二进制文件、实例等。
+在 `[package]` 中设置 `edition` 键会影响到包中的所有targets/crates，包括测试套件、性能测试、二进制文件、实例等。
 
 ```toml
 [package]
@@ -155,7 +155,7 @@ Rust版本必须是由两或三个部分组成的基础版本号，不能包括�
 
 可以使用 `--ignore-rust-version` 选项忽略 `rust-version` 。
 
-在 `[package]` 中设置 `rust-version` 键将影响包中的所有 target/crates ，包括测试套件、基准、二进制文件、实例等。
+在 `[package]` 中设置 `rust-version` 键将影响包中的所有 target/crates ，包括测试套件、性能测试、二进制文件、实例等。
 
 #### `description` 字段
 

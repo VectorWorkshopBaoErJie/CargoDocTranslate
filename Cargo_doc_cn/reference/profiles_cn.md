@@ -452,7 +452,7 @@ Tests, benchmarks, build scripts, and proc macros ignore the `panic` setting.
 The `rustc` test harness currently requires `unwind` behavior. See the
 [`panic-abort-tests`] unstable flag which enables `abort` behavior.
 {==+==}
-测试、基准、构建脚本、过程宏会忽略 `panic` 设置。
+测试、性能测试、构建脚本、过程宏会忽略 `panic` 设置。
 `rust` 测试工具目前需要 `unwind` 行为。 见 [`panic-abort-tests`] 未稳定的标志启用 `abort` 行为。
 {==+==}
 

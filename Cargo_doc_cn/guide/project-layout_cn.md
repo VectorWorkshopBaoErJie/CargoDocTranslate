@@ -55,17 +55,17 @@ Cargo 有一系列文件布局的约定，从而可以简便地创建新的包:
 │       └── multi-file-executable/      多文件可执行crate根目录，目录名即可执行文件名
 │           ├── main.rs                 crate 的根
 │           └── some_module.rs          crate 的模块
-├── benches/                            基准        与bin/目录结构相同
+├── benches/                            性能测试        与bin/目录结构相同
 │   ├── large-input.rs                  
 │   └── multi-file-bench/               
 │       ├── main.rs                     
 │       └── bench_module.rs             
-├── examples/                           示例        与bin/目录结构相同
+├── examples/                           库的实例                  与bin/目录结构相同
 │   ├── simple.rs
 │   └── multi-file-example/
 │       ├── main.rs
 │       └── ex_module.rs
-└── tests/                              测试        与bin/目录结构相同
+└── tests/                              集成测试                  与bin/目录结构相同
     ├── some-integration-tests.rs
     └── multi-file-test/
         ├── main.rs
@@ -90,7 +90,7 @@ Cargo 有一系列文件布局的约定，从而可以简便地创建新的包:
 * 默认的库 crate 根文件是 `src/lib.rs` 。
 * 默认的可执行 crate 根文件是 `src/main.rs` 。
     * 其他可执行 crate 文件可以放在 `src/bin/` 目录。
-* 基准放在 `benches` 目录。
+* 性能测试放在 `benches` 目录。
 * 示例放在 `examples` 目录.
 * 集成测试文件放在 `tests` 目录.
 {==+==}

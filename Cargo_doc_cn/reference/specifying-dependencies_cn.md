@@ -712,7 +712,7 @@ Dev-dependencies are not used when compiling
 a package for building, but are used for compiling tests, examples, and
 benchmarks.
 {==+==}
-在构建包时不会使用开发依赖，而是用在编译测试、示例和基准。
+在构建包时不会使用开发依赖，而是用在编译测试、实例和性能测试。
 {==+==}
 
 

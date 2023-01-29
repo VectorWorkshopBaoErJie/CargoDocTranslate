@@ -121,7 +121,7 @@ package "包" 包含多个[*target*](#target)，每个都是一个[*crate*](#cra
 
  *target* "目标"术语的含义取决于上下文:
 
-- **Cargo 目标** — Cargo [*packages*](#package) *targets* ，对应于将要生成的 [*制品*](#artifact)。包可以有库、二进制、示例、测试和基准目标。在 `Cargo.toml` [*manifest*](#manifest)中配置[目标列表][targets]，通常由源文件的[目录层级]自动推断。
+- **Cargo 目标** — Cargo [*packages*](#package) *targets* ，对应于将要生成的 [*制品*](#artifact)。包可以有库、二进制、示例、测试和性能测试目标。在 `Cargo.toml` [*manifest*](#manifest)中配置[目标列表][targets]，通常由源文件的[目录层级]自动推断。
 - **目标目录** — Cargo将所有构建的制品和中间文件放在 *目标* 目录中。默认情况下是一个名称为 `target` 的目录，位于 [*workspace*](#workspace) 根目录下，如果不使用工作区，则为包的根目录。该目录可以通过 `--target-dir` 命令行选项、`CARGO_TARGET_DIR`[环境变量]或 `build.target-dir` [配置选项] 来改变。
 - **目标架构** — 操作系统以及机器架构中所构建的制品通常被称为 *目标* 。
 - **目标三元组** — 三元组架构是指定目标体系结构的特定格式。三元组可以被称为 *目标三元组* ，它是生成制品的体系结构，而 *host triple* 是编译器运行的体系结构。目标三元组可以通过命令行选项 `--target` 或 `build.target` [配置选项] 指定。三元组的一般格式是 `<arch><sub>-<vendor>-<sys>-<abi>` :

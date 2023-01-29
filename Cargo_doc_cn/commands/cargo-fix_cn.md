@@ -464,7 +464,7 @@ manifest settings for the target.</dd>
 times and supports common Unix glob patterns.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-fix---bench"><a class="option-anchor" href="#option-cargo-fix---bench"></a><code>--bench</code> <em>name</em>...</dt>
-<dd class="option-desc">修复指定的基准。这个标志可以多次指定，并支持常见的Unix通配符模式。</dd>
+<dd class="option-desc">修复指定的性能测试。这个标志可以多次指定，并支持常见的Unix通配符模式。</dd>
 {==+==}
 
 
@@ -479,8 +479,8 @@ Targets may be enabled or disabled by setting the <code>bench</code> flag in the
 manifest settings for the target.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-fix---benches"><a class="option-anchor" href="#option-cargo-fix---benches"></a><code>--benches</code></dt>
-<dd class="option-desc">修复基准模式下所有设置了<code>bench = true</code>配置清单标志的目标。
-默认情况下，这包括作为基准构建的库和二进制文件，以及基准目标。请注意，这也将构建任何所需的依赖，所以lib目标可能会被构建两次(一次是作为基准，一次是作为二进制文件、基准等的依赖)。
+<dd class="option-desc">修复性能测试模式下所有设置了<code>bench = true</code>配置清单标志的目标。
+默认情况下，这包括作为性能测试构建的库和二进制文件，以及性能测试目标。请注意，这也将构建任何所需的依赖，所以lib目标可能会被构建两次(一次是作为性能测试，一次是作为二进制文件、性能测试等的依赖)。
 通过在目标的配置清单中设置<code>bench</code>标志，可以启用或禁用目标。</dd>
 {==+==}
 

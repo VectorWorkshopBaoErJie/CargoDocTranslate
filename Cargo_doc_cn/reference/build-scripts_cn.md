@@ -243,12 +243,12 @@ one detailed below.
 {==+==}
 * [`cargo:rerun-if-changed=PATH`](#rerun-if-changed) — 告诉Cargo何时重新运行脚本。
 * [`cargo:rerun-if-env-changed=VAR`](#rerun-if-env-changed) — 告诉Cargo何时重新运行脚本。
-* [`cargo:rustc-link-arg=FLAG`](#rustc-link-arg) — 为基准、二进制文件、`cdylib` crates、示例和测试的链接器传递自定义标志。
+* [`cargo:rustc-link-arg=FLAG`](#rustc-link-arg) — 为性能测试、二进制文件、`cdylib` crates、示例和测试的链接器传递自定义标志。
 * [`cargo:rustc-link-arg-bin=BIN=FLAG`](#rustc-link-arg-bin) — 将自定义标志传递给二进制 `BIN` 的链接器。
 * [`cargo:rustc-link-arg-bins=FLAG`](#rustc-link-arg-bins) — 将自定义标志传递给二进制文件的链接器。
 * [`cargo:rustc-link-arg-tests=FLAG`](#rustc-link-arg-tests) —  将自定义标志传递给链接器进行测试。
 * [`cargo:rustc-link-arg-examples=FLAG`](#rustc-link-arg-examples) — 将自定义标志传递给链接器的例子。
-* [`cargo:rustc-link-arg-benches=FLAG`](#rustc-link-arg-benches) — 将自定义的标志传递给链接器，用于基准测试。
+* [`cargo:rustc-link-arg-benches=FLAG`](#rustc-link-arg-benches) — 将自定义的标志传递给链接器，用于性能测试。
 {==+==}
 
 {==+==}
@@ -292,7 +292,7 @@ option][link-arg] to the compiler, but only when building supported targets
 highly platform specific. It is useful to set the shared library version or
 linker script.
 {==+==}
-`rustc-link-arg` 指令告诉Cargo将 [`-C link-arg=FLAG` option][link-arg] 传递给编译器，但只在构建支持的目标(基准、二进制文件、 `cdylib` crate、示例和测试)时使用。
+`rustc-link-arg` 指令告诉Cargo将 [`-C link-arg=FLAG` option][link-arg] 传递给编译器，但只在构建支持的目标(性能测试、二进制文件、 `cdylib` crate、示例和测试)时使用。
 它的使用是高度平台化的。对设置共享库版本或链接器脚本很有用。
 {==+==}
 
@@ -444,7 +444,7 @@ The `rustc-link-arg-benches` instruction tells Cargo to pass the [`-C
 link-arg=FLAG` option][link-arg] to the compiler, but only when building an benchmark
 target.
 {==+==}
-`rustc-link-arg-benches` 指令告诉Cargo将 [`-C link-arg=FLAG` option][link-arg] 传递给编译器，但只在构建基准目标时使用。
+`rustc-link-arg-benches` 指令告诉Cargo将 [`-C link-arg=FLAG` option][link-arg] 传递给编译器，但只在构建性能测试目标时使用。
 {==+==}
 
 
