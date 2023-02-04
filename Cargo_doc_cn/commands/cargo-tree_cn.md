@@ -569,7 +569,7 @@ be specified multiple times, which enables all specified features.</dd>
 {==+==}
 ### Display Options
 {==+==}
-### 输出选项
+### 显示选项
 {==+==}
 
 {==+==}

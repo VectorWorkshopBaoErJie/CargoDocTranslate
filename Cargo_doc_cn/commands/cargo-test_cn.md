@@ -695,7 +695,7 @@ Defaults to <code>target</code> in the root of the workspace.</dd>
 {==+==}
 ### Display Options
 {==+==}
-### 输出选项
+### 显示选项
 {==+==}
 
 {==+==}
@@ -1018,7 +1018,6 @@ produced during execution of this command</p>
 
 <dt class="option-term" id="option-cargo-test--j"><a class="option-anchor" href="#option-cargo-test--j"></a><code>-j</code> <em>N</em></dt>
 <dt class="option-term" id="option-cargo-test---jobs"><a class="option-anchor" href="#option-cargo-test---jobs"></a><code>--jobs</code> <em>N</em></dt>
-要运行的并行作业的数量。也可以通过 build.jobs 配置值来指定。默认为逻辑CPU的数量。如果是负数，它将最大的并行作业数量设置为逻辑CPU的数量加上所提供的值。不应该是0。
 <dd class="option-desc">要运行的并行作业的数量。
 也可以通过 <code>build.jobs</code> <a href="../reference/config.html">config value</a> 配置值来指定。
 默认为逻辑CPU的数量。如果是负数，它将最大的并行作业数量设置为逻辑CPU的数量加上所提供的值。不应该是0。
@@ -1026,7 +1025,6 @@ produced during execution of this command</p>
 
 
 <dt class="option-term" id="option-cargo-test---keep-going"><a class="option-anchor" href="#option-cargo-test---keep-going"></a><code>--keep-going</code></dt>
-尽可能多地构建依赖关系图中的板块，而不是在第一个失败的板块上中止构建。不稳定，需要 -Zunstable-options。
 <dd class="option-desc">尽可能多地构建依赖关系图中的 crates, 而不是有一个 crate 构建失败则中止构建。
 不稳定，需要 <code>-Zunstable-options</code>。</dd>
 
