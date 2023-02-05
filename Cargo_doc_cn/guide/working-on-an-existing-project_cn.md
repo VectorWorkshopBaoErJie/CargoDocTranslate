@@ -8,7 +8,7 @@
 If you download an existing [package][def-package] that uses Cargo, it’s
 really easy to get going.
 {==+==}
-使用 Cargo 下载已有的 [package][def-package] 非常简单。
+使用 Cargo 下载已存在的 [package][def-package] 非常简单。
 {==+==}
 
 {==+==}

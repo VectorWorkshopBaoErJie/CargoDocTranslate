@@ -9,14 +9,14 @@ The `Cargo.toml` file for each package is called its *manifest*. It is written
 in the [TOML] format. It contains metadata that is needed to compile the package. Checkout
 the `cargo locate-project` section for more detail on how cargo finds the manifest file.
 {==+==}
-每个包的 `Cargo.toml` 文件称为 *manifest* "配置清单" ，以[TOML]格式编写。
+每个包的 `Cargo.toml` 内容称为 *manifest* "配置清单" ，以[TOML]格式编写。
 其包含编译包时所需的元数据。要了解更多关于cargo如何查找配置清单文件的细节，请查看 `cargo locate-project` 部分。
 {==+==}
 
 {==+==}
 Every manifest file consists of the following sections:
 {==+==}
-每个配置清单文件由以下部分组成:
+配置清单内容由以下部分组成:
 {==+==}
 
 {==+==}
@@ -77,7 +77,7 @@ Every manifest file consists of the following sections:
   * [`autobins`](cargo-targets.md#target-auto-discovery) — 禁用二进制自动搜索。
   * [`autoexamples`](cargo-targets.md#target-auto-discovery) — 禁用实例自动搜索。
   * [`autotests`](cargo-targets.md#target-auto-discovery) — 禁用测试自动搜索。
-  * [`autobenches`](cargo-targets.md#target-auto-discovery) — 禁用基准自动搜索。
+  * [`autobenches`](cargo-targets.md#target-auto-discovery) — 禁用性能测试自动搜索。
   * [`resolver`](resolver.md#resolver-versions) — 设置要使用的依赖解析器。
 {==+==}
 
@@ -94,7 +94,7 @@ Every manifest file consists of the following sections:
   * [`[[bin]]`](cargo-targets.md#binaries) — 二进制目标设置。
   * [`[[example]]`](cargo-targets.md#examples) — 实例目标设置。
   * [`[[test]]`](cargo-targets.md#tests) — 测试目标设置。
-  * [`[[bench]]`](cargo-targets.md#benchmarks) — 基准目标设置。
+  * [`[[bench]]`](cargo-targets.md#benchmarks) — 性能测试目标设置。
 {==+==}
 
 {==+==}
@@ -112,7 +112,7 @@ Every manifest file consists of the following sections:
 {==+==}
 * 依赖表:
   * [`[dependencies]`](specifying-dependencies.md) — 包的库依赖。
-  * [`[dev-dependencies]`](specifying-dependencies.md#development-dependencies) — 实例、测试、基准的依赖。
+  * [`[dev-dependencies]`](specifying-dependencies.md#development-dependencies) — 实例、测试、性能测试的依赖。
   * [`[build-dependencies]`](specifying-dependencies.md#build-dependencies) — 构建脚本依赖。
   * [`[target]`](specifying-dependencies.md#platform-specific-dependencies) — 特定平台依赖。
 * [`[badges]`](#the-badges-section) — 显示在注册中心的标志。
@@ -134,7 +134,7 @@ Every manifest file consists of the following sections:
 {==+==}
 The first section in a `Cargo.toml` is `[package]`.
 {==+==}
-在 `Cargo.toml` 中最先的部分就是 `[package]` 。
+在 `Cargo.toml` 中首先的部分就是 `[package]` 。
 {==+==}
 
 {==+==}
@@ -180,7 +180,7 @@ inferred lib and bin targets.
 {==+==}
 The name must use only [alphanumeric] characters or `-` or `_`, and cannot be empty.
 {==+==}
-该名称只能使用 [字母数字] 、 `-` 、 `_` ，并且不能为空。
+该名称只能使用 [字母数字][alphanumeric] 、 `-` 、 `_` ，并且不能为空。
 {==+==}
 
 {==+==}
@@ -188,7 +188,7 @@ Note that [`cargo new`] and [`cargo init`] impose some additional restrictions o
 the package name, such as enforcing that it is a valid Rust identifier and not
 a keyword. [crates.io] imposes even more restrictions, such as:
 {==+==}
-需注意，[`cargo new`]和[`cargo init`]对包名有一些额外的限制，如强制要求为有效的Rust标识符，而不能是关键字。
+需注意， [`cargo new`] 和 [`cargo init`] 对包名有一些额外的限制，如强制要求为有效的Rust标识符，而不能是关键字。
 [crates.io]有更多的限制，比如说:
 {==+==}
 
@@ -244,16 +244,15 @@ resolve dependencies, and for guidelines on setting your own version. See the
 [SemVer compatibility] chapter for more details on exactly what constitutes a
 breaking change.
 {==+==}
-请参阅 [Resolver] 章节，了解更多关于Cargo如何使用版本号来解决依赖，以及自己设置版本号的指南。
-参见 [语义化兼容] 一章，以了解更多关于什么是破坏性变化的细节。
+请参阅 [Resolver] 章节，了解更多关于Cargo如何使用版本号来解析依赖，以及自己设置版本号的指南。
+参阅 [语义化兼容性][SemVer compatibility] 一章，以了解更多关于什么是破坏性变化的细节。
 {==+==}
 
 {==+==}
 [Resolver]: resolver.md
 [SemVer compatibility]: semver.md
 {==+==}
-[Resolver]: resolver.md
-[语义化兼容]: semver.md
+
 {==+==}
 
 {==+==}
@@ -317,8 +316,9 @@ targets/crates in the package, including test suites, benchmarks, binaries,
 examples, etc.
 {==+==}
 `edition` 是可选的键，影响包编译的 [Rust Edition] "版次"。
-在 `[package]` 中设置 `edition` 键会影响到包中的所有targets/crates，包括测试套件、基准、二进制文件、实例等。
+在 `[package]` 中设置 `edition` 键会影响到包中的所有targets/crates，包括测试套件、性能测试、二进制文件、实例等。
 {==+==}
+
 
 {==+==}
 ```toml
@@ -327,12 +327,9 @@ examples, etc.
 edition = '2021'
 ```
 {==+==}
-```toml
-[package]
-# ...
-edition = '2021'
-```
+
 {==+==}
+
 
 {==+==}
 Most manifests have the `edition` field filled in automatically by [`cargo new`]
@@ -343,6 +340,7 @@ the 2021 edition currently.
 `cargo new` 默认创建的是2021版。
 {==+==}
 
+
 {==+==}
 If the `edition` field is not present in `Cargo.toml`, then the 2015 edition is
 assumed for backwards compatibility. Note that all manifests
@@ -352,6 +350,7 @@ will have `edition` explicitly specified to a newer value.
 如果 `Cargo.toml` 中没有 `edition` 字段，那么为了向后兼容，将假定为2015版。
 请注意，凡是用 [`cargo new`] 创建的配置清单不会使用这种历史版次，而会将 `edition` 指定为一个较新的值。
 {==+==}
+
 
 {==+==}
 #### The `rust-version` field
@@ -367,6 +366,7 @@ will exit with an error, telling the user what version is required.
 如果当前选择的Rust编译器的版本比声明的版本早，cargo会退出，并告诉用户需要什么版本。
 {==+==}
 
+
 {==+==}
 The first version of Cargo that supports this field was released with Rust 1.56.0.
 In older releases, the field will be ignored, and Cargo will display a warning.
@@ -375,6 +375,7 @@ In older releases, the field will be ignored, and Cargo will display a warning.
 在旧版本中，这个字段会被忽略，Cargo会显示一个警告。
 {==+==}
 
+
 {==+==}
 ```toml
 [package]
@@ -382,12 +383,9 @@ In older releases, the field will be ignored, and Cargo will display a warning.
 rust-version = "1.56"
 ```
 {==+==}
-```toml
-[package]
-# ...
-rust-version = "1.56"
-```
+
 {==+==}
+
 
 {==+==}
 The Rust version must be a bare version number with two or three components; it
@@ -401,6 +399,7 @@ Rust版本必须是由两或三个部分组成的基础版本号，不能包括�
 `rust-version` 必须等于或高于首次引入配置的 `edition` 的版本。
 {==+==}
 
+
 {==+==}
 The `rust-version` may be ignored using the `--ignore-rust-version` option.
 {==+==}
@@ -411,7 +410,7 @@ The `rust-version` may be ignored using the `--ignore-rust-version` option.
 Setting the `rust-version` key in `[package]` will affect all targets/crates in
 the package, including test suites, benchmarks, binaries, examples, etc.
 {==+==}
-在 `[package]` 中设置 `rust-version` 键将影响包中的所有 target/crates ，包括测试套件、基准、二进制文件、实例等。
+在 `[package]` 中设置 `rust-version` 键将影响包中的所有 target/crates ，包括测试套件、性能测试、二进制文件、实例等。
 {==+==}
 
 {==+==}
@@ -458,6 +457,7 @@ automatically link your crate to the corresponding [docs.rs] page.
 如果配置清单文件中没有指定URL，则 [crates.io] 会自动将你的crate链接到相应的 [docs.rs] 页面。
 {==+==}
 
+
 {==+==}
 ```toml
 [package]
@@ -467,6 +467,7 @@ documentation = "https://docs.rs/bitflags"
 {==+==}
 
 {==+==}
+
 
 {==+==}
 #### The `readme` field
@@ -483,6 +484,7 @@ will interpret it as Markdown and render it on the crate's page.
 [crates.io] 将以Markdown解释它，并在crate的页面上呈现。
 {==+==}
 
+
 {==+==}
 ```toml
 [package]
@@ -490,12 +492,9 @@ will interpret it as Markdown and render it on the crate's page.
 readme = "README.md"
 ```
 {==+==}
-```toml
-[package]
-# ...
-readme = "README.md"
-```
+
 {==+==}
+
 
 {==+==}
 If no value is specified for this field, and a file named `README.md`,
@@ -508,6 +507,7 @@ be assumed.
 你可以通过设置这个字段为 `false` 来阻止这种行为。如果该字段被设置为 `true` ，将假定默认值为 `README.md` 。
 {==+==}
 
+
 {==+==}
 #### The `homepage` field
 
@@ -519,6 +519,7 @@ package.
 `homepage` 字段应是包主页网站的URL。
 {==+==}
 
+
 {==+==}
 ```toml
 [package]
@@ -528,6 +529,7 @@ homepage = "https://serde.rs/"
 {==+==}
 
 {==+==}
+
 
 {==+==}
 #### The `repository` field
@@ -565,6 +567,7 @@ containing the text of the license (relative to this `Cargo.toml`).
 `license-file` 字段包含许可证文本的文件路径(相对于当前 `Cargo.toml` )。
 {==+==}
 
+
 {==+==}
 [crates.io] interprets the `license` field as an [SPDX 2.1 license
 expression][spdx-2.1-license-expressions]. The name must be a known license
@@ -573,8 +576,9 @@ currently supported. See the [SPDX site] for more information.
 {==+==}
 [crates.io]将 `license` 字段解释为 [SPDX 2.1 license expression][spdx-2.1-license-expressions] 。
 该名称必须是 [SPDX license list 3.11][spdx-license-list-3.11] 中的一个已知许可证。
-目前不支持括号。更多信息请参见 [SPDX网站] 。
+目前不支持括号。更多信息请参见 [SPDX网站][SPDX site] 。
 {==+==}
+
 
 {==+==}
 SPDX license expressions support AND and OR operators to combine multiple
@@ -604,15 +608,15 @@ indicates a license with a special exception. Some examples:
 使用 `WITH` 操作符表示有特殊例外的许可证。一些例子:
 {==+==}
 
+
 {==+==}
 * `MIT OR Apache-2.0`
 * `LGPL-2.1-only AND MIT AND BSD-2-Clause`
 * `GPL-2.0-or-later WITH Bison-exception-2.2`
 {==+==}
-* `MIT OR Apache-2.0`
-* `LGPL-2.1-only AND MIT AND BSD-2-Clause`
-* `GPL-2.0-or-later WITH Bison-exception-2.2`
+
 {==+==}
+
 
 {==+==}
 If a package is using a nonstandard license, then the `license-file` field may
@@ -657,6 +661,7 @@ words that would help someone find this crate.
 `keywords` 字段是描述这个包的字符串数组。
 当在注册中心搜索该包时，提供帮助，你可以选择任意可以帮助别人找到这个crate的词。
 {==+==}
+
 
 
 {==+==}
@@ -740,6 +745,7 @@ workspace = "path/to/workspace/root"
 
 {==+==}
 
+
 {==+==}
 This field cannot be specified if the manifest already has a `[workspace]`
 table defined. That is, a crate cannot both be a root crate in a workspace
@@ -750,11 +756,13 @@ table defined. That is, a crate cannot both be a root crate in a workspace
 也就是说，crate 不能既是一个工作空间的根 crate (包含 `[workspace]`)，又是另一个工作空间的成员 crate (包含 `package.workspace` )。
 {==+==}
 
+
 {==+==}
 For more information, see the [workspaces chapter](workspaces.md).
 {==+==}
 了解更多信息，请参见[工作空间章节](workspaces.md)。
 {==+==}
+
 
 {==+==}
 <a id="package-build"></a>
@@ -771,9 +779,10 @@ The `build` field specifies a file in the package root which is a [build
 script] for building native code. More information can be found in the [build
 script guide][build script].
 {==+==}
-`build` 字段指定包根位置的文件，该文件是用于构建本地代码的[构建脚本]。
+`build` 字段指定包根位置的文件，该文件是用于构建本地代码的 [构建脚本][build script] 。
 更多信息可以在 [构建脚本指南][build script] 中找到。
 {==+==}
+
 
 {==+==}
 [build script]: build-scripts.md
@@ -859,7 +868,7 @@ included.
 You may run [`cargo package --list`][`cargo package`] to verify which files will
 be included in the package.
 {==+==}
-`exclude` 和 `include` 字段可以用来明确指定哪些文件在进行打包[发布][publishing]项目时被包含，以及某些种类的变更跟踪(如下所述)。
+`exclude` 和 `include` 字段可以用来明确指定哪些文件在进行打包[发布][publishing]项目时被包含，以及某些类别的变更跟踪(如下所述)。
 在 `exclude` 字段中指定的模式确定了一组不包括的文件，而 `include` 中的模式指定了明确包括的文件。
 可以运行 [`cargo package --list`][`cargo package`] 来验证哪些文件被包含在包中。
 {==+==}
@@ -1134,7 +1143,7 @@ external tools may wish to use them in a consistent fashion, such as referring
 to the data in `workspace.metadata` if data is missing from `package.metadata`,
 if that makes sense for the tool in question.
 {==+==}
-在工作空间层级也有类似的表，位于[`workspace.metadata`][workspace-metadata]。
+在工作空间层级也有类似的表，位于 [`workspace.metadata`][workspace-metadata] 。
 虽然cargo没有指定这两个表的内容格式，但建议插件以一致的方式使用它们，例如，
 如果 `package.metadata` 中缺少数据，就引用 `workspace.metadata` 中的数据，只要对相关工具来说合理。
 {==+==}
@@ -1248,7 +1257,7 @@ information on the `[dependencies]`, `[dev-dependencies]`,
 {==+==}
 ### 依赖部分
 
-参阅 [特定依赖页](specifying-dependencies.md) 在 `[dependencies]` , `[dev-dependencies]` , `[build-dependencies]` , 和 target-specific `[target.*.dependencies]` 部分.
+参阅 [指定依赖](specifying-dependencies.md) 在 `[dependencies]` , `[dev-dependencies]` , `[build-dependencies]` , 和 target-specific `[target.*.dependencies]` 部分.
 {==+==}
 
 {==+==}
@@ -1264,6 +1273,7 @@ more detail.
 更多细节请参见[编译设置章节](profiles.md)。
 {==+==}
 
+
 {==+==}
 [`cargo init`]: ../commands/cargo-init.md
 [`cargo new`]: ../commands/cargo-new.md
@@ -1278,19 +1288,9 @@ more detail.
 [SPDX site]: https://spdx.org/license-list
 [TOML]: https://toml.io/
 {==+==}
-[`cargo init`]: ../commands/cargo-init.md
-[`cargo new`]: ../commands/cargo-new.md
-[`cargo package`]: ../commands/cargo-package.md
-[`cargo run`]: ../commands/cargo-run.md
-[crates.io]: https://crates.io/
-[docs.rs]: https://docs.rs/
-[publishing]: publishing.md
-[Rust 版次]: ../../edition-guide/index.html
-[spdx-2.1-license-expressions]: https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60
-[spdx-license-list-3.11]: https://github.com/spdx/license-list-data/tree/v3.11
-[SPDX网站]: https://spdx.org/license-list
-[TOML]: https://toml.io/
+
 {==+==}
+
 
 {==+==}
 <script>

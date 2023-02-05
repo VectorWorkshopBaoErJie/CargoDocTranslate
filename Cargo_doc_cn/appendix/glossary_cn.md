@@ -429,7 +429,7 @@ The meaning of the term *target* depends on the context:
   [*manifest*](#manifest), often inferred automatically by the [directory
   layout] of the source files.
 {==+==}
-- **Cargo 目标** — Cargo [*packages*](#package) *targets* ，对应于将要生成的 [*制品*](#artifact)。包可以有库、二进制、示例、测试和基准目标。在 `Cargo.toml` [*manifest*](#manifest)中配置[目标列表][targets]，通常由源文件的[目录层级]自动推断。
+- **Cargo 目标** — Cargo [*packages*](#package) *targets* ，对应于将要生成的 [*制品*](#artifact)。包可以有库、二进制、示例、测试和性能测试目标。在 `Cargo.toml` [*manifest*](#manifest)中配置[目标列表][targets]，通常由源文件的[目录层级]自动推断。
 {==+==}
 
 {==+==}

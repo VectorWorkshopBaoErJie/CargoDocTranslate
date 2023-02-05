@@ -8,7 +8,7 @@
 {==+==}
 The following sections illustrate some examples of writing build scripts.
 {==+==}
-下面小节是一些编写的构建脚本的示例。
+下面小节是一些编写的构建脚本的举例。
 {==+==}
 
 
@@ -18,9 +18,9 @@ Check out the [`build-dependencies`
 keyword](https://crates.io/keywords/build-dependencies) to see what is
 available. The following is a sample of some popular crates[^†]:
 {==+==}
-在[crates.io]的crate构建脚本中可以找到一些常见的功能。
+通过 [crates.io] 中的crate，能找到一些构建脚本的常见功能。
 查看 [`build-dependencies` 键](https://crates.io/keywords/build-dependencies)，看看有那些可用。
-下面是一些流行的 crates[^†] 示例。
+下面是一些流行的 crates[^†] 示例:
 {==+==}
 
 
@@ -51,7 +51,7 @@ available. The following is a sample of some popular crates[^†]:
 [^†]: This list is not an endorsement. Evaluate your dependencies to see which
 is right for your project.
 {==+==}
-[^†]: 这个列表并不仅是一种签注。评估你的依赖，看哪一个是更适合你的项目。
+[^†]: 这个列表并不是一种宣传，你需要评估依赖，选择更适合你的项目。
 {==+==}
 
 
@@ -68,7 +68,7 @@ for various reasons. Here we’ll walk through a simple example which generates 
 library call as part of the build script.
 {==+==}
 由于各种原因，有些Cargo包在编译前需要生成代码。
-在这里，通过一个简单的例子，生成一个库调用将作为构建脚本的一部分。
+在这里，通过一个简单的例子，生成一个库，作为构建脚本的一部分调用。
 {==+==}
 
 
@@ -239,7 +239,7 @@ generated file (`hello.rs`) into the crate’s compilation.
 Using the structure shown here, crates can include any number of generated files
 from the build script itself.
 {==+==}
-使用这里显示的结构，crate可以include来自构建脚本本身任意数量的生成文件。
+使用这里展示的结构，crate可以include来自构建脚本所生成的任意数量的文件。
 {==+==}
 
 
@@ -274,7 +274,7 @@ a Rust library which calls into C to print “Hello, World!”.
 {==+==}
 Like above, let’s first take a look at the package layout:
 {==+==}
-像上面一样，来先看一下包的层次。
+像上面一样，来先看一下包的层次:
 {==+==}
 
 
@@ -333,9 +333,20 @@ use std::path::Path;
 
 fn main() {
     let out_dir = env::var("OUT_DIR").unwrap();
+{==+==}
 
+{==+==}
+
+
+{==+==}
     // Note that there are a number of downsides to this approach, the comments
     // below detail how to improve the portability of these commands.
+{==+==}
+    // 注意，这种方法有一些缺点，下面的注解详细说明了如何提高这些命令的可移植性。
+{==+==}
+
+
+{==+==}
     Command::new("gcc").args(&["src/hello.c", "-c", "-fPIC", "-o"])
                        .arg(&format!("{}/hello.o", out_dir))
                        .status().unwrap();
@@ -360,7 +371,7 @@ invoking `ar`). The final step is feedback to Cargo itself to say that our
 output was in `out_dir` and the compiler should link the crate to `libhello.a`
 statically via the `-l static=hello` flag.
 {==+==}
-这个编译脚本首先将C文件编译成object文件(通过调用`gcc`)，然后将这个object文件转换为静态库 (通过调用`ar`)。
+这个编译脚本首先将C文件编译成object文件(通过调用`gcc`)，然后将这个object文件转换为静态库 (通过调用 `ar` )。
 最后一步是反馈给Cargo本身，告知输出在 `out_dir` ，编译器应该通过 `-l static=hello` 标志将crate静态链接到 `libhello.a` 。
 {==+==}
 
@@ -393,7 +404,7 @@ crate](https://crates.io/crates/cc) from [crates.io]. First, add it to the
 `build-dependencies` in `Cargo.toml`:
 {==+==}
 不过不用担心，这时 `build-dependencies` 条目会有帮助。Cargo生态系统有许多包，可以使这种任务变得更容易、便携、标准。
-试试[crates.io]的[`cc` crate](https://crates.io/crates/cc)。首先，把它添加到 `Cargo.toml` 的 `build-dependencies` 中。
+试试 [crates.io] 的 [`cc` crate](https://crates.io/crates/cc) 。首先，把它添加到 `Cargo.toml` 的 `build-dependencies` 中。
 {==+==}
 
 
@@ -518,7 +529,7 @@ And there we go! This should complete our example of building some C code from a
 Cargo package using the build script itself. This also shows why using a build
 dependency can be crucial in many situations and even much more concise!
 {==+==}
-那么开始! 这样就完成了从Cargo包中使用构建脚本本身构建一些C代码的例子。
+那么好了! 这样就完成了从Cargo包中使用构建脚本本身构建一些C代码的例子。
 这也说明为什么在很多情况下，使用构建依赖是非常关键的，甚至更加简洁!
 {==+==}
 
@@ -527,7 +538,7 @@ dependency can be crucial in many situations and even much more concise!
 We’ve also seen a brief example of how a build script can use a crate as a
 dependency purely for the build process and not for the crate itself at runtime.
 {==+==}
-我们也看到了这个简短的示例，说明构建脚本如何单纯将crate作为依赖，而不是在运行时将crate本身作为依赖。
+我们也看到这个简短的示例，说明构建脚本如何单纯将crate作为依赖，而不是在运行时将crate本身作为依赖。
 {==+==}
 
 
@@ -576,7 +587,7 @@ out [the source code][libz-source] for the full example.
 {==+==}
 对于这个例子，将创建一个与系统zlib库的绑定。
 这是在大多数类Unix系统中常见的库，提供数据压缩。
-这已经包含在[`libz-sys` crate]中了，但对于这个例子，我们将做一个极其简化的版本。请查看[libz源码][libz-source]以了解完整的用例。
+这已经包含在 [`libz-sys` crate] 中了，但对于这个例子，我们将做一个极其简化的版本。请查看 [libz源码][libz-source] 以了解完整的用例。
 {==+==}
 
 
@@ -587,7 +598,7 @@ discover information about a library. It will automatically tell Cargo what is
 needed to link the library. This will likely only work on Unix-like systems
 with `pkg-config` installed. Let's start by setting up the manifest:
 {==+==}
-为了方便找到库的位置，我们将使用[`pkg-config` crate]。这个crate使用系统的 `pkg-config` 工具来发现库的信息。
+为了方便找到库的位置，我们将使用 [`pkg-config` crate] 。这个crate使用系统的 `pkg-config` 工具来发现库的信息。
 它将自动告诉Cargo需要什么来链接这个库。这可能只能在安装了 `pkg-config` 的类Unix系统上工作。先从设置配置清单开始:
 {==+==}
 
@@ -617,7 +628,7 @@ crate"](#using-another-sys-crate) for an example that will leverage this.
 {==+==}
 请注意，我们在 `package` 表中加入了 `links` 键。
 这告知Cargo，正在链接到 `libz` 库。
-请看["使用另一个系统crate"](#using-another-sys-crate)中的例子，可以利用这点。
+请看 ["使用另一个系统crate"](#using-another-sys-crate) 中的例子，可以利用这点。
 {==+==}
 
 
@@ -866,7 +877,7 @@ this](https://github.com/sfackler/rust-openssl/blob/dc72a8e2c429e46c275e528b61a7
 它支持多种不同的实现方式 (如LibreSSL) 和多个版本。
 它使用了 `links` 键，这样就可以向其他构建脚本传递信息。
 它传递的信息之一是 `version_number` 键，这是检测到的OpenSSL的版本。
-构建脚本中的代码看起来[像这样](https://github.com/sfackler/rust-openssl/blob/dc72a8e2c429e46c275e528b61a733a66e7877fc/openssl-sys/build/main.rs#L216):
+构建脚本中的代码看起来 [像这样](https://github.com/sfackler/rust-openssl/blob/dc72a8e2c429e46c275e528b61a733a66e7877fc/openssl-sys/build/main.rs#L216):
 {==+==}
 
 
@@ -938,7 +949,7 @@ excluded](https://github.com/sfackler/rust-openssl/blob/dc72a8e2c429e46c275e528b
 for older versions:
 {==+==}
 这些 `cfg` 值可以与 [`cfg` attribute]  或 [`cfg` macro]一起使用，从而有条件地include代码。
-例如，SHA3支持是在OpenSSL 1.1.1中添加的，所以对于旧版本它被[条件排除](https://github.com/sfackler/rust-openssl/blob/dc72a8e2c429e46c275e528b61a733a66e7877fc/openssl/src/hash.rs#L67-L85)。
+例如，SHA3支持是在OpenSSL 1.1.1中添加的，所以对于旧版本它被 [条件排除](https://github.com/sfackler/rust-openssl/blob/dc72a8e2c429e46c275e528b61a733a66e7877fc/openssl/src/hash.rs#L67-L85) 。
 {==+==}
 
 

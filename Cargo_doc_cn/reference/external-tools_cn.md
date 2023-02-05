@@ -200,7 +200,7 @@ structure:
            - 二进制是 ["bin"]
            - 实例是 ["example"]
            - 综合测试是 ["test"]
-           - 基准是 ["bench"]
+           - 性能测试是 ["bench"]
            - 构建脚本是 ["custom-build"]
         */
         "kind": [

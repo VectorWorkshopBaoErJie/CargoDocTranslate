@@ -21,7 +21,7 @@ cargo - Rust包管理器
 ### 构建命令
 
 [cargo-bench(1)](cargo-bench.html)\
-&nbsp;&nbsp;&nbsp;&nbsp;执行包的基准测试。
+&nbsp;&nbsp;&nbsp;&nbsp;执行包的性能测试。
 
 [cargo-build(1)](cargo-build.html)\
 &nbsp;&nbsp;&nbsp;&nbsp;编译包

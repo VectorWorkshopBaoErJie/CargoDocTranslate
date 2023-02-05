@@ -42,8 +42,8 @@ any specific compiler flags or include external dependencies, then the
 needed command would be even more specific (and elaborate).
 {==+==}
 请注意，上面的命令需要显式指定文件名。
-如果直接使用 `rustc` 编译不同的程序，文件不同，就需要执行不同的命令。
-如果指定编译选项或包含外部依赖，那需要执行的命令需要具体详尽。
+如果直接使用 `rustc` 编译不同的程序，不同的文件就需要执行不同的命令。
+如果需要指定编译选项或包含的外部依赖，就需要十分具体详尽的执行命令。
 {==+==}
 
 
@@ -55,7 +55,7 @@ and keeping them up to date would be laborious and error-prone if done by
 hand.
 {==+==}
 而且，大多数程序会有额外的外部依赖，这些外部依赖又会有其他依赖。
-此时手动维护必要依赖的正确版本，并保持依赖版本更新会很困难。
+此时手动维护必要依赖的正确版本，并协调依赖版本更新会很困难。
 {==+==}
 
 
@@ -80,7 +80,7 @@ involved with performing the above tasks by introducing a higher-level
 [*packages*][def-package] to declare their various dependencies and ensure
 that you’ll always get a repeatable build.
 {==+==}
-*Cargo* 是 Rust 的包管理器。它是允许 Rust [*packages*][def-package] 声明其各种依赖关系的工具，并确保总是能得到一个可重复的构建。
+*Cargo* 是 Rust 的包管理器。它是工具，允许 Rust [*packages*][def-package] 声明其各种依赖关系，确保总是能得到一个可重复的构建。
 {==+==}
 
 {==+==}
@@ -96,10 +96,10 @@ Cargo 做了以下四件事来实现这个目标:
   your package.
 * Introduces conventions to make working with Rust packages easier.
 {==+==}
-* 引入两个包含各类包信息的元数据文件。
+* 引进两个文件，包含包的各类元数据信息。
 * 下载并构建包的依赖。
-* 调用 `rustc` 或其他构建工具以及正确的参数来构建包。
-* 引入规范使 Rust 包的操作更简单。
+* 调用 `rustc` 或其他构建工具及正确的参数来构建包。
+* 引进规范使 Rust 包的操作更简单。
 {==+==}
 
 {==+==}
@@ -114,9 +114,9 @@ invocation. Furthermore, Cargo will automatically fetch from a
 and arrange for them to be incorporated into our build as needed.
 {==+==}
 Cargo 在很大程度的标准化了构建程序或包的命令，这是上述规范的一个方面。
-从下文中可以看到，相同的命令可以用于构建不同名称的 [*artifacts*][def-artifact] 。
-相比直接调用 `rustc` ，可以调用 `cargo build` 等更加通用的命令，让 cargo 正确的调用 `rustc` 构建。
-并且，Cargo 可以自动从 [*registry*][def-registry] 下载依赖，并将依赖合并在构建中。
+从下文中可以看到，相同的命令可以构建名称不同的 [*artifacts*][def-artifact] "制品"。
+相比直接调用 `rustc` ，可以调用 `cargo build` 等更加通用的命令，而让 cargo 正确的调用 `rustc` 去构建。
+并且，Cargo 可以自动从 [*registry*][def-registry] "注册中心"下载依赖，并将依赖合并到构建中。
 {==+==}
 
 {==+==}

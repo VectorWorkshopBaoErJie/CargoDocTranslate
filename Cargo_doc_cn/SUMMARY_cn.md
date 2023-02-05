@@ -17,7 +17,7 @@
     * [Installation](getting-started/installation.md)
     * [First Steps with Cargo](getting-started/first-steps.md)
 {==+==}
-* [入门指南](getting-started/index.md)
+* [初步准备](getting-started/index.md)
     * [安装](getting-started/installation.md)
     * [Cargo起步](getting-started/first-steps.md)
 {==+==}
@@ -97,8 +97,8 @@
 {==+==}
         * [构建脚本示例](reference/build-script-examples.md)
     * [发布到crates.io](reference/publishing.md)
-    * [规范包ID](reference/pkgid-spec.md)
-    * [源替换](reference/source-replacement.md)
+    * [包ID规范](reference/pkgid-spec.md)
+    * [源替代](reference/source-replacement.md)
     * [插件](reference/external-tools.md)
     * [注册中心](reference/registries.md)
         * [运行注册中心](reference/running-a-registry.md)
@@ -107,7 +107,7 @@
     * [依赖解析](reference/resolver.md)
     * [语义化兼容](reference/semver.md)
     * [未来不兼容报告](reference/future-incompat-report.md)
-    * [报告构建时间](reference/timings.md)
+    * [构建时报告](reference/timings.md)
     * [不稳定特性](reference/unstable.md)
 {==+==}
 
@@ -210,6 +210,7 @@
 * [Appendix: Git Authentication](appendix/git-authentication.md)
 {==+==}
 * [常见问题](faq.md)
+* [译者补充](supplement.md)
 * [附录: 词汇表](appendix/glossary.md)
 * [附录: Git认证](appendix/git-authentication.md)
 {==+==}

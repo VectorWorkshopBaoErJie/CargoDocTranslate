@@ -66,7 +66,7 @@ available at <https://rust-lang.org>.
 &nbsp;&nbsp;&nbsp;&nbsp;Execute benchmarks of a package.
 {==+==}
 [cargo-bench(1)](cargo-bench.html)\
-&nbsp;&nbsp;&nbsp;&nbsp;执行包的基准测试。
+&nbsp;&nbsp;&nbsp;&nbsp;执行包的性能测试。
 {==+==}
 
 

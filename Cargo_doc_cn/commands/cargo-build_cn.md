@@ -153,7 +153,7 @@ is set when the integration test is built so that it can use the
 [`env` macro](https://doc.rust-lang.org/std/macro.env.html) to locate the
 executable.
 {==+==}
-如果集成测试或者基准测试被指定构建，则Binary目标将被自动构建。这允许了集成测试执行binary用以测试它们的行为。
+如果集成测试或者性能测试被指定构建，则Binary目标将被自动构建。这允许了集成测试执行binary用以测试它们的行为。
 在构建集成测试时设置 `CARGO_BIN_EXE_<name>` 
 [环境变量](../reference/environment-variables.html#environment-variables-cargo-sets-for-crates)
 以便于它可以使用[`env` 宏](https://doc.rust-lang.org/std/macro.env.html) 来定位可执行文件。
@@ -261,7 +261,7 @@ manifest settings for the target.</dd>
 times and supports common Unix glob patterns.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-build---bench"><a class="option-anchor" href="#option-cargo-build---bench"></a><code>--bench</code> <em>name</em>...</dt>
-<dd class="option-desc">构建指定的基准测试，该标识可以被指定多次，并且支持Unix通配符。</dd>
+<dd class="option-desc">构建指定的性能测试，该标识可以被指定多次，并且支持Unix通配符。</dd>
 {==+==}
 
 
@@ -276,8 +276,8 @@ Targets may be enabled or disabled by setting the <code>bench</code> flag in the
 manifest settings for the target.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-build---benches"><a class="option-anchor" href="#option-cargo-build---benches"></a><code>--benches</code></dt>
-<dd class="option-desc">在基准测试模式下构建所有清单文件中带有 <code>bench = true</code> 标识的目标，默认情况下，这将包含作为基准测试或基准测试目标构建的library和binary
-当心这也会构建所需要的依赖，因此，library目标有可能被构建两次(一次作为基准测试，一次作为binary或基准测试等目标的依赖。)。
+<dd class="option-desc">在性能测试模式下构建所有清单文件中带有 <code>bench = true</code> 标识的目标，默认情况下，这将包含作为性能测试或性能测试目标构建的library和binary
+当心这也会构建所需要的依赖，因此，library目标有可能被构建两次(一次作为性能测试，一次作为binary或性能测试等目标的依赖。)。
 通过在目标的清单文件设置中设置 <code>bench</code> 标志，可以选择是否启用。 </dd>
 {==+==}
 

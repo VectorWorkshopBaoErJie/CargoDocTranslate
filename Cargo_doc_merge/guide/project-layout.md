@@ -37,7 +37,7 @@ Cargo在文件布局上使用一系列约定，从而可以容易地创建新的
 * 默认的库crate根文件是 `src/lib.rs` 。
 * 默认的可执行crate根文件是 `src/main.rs` 。
     * 其他可执行crate文件可以放在 `src/bin/` 目录。
-* 基准放在 `benches` 目录。
+* 性能测试放在 `benches` 目录。
 * 示例放在 `examples` 目录.
 * 集成测试文件放在 `tests` 目录.
 

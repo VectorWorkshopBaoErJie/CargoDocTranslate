@@ -8,7 +8,7 @@
 To get started with Cargo, install Cargo (and Rust) and set up your first
 [*crate*][def-crate].
 {==+==}
-开始使用Cargo,安装Cargo和Rust，配置你的第一个[*crate*][def-crate]
+开始使用Cargo，安装Cargo和Rust，配置你的第一个 [*crate*][def-crate] 。
 {==+==}
 
 {==+==}
