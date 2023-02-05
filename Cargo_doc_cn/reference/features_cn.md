@@ -13,8 +13,8 @@ either be enabled or disabled. Features for the package being built can be
 enabled on the command-line with flags such as `--features`. Features for
 dependencies can be enabled in the dependency declaration in `Cargo.toml`.
 {==+==}
-Cargo的 "特性" 提供了一种机制来表达 [条件编译] 和 [可选依赖](#optional-dependencies) 。
-包在 `Cargo.toml` 的 `[features]` 表中定义了一组命名的特性，每个特性可以被启用或禁用。
+Cargo 的 "特性" 提供了一种机制来表达 [条件编译][conditional compilation] 和 [可选依赖](#optional-dependencies) 。
+包在 `Cargo.toml` 的 `[features]` 表中定义了一组命名的特性，对于每个特性可以被启用或禁用。
 正在构建的包的特性可以在命令行中用 `--features` 这样的标志启用。
 依赖的特性可以在 `Cargo.toml` 的依赖声明中启用。
 {==+==}
@@ -24,7 +24,7 @@ Cargo的 "特性" 提供了一种机制来表达 [条件编译] 和 [可选依�
 See also the [Features Examples] chapter for some examples of how features can
 be used.
 {==+==}
-参阅[特性实例]章节，有关于如何使用特性的一些例子。
+参阅 [特性实例][Features Examples] 章节，有关于如何使用特性的一些例子。
 {==+==}
 
 
@@ -32,8 +32,7 @@ be used.
 [conditional compilation]: ../../reference/conditional-compilation.md
 [Features Examples]: features-examples.md
 {==+==}
-[条件编译]: ../../reference/conditional-compilation.md
-[特性实例]: features-examples.md
+
 {==+==}
 
 
@@ -77,7 +76,7 @@ With this feature defined, [`cfg` expressions] can be used to conditionally
 include code to support the requested feature at compile time. For example,
 inside `lib.rs` of the package could include this:
 {==+==}
-有了这个特性的定义，[`cfg` 表达式] 可以用来在编译时，通过条件来包含代码，以支持所要求的特性。例如，在包的 `lib.rs` 里面可以这样:
+有了这个特性的定义，[`cfg` 表达式][`cfg` expressions] 可以用来在编译时，通过条件来包含代码，以支持所要求的特性。例如，在包的 `lib.rs` 里面可以这样:
 {==+==}
 
 
@@ -89,7 +88,7 @@ pub mod webp;
 ```
 {==+==}
 ```rust
-// 以条件性包含实现WEBP支持的模块。
+// 有条件的包含实现WEBP支持的模块。
 #[cfg(feature = "webp")]
 pub mod webp;
 ```
@@ -100,7 +99,7 @@ pub mod webp;
 Cargo sets features in the package using the `rustc` [`--cfg` flag], and code
 can test for their presence with the [`cfg` attribute] or the [`cfg` macro].
 {==+==}
-Cargo使用 `rustc` [`--cfg` flag] 在包中设置特性，代码可以用[`cfg` 属性]或[`cfg` 宏]测试它们的存在。
+Cargo 使用 `rustc` [`--cfg` flag] 在包中设置特性，代码可以用 [`cfg` 属性][`cfg` attribute] 或 [`cfg` 宏][`cfg` macro] 检测特性是否存在。
 {==+==}
 
 
@@ -140,7 +139,7 @@ includes most letters), and additionally allows starting with `_` or digits
 > **Note**: [crates.io] imposes additional constraints on feature name syntax
 > that they must only be [ASCII alphanumeric] characters or `_`, `-`, or `+`.
 {==+==}
-> **注意**: [crates.io]对特性名称的语法有额外的限制，只能是[ASCII字母数字]字符或 `_` ， `-` ，或 `+` 。
+> **注意**: [crates.io]对特性名称的语法有额外的限制，只能是 [ASCII字母数字][ASCII alphanumeric] 字符或 `_` ， `-` ，或 `+` 。
 {==+==}
 
 
@@ -153,13 +152,7 @@ includes most letters), and additionally allows starting with `_` or digits
 [`cfg` attribute]: ../../reference/conditional-compilation.md#the-cfg-attribute
 [`cfg` macro]: ../../std/macro.cfg.html
 {==+==}
-[crates.io]: https://crates.io/
-[Unicode XID standard]: https://unicode.org/reports/tr31/
-[ASCII字母数字]: ../../std/primitive.char.html#method.is_ascii_alphanumeric
-[`--cfg` flag]: ../../rustc/command-line-arguments.md#option-cfg
-[`cfg` expressions]: ../../reference/conditional-compilation.md
-[`cfg` attribute]: ../../reference/conditional-compilation.md#the-cfg-attribute
-[`cfg` macro]: ../../std/macro.cfg.html
+
 {==+==}
 
 
@@ -207,7 +200,7 @@ enables the listed features. This behavior can be changed by:
 * The `default-features = false` option can be specified in a [dependency
   declaration](#dependency-features).
 {==+==}
-* `--no-default-features`[command-line flag](#command-line-feature-options)禁用包的默认特性。
+* `--no-default-features`[command-line flag](#command-line-feature-options) 禁用包的默认特性。
 * 可以在 [依赖声明](#dependency-features) 中指定 `default-features = false` .
 {==+==}
 
@@ -355,7 +348,7 @@ our crate.
 > [platform-specific dependencies]. Instead of using features, these are
 > conditional based on the target platform.
 {==+==}
-> **注意**: 另一种可选的包含依赖的方法是使用[特定平台依赖]。
+> **注意**: 另一种可选的包含依赖的方法是使用 [特定平台依赖][platform-specific dependencies] 。
 > 而不是使用特性，是基于目标平台为条件。
 {==+==}
 
@@ -363,7 +356,7 @@ our crate.
 {==+==}
 [platform-specific dependencies]: specifying-dependencies.md#platform-specific-dependencies
 {==+==}
-[特定平台依赖]: specifying-dependencies.md#platform-specific-dependencies
+
 {==+==}
 
 
@@ -536,7 +529,7 @@ enabled:
 {==+==}
 * `--features` _FEATURES_: 启用列出的特性。多个特性可以用逗号或空格分开。
   若使用空格，如果从shell中运行Cargo，请确保在所有特性周围使用引号(例如 `---features "foo bar"` )。
-  如果在[工作空间]中构建多个包，可以使用 `package-name/feature-name` 语法来指定特定工作空间成员的特性。
+  如果在[工作空间][workspace]中构建多个包，可以使用 `package-name/feature-name` 语法来指定特定工作空间成员的特性。
 {==+==}
 
 
@@ -586,7 +579,7 @@ of the resolver documentation for more details.
 {==+==}
 当依赖被多个包使用时，Cargo会在构建时使用该依赖上启用的所有特性的联合。
 这有助于确保只使用该依赖的一个副本。
-更多细节请参见解析器文档中的 [特性部分] 。
+更多细节请参见解析器文档中的 [特性部分][features section] 。
 {==+==}
 
 
@@ -754,10 +747,9 @@ enabled. Some options to try:
   package and why. See the example at the bottom of the [`cargo tree`] page on
   how to read this.
 {==+==}
-* `cargo tree -e features`: 这将显示依赖图中的特性。
-  每个特性都会出现，显示哪个包启用了它。
+* `cargo tree -e features`: 这将显示依赖图中的特性。每个特性都会出现，显示哪个包启用了它。
 * `cargo tree -f "{p} {f}"`: 这是更紧凑的视图，显示每个包上启用的特性的逗号分隔的列表。
-* `cargo tree -e features -i foo`: 这将反转树形图，显示特性如何流入给定的包 "foo"。这可能很有用，因为查看整个图表可能相当大，而且令人不知所措。当你试图弄清楚哪些特性在特定的包上被启用以及为什么要这样做时，可以使用这个方法。请看[`cargo tree`]页面底部的例子，了解阅读。
+* `cargo tree -e features -i foo`: 这将反转树形图，显示特性如何流入给定的包 "foo"。这可能很有用，因为查看整个图表可能相当大，而且令人不知所措。当你试图弄清楚哪些特性在特定的包上被启用以及为什么要这样做时，可以使用这个方法。请看 [`cargo tree`] 页面底部的例子，了解阅读。
 {==+==}
 
 
@@ -799,7 +791,7 @@ resolver = "2"
 See the [resolver versions] section for more detail on specifying resolver
 versions.
 {==+==}
-关于指定解析器版本的更多细节，请参见 [解析器版本] 部分。
+关于指定解析器版本的更多细节，请参见 [解析器版本][resolver versions] 部分。
 {==+==}
 
 
@@ -822,7 +814,7 @@ situations:
 * [Dev-dependencies] do not activate features unless building a target that
   needs them (like tests or examples).
 {==+==}
-* 对于目前没有被构建的目标，在[特定平台依赖]上启用的特性会被忽略。
+* 对于目前没有被构建的目标，在 [特定平台依赖][platform-specific dependencies] 上启用的特性会被忽略。
 * [Build-dependencies] 和过程宏不与常规依赖共享特性。
 * [Dev-dependencies] 不会激活特性，除非构建需要它们的目标(如测试或实例)。
 {==+==}
@@ -858,10 +850,10 @@ always built separately from normal dependencies in that scenario.
 {==+==}
 然而，一个缺点是，这可能会增加构建时间，因为依赖会被构建多次(每次都有不同的特性)。
 当使用版本 `"2"` 解析器时，建议检查那些被多次构建的依赖，以减少整体构建时间。
-如果不是 *必须* 要用单独的特性来构建这些重复的包，可以考虑在[依赖声明](#dependency-features)中的 `特性` 列表中添加特性，
+如果不是 *必须* 要用单独的特性来构建这些重复的包，可以考虑在[依赖声明](#dependency-features)中的 `features` 列表中添加特性，
 这样重复的包最后就会有相同的特性(因此Cargo只会构建一次)。
 你可以用 [`cargo tree --duplicates`][`cargo tree`] 命令检测这些重复的依赖。它将显示哪些包被多次构建；
-寻找任何列出相同版本的条目。参见 [Inspecting resolved features](#inspecting-resolved-features) 获取更多关于获取已解决特性的信息。
+寻找任何列出相同版本的条目。参见 [Inspecting resolved features](#inspecting-resolved-features) 获取更多关于解析特性的信息。
 对于构建依赖，如果你使用 `--target` 标志进行交叉编译，则没有必要这样做，因为在这种情况下，构建依赖总是与普通依赖分开构建。
 {==+==}
 
@@ -939,10 +931,7 @@ version "2", it will disable the default features for all workspace members.
 [dev-dependencies]: specifying-dependencies.md#development-dependencies
 [resolver-v2]: resolver.md#feature-resolver-version-2
 {==+==}
-[解析器版本]: resolver.md#resolver-versions
-[build-dependencies]: specifying-dependencies.md#build-dependencies
-[dev-dependencies]: specifying-dependencies.md#development-dependencies
-[resolver-v2]: resolver.md#feature-resolver-version-2
+
 {==+==}
 
 
@@ -958,14 +947,14 @@ version "2", it will disable the default features for all workspace members.
 inspecting the `CARGO_FEATURE_<name>` environment variable, where `<name>` is
 the feature name converted to uppercase and `-` converted to `_`.
 {==+==}
-[构建脚本]可以通过检查 `CARGO_FEATURE_<name>` 环境变量来检测包上启用了哪些特性，其中`<name>`是转换为大写的特性名称， `-` 转换为 `_` 。
+[构建脚本][Build scripts] 可以通过检查 `CARGO_FEATURE_<name>` 环境变量来检测包上启用了哪些特性，其中 `<name>` 是转换为大写的特性名称， `-` 转换为 `_` 。
 {==+==}
 
 
 {==+==}
 [build scripts]: build-scripts.md
 {==+==}
-[构建脚本]: build-scripts.md
+
 {==+==}
 
 
@@ -981,7 +970,7 @@ The [`required-features` field] can be used to disable specific [Cargo
 targets] if a feature is not enabled. See the linked documentation for more
 details.
 {==+==}
-如果某个特性没有被启用，[`required-features` 字段]可以用来禁用特定的[Cargo 目标]。
+如果某个特性没有被启用， [`required-features` 字段][`required-features` field] 可以用来禁用特定的 [Cargo 目标][Cargo targets] 。
 更多细节请参阅链接的文档。
 {==+==}
 
@@ -990,8 +979,7 @@ details.
 [`required-features` field]: cargo-targets.md#the-required-features-field
 [Cargo targets]: cargo-targets.md
 {==+==}
-[`required-features` 字段]: cargo-targets.md#the-required-features-field
-[Cargo 目标]: cargo-targets.md
+
 {==+==}
 
 
@@ -1083,8 +1071,8 @@ or other documentation for the project (for example, see [sccache]).
 我们鼓励你记录你的包中有哪些特性。
 这可以通过在 `lib.rs` 的顶部添加 [doc comments] 来实现。
 请查看 [regex crate source]例子，它被渲染后可以在 [docs.rs][regex-docs-rs] 上查看。
-如果你有其他的文档，比如用户指南，考虑将文档添加到那里(例如，参阅[serde.rs])。
-如果你有一个二进制项目，考虑在README或项目的其他文档中记录这些特性(例如，参阅[sccache])。
+如果你有其他的文档，比如用户指南，考虑将文档添加到那里(例如，参阅 [serde.rs] )。
+如果你有一个二进制项目，考虑在README或项目的其他文档中记录这些特性(例如，参阅 [sccache] )。
 {==+==}
 
 
