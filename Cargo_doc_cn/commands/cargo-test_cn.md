@@ -327,7 +327,7 @@ executable.
 可以通过在清单中为类库设置 `doctest = false` 来禁用类库的文档测试。
 
 
-如果选择测试集成测试或性能测试，则自动构建二进制目标。
+如果选择测试集成测试或基准测试，则自动构建二进制目标。
 这样集成测试可以执行二进制文件来测试其行为。
 环境变量 `CARGO_BIN_EXE_<name>` [environment variable](../reference/environment-variables.html#environment-variables-cargo-sets-for-crates)
 在集成测试构建时被设置，以便它能使用 [`env` macro](https://doc.rust-lang.org/std/macro.env.html)
@@ -447,13 +447,13 @@ manifest settings for the target.</dd>
 
 
 <dt class="option-term" id="option-cargo-test---bench"><a class="option-anchor" href="#option-cargo-test---bench"></a><code>--bench</code> <em>name</em>...</dt>
-<dd class="option-desc">测试指定的性能测试。这个标志可以被多次指定，并且支持常见的 Unix glob pattern 。</dd>
+<dd class="option-desc">测试指定的基准测试。这个标志可以被多次指定，并且支持常见的 Unix glob pattern 。</dd>
 
 
 <dt class="option-term" id="option-cargo-test---benches"><a class="option-anchor" href="#option-cargo-test---benches"></a><code>--benches</code></dt>
-<dd class="option-desc">在性能测试模式下测试所有设置了 <code>bench = true</code> 清单标志的目标。
-默认情况下，这包括作为性能测试构建的库和二进制文件，以及性能测试目标。
-请注意，这也会构建任何所需的依赖项，因此lib目标可能会被构建两次(一次是作为基准，一次是作为二进制文件、性能测试等的依赖项)。
+<dd class="option-desc">在基准测试模式下测试所有设置了 <code>bench = true</code> 清单标志的目标。
+默认情况下，这包括作为基准测试构建的库和二进制文件，以及基准测试目标。
+请注意，这也会构建任何所需的依赖项，因此lib目标可能会被构建两次(一次是作为基准，一次是作为二进制文件、基准测试等的依赖项)。
 通过在目标的清单设置中设置 <code>bench</code> 标志，可以启用或禁用目标。</dd>
 
 

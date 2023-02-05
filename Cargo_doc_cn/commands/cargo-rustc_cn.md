@@ -26,7 +26,6 @@ cargo-rustc - 编译当前包，并将额外参数传递给编译器
 {==+==}
 `cargo rustc` [_options_] [`--` _args_]
 {==+==}
-`cargo rustc` [_选项_] [`--` _参数_]
 {==+==}
 
 {==+==}
@@ -44,7 +43,7 @@ arguments such as `-L`, `--extern`, and `--crate-type`, and the specified
 _args_ will simply be added to the compiler invocation.
 {==+==}
 当前包的指定目标(或由 `-p` 指定的已有的包)将与它的所有依赖一起被编译。
-指定的的 _args_ 将全部传递给最终的编译器调用，而非依赖项的参数。
+指定的 _args_ 将全部传递给最终的编译器调用，而非依赖项的参数。
 请注意，编译器仍然会无条件地接受参数，如 `-L` ， `-extern` ，和 `-crat-type` ，
 而指定的的 _args_ 将被添加到编译器的调用中。
 {==+==}
@@ -72,7 +71,7 @@ To pass flags to all compiler processes spawned by Cargo, use the `RUSTFLAGS`
 [environment variable](../reference/environment-variables.html) or the
 `build.rustflags` [config value](../reference/config.html).
 {==+==}
-使用`RUSTFLAGS` [environment variable](../reference/environment-variables.html)
+使用 `RUSTFLAGS` [environment variable](../reference/environment-variables.html)
 或者 `build.rustflags` [config value](../reference/config.html)
 来给 Cargo 创建的所有编译器进程传递标志位。
 {==+==}
@@ -237,7 +236,7 @@ manifest settings for the target.</dd>
 
 
 <dt class="option-term" id="option-cargo-rustc---bin"><a class="option-anchor" href="#option-cargo-rustc---bin"></a><code>--bin</code> <em>名称</em>...</dt>
-<dd class="option-desc">构建指定的二进制程序。这个标志位可以多次指定并且支持通用的 Unix glob 匹配格式。</dd>
+<dd class="option-desc">构建指定的二进制程序。这个标志位可以多次指定并且支持通用的 Unix glob pattern 格式。</dd>
 
 
 <dt class="option-term" id="option-cargo-rustc---bins"><a class="option-anchor" href="#option-cargo-rustc---bins"></a><code>--bins</code></dt>
@@ -246,7 +245,7 @@ manifest settings for the target.</dd>
 
 
 <dt class="option-term" id="option-cargo-rustc---example"><a class="option-anchor" href="#option-cargo-rustc---example"></a><code>--example</code> <em>名称</em>...</dt>
-<dd class="option-desc">构建指定的例子。这个标志位可以多次指定并且支持通用的 Unix glob 匹配格式。</dd>
+<dd class="option-desc">构建指定的例子。这个标志位可以多次指定并且支持通用的 Unix glob pattern 格式。</dd>
 
 
 <dt class="option-term" id="option-cargo-rustc---examples"><a class="option-anchor" href="#option-cargo-rustc---examples"></a><code>--examples</code></dt>
@@ -254,28 +253,28 @@ manifest settings for the target.</dd>
 
 
 <dt class="option-term" id="option-cargo-rustc---test"><a class="option-anchor" href="#option-cargo-rustc---test"></a><code>--test</code> <em>名称</em>...</dt>
-<dd class="option-desc">构建指定的集成测试。这个标志位可以多次指定并且支持通用的 Unix glob 匹配格式。</dd>
+<dd class="option-desc">构建指定的集成测试。这个标志位可以多次指定并且支持通用的 Unix glob pattern 格式。</dd>
 
 
 <dt class="option-term" id="option-cargo-rustc---tests"><a class="option-anchor" href="#option-cargo-rustc---tests"></a><code>--tests</code></dt>
 <dd class="option-desc">在清单文件中将 <code>test = true</code> 来在测试模式下构建所有目标。
-默认情况下，这包括库和二进制文件构建为
-单元测试和集成测试。请注意，这也会构建任何
+默认情况下，这包括构建为
+单元测试和集成测试的库和二进制文件。请注意，这也会构建任何
 所需的依赖项，所以 lib 目标可能会被构建两次（一次是作为一个
 单元测试，一次作为二进制文件、集成测试等的依赖项）。
 可以在清单文件通过设置目标的 <code>test</code> 标志来启用或禁用此目标。</dd>
 
 
 <dt class="option-term" id="option-cargo-rustc---bench"><a class="option-anchor" href="#option-cargo-rustc---bench"></a><code>--bench</code> <em>名称</em>...</dt>
-<dd class="option-desc">构建指定的基准测试。这个标志位可以多次指定并且支持通用的 Unix glob pattern。</dd>
+<dd class="option-desc">构建指定的基准测试。这个标志位可以多次指定并且支持通用的 Unix glob pattern 格式。</dd>
 
 
 <dt class="option-term" id="option-cargo-rustc---benches"><a class="option-anchor" href="#option-cargo-rustc---benches"></a><code>--benches</code></dt>
 <dd class="option-desc">在清单文件中将 <code>bench = true</code> 来在测试模式下构建所有目标。
-默认情况下，这包括库和二进制文件构建为
-单元测试和集成测试。请注意，这也会构建任何
+默认情况下，这包括构建为
+基准测试的库和二进制文件。请注意，这也会构建任何
 所需的依赖项，所以 lib 目标可能会被构建两次（一次是作为一个
-单元测试，一次作为二进制文件、集成测试等的依赖项）。
+基准测试，一次作为二进制文件、基准测试等的依赖项）。
 可以在清单文件通过设置目标的 <code>bench</code> 标志来启用或禁用此目标。</dd>
 
 
@@ -448,21 +447,21 @@ the command-line argument value will override what is in the manifest.</p>
 
 <dt class="option-term" id="option-cargo-rustc--r"><a class="option-anchor" href="#option-cargo-rustc--r"></a><code>-r</code></dt>
 <dt class="option-term" id="option-cargo-rustc---release"><a class="option-anchor" href="#option-cargo-rustc---release"></a><code>--release</code></dt>
-<dd class="option-desc">用 <code>release</code> 配置文件构建优化的 artifacts 。
-请参阅 <code>--profile</code> 选项，通过名称选择一个特定的配置文件。</dd>
+<dd class="option-desc">用 <code>release</code> 配置构建优化的 artifacts 。
+请参阅 <code>--profile</code> 选项，通过名称选择一个特定的配置。</dd>
 
 
 
 <dt class="option-term" id="option-cargo-rustc---profile"><a class="option-anchor" href="#option-cargo-rustc---profile"></a><code>--profile</code> <em>name</em></dt>
-<dd class="option-desc">用给定的配置文件进行测试。</p>
+<dd class="option-desc">用给定的配置进行测试。</p>
 <p> <code>rustc</code> 子命令会对下列特殊名称的配置有特殊的行为: </p>
 <ul>
-<li><code>check</code> — 与 <a href="cargo-check.html">cargo-check(1)</a> 命令一样进行构建，使用 <code>dev</code> 配置文件。</li>
+<li><code>check</code> — 与 <a href="cargo-check.html">cargo-check(1)</a> 命令一样进行构建，使用 <code>dev</code> 配置。</li>
 <li><code>test</code> — 与 <a href="cargo-test.html">cargo-test(1)</a> 命令一样进行构建，在测试模式下构建，这会启用测试并启用 <code>test</code> cfg配置。
 更多信息请查看 <a href="https://doc.rust-lang.org/rustc/tests/index.html">rustc tests</a></li>
 <li><code>bench</code> — 与 <a href="cargo-bench.html">cargo-bench(1)</a> 命令一样进行构建，与 <code>test</code> 配置类似。</li>
 </ul>
-<p>关于配置文件的更多细节，请参见 <a href="../reference/profiles.html">the reference</a> </dd>
+<p>关于配置的更多细节，请参见 <a href="../reference/profiles.html">the reference</a> </dd>
 
 
 <dt class="option-term" id="option-cargo-rustc---ignore-rust-version"><a class="option-anchor" href="#option-cargo-rustc---ignore-rust-version"></a><code>--ignore-rust-version</code></dt>
