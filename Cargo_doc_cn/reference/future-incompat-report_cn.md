@@ -13,8 +13,8 @@ notice is displayed indicating that the warnings were found, and provides
 instructions on how to display a full report.
 {==+==}
 Cargo检查所有依赖中的未来不兼容警告。
-这些警告是关于未来可能成为硬性错误的修改，导致依赖在未来的rustc版本中停止构建。
-如果发现任何警告，就会显示一个小通知，说明发现了这些警告，并提供如何显示完整报告的说明。
+这些警告是关于未来可能成为硬性错误的改变，会导致依赖在未来的rustc版本中停止构建。
+如果发现任何警告，就会显示简短通知，说明发现了这些警告，并提供如何显示完整报告的说明。
 {==+==}
 
 
@@ -45,7 +45,7 @@ dependencies to a version where the issue is fixed, or work with the
 developers of the dependencies to help resolve the issue.
 {==+==}
 完整的报告可以通过 "cargo report future-incompatibilities --id ID" 命令来显示，或者通过使用 "--future-incompat-report" 标志再次运行构建。
-然后，开发者应该将他们的依赖更新到问题得到修复的版本，或者与依赖的开发者合作，帮助解决这个问题。
+之后，开发者应该将他们的依赖更新到问题得到修复的版本，或者与依赖的开发者合作，帮助解决这个问题。
 {==+==}
 
 
@@ -60,7 +60,7 @@ developers of the dependencies to help resolve the issue.
 This feature can be configured through a [`[future-incompat-report]`][config]
 section in `.cargo/config.toml`. Currently, the supported options are:
 {==+==}
-这个特性可以通过 `.cargo/config.toml` 中的[`[future-incompat-report]`][config]部分来进行配置。目前，支持的选项有:
+这个特性可以通过 `.cargo/config.toml` 中的 [`[future-incompat-report]`][config] 部分来进行配置。目前，支持的选项有:
 {==+==}
 
 
@@ -78,7 +78,7 @@ frequency = "always"
 The supported values for the frequency are `"always"` and `"never"`, which control
 whether or not a message is printed out at the end of `cargo build` / `cargo check`.
 {==+==}
-支持的选择值是 `"always"` 和 `"never"` ，它们控制在 `cargo build` / `cargo check` 结束时是否打印出信息。
+支持的可选值是 `"always"` 和 `"never"` ，其控制在 `cargo build` / `cargo check` 结束时是否打印出信息。
 {==+==}
 
 

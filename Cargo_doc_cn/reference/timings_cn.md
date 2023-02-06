@@ -4,7 +4,7 @@ The `--timings` option gives some information about how long each compilation
 takes, and tracks concurrency information over time.
 {==+==}
 # 报告构建时间
-`--timings` 选项提供了一些关于每次编译所需时间的信息，并跟踪时间推移的并发送信息。
+`--timings` 选项提供了一些关于每次编译所需时间的信息，并跟踪时间推移且发送信息。
 {==+==}
 
 

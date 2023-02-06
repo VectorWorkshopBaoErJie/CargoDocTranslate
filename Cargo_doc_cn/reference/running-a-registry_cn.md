@@ -1,7 +1,7 @@
 {==+==}
 ## Running a Registry
 {==+==}
-## 动行注册中心
+## 运行注册中心
 {==+==}
 
 
@@ -22,7 +22,7 @@ A full-featured registry that supports publishing will additionally need to
 have a web API service that conforms to the API used by Cargo. The web API is
 described in [Registry Web API].
 {==+==}
-支持发布的完整功能的注册中心还需要有符合Cargo使用的API的Web API服务。该网络API在[Registry Web API]中描述。
+支持发布的完整功能的注册中心还需要有符合Cargo使用的API的Web API服务。该网络API在 [Registry Web API] 中描述。
 {==+==}
 
 
