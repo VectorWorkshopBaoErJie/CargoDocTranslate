@@ -10,7 +10,7 @@ Once you've got a library that you'd like to share with the world, it's time to
 publish it on [crates.io]! Publishing a crate is when a specific
 version is uploaded to be hosted on [crates.io].
 {==+==}
-你有一个想与世界分享的库，就该在[crates.io]上发布它，发布crate是指将特定版本上传到[crates.io]上托管。
+你想与世界分享一个库，就该把它发布到 [crates.io] 上，发布crate指的是将特定版本上传到[crates.io]上托管。
 {==+==}
 
 
@@ -19,7 +19,7 @@ Take care when publishing a crate, because a publish is **permanent**. The
 version can never be overwritten, and the code cannot be deleted. There is no
 limit to the number of versions which can be published, however.
 {==+==}
-在发布crate时要小心，发布将是**永久的**，永远不能覆盖该版本，不能删除代码。然而，对可以发布的版本数量没有限制。
+在发布crate时要小心，发布将是**永久性的**，一旦发布就永远不能覆盖该版本，也不能删除代码。然后，对可发布的版本数量没有限制。
 {==+==}
 
 
@@ -36,8 +36,8 @@ an API token. To do so, [visit the home page][crates.io] and log in via a GitHub
 account (required for now). After this, visit your [Account
 Settings](https://crates.io/me) page and run the [`cargo login`] command.
 {==+==}
-首先，你需要一个[crates.io]的账户来获取API token。要做到这一点，[访问主页][crates.io]并通过GitHub账户登录(目前需要)。
-之后，访问你的[账户设置](https://crates.io/me)页面并运行[`cargo login`]命令。
+首先，你需要一个[crates.io]的账户来获取API token。要做到这一点，请 [访问主页][crates.io] 并通过GitHub账户登录(目前需要)。
+之后，访问你的 [账户设置](https://crates.io/me) 页面并运行 [`cargo login`] 命令。
 {==+==}
 
 
@@ -96,7 +96,7 @@ Check out the [metadata you can specify](manifest.md) in `Cargo.toml` to
 ensure your crate can be discovered more easily! Before publishing, make sure
 you have filled out the following fields:
 {==+==}
-检查 `Cargo.toml` 中的[你能指定的元数据](manifest.md)，让使用者更容易发现你crate! 在发布之前，请确保已经填写了以下字段:
+检查 `Cargo.toml` 中的 [你能指定的元数据](manifest.md) ，让使用者更容易发现你 crate! 在发布之前，请确保已经填写了以下字段:
 {==+==}
 
 
@@ -116,7 +116,7 @@ you have filled out the following fields:
 It would also be a good idea to include some [`keywords`] and [`categories`],
 though they are not required.
 {==+==}
-尽管不是必须的，包含一些 [`keywords`] 和 [`categories`] 也会很好。
+尽管不是必须的，但包含相关 [`keywords`] 和 [`categories`] 信息会更好。
 {==+==}
 
 
@@ -124,7 +124,7 @@ though they are not required.
 If you are publishing a library, you may also want to consult the [Rust API
 Guidelines].
 {==+==}
-如果你要发布库，可能还需要参考一下[Rust API Guidelines]。
+如果你要发布库，可能还需要参考一下 [Rust API 指南][Rust API Guidelines] 。
 {==+==}
 
 
@@ -140,7 +140,7 @@ The next step is to package up your crate and upload it to [crates.io]. For
 this we’ll use the [`cargo publish`] subcommand. This command performs the following
 steps:
 {==+==}
-下一步是将你的crate打包并上传到[crates.io]。为此使用 [`cargo publish`] 子命令。
+下一步是将你的crate打包并上传到 [crates.io] 。这时可以使用 [`cargo publish`] 子命令。
 这个命令会执行以下步骤:
 {==+==}
 
@@ -191,7 +191,7 @@ files are included with the following command:
 {==+==}
 你可以在 `target/package` 目录下检查生成的 `.crate` 文件。
 [crates.io]目前对 `.crate` 文件有10MB的大小限制。你需要检查 `.crate` 文件的大小，
-以确保没有意外地打包了构建包所不需要的大型资产，如测试数据、网站文档或代码生成。
+以确保没有意外地打包构建包所不需要的大量资源，如测试数据、网站文档或代码生成。
 你可以用下面的命令来检查包含了哪些文件:
 {==+==}
 
@@ -212,7 +212,7 @@ can use the [`exclude` key](manifest.md#the-exclude-and-include-fields) in the
 manifest:
 {==+==}
 Cargo在打包时将自动忽略您的版本控制系统所忽略的文件，如果想额外指定一组要忽略的文件，
-可以在配置清单中使用[`exclude` 键](manifest.md#the-exclude-and-include-fields)。
+可以在配置清单中使用 [`exclude` 键](manifest.md#the-exclude-and-include-fields) 。
 {==+==}
 
 
@@ -332,7 +332,7 @@ etc.). For situations such as this, Cargo supports a “yank” of a version of 
 crate.
 {==+==}
 偶尔会出现这样的情况：你发布的版本由于某种原因(语法错误、忘记包含某个文件等)，实际上已经坏了。
-对于这样的情况，Cargo支持 "删除" crate 的一个版本。
+对于这样的情况，Cargo支持 "yank" crate 的一个版本。
 {==+==}
 
 
@@ -364,7 +364,7 @@ goal. Essentially a yank means that all packages with a `Cargo.lock` will not
 break, while any future `Cargo.lock` files generated will not list the yanked
 version.
 {==+==}
-被删除版本的语义是，不能针对该版本创建新的依赖，但继续使用已有的依赖。
+被yank版本的语义是，不能针对该版本创建新的依赖，但已有的依赖继续使用。
 [crates.io]的主要目标之一是作为一个不随时间变化的永久档案，允许删除一个版本将违背这一目标。
 从本质上讲，yank 意味着所有带有 `Cargo.lock` 的包都不会损坏，而未来生成的任何 `Cargo.lock` 文件都不会列出被yank的版本。
 {==+==}
@@ -429,7 +429,7 @@ just a bit more secure against owners becoming malicious.
 {==+==}
 如果一个团队的名字被赋予 `--add` ，该团队被邀请为 "团队" 所有者，对crate的权利受到限制。
 虽然他们有权限发布或删除crate的版本，但他们*没有*能力添加或删除所有者。
-团队在管理所有者群体方面方便，在防止所有者成为恶意的。
+除了更方便管理所有者组之外，团队也更安全一点，会防止所有者变得恶意。
 {==+==}
 
 
@@ -510,7 +510,7 @@ which will prompt you for permission if [crates.io] doesn’t have all the scope
 it would like to.
 {==+==}
 如果你改变了主意，或者只是不确定[crates.io]是否有足够的权限，
-你可以随时去<https://crates.io/>重新认证，如果[crates.io]没有所有它想拥有的域，会提示你的权限。
+你可以随时去<https://crates.io/>重新认证，如果[crates.io]没有所有它想获得的域，会提示你的权限。
 {==+==}
 
 
