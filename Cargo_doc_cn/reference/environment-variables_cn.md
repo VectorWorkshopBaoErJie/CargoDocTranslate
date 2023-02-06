@@ -26,7 +26,7 @@ Cargo设置和读取一些环境变量，你的代码可以检测或覆盖这些
 You can override these environment variables to change Cargo's behavior on your
 system:
 {==+==}
-你可以覆盖这些环境变量来改变Cargo所在系统中的行为:
+你可以覆盖这些环境变量在系统中改变Cargo的行为:
 {==+==}
 
 
@@ -52,9 +52,8 @@ system:
   For more details refer to the [guide](../guide/cargo-home.md).
 {==+==}
 * `CARGO_HOME` — Cargo 维护着注册中心索引和git签出crate的本地缓存。
-  默认情况下，这些数据存储在 `$HOME/.cargo` 下(Windows下为 `%USERPROFILE%\.cargo`)，但这个变量可以覆盖这个目录位置。
-  一旦crate被缓存，就不会被clean命令删除。
-  更多细节请参考[指南](.../guide/cargo-home.md)。
+  默认情况下，这些数据存储在 `$HOME/.cargo` 下(Windows下为 `%USERPROFILE%\.cargo` )，但这个变量可以覆盖这个目录位置。
+  一旦crate被缓存，就不会被clean命令删除。更多细节请参考 [指南](.../guide/cargo-home.md) 。
 {==+==}
 
 
@@ -75,8 +74,8 @@ system:
   behaves exactly like `cargo`, as that's what users of the variable
   will be expecting.
 {==+==}
-* `CARGO` - 如果设置了这个变量，Cargo在构建crate以及执行构建脚本和外部子命令时，将转发这个值，而不是设置为自己的自动检测路径。
-  这个值不会被Cargo直接执行，它应该总是指向一个行为与 `cargo` 完全相同的命令，因为这也是使用该变量的用户所期望的。
+* `CARGO` - 如果设置了这个值，Cargo在构建crate以及执行构建脚本和外部子命令时，将转发这个值，而不是设置为自己的自动检测路径。
+  这个值不会被Cargo直接执行，它应该总是指向一个行为与 `cargo` 完全相同的命令，因为这也是使用该值的用户所期望的。
 {==+==}
 
 
@@ -111,7 +110,7 @@ system:
   See [`build.rustc-workspace-wrapper`] to set via config. Setting this to the empty string
   overwrites the config and resets cargo to not use a wrapper for workspace members.
 {==+==}
-* `RUSTC_WORKSPACE_WRAPPER` — 对于工作空间成员，Cargo将执行这个指定的包装器，而不是简单地运行 `rustc`，将rustc的调用作为其命令行参数，第一个参数是实际rustc的路径。
+* `RUSTC_WORKSPACE_WRAPPER` — 对于工作空间成员，Cargo将执行这个指定的包装器，而不是简单地运行 `rustc` ，将rustc的调用作为其命令行参数，第一个参数是实际rustc的路径。
   它影响文件名hash，以便单独缓存包装器产生制品。参见 [`build.rustc-workspace-wrapper`] 通过配置来设置。
   将其设置为空字符串会覆盖配置，并将crate重置为不对工作空间成员使用包装器。
 {==+==}
@@ -157,7 +156,7 @@ system:
 {==+==}
 * `RUSTFLAGS` — 以空格分隔的自定义标志列表，用于传递给Cargo执行的所有编译器调用。
   与 [`cargo rustc`] 不同的是，这对于向 *所有* 编译器实例传递标志很有用。
-  参见 [`build.rustflags`] 以了解更多设置标志的方法。这个字符串是由空格分割；如果要对多个参数进行更健壮的编码，见`CARGO_ENCODED_RUSTFLAGS` 。
+  参见 [`build.rustflags`] 以了解更多设置标志的方法。这个字符串是由空格分割；如果要对多个参数进行更健壮的编码，见 `CARGO_ENCODED_RUSTFLAGS` 。
 {==+==}
 
 
@@ -282,15 +281,15 @@ Cargo会读取一些配置值的环境变量。详情见[配置章节][config-en
 * `CARGO_HTTP_SSL_VERSION` — The TLS version to use, see [`http.ssl-version`].
 {==+==}
 * `CARGO_BUILD_INCREMENTAL` — 增量编译, 见 [`build.incremental`] 。
-* `CARGO_BUILD_DEP_INFO_BASEDIR` — 仓库信息的相对目录, 见 [`build.dep-info-basedir`].
-* `CARGO_CARGO_NEW_VCS` —  [`cargo new`] 默认的源码控制系统, 见 [`cargo-new.vcs`].
-* `CARGO_FUTURE_INCOMPAT_REPORT_FREQUENCY` - 应该多长时间生成一次未来的不兼容报告通知, 见 [`future-incompat-report.frequency`].
-* `CARGO_HTTP_DEBUG` — 启用 HTTP 调试, 见 [`http.debug`].
-* `CARGO_HTTP_PROXY` — 启用HTTP代理, 见 [`http.proxy`].
-* `CARGO_HTTP_TIMEOUT` — HTTP超时, 见 [`http.timeout`].
-* `CARGO_HTTP_CAINFO` — TLS证书机构文件, 见 [`http.cainfo`].
-* `CARGO_HTTP_CHECK_REVOKE` — 禁用TLS证书废止检查, 见 [`http.check-revoke`].
-* `CARGO_HTTP_SSL_VERSION` — 要使用的TLS版本, 见 [`http.ssl-version`].
+* `CARGO_BUILD_DEP_INFO_BASEDIR` — 仓库信息的相对目录, 见 [`build.dep-info-basedir`] 。
+* `CARGO_CARGO_NEW_VCS` —  [`cargo new`] 默认的源码控制系统, 见 [`cargo-new.vcs`] 。
+* `CARGO_FUTURE_INCOMPAT_REPORT_FREQUENCY` - 应该多长时间生成一次未来的不兼容报告通知, 见 [`future-incompat-report.frequency`] 。
+* `CARGO_HTTP_DEBUG` — 启用 HTTP 调试, 见 [`http.debug`] 。
+* `CARGO_HTTP_PROXY` — 启用HTTP代理, 见 [`http.proxy`] 。
+* `CARGO_HTTP_TIMEOUT` — HTTP超时, 见 [`http.timeout`] 。
+* `CARGO_HTTP_CAINFO` — TLS证书机构文件, 见 [`http.cainfo`] 。
+* `CARGO_HTTP_CHECK_REVOKE` — 禁用TLS证书废止检查, 见 [`http.check-revoke`] 。
+* `CARGO_HTTP_SSL_VERSION` — 要使用的TLS版本, 见 [`http.ssl-version`] 。
 {==+==}
 
 
@@ -306,16 +305,16 @@ Cargo会读取一些配置值的环境变量。详情见[配置章节][config-en
 * `CARGO_PROFILE_<name>_CODEGEN_UNITS` — Set code generation units, see [`profile.<name>.codegen-units`].
 * `CARGO_PROFILE_<name>_DEBUG` — What kind of debug info to include, see [`profile.<name>.debug`].
 {==+==}
-* `CARGO_HTTP_LOW_SPEED_LIMIT` — HTTP的低速限制, 见 [`http.low-speed-limit`].
-* `CARGO_HTTP_MULTIPLEXING` — 是否使用HTTP/2多路复用, 见 [`http.multiplexing`].
-* `CARGO_HTTP_USER_AGENT` — HTTP user-agent 头, 见 [`http.user-agent`].
-* `CARGO_INSTALL_ROOT` — [`cargo install`] 的默认目录, 见 [`install.root`].
-* `CARGO_NET_RETRY` — 网络错误重试的次数, 见 [`net.retry`].
-* `CARGO_NET_GIT_FETCH_WITH_CLI` — 启用 `git` 可执行程序来获取, 见 [`net.git-fetch-with-cli`].
-* `CARGO_NET_OFFLINE` — 脱机模式, 见 [`net.offline`].
-* `CARGO_PROFILE_<name>_BUILD_OVERRIDE_<key>` — 覆盖构建脚本配置文件, 见 [`profile.<name>.build-override`].
-* `CARGO_PROFILE_<name>_CODEGEN_UNITS` — 设定代码生成单元, 见 [`profile.<name>.codegen-units`].
-* `CARGO_PROFILE_<name>_DEBUG` — 要包括什么样的调试信息, 见 [`profile.<name>.debug`].
+* `CARGO_HTTP_LOW_SPEED_LIMIT` — HTTP的低速限制, 见 [`http.low-speed-limit`] 。
+* `CARGO_HTTP_MULTIPLEXING` — 是否使用HTTP/2多路复用, 见 [`http.multiplexing`] 。
+* `CARGO_HTTP_USER_AGENT` — HTTP user-agent 头, 见 [`http.user-agent`] 。
+* `CARGO_INSTALL_ROOT` — [`cargo install`] 的默认目录, 见 [`install.root`] 。
+* `CARGO_NET_RETRY` — 网络错误重试的次数, 见 [`net.retry`] 。
+* `CARGO_NET_GIT_FETCH_WITH_CLI` — 启用 `git` 可执行程序来获取, 见 [`net.git-fetch-with-cli`] 。
+* `CARGO_NET_OFFLINE` — 脱机模式, 见 [`net.offline`] 。
+* `CARGO_PROFILE_<name>_BUILD_OVERRIDE_<key>` — 覆盖构建脚本配置文件, 见 [`profile.<name>.build-override`] 。
+* `CARGO_PROFILE_<name>_CODEGEN_UNITS` — 设定代码生成单元, 见 [`profile.<name>.codegen-units`] 。
+* `CARGO_PROFILE_<name>_DEBUG` — 要包括什么样的调试信息, 见 [`profile.<name>.debug`] 。
 {==+==}
 
 
@@ -357,7 +356,7 @@ Cargo会读取一些配置值的环境变量。详情见[配置章节][config-en
 * `CARGO_TERM_PROGRESS_WIDTH` — The default progress bar width, see [`term.progress.width`].
 {==+==}
 * `CARGO_REGISTRY_DEFAULT` — `--registry` 的默认注册中心。见 [`registry.default`] 。
-* `CARGO_REGISTRY_TOKEN` — [crates.io]的认证token。 见 [`registry.token`] 。
+* `CARGO_REGISTRY_TOKEN` — [crates.io] 的认证token。 见 [`registry.token`] 。
 * `CARGO_TARGET_<triple>_LINKER` — 使用的链接器, 见 [`target.<triple>.linker`] 。 三元组必须是 [转换为大写字母和下划线](config.md#environment-variables) 。
 * `CARGO_TARGET_<triple>_RUNNER` — 可执行的运行器, 见 [`target.<triple>.runner`] 。
 * `CARGO_TARGET_<triple>_RUSTFLAGS` — 目标的额外 `rustc` 标志, 见 [`target.<triple>.rustflags`] 。
@@ -533,7 +532,7 @@ corresponding environment variable is set to the empty string, `""`.
 * `CARGO_CRATE_NAME` — 当前正在编译的crate的名称。
 * `CARGO_BIN_NAME` — 当前正在编译的二进制文件的名称(如果它是一个二进制文件)。这个名字不包括任何文件扩展名，如 `.exe` 。
 * `OUT_DIR` — 如果该包有构建脚本，这将被设置为构建脚本应该放置其输出的文件夹。更多信息见下文。(只在编译过程中设置)。
-* `CARGO_BIN_EXE_<name>` — 二进制目标的可执行文件的绝对路径。这只在构建[集成测试]或性能测试时设置。这可以与[`env` macro]一起使用，以找到为测试目的运行的可执行文件。 `<name>` 是二进制目标的名称，完全按原样。例如， `CARGO_BIN_EXE_my-program` 代表一个名为 `my-program` 的二进制文件。当测试建立时，二进制文件会自动建立，除非二进制文件有未启用的必要特性。
+* `CARGO_BIN_EXE_<name>` — 二进制目标的可执行文件的绝对路径。这只在构建[集成测试][integration test]或性能测试时设置。这可以与[`env` macro]一起使用，以找到为测试目的运行的可执行文件。 `<name>` 是二进制目标的名称，完全按原样。例如， `CARGO_BIN_EXE_my-program` 代表一个名为 `my-program` 的二进制文件。当测试建立时，二进制文件会自动建立，除非二进制文件有未启用的必要特性。
 {==+==}
 
 
@@ -550,8 +549,8 @@ corresponding environment variable is set to the empty string, `""`.
   the tests/benches. Cargo initially creates this directory but doesn't
   manage its content in any way, this is the responsibility of the test code.
 {==+==}
-* `CARGO_PRIMARY_PACKAGE` — 如果正在构建的包是主要的，这个环境变量将被设置。主要包是用户在命令行中选择的，可以是 `-p` 标志，也可以是基于当前目录和默认工作空间成员的默认值。这个环境变量在构建依赖时不会被设置。只有在编译包时才会设置（而不是在运行二进制文件或测试时）。
-* `CARGO_TARGET_TMPDIR` — 只在构建[集成测试]或性能测试代码时设置。这是一个指向目标目录内的路径，集成测试或性能测试可以在这里自由放置测试/性能测试所需的任何数据。Cargo初始创建这个目录，但不以任何方式管理其内容，这是测试代码的责任。
+* `CARGO_PRIMARY_PACKAGE` — 如果正在构建的包是主要的，这个环境变量将被设置。主要包是用户在命令行中选择的，可以是 `-p` 标志，也可以是基于当前目录和默认工作空间成员的默认值。这个环境变量在构建依赖时不会被设置。只有在编译包时才会设置 (而不是在运行二进制文件或测试时) 。
+* `CARGO_TARGET_TMPDIR` — 只在构建[集成测试][integration test]或性能测试代码时设置。这是一个指向目标目录内的路径，集成测试或性能测试可以在这里自由放置测试/性能测试所需的任何数据。Cargo初始创建这个目录，但不以任何方式管理其内容，这是测试代码的责任。
 {==+==}
 
 
@@ -635,7 +634,7 @@ Cargo包括以下路径:
 {==+==}
 ### Environment variables Cargo sets for build scripts
 {==+==}
-### 环境变量 Cargo为构建脚本设置的环境变量
+### 环境变量 Cargo 为构建脚本设置的环境变量
 {==+==}
 
 
