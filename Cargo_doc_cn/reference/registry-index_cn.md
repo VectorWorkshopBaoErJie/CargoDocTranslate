@@ -77,7 +77,7 @@ The keys are:
   API is described below.
 {==+==}
   如果没有任何标记，那么结尾将附加值 `/{crate}/{version}/download` 。
-- `api`: 这是网络API的基本URL。这个键是可选的，但如果没有指定，[`cargo publish`] 等命令将无法工作。下面将介绍网络API。
+- `api`: 这是web API的基本URL。这个键是可选的，但如果没有指定，[`cargo publish`] 等命令将无法工作。下面将介绍web API。
 {==+==}
 
 
@@ -151,7 +151,7 @@ perform case-conversion to construct `{lowerprefix}`.
 上面的目录名是根据转换为小写的包名计算的；它由标记 `{lowerprefix}` 表示。当使用原始包名而不进行大小写转换时，产生的目录名由标记 `{prefix}` 表示。
 例如，`MyCrate` 包的 `{prefix}` 为 `My/Cr` ， `{lowerprefix}` 为 `my/cr` 。一般来说，推荐使用 `{prefix}` 而不是 `{lowerprefix}` ，但每种选择都有优点和缺点。在不区分大小写的文件系统中使用 `{prefix}` 会导致(无害但不优雅的)目录别名。
 例如， `crate` 和 `CrateTwo` 的 `{prefix}` 值分别为 `cr/at` 和 `Cr/at` ；这些在Unix机器上是不同的，但在Windows上却别名为同一个目录。 使用正常大小写的目录可以避免别名，但在对大小写敏感的文件系统中，很难支持缺乏 `{prefix}`/`{lowerprefix}` 的旧版本的Cargo。
-例如，nginx的重写规则可以很容易地构建 `{prefix}` ，但不能进行大小写转换以构建`{lowerprefix}`。
+例如，nginx的重写规则可以很容易地构建 `{prefix}` ，但不能进行大小写转换以构建 `{lowerprefix}` 。
 {==+==}
 
 
@@ -161,7 +161,7 @@ their index. Cargo itself allows names with any [alphanumeric], `-`, or `_`
 characters. [crates.io] imposes its own limitations, including the following:
 {==+==}
 注册中心应该考虑对添加到他们索引中的包名称实施限制。
-Cargo本身允许名字中含有任何 [字母数字] 、 `-` 或 `_` 字符。[crates.io]施加了自己的限制，包括以下内容:
+Cargo本身允许名字中含有任何 [字母数字][alphanumeric] 、 `-` 或 `_` 字符。 [crates.io] 添加了自己的限制，包括以下内容:
 {==+==}
 
 
@@ -191,7 +191,7 @@ attacks](https://en.wikipedia.org/wiki/IDN_homograph_attack) and other
 concerns in [UTR36](https://www.unicode.org/reports/tr36/) and
 [UTS39](https://www.unicode.org/reports/tr39/).
 {==+==}
-注册中心应考虑纳入类似的限制，并考虑安全问题，如[IDN同源词攻击](https://en.wikipedia.org/wiki/IDN_homograph_attack)以及[UTR36](https://www.unicode.org/reports/tr36/)和[UTS39](https://www.unicode.org/reports/tr39/)中的其他考虑。 
+注册中心应考虑纳入类似的限制，并考虑安全问题，如 [IDN同源词攻击](https://en.wikipedia.org/wiki/IDN_homograph_attack) 以及 [UTR36](https://www.unicode.org/reports/tr36/) 和 [UTS39](https://www.unicode.org/reports/tr39/)中的其他考虑。 
 {==+==}
 
 
