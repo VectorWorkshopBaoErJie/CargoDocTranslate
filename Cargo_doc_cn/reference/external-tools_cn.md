@@ -10,7 +10,7 @@ One of the goals of Cargo is simple integration with third-party tools, like
 IDEs and other build systems. To make integration easier, Cargo has several
 facilities:
 {==+==}
-Cargo的目标之一是能与第三方工具简单集成，如IDE和其他构建系统。为了使集成更容易，Cargo有几个工具:
+Cargo的目标之一是能与第三方工具简单集成，如IDE和其他构建系统。为了使集成更容易，Cargo有几个方式:
 {==+==}
 
 
@@ -18,7 +18,7 @@ Cargo的目标之一是能与第三方工具简单集成，如IDE和其他构建
 * a [`cargo metadata`] command, which outputs package structure and dependencies
   information in JSON,
 {==+==}
-* [`cargo metadata`]命令，以JSON格式输出包结构和依赖信息。
+* [`cargo metadata`] 命令，以JSON格式输出包结构和依赖信息。
 {==+==}
 
 
@@ -49,7 +49,7 @@ You can use [`cargo metadata`] command to get information about package
 structure and dependencies. See the [`cargo metadata`] documentation
 for details on the format of the output.
 {==+==}
-你可以使用 [`cargo metadata`] 命令来获取包结构和依赖的信息。有关输出格式的详细信息，请参见[`cargo metadata`]文档。
+你可以使用 [`cargo metadata`] 命令来获取包结构和依赖的信息。有关输出格式的详细信息，请参见 [`cargo metadata`] 文档。
 {==+==}
 
 
@@ -66,7 +66,7 @@ hazard.
 If you are using Rust, the [cargo_metadata] crate can be used to parse the
 output.
 {==+==}
-如果你使用的是Rust，可以使用[cargo_metadata] crate来解析输出。
+如果你使用的是Rust，可以使用 [cargo_metadata] crate来解析输出。
 {==+==}
 
 
@@ -104,7 +104,7 @@ information during the build:
 
 * 产生的制品。
 
-* 构建脚本的结果(例如，本地依赖)。
+* 构建脚本的结果 (例如，本地依赖)。
 {==+==}
 
 
@@ -112,7 +112,7 @@ information during the build:
 The output goes to stdout in the JSON object per line format. The `reason` field
 distinguishes different kinds of messages.
 {==+==}
-在标准输出以每行的JSON对象格式输出。`reason` 字段区分不同种类的信息。
+在标准输出中，按行的JSON对象格式化输出。 `reason` 字段区分不同种类的信息。
 {==+==}
 
 
@@ -122,8 +122,8 @@ alter the way the JSON messages are computed and rendered. See the description
 of the `--message-format` option in the [build command documentation] for more
 details.
 {==+==}
-`--message-format` 选项也可以采用额外的格式化值，改变JSON信息的计算和显示方式。
-更多细节见[build command documentation]中对 `--message-format` 选项的描述。
+可以用 `--message-format` 选项带有额外的格式化值，改变JSON信息的计算和显示方式。
+更多细节参阅 [build command documentation] 中对 `--message-format` 选项的描述。
 {==+==}
 
 
@@ -156,7 +156,7 @@ warnings and errors. See the [rustc JSON chapter](../../rustc/json.md) for
 details on `rustc`'s message format, which is embedded in the following
 structure:
 {==+==}
-"compiler-message" 消息包括来自编译器的输出，如警告和错误。关于 `rustc` 的消息格式，请参见 [rustc JSON 章节](.../.../rustc/json.md)，它被嵌入到以下结构中。
+"compiler-message" 消息包括来自编译器的输出，如警告和错误。关于 `rustc` 的消息格式，请参阅 [rustc JSON 章节](.../.../rustc/json.md)，其信息包含到以下结构中:
 {==+==}
 
 
@@ -189,17 +189,17 @@ structure:
 {
     /* "reason" 表示信息的种类。*/
     "reason": "compiler-message",
-    /* 包的ID，是指包的唯一标识。 */
+    /* 包的ID，是指代包的唯一标识。 */
     "package_id": "my-package 0.1.0 (path+file:///path/to/my-package)",
-    /*  包配置清单的绝对路径。 */
+    /* 包配置清单的绝对路径。 */
     "manifest_path": "/path/to/my-package/Cargo.toml",
-    /* 产生该消息的Cargo目标(lib、bin、example等等)。 */
+    /* 产生该消息的Cargo目标 (lib、bin、example等)。 */
     "target": {
         /* 目标种类数组。
            - lib目标列出配置清单中的 `cate-type` 值，如 "lib"、"rlib"、"dylib"、"proc-macro" 等(默认["lib"])。
            - 二进制是 ["bin"]
            - 实例是 ["example"]
-           - 综合测试是 ["test"]
+           - 集成测试是 ["test"]
            - 性能测试是 ["bench"]
            - 构建脚本是 ["custom-build"]
         */
@@ -318,7 +318,7 @@ following structure:
 {
     /* "reason" 表示信息的种类。 */
     "reason": "compiler-artifact",
-    /* 包的ID，是指包的唯一标识。 */
+    /* 包的ID，是指代包的唯一标识。 */
     "package_id": "my-package 0.1.0 (path+file:///path/to/my-package)",
     /* 包配置清单的绝对路径。 */
     "manifest_path": "/path/to/my-package/Cargo.toml",
@@ -386,7 +386,7 @@ following structure:
         "debug_assertions": true,
         /* 是否启用了溢出检查。 */
         "overflow_checks": true,
-        /* 是否使用`--test` 标志。*/
+        /* 是否使用 `--test` 标志。*/
         "test": false
     },
     /* 启用特性数组。 */
@@ -420,7 +420,7 @@ display the previously cached value. More details about build script output
 may be found in [the chapter on build scripts](build-scripts.md).
 {==+==}
 "build-script-executed" 消息包括构建脚本的解析输出。注意，即使构建脚本没有运行，也会发出这个消息；
-它将显示之前缓存的值。关于构建脚本输出的更多细节可以在[构建脚本章节](build-scripts.md)中找到。
+它将显示之前缓存的值。关于构建脚本输出的更多细节可以在 [构建脚本章节](build-scripts.md) 中找到。
 {==+==}
 
 
@@ -445,7 +445,7 @@ may be found in [the chapter on build scripts](build-scripts.md).
 {
     /* "reason" 表示信息的种类。 */
     "reason": "build-script-executed",
-    /* 包的ID，是指包的唯一标识。 */
+    /* 包的ID，是指代包的唯一标识。 */
     "package_id": "my-package 0.1.0 (path+file:///path/to/my-package)",
     /* 要链接的库的数组，如 `cargo:rustc-link-lib` 指令所指示。注意，这可能包括字符串中的 "KIND=" 前缀，其中KIND是库的种类。 */
     "linked_libs": ["foo", "static=bar"],
@@ -586,7 +586,7 @@ third argument is `--help`. So, `cargo help ${command}` would invoke
 `cargo-${command} ${command} --help`.
 {==+==}
 Cargo也可以用 `cargo help ${command}` 显示自定义子命令的帮助输出。
-如果子命令的第三个参数是 `--help`，Cargo会假定该子命令会打印帮助信息。
+如果子命令的第三个参数是 `--help` ，Cargo会假定该子命令会打印帮助信息。
 因此，`cargo help ${command}` 会调用 `cargo-${command} ${command} --help` 。
 {==+==}
 
@@ -615,7 +615,7 @@ Instead, it is encouraged to use the CLI interface to drive Cargo. The [`cargo
 metadata`] command can be used to obtain information about the current project
 (the [`cargo_metadata`] crate provides a Rust interface to this command).
 {==+==}
-相反，我们鼓励使用CLI接口来驱动Cargo。[`cargo metadata`] 命令可以用来获取当前项目的信息([`cargo_metadata`] crate为该命令提供了Rust接口)。
+相反，我们鼓励使用CLI接口来驱动Cargo。 [`cargo metadata`] 命令可以用来获取当前项目的信息( [`cargo_metadata`] crate为该命令提供了Rust接口)。
 {==+==}
 
 

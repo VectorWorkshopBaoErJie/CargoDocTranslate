@@ -199,7 +199,7 @@ available at <https://rust-lang.org>.
 &nbsp;&nbsp;&nbsp;&nbsp;Print a fully qualified package specification.
 {==+==}
 [cargo-pkgid(1)](cargo-pkgid.html)\
-&nbsp;&nbsp;&nbsp;&nbsp;打印完全合格的包规范。
+&nbsp;&nbsp;&nbsp;&nbsp;打印完全合格的包规格。
 {==+==}
 
 

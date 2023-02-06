@@ -193,7 +193,7 @@ that the argument to `cargo update` is actually a
 [Package ID Specification](../reference/pkgid-spec.md) and `regex` is just a
 short specification.
 {==+==}
-这会将新的版本信息覆写进 `Cargo.lock` 。注意， `cargo update` 的参数实际上是一个 [Package ID Specification](../reference/pkgid-spec.md) "规范包ID"， `regex` 只是简写。
+这会将新的版本信息覆写进 `Cargo.lock` 。注意， `cargo update` 的参数实际上是一个 [Package ID Specification](../reference/pkgid-spec.md) "包ID规格"， `regex` 只是简写。
 {==+==}
 
 

@@ -91,7 +91,7 @@ flag can be used to choose a different package in a workspace.
 <dd class="option-desc">The package to run. See <a href="cargo-pkgid.html">cargo-pkgid(1)</a> for the SPEC
 format.</dd>
 {==+==}
-<dd class="option-desc">运行包。 见 <a href="cargo-pkgid.html">cargo-pkgid(1)</a> 了解 SPEC 规范。</dd>
+<dd class="option-desc">运行包。 见 <a href="cargo-pkgid.html">cargo-pkgid(1)</a> 了解 SPEC 规格。</dd>
 {==+==}
 
 

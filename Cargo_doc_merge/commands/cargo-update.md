@@ -22,16 +22,16 @@ cargo-update - 更新本地lock文件中记录的依赖
 <dt class="option-term" id="option-cargo-update--p"><a class="option-anchor" href="#option-cargo-update--p"></a><code>-p</code> <em>spec</em>...</dt>
 <dt class="option-term" id="option-cargo-update---package"><a class="option-anchor" href="#option-cargo-update---package"></a><code>--package</code> <em>spec</em>...</dt>
 <dd class="option-desc">只更新指定的包。这个标志可以多次指定。
-见 <a href="cargo-pkgid.html">cargo-pkgid(1)</a> 的规范格式。</p>
+见 <a href="cargo-pkgid.html">cargo-pkgid(1)</a> 的规格格式。</p>
 <p>如果包指定为 <code>-p</code> 标志, 则将对lock文件进行保守的更新。
-这表述仅规范指定的依赖更新。
-只有当规范版本在不更新依赖的情况下，再不能更新时，它所传递的依赖才会被更新。
+这表述仅规格指定的依赖更新。
+只有当规格版本在不更新依赖的情况下，再不能更新时，它所传递的依赖才会被更新。
 所有其他的依赖将保持锁定在其当前记录的版本。</p>
 <p>如未指定 <code>-p</code> , 更新所有依赖。</dd>
 
 
 <dt class="option-term" id="option-cargo-update---aggressive"><a class="option-anchor" href="#option-cargo-update---aggressive"></a><code>--aggressive</code></dt>
-<dd class="option-desc">当使用 <code>-p</code>, <em>规范版本</em>的依赖强制更新。
+<dd class="option-desc">当使用 <code>-p</code>, <em>规格版本</em>的依赖强制更新。
 不能和 <code>--precise</code> 使用。</dd>
 
 

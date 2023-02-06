@@ -69,7 +69,7 @@ crates.io的令牌可以用<code>CARGO_REGISTRY_TOKEN</code>环境变量指定�
 
 <dt class="option-term" id="option-cargo-publish--p"><a class="option-anchor" href="#option-cargo-publish--p"></a><code>-p</code> <em>spec</em></dt>
 <dt class="option-term" id="option-cargo-publish---package"><a class="option-anchor" href="#option-cargo-publish---package"></a><code>--package</code> <em>spec</em></dt>
-<dd class="option-desc">要发布的包，见 <a href="cargo-pkgid.html">cargo-pkgid(1)</a> 了解 SPEC 规范。</dd>
+<dd class="option-desc">要发布的包，见 <a href="cargo-pkgid.html">cargo-pkgid(1)</a> 了解 SPEC 规格。</dd>
 
 
 </dl>

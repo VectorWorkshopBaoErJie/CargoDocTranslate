@@ -83,10 +83,10 @@ will remain locked at their currently recorded versions.</p>
 <p>If <code>-p</code> is not specified, all dependencies are updated.</dd>
 {==+==}
 <dd class="option-desc">只更新指定的包。这个标志可以多次指定。
-见 <a href="cargo-pkgid.html">cargo-pkgid(1)</a> 的规范格式。</p>
+见 <a href="cargo-pkgid.html">cargo-pkgid(1)</a> 的规格格式。</p>
 <p>如果包指定为 <code>-p</code> 标志, 则将对lock文件进行保守的更新。
-这表述仅规范指定的依赖更新。
-只有当规范版本在不更新依赖的情况下，再不能更新时，它所传递的依赖才会被更新。
+这表述仅规格指定的依赖更新。
+只有当规格版本在不更新依赖的情况下，再不能更新时，它所传递的依赖才会被更新。
 所有其他的依赖将保持锁定在其当前记录的版本。</p>
 <p>如未指定 <code>-p</code> , 更新所有依赖。</dd>
 {==+==}
@@ -103,7 +103,7 @@ will remain locked at their currently recorded versions.</p>
 <dd class="option-desc">When used with <code>-p</code>, dependencies of <em>spec</em> are forced to update as well.
 Cannot be used with <code>--precise</code>.</dd>
 {==+==}
-<dd class="option-desc">当使用 <code>-p</code>, <em>规范版本</em>的依赖强制更新。
+<dd class="option-desc">当使用 <code>-p</code>, <em>规格版本</em>的依赖强制更新。
 不能和 <code>--precise</code> 使用。</dd>
 {==+==}
 

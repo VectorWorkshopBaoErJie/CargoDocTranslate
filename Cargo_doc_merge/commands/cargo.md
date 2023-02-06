@@ -65,7 +65,7 @@ cargo - Rust包管理器
 &nbsp;&nbsp;&nbsp;&nbsp;以机器可读的格式输出已解决的包的依赖。
 
 [cargo-pkgid(1)](cargo-pkgid.html)\
-&nbsp;&nbsp;&nbsp;&nbsp;打印完全合格的包规范。
+&nbsp;&nbsp;&nbsp;&nbsp;打印完全合格的包规格。
 
 [cargo-tree(1)](cargo-tree.html)\
 &nbsp;&nbsp;&nbsp;&nbsp;显示依赖图的可视化树。

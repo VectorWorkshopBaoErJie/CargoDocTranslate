@@ -47,7 +47,7 @@ The reference covers the details of various areas of Cargo.
 * [构建脚本](build-scripts.md)
     * [构建脚本实例](build-script-examples.md)
 * [发布到crates.io](publishing.md)
-* [包ID规范](pkgid-spec.md)
+* [包ID规格](pkgid-spec.md)
 * [源替代](source-replacement.md)
 * [插件](external-tools.md)
 * [注册中心](registries.md)

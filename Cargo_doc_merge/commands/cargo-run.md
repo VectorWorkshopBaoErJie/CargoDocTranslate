@@ -26,7 +26,7 @@ cargo-run - 运行当前包
 
 <dt class="option-term" id="option-cargo-run--p"><a class="option-anchor" href="#option-cargo-run--p"></a><code>-p</code> <em>spec</em></dt>
 <dt class="option-term" id="option-cargo-run---package"><a class="option-anchor" href="#option-cargo-run---package"></a><code>--package</code> <em>spec</em></dt>
-<dd class="option-desc">运行包。 见 <a href="cargo-pkgid.html">cargo-pkgid(1)</a> 了解 SPEC 规范。</dd>
+<dd class="option-desc">运行包。 见 <a href="cargo-pkgid.html">cargo-pkgid(1)</a> 了解 SPEC 规格。</dd>
 
 
 </dl>
