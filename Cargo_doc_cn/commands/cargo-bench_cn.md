@@ -1,10 +1,8 @@
 {==+==}
 # cargo-bench(1)
 {==+==}
-# cargo-bench(1)
+
 {==+==}
-
-
 
 
 {==+==}
@@ -13,11 +11,13 @@
 ## 名称
 {==+==}
 
+
 {==+==}
 cargo-bench - Execute benchmarks of a package
 {==+==}
 cargo-bench - 执行包的基准测试
 {==+==}
+
 
 {==+==}
 ## SYNOPSIS
@@ -25,15 +25,18 @@ cargo-bench - 执行包的基准测试
 ## 简介
 {==+==}
 
-{==+==}
-`cargo bench` [_options_] [_benchname_] [`--` _bench-options_]
+
 {==+==}
 `cargo bench` [_options_] [_benchname_] [`--` _bench-options_]
 {==+==}
 
 {==+==}
+
+
+{==+==}
 ## DESCRIPTION
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -52,7 +55,8 @@ arguments see the output of `cargo bench -- --help` and check out the rustc
 book's chapter on how tests work at
 <https://doc.rust-lang.org/rustc/tests/index.html>.
 {==+==}
-基准过滤参数 _benchname_ 及其后的所有参数两个破折号(`--`)被传递给基准二进制文件，从而传递给 _libtest_ （rustc的内置单元测试和微基准框架）。如果您同时向 Cargo 和二进制文件传递参数，那么 `--` 之后的参数将转到二进制文件，转到 Cargo 之前的参数将转到 Cargo。有关libtest的详细信息参数查看 `cargo bench -- --help` 的输出，并检查rustc书中关于测试如何工作的章节
+基准过滤参数 _benchname_ 及其后的所有参数两个破折号(`--`)被传递给基准二进制文件，从而传递给 _libtest_ （rustc的内置单元测试和微基准框架）。
+如果您同时向 Cargo 和二进制文件传递参数，那么 `--` 之后的参数将转到二进制文件，转到 Cargo 之前的参数将转到 Cargo。有关libtest的详细信息参数查看 `cargo bench -- --help` 的输出，并检查rustc书中关于测试如何工作的章节
 <https://doc.rust-lang.org/rustc/tests/index.html>.
 {==+==}
 
@@ -63,11 +67,13 @@ similarly named benchmarks like `foobar`):
 例如，这将只运行名为 `foo` 的基准测试（并跳过其他类似名称的基准测试，如 `foobar `）：
 {==+==}
 
+
 {==+==}
     cargo bench -- foo --exact
 {==+==}
-    cargo bench -- foo --exact
+
 {==+==}
+
 
 {==+==}
 Benchmarks are built with the `--test` option to `rustc` which creates a
@@ -96,20 +102,22 @@ function to handle running benchmarks.
 > [crates.io](https://crates.io/keywords/benchmark) that may help with
 > running benchmarks on the stable channel, such as
 > [Criterion](https://crates.io/crates/criterion).
+
 By default, `cargo bench` uses the [`bench` profile], which enables
 optimizations and disables debugging information. If you need to debug a
 benchmark, you can use the `--profile=dev` command-line option to switch to
 the dev profile. You can then run the debug-enabled benchmark within a
 debugger.
 {==+==}
-[`#[bench]属性`](https://doc.rust-lang.org/nightly/unstable-book/library-features/test.html) 目前不稳定，仅在 [nightly channel](https://doc.rust-lang.org/book/appendix-07-nightly-rust.html). 可用。[crates.io](https://crates.io/keywords/benchmark) 上有一些软件包可以帮助在稳定通道上运行基准，例如[Criterion](https://crates.io/crates/criterion)。
+[`#[bench]属性`](https://doc.rust-lang.org/nightly/unstable-book/library-features/test.html) 目前不稳定，仅在 [nightly channel](https://doc.rust-lang.org/book/appendix-07-nightly-rust.html). 可用。[crates.io](https://crates.io/keywords/benchmark) 上有一些包可以帮助在稳定通道上运行基准，例如[Criterion](https://crates.io/crates/criterion)。
+
 默认情况下，货物台架使用台架配置文件，这样可以优化和禁用调试信息。如果您需要调试一个基准，您可以使用 `--profile=dev` 命令行选项切换到dev配置文件。然后，您可以在调试器中运行启用调试的基准。
 {==+==}
 
 {==+==}
 [`bench` profile]: ../reference/profiles.html#bench
 {==+==}
-[`bench` profile]: ../reference/profiles.html#bench
+
 {==+==}
 
 {==+==}
@@ -125,8 +133,6 @@ debugger.
 {==+==}
 
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-bench---no-run"><a class="option-anchor" href="#option-cargo-bench---no-run"></a><code>--no-run</code></dt>
 <dd class="option-desc">Compile, but don't run benchmarks.</dd>
 
@@ -136,21 +142,13 @@ debugger.
 after the first executable fails. The Rust test harness will run all benchmarks
 within the executable to completion, this flag only applies to the executable
 as a whole.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-bench---no-run"><a class="option-anchor" href="#option-cargo-bench---no-run"></a><code>--no-run</code></dt>
 <dd class="option-desc">编译，但是不要运行基准测试。</dd>
 
 
 <dt class="option-term" id="option-cargo-bench---no-fail-fast"><a class="option-anchor" href="#option-cargo-bench---no-fail-fast"></a><code>--no-fail-fast</code></dt>
 <dd class="option-desc">不管失败与否，运行所有基准测试。如果没有这个标志，Cargo将在第一个可执行文件失败后退出。Rust test harness 将运行可执行文件中的所有基准直到完成，这个标志只适用于整个可执行文件。</dd>
-
-
-</dl>
 {==+==}
 
 
@@ -180,8 +178,6 @@ virtual workspace will include all workspace members (equivalent to passing
 {==+==}
 
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-bench--p"><a class="option-anchor" href="#option-cargo-bench--p"></a><code>-p</code> <em>spec</em>...</dt>
 <dt class="option-term" id="option-cargo-bench---package"><a class="option-anchor" href="#option-cargo-bench---package"></a><code>--package</code> <em>spec</em>...</dt>
 <dd class="option-desc">Benchmark only the specified packages. See <a href="cargo-pkgid.html">cargo-pkgid(1)</a> for the
@@ -207,12 +203,7 @@ double quotes around each pattern.</dd>
 common Unix glob patterns like <code>*</code>, <code>?</code> and <code>[]</code>. However, to avoid your shell
 accidentally expanding glob patterns before Cargo handles them, you must use
 single quotes or double quotes around each pattern.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-bench--p"><a class="option-anchor" href="#option-cargo-bench--p"></a><code>-p</code> <em>spec</em>...</dt>
 <dt class="option-term" id="option-cargo-bench---package"><a class="option-anchor" href="#option-cargo-bench---package"></a><code>--package</code> <em>spec</em>...</dt>
 <dd class="option-desc">仅对指定的包进行基准测试。SPEC 格式请参考<a href="cargo-pkgid.html">cargo-pkgid(1)</a>。该标志可以多次指定，并支持常见的Unix全局模式，如 <code>*</code >、<code >?</code >和 <code>[]</code > 。然而，为了避免您的shell在Cargo处理glob模式之前意外扩展它们，您必须在每个模式周围使用单引号或双引号。</dd>
@@ -230,9 +221,6 @@ single quotes or double quotes around each pattern.</dd>
 
 <dt class="option-term" id="option-cargo-bench---exclude"><a class="option-anchor" href="#option-cargo-bench---exclude"></a><code>--exclude</code> <em>SPEC</em>...</dt>
 <dd class="option-desc">排除指定的包。必须与 <code>--workspace</code >标志一起使用。该标志可以多次指定，并支持常见的Unix全局模式，如 <code>*</code >、<code >？</code > 和 <code>[]</code >。然而，为了避免您的shell在Cargo处理glob模式之前意外扩展它们，您必须在每个模式周围使用单引号或双引号。</dd>
-
-
-</dl>
 {==+==}
 
 
@@ -264,6 +252,7 @@ following targets of the selected packages:
 - 基准目标
 {==+==}
 
+
 {==+==}
 The default behavior can be changed by setting the `bench` flag for the target
 in the manifest settings. Setting examples to `bench = true` will build and
@@ -274,6 +263,7 @@ target.
 {==+==}
 可以通过在清单设置中为目标设置 `bench` 标志来更改默认行为。将示例设置为 `bench = true` 将构建并运行该示例作为基准。默认情况下，将目标设置为 `bench = false` 将会阻止它们进行基准测试。通过名称获取目标的目标选择选项会忽略“bench”标志，并始终以给定目标为基准。
 {==+==}
+
 
 {==+==}
 Binary targets are automatically built if there is an integration test or
@@ -307,8 +297,6 @@ use single quotes or double quotes around each glob pattern.
 {==+==}
 
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-bench---lib"><a class="option-anchor" href="#option-cargo-bench---lib"></a><code>--lib</code></dt>
 <dd class="option-desc">Benchmark the package's library.</dd>
 
@@ -364,12 +352,7 @@ manifest settings for the target.</dd>
 
 <dt class="option-term" id="option-cargo-bench---all-targets"><a class="option-anchor" href="#option-cargo-bench---all-targets"></a><code>--all-targets</code></dt>
 <dd class="option-desc">Benchmark all targets. This is equivalent to specifying <code>--lib --bins --tests --benches --examples</code>.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-bench---lib"><a class="option-anchor" href="#option-cargo-bench---lib"></a><code>--lib</code></dt>
 <dd class="option-desc">对软件包的库进行基准测试。</dd>
 
@@ -411,9 +394,6 @@ manifest settings for the target.</dd>
 
 <dt class="option-term" id="option-cargo-bench---all-targets"><a class="option-anchor" href="#option-cargo-bench---all-targets"></a><code>--all-targets</code></dt>
 <dd class="option-desc">基准测试所有目标。这相当于指定 <code>--lib --bins --tests --benches --examples</code>。</dd>
-
-
-</dl>
 {==+==}
 
 
@@ -423,10 +403,15 @@ manifest settings for the target.</dd>
 ### 特征选项
 {==+==}
 
+
 {==+==}
-功能标志允许您控制启用哪些功能。当未给出功能选项时，为每个选定的包激活“默认”功能。
+The feature flags allow you to control which features are enabled. When no
+feature options are given, the `default` feature is activated for every
+selected package.
 {==+==}
+功能标志允许您控制启用哪些功能。当未给出功能选项时，为每个选定的包激活 `default` 特性。
 {==+==}
+
 
 {==+==}
 See [the features documentation](../reference/features.html#command-line-feature-options)
@@ -436,8 +421,6 @@ for more details.
 {==+==}
 
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-bench--F"><a class="option-anchor" href="#option-cargo-bench--F"></a><code>-F</code> <em>features</em></dt>
 <dt class="option-term" id="option-cargo-bench---features"><a class="option-anchor" href="#option-cargo-bench---features"></a><code>--features</code> <em>features</em></dt>
 <dd class="option-desc">Space or comma separated list of features to activate. Features of workspace
@@ -451,26 +434,18 @@ be specified multiple times, which enables all specified features.</dd>
 
 <dt class="option-term" id="option-cargo-bench---no-default-features"><a class="option-anchor" href="#option-cargo-bench---no-default-features"></a><code>--no-default-features</code></dt>
 <dd class="option-desc">Do not activate the <code>default</code> feature of the selected packages.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-bench--F"><a class="option-anchor" href="#option-cargo-bench--F"></a><code>-F</code> <em>features</em></dt>
 <dt class="option-term" id="option-cargo-bench---features"><a class="option-anchor" href="#option-cargo-bench---features"></a><code>--features</code> <em>features</em></dt>
 <dd class="option-desc">要激活的以空格或逗号分隔的功能列表。可以使用 <code>package-name/feature-name</code> 语法来启用工作区成员的功能。可以多次指定该标志，从而启用所有指定的功能。</dd>
 
 
 <dt class="option-term" id="option-cargo-bench---all-features"><a class="option-anchor" href="#option-cargo-bench---all-features"></a><code>--all-features</code></dt>
-<dd class="option-desc">激活所有选定软件包的所有可用功能。</dd>
+<dd class="option-desc">激活所有选定包的所有可用特性。</dd>
 
 
 <dt class="option-term" id="option-cargo-bench---no-default-features"><a class="option-anchor" href="#option-cargo-bench---no-default-features"></a><code>--no-default-features</code></dt>
-<dd class="option-desc">不要激活所选软件包的 <code>default</code> 功能。</dd>
-
-
-</dl>
+<dd class="option-desc">不要激活所选包的 <code>default</code> 特性。</dd>
 {==+==}
 
 
@@ -481,8 +456,6 @@ be specified multiple times, which enables all specified features.</dd>
 {==+==}
 
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-bench---target"><a class="option-anchor" href="#option-cargo-bench---target"></a><code>--target</code> <em>triple</em></dt>
 <dd class="option-desc">Benchmark for the given architecture. The default is the host architecture. The general format of the triple is
 <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>. Run <code>rustc --print target-list</code> for a
@@ -522,14 +495,7 @@ and does not provide machine-readable timing data.</li>
 <li><code>json</code> (unstable, requires <code>-Zunstable-options</code>): Emit machine-readable JSON
 information about timing information.</li>
 </ul></dd>
-
-
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-bench---target"><a class="option-anchor" href="#option-cargo-bench---target"></a><code>--target</code> <em>triple</em></dt>
 <dd class="option-desc">给定架构的基准。默认为主机架构。三元组的一般格式是<code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>。运行 <code>rustc --print target-list</code> 以获取支持的目标列表。可以多次指定该标志.</p>
 <p>这也可以用 <code>build.target</code> 来指定
@@ -556,12 +522,8 @@ information about timing information.</li>
 <li><code>html</code >(不稳定，需要 <code>-Zunstable-options</code> ):将一个可读的文件 <code>cargo-timing.html</code> 写入 <code>target/cargo-timings</code> 目录，并附上编译报告。如果您想查看以前的运行，也可以在相同的目录下写一个带有时间戳的报告。HTML输出只适合人类使用，不提供机器可读的计时数据。</li>
 <li><code>json</code >(不稳定，需要 <code>-Zunstable-options</code> ):发出有关计时信息的机器可读json信息。</li>
 </ul></dd>
-
-
-
-
-</dl>
 {==+==}
+
 
 {==+==}
 ### Output Options
@@ -569,22 +531,26 @@ information about timing information.</li>
 ### 输出选项
 {==+==}
 
+
 {==+==}
-<dl>
+<dt class="option-term" id="option-cargo-bench---target-dir"><a class="option-anchor" href="#option-cargo-bench---target-dir"></a><code>--target-dir</code> <em>directory</em></dt>
+<dd class="option-desc">Directory for all generated artifacts and intermediate files. May also be
+specified with the <code>CARGO_TARGET_DIR</code> environment variable, or the
+<code>build.target-dir</code> <a href="../reference/config.html">config value</a>.
+Defaults to <code>target</code> in the root of the workspace.</dd>
+{==+==}
 <dt class="option-term" id="option-cargo-bench---target-dir"><a class="option-anchor" href="#option-cargo-bench---target-dir"></a><code>--target-dir</code> <em>directory</em></dt>
 <dd class="option-desc">所有生成的工件和中间文件的目录。也可以用<code>CARGO_TARGET_DIR</code>环境变量或<code>build.target-dir</code> <a  ref="../reference/config.html">config value</a>。
 默认为工作区根目录中的< code>target</code >。</dd>
-
-
-</dl>
 {==+==}
-{==+==}
+
 
 {==+==}
 ### Display Options
 {==+==}
 ### 显式选项
 {==+==}
+
 
 {==+==}
 By default the Rust test harness hides output from benchmark execution to keep
@@ -594,15 +560,15 @@ passing `--nocapture` to the benchmark binaries:
 默认情况下，Rust test harness隐藏了基准执行的输出，以保持结果的可读性。通过向基准二进制文件传递  `--nocapture` ,可以恢复基准输出(例如，用于调试):
 {==+==}
 
-{==+==}
-    cargo bench -- --nocapture
+
 {==+==}
     cargo bench -- --nocapture
 {==+==}
 
 {==+==}
-<dl>
 
+
+{==+==}
 <dt class="option-term" id="option-cargo-bench--v"><a class="option-anchor" href="#option-cargo-bench--v"></a><code>-v</code></dt>
 <dt class="option-term" id="option-cargo-bench---verbose"><a class="option-anchor" href="#option-cargo-bench---verbose"></a><code>--verbose</code></dt>
 <dd class="option-desc">Use verbose output. May be specified twice for &quot;very verbose&quot; output which
@@ -652,13 +618,7 @@ in JSON messages printed, but instead Cargo itself should render the
 JSON diagnostics coming from rustc. Cargo's own JSON diagnostics and others
 coming from rustc are still emitted. Cannot be used with <code>human</code> or <code>short</code>.</li>
 </ul></dd>
-
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-bench--v"><a class="option-anchor" href="#option-cargo-bench--v"></a><code>-v</code></dt>
 <dt class="option-term" id="option-cargo-bench---verbose"><a class="option-anchor" href="#option-cargo-bench---verbose"></a><code>--verbose</code></dt>
 <dd class="option-desc">使用详细输出。 对于 &quot;非常详细&quot;的输出，可以指定两次，非常详细的输出包括额外的输出，如依赖项警告和构建脚本输出。
@@ -699,10 +659,6 @@ contains embedded ANSI color codes for respecting rustc's default color
 scheme. Cannot be used with <code>human</code> or <code>short</code>.</li>
 <li><code> json-render-diagnostics </code>:指示Cargo不要在打印的JSON消息中包含rustc诊断，而是Cargo本身应该呈现来自rustc的JSON诊断。Cargo自己的JSON诊断和来自rustc的其他诊断仍然会发出。不能与<code>human</code>或<code>short</code>一起使用。</li>
 </ul></dd>
-
-
-
-</dl>
 {==+==}
 
 {==+==}
@@ -712,7 +668,6 @@ scheme. Cannot be used with <code>human</code> or <code>short</code>.</li>
 {==+==}
 
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-bench---manifest-path"><a class="option-anchor" href="#option-cargo-bench---manifest-path"></a><code>--manifest-path</code> <em>path</em></dt>
 <dd class="option-desc">Path to the <code>Cargo.toml</code> file. By default, Cargo searches for the
 <code>Cargo.toml</code> file in the current directory or any parent directory.</dd>
@@ -741,11 +696,7 @@ if there might be a newer version as indicated in the local copy of the index.
 See the <a href="cargo-fetch.html">cargo-fetch(1)</a> command to download dependencies before going
 offline.</p>
 <p>May also be specified with the <code>net.offline</code> <a href="../reference/config.html">config value</a>.</dd>
-
-
-</dl>
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-bench---manifest-path"><a class="option-anchor" href="#option-cargo-bench---manifest-path"></a><code>--manifest-path</code> <em>path</em></dt>
 <dd class="option-desc"><code>Cargo.toml</code> 文件的路径。默认情况下，Cargo在当前目录或任何父目录中搜索 <code>Cargo.toml</code> 文件。</dd>
 
@@ -762,10 +713,8 @@ offline.</p>
 <p>请注意，这可能会导致与在线模式不同的依赖关系解析。Cargo 将自己限制在本地下载的 crate 中，即使在索引的本地副本中可能有更新的版本。
 请参阅<a href=" cargo-fetch . html "> cargo-fetch(1)</a>命令，以便在脱机之前下载依赖项。</p>
 <p>也可以用<code>net.offline</code> <a ref= "../reference/config.html ">配置值</a>指定。</dd>
-
-
-</dl>
 {==+==}
+
 
 {==+==}
 ### Common Options
@@ -773,9 +722,8 @@ offline.</p>
 ### 命令选项
 {==+==}
 
-{==+==}
-<dl>
 
+{==+==}
 <dt class="option-term" id="option-cargo-bench-+toolchain"><a class="option-anchor" href="#option-cargo-bench-+toolchain"></a><code>+</code><em>toolchain</em></dt>
 <dd class="option-desc">If Cargo has been installed with rustup, and the first argument to <code>cargo</code>
 begins with <code>+</code>, it will be interpreted as a rustup toolchain name (such
@@ -797,12 +745,7 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 
 <dt class="option-term" id="option-cargo-bench--Z"><a class="option-anchor" href="#option-cargo-bench--Z"></a><code>-Z</code> <em>flag</em></dt>
 <dd class="option-desc">Unstable (nightly-only) flags to Cargo. Run <code>cargo -Z help</code> for details.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-bench-+toolchain"><a class="option-anchor" href="#option-cargo-bench-+toolchain"></a><code>+</code><em>toolchain</em></dt>
 <dd class="option-desc">如果Cargo已经与rustup一起安装，并且<code>cargo</code >的第一个参数以<code>+</code >开头，它将被解释为rustup工具链名称(例如<code>+stable</code >或<code>+nightly</code >)。
 有关工具链覆盖如何工作的详细信息，请参阅<a href="https://rust-lang.github.io/rustup/overrides.html">。</dd>
@@ -820,15 +763,13 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 
 <dt class="option-term" id="option-cargo-bench--Z"><a class="option-anchor" href="#option-cargo-bench--Z"></a><code>-Z</code> <em>flag</em></dt>
 <dd class="option-desc">Cargo不稳定(night-only)标志。运行<code>cargo -Z help</code >获取详细信息。</dd>
-
-
-</dl>
 {==+==}
 
 
 {==+==}
 ### Miscellaneous Options
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -840,7 +781,6 @@ Rust test harness runs benchmarks serially in a single thread.
 {==+==}
 
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-bench--j"><a class="option-anchor" href="#option-cargo-bench--j"></a><code>-j</code> <em>N</em></dt>
 <dt class="option-term" id="option-cargo-bench---jobs"><a class="option-anchor" href="#option-cargo-bench---jobs"></a><code>--jobs</code> <em>N</em></dt>
 <dd class="option-desc">Number of parallel jobs to run. May also be specified with the
@@ -854,21 +794,15 @@ Should not be 0.</dd>
 <dd class="option-desc">Build as many crates in the dependency graph as possible, rather than aborting
 the build on the first one that fails to build. Unstable, requires
 <code>-Zunstable-options</code>.</dd>
-
-
-</dl>
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-bench--j"><a class="option-anchor" href="#option-cargo-bench--j"></a><code>-j</code> <em>N</em></dt>
 <dt class="option-term" id="option-cargo-bench---jobs"><a class="option-anchor" href="#option-cargo-bench---jobs"></a><code>--jobs</code> <em>N</em></dt>
-<dd class="option-desc">要运行的并行作业的数量。也可以用<code>build.jobs</code> <a href= "../reference/config.html " >配置值</a>指定。 默认为逻辑CPU的数量。如果为负，它将并行作业的最大数量设置为逻辑CPU的数量加上提供的值。不应为0。</dd>
+<dd class="option-desc">要运行的并行作业的数量。也可以用<code>build.jobs</code> <a href= "../reference/config.html " >配置值</a>指定。
+默认为逻辑CPU的数量。如果为负，它将并行作业的最大数量设置为逻辑CPU的数量加上提供的值。不应为0。</dd>
 
 
 <dt class="option-term" id="option-cargo-bench---keep-going"><a class="option-anchor" href="#option-cargo-bench---keep-going"></a><code>--keep-going</code></dt>
 <dd class="option-desc">在依赖图中构建尽可能多的板条箱，而不是在第一个构建失败时中止构建。不稳定，需要< code>-Zunstable-options</code >。</dd>
-
-
-</dl>
 {==+==}
 
 {==+==}
@@ -878,8 +812,10 @@ the build on the first one that fails to build. Unstable, requires
 {==+==}
 
 {==+==}
-参见 [参考文献](../reference/environment-variables . html) 以了解Cargo读取的环境变量的详细信息。
+See [the reference](../reference/environment-variables.html) for
+details on environment variables that Cargo reads.
 {==+==}
+参见 [参考文献](../reference/environment-variables . html) 以了解Cargo读取的环境变量的详细信息。
 {==+==}
 
 
@@ -898,11 +834,13 @@ the build on the first one that fails to build. Unstable, requires
 {==+==}
 
 
+
 {==+==}
 ## EXAMPLES
 {==+==}
 ## 示例
 {==+==}
+
 
 {==+==}
 1. Build and execute all the benchmarks of the current package:
@@ -922,13 +860,16 @@ the build on the first one that fails to build. Unstable, requires
        cargo bench --bench bench_name -- modname::some_benchmark
 {==+==}
 
+
 {==+==}
 ## SEE ALSO
 {==+==}
 ## 另见
 {==+==}
+
+
 {==+==}
 [cargo(1)](cargo.html), [cargo-test(1)](cargo-test.html)
 {==+==}
-[cargo(1)](cargo.html), [cargo-test(1)](cargo-test.html)
+
 {==+==}

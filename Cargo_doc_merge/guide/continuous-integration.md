@@ -15,7 +15,8 @@ matrix:
     - rust: nightly
 ```
 
-这将同时测试三个release channel，但每日构建中的问题不会导致整个构建的失败。查看[Travis CI Rust documentation](https://docs.travis-ci.com/user/languages/rust/)获得更多信息。
+这将同时测试三个发布通道，每日构建中的问题不会导致整个构建的失败。
+查看[Travis CI Rust documentation](https://docs.travis-ci.com/user/languages/rust/)获得更多信息。
 
 ### GitHub Actions
 
@@ -49,9 +50,9 @@ jobs:
   
 ```
 
-这将测试全部的三个release channel(注意任意toolchain版本的失败会导致整个流程的失败)。
-你也可以在Github界面中点击 `"Actions" > "new workflow"`，
-并在其中选择Rust来为你的库添加[默认设置](https://github.com/actions/starter-workflows/blob/main/ci/rust.yml)。
+这将测试全部的三个发布通道(注意任意toolchain版本的失败会导致整个流程的失败)。
+你也可以在Github界面中点击 `"Actions" > "new workflow"` ，
+并在其中选择Rust来为你的库添加 [default configuration](https://github.com/actions/starter-workflows/blob/main/ci/rust.yml) "默认设置"。
 访问[GitHub Actions documentation](https://docs.github.com/en/actions)以获得更多信息。
 
 ### GitLab CI
@@ -78,7 +79,8 @@ rust-nightly:
   allow_failure: true
 ```
 
-这将测试 stable channel 和 nightly channel，但每日构建中的任何失败不会导致整个构建的失败。请查看[GitLab CI documentation](https://docs.gitlab.com/ce/ci/yaml/index.html)获取更多信息。
+这将测试 stable 通道和 nightly 通道，每日构建中的任何失败不会导致整个构建的失败。
+请查看[GitLab CI documentation](https://docs.gitlab.com/ce/ci/yaml/index.html)获取更多信息。
 
 ### builds.sr.ht
 
@@ -112,6 +114,7 @@ tasks:
       rustup run nightly cargo doc --no-deps ||:
 ```
 
-这将为stable channel和nightly channel进行测试和构建文档，每日构建中的问题不会导致整个构建的失败。请查看[builds.sr.ht documentation](https://man.sr.ht/builds.sr.ht/)以获取更多信息。
+这将为stable 通道和nightly 通道进行测试和构建文档，每日构建中的问题不会导致整个构建的失败。
+请查看[builds.sr.ht documentation](https://man.sr.ht/builds.sr.ht/)以获取更多信息。
 
 [def-package]:  ../appendix/glossary.md#package  '"package" (glossary entry)'

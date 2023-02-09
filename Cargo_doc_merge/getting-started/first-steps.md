@@ -3,15 +3,15 @@
 本节提供对 `cargo` 命令行工具的快速一览。展示其生成新 [***package***][def-package] 的功能，
 其在包内编译 [***crate***][def-crate] 的能力，以及运行所生成程序的功能。
 
-使用 `cargo new` 可创建新包。
+使用 `cargo new` 可创建新包:
 
 ```console
 $ cargo new hello_world
 ```
 
-Cargo 默认为 `--bin` 来构建二进制程序，通过 `--lib` 来构建库。
+Cargo 默认以 `--bin` 来构建二进制程序，可通过 `--lib` 来构建库。
 
-让我们来查看 Cargo 所生成的:
+让我们来查看 Cargo 所生成的内容:
 
 ```console
 $ cd hello_world
@@ -35,7 +35,7 @@ edition = "2021"
 [dependencies]
 ```
 
-它被称为[***manifest***][def-manifest] "配置清单"，它包含Cargo编译包所需的所有元数据。
+其内容称为 [***manifest***][def-manifest] "配置清单"，包含了Cargo编译包时所需的所有元数据。
 
 以下为 `src/main.rs` 的内容:
 
@@ -45,7 +45,7 @@ fn main() {
 }
 ```
 
-Cargo 为我们生成了一个 "hello world" 程序，也就是[***binary crate***][def-crate] "二进制crate"。
+Cargo 为我们生成了一个 "hello world" 程序，是 [***binary crate***][def-crate] "二进制crate"。
 编译这个程序:
 
 ```console
@@ -71,7 +71,7 @@ Hello, world!
 
 ### 继续了解
 
-关于Cargo的更多细节，查阅 [Cargo 指南](../guide/index.md)
+关于Cargo的更多细节，查阅 [Cargo 指南](../guide/index.md) 。
 
 [def-crate]:     ../appendix/glossary.md#crate     '"crate" (glossary entry)'
 [def-manifest]:  ../appendix/glossary.md#manifest  '"manifest" (glossary entry)'

@@ -1,18 +1,18 @@
 ## 构建缓存
 
-Cargo会把构建输出保存在"target"文件夹中。默认情况下这个文件夹是你的[*workspace*][def-workspace]根目录下的 `target`文件夹。
-如果要改变输出位置，可以设置 `CARGO_TARGET_DIR` [环境变量][environment variable]， [`build.target-dir`] config参数，或者 `--target-dir` 命令行标志(flag)。
+Cargo会把构建输出保存在 "target" 文件夹中。默认情况下这个文件夹是你的 [*workspace*][def-workspace] 根目录下的 `target` 文件夹。
+如果要改变输出位置，可以设置 `CARGO_TARGET_DIR` [environment variable] "环境变量"、 [`build.target-dir`] config参数，或者 `--target-dir` 命令行标志(flag)。
 
-这个文件夹的布局取决于你是否使用 `--target` 标志来为特定平台构建。如果没有设置 `--target` 标志，Cargo 会为宿主架构进行构建。
-输出文件保存在target文件夹，每个特定编译设置([profile])的输出文件会在放在单独的子文件夹中。
+这个文件夹的布局取决于你是否使用 `--target` 标志来为特定平台构建。如果没有设置 `--target` 标志，Cargo 会按宿主机的架构进行构建。
+输出文件保存在target文件夹，每个特定编译设置 ([profile]) 的输出文件会在放在单独的子文件夹中。
 
 文件夹 | 描述
 ----------|------------
-<code style="white-space: nowrap">target/debug/</code> | 包含 `dev` 预设的输出文件。
-<code style="white-space: nowrap">target/release/</code> | 包含 `release` 预设 (构建时带 `--release` 选项) 的输出文件。
-<code style="white-space: nowrap">target/foo/</code> | 包含 `foo` 预设 (构建时带 `--profile=foo` 选项) 的输出文件。
+<code style="white-space: nowrap">target/debug/</code> | 包含 `dev` 编译设置的输出文件。
+<code style="white-space: nowrap">target/release/</code> | 包含 `release` 编译设置 (构建时带 `--release` 选项) 的输出文件。
+<code style="white-space: nowrap">target/foo/</code> | 包含 `foo` 编译设置 (构建时带 `--profile=foo` 选项) 的输出文件。
 
-由于历史原因， `dev` 和 `test` 预设的输出文件被放在 `debug` 文件夹中， `release` 和 `bench` 预设的输出文件被放在 `release` 文件夹。用户自定义预设的输出文件放在同名的文件夹中。
+由于历史原因， `dev` 和 `test` 编译设置的输出文件被放在 `debug` 文件夹中， `release` 和 `bench` 编译设置的输出文件被放在 `release` 文件夹。用户自定义编译设置的输出文件放在同名的文件夹中。
 
 当为另一种架构 (非宿主架构，命令行带 `--target` 参数) 而构建，输出文件会放在带有目标架构名字的文件夹中:
 
@@ -25,7 +25,7 @@ Cargo会把构建输出保存在"target"文件夹中。默认情况下这个文�
 > [`RUSTFLAGS`] 会在每次 `rustc` 调用时使用。
 > 如果使用了 `--target` 标志，构建脚本和过程宏会为宿主架构单独构建，不会获取 `RUSTFLAGS` 中的参数。
 
-在每个预设(profile)的输出文件夹中 (比如 `debug` 或 `release`)，制品会被放在以下几个文件夹中:
+在每个编译设置(profile)的输出文件夹中 (比如 `debug` 或 `release`)，制品会被放在以下几个文件夹中:
 
 文件夹 | 描述
 ----------|------------
@@ -39,7 +39,7 @@ Cargo会把构建输出保存在"target"文件夹中。默认情况下这个文�
 <code style="white-space: nowrap">target/doc/</code> | 包含 rustdoc 生成的文档 ([`cargo doc`] 命令)。
 <code style="white-space: nowrap">target/package/</code> | 包含 [`cargo package`] 和 [`cargo publish`] 命令生成的文件。
 
-Cargo还会生成构建过程需要的其他文件和文件夹，它们的组织结构看做Cargo内部信息，可能会更改。其中几个文件夹:
+Cargo还会生成构建过程需要的其他文件和文件夹，它们的组织结构看做Cargo内部项，可能会更改。其中几个文件夹:
 
 目录 | 描述
 ----------|------------

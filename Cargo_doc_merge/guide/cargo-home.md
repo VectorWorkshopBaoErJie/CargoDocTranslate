@@ -1,7 +1,7 @@
 ## Cargo home
 
-"Cargo home"功能为下载和源代码提供缓存。
-当构建crate时，Cargo会将下载的构建依赖保存在Cargo home中。你可以通过设置 `CARGO_HOME` [环境变量][env]来修改Cargo home的位置。
+"Cargo home" 的功能是为下载和源代码提供缓存。
+当构建crate时，Cargo会将下载的构建依赖保存在 Cargo home 中。你可以通过设置 `CARGO_HOME` [environmental variable][env] "环境变量" 来修改Cargo home的位置。
 如果你需要在自己的crate中获取这个位置，[home](https://crates.io/crates/home) crate 提供了相关的API。
 
 注意，Cargo home的内部结构规范还未稳定下来，可能会改变。
@@ -11,29 +11,29 @@ Cargo home由以下几个部分构成:
 ## 文件:
 
 * `config.toml`
-	Cargo 的全局配置文件，见[参考部分的config][config]。
+	Cargo 的全局配置文件，参阅 [参考部分的config][config] 内容。
 
 * `credentials.toml`
- 	[`cargo login`]的私有凭证，用于登陆某个[注册中心][def-registry]。
+ 	[`cargo login`] 的私有凭证，用于登陆某个 [registry][def-registry] "注册中心" 。
 
 * `.crates.toml`, `.crates2.json`
-	这些隐藏文件包含通过[`cargo install`]下载的[包][def-package]的信息。不要手动修改这些文件！
+	这些隐藏文件包含通过 [`cargo install`] 下载的 [package][def-package] 的信息。不要手动修改这些文件！
 
 ## 目录:
 
 * `bin`
-bin目录中保存通过[`cargo install`]或[`rustup`](https://rust-lang.github.io/rustup/)下载的可执行文件。
-方便在终端中直接使用这些二进制文件，可以把该目录添加到你的 `$PATH` 环境变量。
+bin目录中保存通过 [`cargo install`] 或 [`rustup`](https://rust-lang.github.io/rustup/) 下载的可执行文件。
+方便在终端中直接使用这些二进制文件，可以把该目录添加到 `$PATH` 环境变量。
 
 * `git`
 	Git源代码保存在这里:
 
 	* `git/db`
-		 当crate的依赖是git仓库，Cargo会将这个仓库clone到该目录下作为一个裸仓库(只有`.git`文件夹中的内容)，并在必要时更新该仓库。
+		 当crate的依赖是git仓库，Cargo会将这个仓库clone到该目录下作为一个裸仓库 (只有`.git`文件夹中的内容) ，并在必要时更新该仓库。
 
 	* `git/checkouts`
 		如果某个git源的代码被用到，实际的代码会从 `git/db` 内的仓库中checkout检出，保存在该目录下。
-		为编译器提供依赖指定的*commit*文件。从而可以检出同一个仓库的不同提交。
+		为编译器提供依赖指定的 *commit* 文件。从而可以检出同一个仓库的不同提交。
 
 * `registry`
 	crate注册中心(比如[crates.io](https://crates.io/))的元数据和下载的包保存在这个文件夹中。
@@ -52,7 +52,7 @@ bin目录中保存通过[`cargo install`]或[`rustup`](https://rust-lang.github.
 
 为避免在持续集成时重复下载所有crate依赖，你可以对 `$CARGO_HOME` 目录进行缓存。
 但是，缓存整个Cargo home目录往往低效，因为它会把相同的代码保存两遍。
-如果我们依赖一个crate叫做 `serde 1.0.92` 而缓存了整个 `$CARGO_HOME`，会把源代码存两遍( `registry/cache` 中的 `serde-1.0.92.crate` 以及解压到 `registry/src` 的`.rs`文件)。
+如果我们依赖一个crate叫做 `serde 1.0.92` 而缓存了整个 `$CARGO_HOME`，会把源代码存两遍( `registry/cache` 中的 `serde-1.0.92.crate` 以及解压到 `registry/src` 的 `.rs` 文件)。
 这会拖慢构建过程，下载、解压、压缩和重新上传cache到CI服务器都会消耗时间。
 
 只需缓存以下的文件夹就足够了:

@@ -1,6 +1,7 @@
 {==+==}
 # cargo-clean(1)
 {==+==}
+
 {==+==}
 
 
@@ -17,22 +18,27 @@ cargo-clean - Remove generated artifacts
 cargo-clean - 删除生成的产物
 {==+==}
 
+
 {==+==}
 ## SYNOPSIS
 {==+==}
 ## 概要
 {==+==}
 
+
 {==+==}
 `cargo clean` [_options_]
 {==+==}
+
 {==+==}
+
 
 {==+==}
 ## DESCRIPTION
 {==+==}
 ## 描述
 {==+==}
+
 
 {==+==}
 Remove artifacts from the target directory that Cargo has generated in the
@@ -41,11 +47,13 @@ past.
 删除目标 (target) 文件夹中的构建产物。
 {==+==}
 
+
 {==+==}
 With no options, `cargo clean` will delete the entire target directory.
 {==+==}
 未附带选项时，`cargo clean` 会删除整个目标文件夹。
 {==+==}
+
 
 {==+==}
 ## OPTIONS
@@ -53,11 +61,13 @@ With no options, `cargo clean` will delete the entire target directory.
 ## 选项
 {==+==}
 
+
 {==+==}
 ### Package Selection
 {==+==}
 ### 包的选择
 {==+==}
+
 
 {==+==}
 When no packages are selected, all packages and all dependencies in the
@@ -66,10 +76,6 @@ workspace are cleaned.
 如果没有选择哪个包，工作空间中所有的包和依赖都将被删除。
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-clean--p"><a class="option-anchor" href="#option-cargo-clean--p"></a><code>-p</code> <em>spec</em>...</dt>
@@ -82,10 +88,7 @@ multiple times. See <a href="cargo-pkgid.html">cargo-pkgid(1)</a> for the SPEC f
 <dd class="option-desc">只清除选中的包。这个标志可以指定多次。可从<a href="cargo-pkgid.html">cargo-pkgid(1)</a> 了解 SPEC 格式的相关信息。</dd>
 {==+==}
 
-{==+==}
-</dl>
-{==+==}
-{==+==}
+
 
 {==+==}
 ### Clean Options
@@ -93,10 +96,6 @@ multiple times. See <a href="cargo-pkgid.html">cargo-pkgid(1)</a> for the SPEC f
 ### 清除选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
 {==+==}
 <dt class="option-term" id="option-cargo-clean---doc"><a class="option-anchor" href="#option-cargo-clean---doc"></a><code>--doc</code></dt>
@@ -157,22 +156,13 @@ target artifacts are placed in a separate directory. See the
 {==+==}
 
 
-
-{==+==}
-</dl>
-{==+==}
-{==+==}
-
 {==+==}
 ### Display Options
 {==+==}
 ### 显示选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
+
 
 {==+==}
 <dt class="option-term" id="option-cargo-clean--v"><a class="option-anchor" href="#option-cargo-clean--v"></a><code>-v</code></dt>
@@ -227,20 +217,12 @@ terminal.</li>
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-{==+==}
 ### Manifest Options
 {==+==}
 ### 清单选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
+
 
 {==+==}
 <dt class="option-term" id="option-cargo-clean---manifest-path"><a class="option-anchor" href="#option-cargo-clean---manifest-path"></a><code>--manifest-path</code> <em>path</em></dt>
@@ -292,10 +274,6 @@ offline.</p>
 {==+==}
 
 
-{==+==}
-</dl>
-{==+==}
-{==+==}
 
 {==+==}
 ### Common Options
@@ -303,12 +281,7 @@ offline.</p>
 ### 通用选项
 {==+==}
 
-{==+==}
-<dl>
-{==+==}
-{==+==}
 
-{==+==}
 {==+==}
 <dt class="option-term" id="option-cargo-clean-+toolchain"><a class="option-anchor" href="#option-cargo-clean-+toolchain"></a><code>+</code><em>toolchain</em></dt>
 <dd class="option-desc">If Cargo has been installed with rustup, and the first argument to <code>cargo</code>
@@ -357,12 +330,6 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 
 
 {==+==}
-</dl>
-{==+==}
-{==+==}
-
-
-{==+==}
 ## ENVIRONMENT
 {==+==}
 ## 环境
@@ -381,6 +348,7 @@ details on environment variables that Cargo reads.
 {==+==}
 ## 退出状态
 {==+==}
+
 
 {==+==}
 * `0`: Cargo succeeded.
@@ -424,4 +392,5 @@ details on environment variables that Cargo reads.
 {==+==}
 [cargo(1)](cargo.html), [cargo-build(1)](cargo-build.html)
 {==+==}
+
 {==+==}

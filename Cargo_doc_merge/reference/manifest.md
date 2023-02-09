@@ -1,9 +1,9 @@
 ## 配置清单格式
 
-每个包的 `Cargo.toml` 文件称为 *manifest* "配置清单" ，以[TOML]格式编写。
+每个包的 `Cargo.toml` 内容称为 *manifest* "配置清单" ，以[TOML]格式编写。
 其包含编译包时所需的元数据。要了解更多关于cargo如何查找配置清单文件的细节，请查看 `cargo locate-project` 部分。
 
-每个配置清单文件由以下部分组成:
+配置清单内容由以下部分组成:
 
 * [`cargo-features`](unstable.md) — 不稳定的、每日构建的特性。
 * [`[package]`](#the-package-section) — 包的定义。
@@ -55,7 +55,7 @@
 <a id="package-metadata"></a>
 ### `[package]` 部分
 
-在 `Cargo.toml` 中最先的部分就是 `[package]` 。
+在 `Cargo.toml` 中首先的部分就是 `[package]` 。
 
 ```toml
 [package]
@@ -73,9 +73,9 @@ Cargo 仅需要的字段是 [`name`](#the-name-field) 和 [`version`](#the-versi
 包的名称是用来引用包的标识符。
 可被列为另一个包的依赖，并作为lib和bin目标所推断的默认名称。
 
-该名称只能使用 [字母数字] 、 `-` 、 `_` ，并且不能为空。
+该名称只能使用 [字母数字][alphanumeric] 、 `-` 、 `_` ，并且不能为空。
 
-需注意，[`cargo new`]和[`cargo init`]对包名有一些额外的限制，如强制要求为有效的Rust标识符，而不能是关键字。
+需注意， [`cargo new`] 和 [`cargo init`] 对包名有一些额外的限制，如强制要求为有效的Rust标识符，而不能是关键字。
 [crates.io]有更多的限制，比如说:
 
 - 仅允许ASCII字符。
@@ -94,11 +94,11 @@ Cargo 遵循 [语义化版本](https://semver.org/) 的概念，遵循一些基�
 * 1.0.0之后，不要在补丁版本中添加任何新的公共API(即没有新的 `pub` 接口)。如果添加任何新的 `pub` 结构体、trait、字段、类型、函数、方法或其他内容，总是递增次要版本。
 * 使用有三个数字部分的版本号，如1.0.0而不是1.0。
 
-请参阅 [Resolver] 章节，了解更多关于Cargo如何使用版本号来解决依赖，以及自己设置版本号的指南。
-参见 [语义化兼容] 一章，以了解更多关于什么是破坏性变化的细节。
+请参阅 [Resolver] 章节，了解更多关于Cargo如何使用版本号来解析依赖，以及自己设置版本号的指南。
+参阅 [语义化兼容性][SemVer compatibility] 一章，以了解更多关于什么是破坏性变化的细节。
 
 [Resolver]: resolver.md
-[语义化兼容]: semver.md
+[SemVer compatibility]: semver.md
 
 <a id="the-authors-field-optional"></a>
 ####  `authors` 字段
@@ -223,7 +223,7 @@ repository = "https://github.com/rust-lang/cargo/"
 
 [crates.io]将 `license` 字段解释为 [SPDX 2.1 license expression][spdx-2.1-license-expressions] 。
 该名称必须是 [SPDX license list 3.11][spdx-license-list-3.11] 中的一个已知许可证。
-目前不支持括号。更多信息请参见 [SPDX网站] 。
+目前不支持括号。更多信息请参见 [SPDX网站][SPDX site] 。
 
 SPDX许可证表达式支持AND和OR运算符，以组合多个许可证。[^slash]
 
@@ -297,7 +297,7 @@ workspace = "path/to/workspace/root"
 <a id="the-build-field-optional"></a>
 #### `build` 字段
 
-`build` 字段指定包根位置的文件，该文件是用于构建本地代码的[构建脚本]。
+`build` 字段指定包根位置的文件，该文件是用于构建本地代码的 [构建脚本][build script] 。
 更多信息可以在 [构建脚本指南][build script] 中找到。
 
 [build script]: build-scripts.md
@@ -330,7 +330,7 @@ links = "git2"
 <a id="the-exclude-and-include-fields-optional"></a>
 #### `exclude` 和 `include` 字段
 
-`exclude` 和 `include` 字段可以用来明确指定哪些文件在进行打包[发布][publishing]项目时被包含，以及某些种类的变更跟踪(如下所述)。
+`exclude` 和 `include` 字段可以用来明确指定哪些文件在进行打包[发布][publishing]项目时被包含，以及某些类别的变更跟踪(如下所述)。
 在 `exclude` 字段中指定的模式确定了一组不包括的文件，而 `include` 中的模式指定了明确包括的文件。
 可以运行 [`cargo package --list`][`cargo package`] 来验证哪些文件被包含在包中。
 
@@ -426,7 +426,7 @@ package-name = "my-awesome-android-app"
 assets = "path/to/static"
 ```
 
-在工作空间层级也有类似的表，位于[`workspace.metadata`][workspace-metadata]。
+在工作空间层级也有类似的表，位于 [`workspace.metadata`][workspace-metadata] 。
 虽然cargo没有指定这两个表的内容格式，但建议插件以一致的方式使用它们，例如，
 如果 `package.metadata` 中缺少数据，就引用 `workspace.metadata` 中的数据，只要对相关工具来说合理。
 
@@ -468,7 +468,7 @@ maintenance = { status = "..." }
 
 ### 依赖部分
 
-参阅 [特定依赖页](specifying-dependencies.md) 在 `[dependencies]` , `[dev-dependencies]` , `[build-dependencies]` , 和 target-specific `[target.*.dependencies]` 部分.
+参阅 [指定依赖](specifying-dependencies.md) 在 `[dependencies]` , `[dev-dependencies]` , `[build-dependencies]` , 和 target-specific `[target.*.dependencies]` 部分.
 
 ### `[profile.*]` 部分
 
@@ -484,10 +484,10 @@ maintenance = { status = "..." }
 [crates.io]: https://crates.io/
 [docs.rs]: https://docs.rs/
 [publishing]: publishing.md
-[Rust 版次]: ../../edition-guide/index.html
+[Rust Edition]: ../../edition-guide/index.html
 [spdx-2.1-license-expressions]: https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60
 [spdx-license-list-3.11]: https://github.com/spdx/license-list-data/tree/v3.11
-[SPDX网站]: https://spdx.org/license-list
+[SPDX site]: https://spdx.org/license-list
 [TOML]: https://toml.io/
 
 <script>

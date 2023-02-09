@@ -1,10 +1,10 @@
 ## 构建脚本示例
 
-下面小节是一些编写的构建脚本的示例。
+下面小节是一些编写的构建脚本的举例。
 
-在[crates.io]的crate构建脚本中可以找到一些常见的功能。
+通过 [crates.io] 中的crate，能找到一些构建脚本的常见功能。
 查看 [`build-dependencies` 键](https://crates.io/keywords/build-dependencies)，看看有那些可用。
-下面是一些流行的 crates[^†] 示例。
+下面是一些流行的 crates[^†] 示例:
 
 * [`bindgen`](https://crates.io/crates/bindgen) — 自动生成Rust FFI与C库的绑定。
 * [`cc`](https://crates.io/crates/cc) — 编译 C/C++/assembly 。
@@ -14,12 +14,12 @@
   [`rustc_version`](https://crates.io/crates/rustc_version),
   [`version_check`](https://crates.io/crates/version_check) — 这些crates提供了基于当前 `rustc` (如编译器的版本) 实现条件编译的方法。
 
-[^†]: 这个列表并不仅是一种签注。评估你的依赖，看哪一个是更适合你的项目。
+[^†]: 这个列表并不是一种宣传，你需要评估依赖，选择更适合你的项目。
 
 ### Code 生成
 
 由于各种原因，有些Cargo包在编译前需要生成代码。
-在这里，通过一个简单的例子，生成一个库调用将作为构建脚本的一部分。
+在这里，通过一个简单的例子，生成一个库，作为构建脚本的一部分调用。
 
 首先，来看一下这个包的目录结构:
 
@@ -93,7 +93,7 @@ fn main() {
 
 这就是真正奇妙的地方。该库使用rustc定义的 [`include!` macro][include-macro] 与 [`concat!`][concat-macro] 和 [`env!`][env-macro] 宏相结合，将生成的文件(`hello.rs`)纳入crate的编译。
 
-使用这里显示的结构，crate可以include来自构建脚本本身任意数量的生成文件。
+使用这里展示的结构，crate可以include来自构建脚本所生成的任意数量的文件。
 
 [include-macro]: ../../std/macro.include.html
 [concat-macro]: ../../std/macro.concat.html
@@ -105,7 +105,7 @@ fn main() {
 这是利用构建脚本在Rust crate本身之前构建本地库的另一个很好的用例。
 作为例子，我们将创建一个Rust库，调用C语言来打印 “Hello, World!” 。
 
-像上面一样，来先看一下包的层次。
+像上面一样，来先看一下包的层次:
 
 ```text
 .
@@ -141,8 +141,7 @@ use std::path::Path;
 fn main() {
     let out_dir = env::var("OUT_DIR").unwrap();
 
-    // Note that there are a number of downsides to this approach, the comments
-    // below detail how to improve the portability of these commands.
+    // 注意，这种方法有一些缺点，下面的注解详细说明了如何提高这些命令的可移植性。
     Command::new("gcc").args(&["src/hello.c", "-c", "-fPIC", "-o"])
                        .arg(&format!("{}/hello.o", out_dir))
                        .status().unwrap();
@@ -156,7 +155,7 @@ fn main() {
 }
 ```
 
-这个编译脚本首先将C文件编译成object文件(通过调用`gcc`)，然后将这个object文件转换为静态库 (通过调用`ar`)。
+这个编译脚本首先将C文件编译成object文件(通过调用`gcc`)，然后将这个object文件转换为静态库 (通过调用 `ar` )。
 最后一步是反馈给Cargo本身，告知输出在 `out_dir` ，编译器应该通过 `-l static=hello` 标志将crate静态链接到 `libhello.a` 。
 
 注意，这种硬编码的方法有很多缺点:
@@ -165,7 +164,7 @@ fn main() {
 * 这些命令没有考虑到交叉编译的问题。如果为Android这样的平台进行交叉编译，那么 `gcc` 不太可能产生ARM的可执行文件。
 
 不过不用担心，这时 `build-dependencies` 条目会有帮助。Cargo生态系统有许多包，可以使这种任务变得更容易、便携、标准。
-试试[crates.io]的[`cc` crate](https://crates.io/crates/cc)。首先，把它添加到 `Cargo.toml` 的 `build-dependencies` 中。
+试试 [crates.io] 的 [`cc` crate](https://crates.io/crates/cc) 。首先，把它添加到 `Cargo.toml` 的 `build-dependencies` 中。
 
 ```toml
 [build-dependencies]
@@ -217,10 +216,10 @@ fn main() {
 }
 ```
 
-那么开始! 这样就完成了从Cargo包中使用构建脚本本身构建一些C代码的例子。
+那么好了! 这样就完成了从Cargo包中使用构建脚本本身构建一些C代码的例子。
 这也说明为什么在很多情况下，使用构建依赖是非常关键的，甚至更加简洁!
 
-我们也看到了这个简短的示例，说明构建脚本如何单纯将crate作为依赖，而不是在运行时将crate本身作为依赖。
+我们也看到这个简短的示例，说明构建脚本如何单纯将crate作为依赖，而不是在运行时将crate本身作为依赖。
 
 [`cc` crate]: https://crates.io/crates/cc
 
@@ -234,9 +233,9 @@ fn main() {
 
 对于这个例子，将创建一个与系统zlib库的绑定。
 这是在大多数类Unix系统中常见的库，提供数据压缩。
-这已经包含在[`libz-sys` crate]中了，但对于这个例子，我们将做一个极其简化的版本。请查看[libz源码][libz-source]以了解完整的用例。
+这已经包含在 [`libz-sys` crate] 中了，但对于这个例子，我们将做一个极其简化的版本。请查看 [libz源码][libz-source] 以了解完整的用例。
 
-为了方便找到库的位置，我们将使用[`pkg-config` crate]。这个crate使用系统的 `pkg-config` 工具来发现库的信息。
+为了方便找到库的位置，我们将使用 [`pkg-config` crate] 。这个crate使用系统的 `pkg-config` 工具来发现库的信息。
 它将自动告诉Cargo需要什么来链接这个库。这可能只能在安装了 `pkg-config` 的类Unix系统上工作。先从设置配置清单开始:
 
 ```toml
@@ -254,7 +253,7 @@ pkg-config = "0.3.16"
 
 请注意，我们在 `package` 表中加入了 `links` 键。
 这告知Cargo，正在链接到 `libz` 库。
-请看["使用另一个系统crate"](#using-another-sys-crate)中的例子，可以利用这点。
+请看 ["使用另一个系统crate"](#using-another-sys-crate) 中的例子，可以利用这点。
 
 构建脚本相当简单:
 
@@ -365,7 +364,7 @@ fn main() {
 它支持多种不同的实现方式 (如LibreSSL) 和多个版本。
 它使用了 `links` 键，这样就可以向其他构建脚本传递信息。
 它传递的信息之一是 `version_number` 键，这是检测到的OpenSSL的版本。
-构建脚本中的代码看起来[像这样](https://github.com/sfackler/rust-openssl/blob/dc72a8e2c429e46c275e528b61a733a66e7877fc/openssl-sys/build/main.rs#L216):
+构建脚本中的代码看起来 [像这样](https://github.com/sfackler/rust-openssl/blob/dc72a8e2c429e46c275e528b61a733a66e7877fc/openssl-sys/build/main.rs#L216):
 
 ```rust,ignore
 println!("cargo:version_number={:x}", openssl_version);
@@ -402,7 +401,7 @@ if let Ok(version) = env::var("DEP_OPENSSL_VERSION_NUMBER") {
 ```
 
 这些 `cfg` 值可以与 [`cfg` attribute]  或 [`cfg` macro]一起使用，从而有条件地include代码。
-例如，SHA3支持是在OpenSSL 1.1.1中添加的，所以对于旧版本它被[条件排除](https://github.com/sfackler/rust-openssl/blob/dc72a8e2c429e46c275e528b61a733a66e7877fc/openssl/src/hash.rs#L67-L85)。
+例如，SHA3支持是在OpenSSL 1.1.1中添加的，所以对于旧版本它被 [条件排除](https://github.com/sfackler/rust-openssl/blob/dc72a8e2c429e46c275e528b61a733a66e7877fc/openssl/src/hash.rs#L67-L85) 。
 
 ```rust,ignore
 // (portion of openssl crate)

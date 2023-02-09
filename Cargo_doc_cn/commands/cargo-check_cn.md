@@ -1,7 +1,7 @@
 {==+==}
 # cargo-check(1)
 {==+==}
-# cargo-check(1)
+
 {==+==}
 
 
@@ -24,17 +24,20 @@ cargo-check - 检查当前包
 ## 简介
 {==+==}
 
+
 {==+==}
 `cargo check` [_options_]
 {==+==}
-`cargo check` [_options_]
+
 {==+==}
+
 
 {==+==}
 ## DESCRIPTION
 {==+==}
 ## 描述
 {==+==}
+
 
 {==+==}
 Check a local package and all of its dependencies for errors. This will
@@ -44,8 +47,10 @@ metadata files to disk so that future runs will reuse them if the source has
 not been modified. Some diagnostics and errors are only emitted during code
 generation, so they inherently won't be reported with `cargo check`.
 {==+==}
-检查本地包及其所有依赖项是否有错误。这实际上将编译软件包，而不执行代码生成的最后一步，这比运行“Cargo构建”要快。编译器会将元数据文件保存到磁盘上，这样，如果源文件没有被修改，以后运行时就可以重用它们。一些诊断和错误仅在代码生成期间发出，因此它们本质上不会在“Cargo检查”中报告。
+检查本地包及其所有依赖项是否有错误。这实际上将编译软件包，而不执行代码生成的最后一步，这比运行“Cargo构建”要快。
+编译器会将元数据文件保存到磁盘上，这样，如果源文件没有被修改，以后运行时就可以重用它们。一些诊断和错误仅在代码生成期间发出，因此它们本质上不会在“Cargo检查”中报告。
 {==+==}
+
 
 {==+==}
 ## OPTIONS
@@ -53,11 +58,13 @@ generation, so they inherently won't be reported with `cargo check`.
 ## 选项
 {==+==}
 
+
 {==+==}
 ### Package Selection
 {==+==}
 ### 包选择
 {==+==}
+
 
 {==+==}
 By default, when no package selection options are given, the packages selected
@@ -69,6 +76,7 @@ by the manifest will be selected.
 缺省情况下，当没有给出包选择选项时，所选择的包取决于所选择的清单文件(如果没有给出 `- manifest-path ` ，则基于当前工作目录)。如果清单是工作区的根，则选择工作区的默认成员，否则只选择清单定义的包。
 {==+==}
 
+
 {==+==}
 The default members of a workspace can be set explicitly with the
 `workspace.default-members` key in the root manifest. If this is not set, a
@@ -78,9 +86,8 @@ virtual workspace will include all workspace members (equivalent to passing
 可以使用根清单中的 `workspace.default-members` 键显式设置工作区的默认成员。如果未设置此项，虚拟工作区将包括所有工作区成员（相当于传递 `- workspace ` ），而非虚拟工作区将只包括根机箱本身。
 {==+==}
 
-{==+==}
-<dl>
 
+{==+==}
 <dt class="option-term" id="option-cargo-check--p"><a class="option-anchor" href="#option-cargo-check--p"></a><code>-p</code> <em>spec</em>...</dt>
 <dt class="option-term" id="option-cargo-check---package"><a class="option-anchor" href="#option-cargo-check---package"></a><code>--package</code> <em>spec</em>...</dt>
 <dd class="option-desc">Check only the specified packages. See <a href="cargo-pkgid.html">cargo-pkgid(1)</a> for the
@@ -106,12 +113,7 @@ double quotes around each pattern.</dd>
 common Unix glob patterns like <code>*</code>, <code>?</code> and <code>[]</code>. However, to avoid your shell
 accidentally expanding glob patterns before Cargo handles them, you must use
 single quotes or double quotes around each pattern.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-check--p"><a class="option-anchor" href="#option-cargo-check--p"></a><code>-p</code> <em>spec</em>...</dt>
 <dt class="option-term" id="option-cargo-check---package"><a class="option-anchor" href="#option-cargo-check---package"></a><code>--package</code> <em>spec</em>...</dt>
 <dd class="option-desc">仅对指定的包进行基准测试。SPEC 格式请参考<a href="cargo-pkgid.html">cargo-pkgid(1)</a>。该标志可以多次指定，并支持常见的Unix全局模式，如 <code>*</code >、<code >?</code >和 <code>[]</code > 。然而，为了避免您的shell在Cargo处理glob模式之前意外扩展它们，您必须在每个模式周围使用单引号或双引号。</dd>
@@ -129,9 +131,6 @@ single quotes or double quotes around each pattern.</dd>
 
 <dt class="option-term" id="option-cargo-check---exclude"><a class="option-anchor" href="#option-cargo-check---exclude"></a><code>--exclude</code> <em>SPEC</em>...</dt>
 <dd class="option-desc">排除指定的包。必须与 <code>--workspace</code >标志一起使用。该标志可以多次指定，并支持常见的Unix全局模式，如 <code>*</code >、<code >？</code > 和 <code>[]</code >。然而，为了避免您的shell在Cargo处理glob模式之前意外扩展它们，您必须在每个模式周围使用单引号或双引号。</dd>
-
-
-</dl>
 {==+==}
 
 
@@ -161,9 +160,8 @@ use single quotes or double quotes around each glob pattern.
 注意`--bin`、`--example`、`--test`和`--bench`标志也支持常见的Unix全局模式，如`*`、`?`和`[]`。然而，为了避免您的 shell 在 Cargo 处理 glob 模式之前意外地扩展它们，您必须在每个 glob 模式周围使用单引号或双引号。
 {==+==}
 
-{==+==}
-<dl>
 
+{==+==}
 <dt class="option-term" id="option-cargo-check---lib"><a class="option-anchor" href="#option-cargo-check---lib"></a><code>--lib</code></dt>
 <dd class="option-desc">Check the package's library.</dd>
 
@@ -219,12 +217,7 @@ manifest settings for the target.</dd>
 
 <dt class="option-term" id="option-cargo-check---all-targets"><a class="option-anchor" href="#option-cargo-check---all-targets"></a><code>--all-targets</code></dt>
 <dd class="option-desc">Check all targets. This is equivalent to specifying <code>--lib --bins --tests --benches --examples</code>.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-check---lib"><a class="option-anchor" href="#option-cargo-check---lib"></a><code>--lib</code></dt>
 <dd class="option-desc">检查包的库。</dd>
 
@@ -268,9 +261,6 @@ unittest，一次作为二进制、集成测试等的依赖项。).
 
 <dt class="option-term" id="option-cargo-check---all-targets"><a class="option-anchor" href="#option-cargo-check---all-targets"></a><code>--all-targets</code></dt>
 <dd class="option-desc">检查所有目标。这相当于指定<code>--lib --bins --tests --benches --examples</code>。</dd>
-
-
-</dl>
 {==+==}
 
 
@@ -279,6 +269,7 @@ unittest，一次作为二进制、集成测试等的依赖项。).
 {==+==}
 ### 特性选择
 {==+==}
+
 
 {==+==}
 The feature flags allow you to control which features are enabled. When no
@@ -296,8 +287,6 @@ for more details.
 {==+==}
 
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-check--F"><a class="option-anchor" href="#option-cargo-check--F"></a><code>-F</code> <em>features</em></dt>
 <dt class="option-term" id="option-cargo-check---features"><a class="option-anchor" href="#option-cargo-check---features"></a><code>--features</code> <em>features</em></dt>
 <dd class="option-desc">Space or comma separated list of features to activate. Features of workspace
@@ -311,12 +300,7 @@ be specified multiple times, which enables all specified features.</dd>
 
 <dt class="option-term" id="option-cargo-check---no-default-features"><a class="option-anchor" href="#option-cargo-check---no-default-features"></a><code>--no-default-features</code></dt>
 <dd class="option-desc">Do not activate the <code>default</code> feature of the selected packages.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-check--F"><a class="option-anchor" href="#option-cargo-check--F"></a><code>-F</code> <em>features</em></dt>
 <dt class="option-term" id="option-cargo-check---features"><a class="option-anchor" href="#option-cargo-check---features"></a><code>--features</code> <em>features</em></dt>
 <dd class="option-desc">要激活的以空格或逗号分隔的功能列表。可以使用<code>package-name/feature-name</code>语法来启用工作区成员的功能。可以多次指定该标志，从而启用所有指定的功能。</dd>
@@ -328,9 +312,6 @@ be specified multiple times, which enables all specified features.</dd>
 
 <dt class="option-term" id="option-cargo-check---no-default-features"><a class="option-anchor" href="#option-cargo-check---no-default-features"></a><code>--no-default-features</code></dt>
 <dd class="option-desc">不要激活所选软件包的<code>default</code>功能。</dd>
-
-
-</dl>
 {==+==}
 
 
@@ -341,8 +322,6 @@ be specified multiple times, which enables all specified features.</dd>
 {==+==}
 
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-check---target"><a class="option-anchor" href="#option-cargo-check---target"></a><code>--target</code> <em>triple</em></dt>
 <dd class="option-desc">Check for the given architecture. The default is the host architecture. The general format of the triple is
 <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>. Run <code>rustc --print target-list</code> for a
@@ -393,14 +372,7 @@ and does not provide machine-readable timing data.</li>
 <li><code>json</code> (unstable, requires <code>-Zunstable-options</code>): Emit machine-readable JSON
 information about timing information.</li>
 </ul></dd>
-
-
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-check---target"><a class="option-anchor" href="#option-cargo-check---target"></a><code>--target</code> <em>triple</em></dt>
 <dd class="option-desc">检查给定的体系结构。默认为主机架构。三元组的一般格式是<code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>。运行 <code>rustc --print target-list</code> 以获取支持的目标列表。可以多次指定该标志.</p>
 <p>这也可以用 <code>build.target</code> 来指定
@@ -435,12 +407,8 @@ information about timing information.</li>
 <li><code>html</code >(不稳定，需要 <code>-Zunstable-options</code> ):将一个可读的文件 <code>cargo-timing.html</code> 写入 <code>target/cargo-timings</code> 目录，并附上编译报告。如果您想查看以前的运行，也可以在相同的目录下写一个带有时间戳的报告。HTML输出只适合人类使用，不提供机器可读的计时数据。</li>
 <li><code>json</code >(不稳定，需要 <code>-Zunstable-options</code> ):发出有关计时信息的机器可读json信息。</li>
 </ul></dd>
-
-
-
-
-</dl>
 {==+==}
+
 
 {==+==}
 ### Output Options
@@ -448,24 +416,17 @@ information about timing information.</li>
 ### 输出选项
 {==+==}
 
+
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-check---target-dir"><a class="option-anchor" href="#option-cargo-check---target-dir"></a><code>--target-dir</code> <em>directory</em></dt>
 <dd class="option-desc">Directory for all generated artifacts and intermediate files. May also be
 specified with the <code>CARGO_TARGET_DIR</code> environment variable, or the
 <code>build.target-dir</code> <a href="../reference/config.html">config value</a>.
 Defaults to <code>target</code> in the root of the workspace.</dd>
-
-
-</dl>
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-check---target-dir"><a class="option-anchor" href="#option-cargo-check---target-dir"></a><code>--target-dir</code> <em>directory</em></dt>
 <dd class="option-desc">所有生成的工件和中间文件的目录。也可以用<code>CARGO_TARGET_DIR</code>环境变量或<code>build.target-dir</code> <a  ref="../reference/config.html">config value</a>。
 默认为工作区根目录中的< code>target</code >。</dd>
-
-
-</dl>
 {==+==}
 
 {==+==}
@@ -475,10 +436,10 @@ Defaults to <code>target</code> in the root of the workspace.</dd>
 {==+==}
 
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-check--v"><a class="option-anchor" href="#option-cargo-check--v"></a><code>-v</code></dt>
 <dt class="option-term" id="option-cargo-check---verbose"><a class="option-anchor" href="#option-cargo-check---verbose"></a><code>--verbose</code></dt>
-<dd class="option-desc">Use verbose output. May be specified twice for &quot;very verbose&quot; output which includes extra output such as dependency warnings and build script output.
+<dd class="option-desc">Use verbose output. May be specified twice for &quot;very verbose&quot; output which
+includes extra output such as dependency warnings and build script output.
 May also be specified with the <code>term.verbose</code>
 <a href="../reference/config.html">config value</a>.</dd>
 
@@ -524,11 +485,7 @@ in JSON messages printed, but instead Cargo itself should render the
 JSON diagnostics coming from rustc. Cargo's own JSON diagnostics and others
 coming from rustc are still emitted. Cannot be used with <code>human</code> or <code>short</code>.</li>
 </ul></dd>
-
-
-</dl>
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-check--v"><a class="option-anchor" href="#option-cargo-check--v"></a><code>-v</code></dt>
 <dt class="option-term" id="option-cargo-check---verbose"><a class="option-anchor" href="#option-cargo-check---verbose"></a><code>--verbose</code></dt>
 <dd class="option-desc">使用详细输出。 对于 &quot;非常详细&quot;的输出，可以指定两次，非常详细的输出包括额外的输出，如依赖项警告和构建脚本输出。
@@ -569,10 +526,8 @@ contains embedded ANSI color codes for respecting rustc's default color
 scheme. Cannot be used with <code>human</code> or <code>short</code>.</li>
 <li><code> json-render-diagnostics </code>:指示Cargo不要在打印的JSON消息中包含rustc诊断，而是Cargo本身应该呈现来自rustc的JSON诊断。Cargo自己的JSON诊断和来自rustc的其他诊断仍然会发出。不能与<code>human</code>或<code>short</code>一起使用。</li>
 </ul></dd>
-
-
-</dl>
 {==+==}
+
 
 {==+==}
 ### Manifest Options
@@ -580,8 +535,8 @@ scheme. Cannot be used with <code>human</code> or <code>short</code>.</li>
 ### 清单选项
 {==+==}
 
+
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-check---manifest-path"><a class="option-anchor" href="#option-cargo-check---manifest-path"></a><code>--manifest-path</code> <em>path</em></dt>
 <dd class="option-desc">Path to the <code>Cargo.toml</code> file. By default, Cargo searches for the
 <code>Cargo.toml</code> file in the current directory or any parent directory.</dd>
@@ -610,11 +565,7 @@ if there might be a newer version as indicated in the local copy of the index.
 See the <a href="cargo-fetch.html">cargo-fetch(1)</a> command to download dependencies before going
 offline.</p>
 <p>May also be specified with the <code>net.offline</code> <a href="../reference/config.html">config value</a>.</dd>
-
-
-</dl>
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-check---manifest-path"><a class="option-anchor" href="#option-cargo-check---manifest-path"></a><code>--manifest-path</code> <em>path</em></dt>
 <dd class="option-desc"><code>Cargo.toml</code>文件的路径。默认情况下，Cargo在当前目录或任何父目录中搜索<code>Cargo.toml</code>文件。</dd>
 
@@ -631,10 +582,8 @@ offline.</p>
 <p>请注意，这可能会导致与在线模式不同的依赖关系解析。Cargo将自己限制在本地下载的板条箱中，即使在索引的本地副本中可能有更新的版本。
 请参阅<a href="cargo-fetch.html">cargo-fetch(1)</a >命令，以便在脱机之前下载依赖项。</p>
 <p>也可以用<code>net.offline</code> <a href="../reference/config.html">配置值</a>。</dd>
-
-
-</dl>
 {==+==}
+
 
 {==+==}
 ### Common Options
@@ -642,9 +591,8 @@ offline.</p>
 ### 常见选项
 {==+==}
 
-{==+==}
-<dl>
 
+{==+==}
 <dt class="option-term" id="option-cargo-check-+toolchain"><a class="option-anchor" href="#option-cargo-check-+toolchain"></a><code>+</code><em>toolchain</em></dt>
 <dd class="option-desc">If Cargo has been installed with rustup, and the first argument to <code>cargo</code>
 begins with <code>+</code>, it will be interpreted as a rustup toolchain name (such
@@ -666,12 +614,7 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 
 <dt class="option-term" id="option-cargo-check--Z"><a class="option-anchor" href="#option-cargo-check--Z"></a><code>-Z</code> <em>flag</em></dt>
 <dd class="option-desc">Unstable (nightly-only) flags to Cargo. Run <code>cargo -Z help</code> for details.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-check-+toolchain"><a class="option-anchor" href="#option-cargo-check-+toolchain"></a><code>+</code><em>toolchain</em></dt>
 <dd class="option-desc">如果Cargo已经安装了rustup，并且<code>cargo</code>的第一个参数以 <code>+</code >开头，则它将被解释为rustup工具链名称 (例如 <code>+stable</code> 或 <code>+nightly</code>).
 有关工具链覆盖如何工作的详细信息，请参阅 <a href="https://rust-lang.github.io/rustup/overrides.html">rustup documentation</a> rust up文档</a >。</dd>
@@ -689,9 +632,6 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 
 <dt class="option-term" id="option-cargo-check--Z"><a class="option-anchor" href="#option-cargo-check--Z"></a><code>-Z</code> <em>flag</em></dt>
 <dd class="option-desc"> Cargo 不稳定(nightly-only)标志。运行<code>cargo -Z help</code>获取详细信息。</dd>
-
-
-</dl>
 {==+==}
 
 
@@ -702,7 +642,6 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 {==+==}
 
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-check--j"><a class="option-anchor" href="#option-cargo-check--j"></a><code>-j</code> <em>N</em></dt>
 <dt class="option-term" id="option-cargo-check---jobs"><a class="option-anchor" href="#option-cargo-check---jobs"></a><code>--jobs</code> <em>N</em></dt>
 <dd class="option-desc">Number of parallel jobs to run. May also be specified with the
@@ -722,11 +661,7 @@ the build on the first one that fails to build. Unstable, requires
 <dd class="option-desc">Displays a future-incompat report for any future-incompatible warnings
 produced during execution of this command</p>
 <p>See <a href="cargo-report.html">cargo-report(1)</a></dd>
-
-
-</dl>
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-check--j"><a class="option-anchor" href="#option-cargo-check--j"></a><code>-j</code> <em>N</em></dt>
 <dt class="option-term" id="option-cargo-check---jobs"><a class="option-anchor" href="#option-cargo-check---jobs"></a><code>--jobs</code> <em>N</em></dt>
 <dd class="option-desc">要运行的并行作业的数量。也可以用<code>build.jobs</code> <a href="../reference/config.html">config value</a>指定。
@@ -741,9 +676,6 @@ produced during execution of this command</p>
 <dt class="option-term" id="option-cargo-check---future-incompat-report"><a class="option-anchor" href="#option-cargo-check---future-incompat-report"></a><code>--future-incompat-report</code></dt>
 <dd class="option-desc">显示在执行此命令期间产生的任何未来不兼容警告的未来不兼容报告</p>
 <p>请参阅 <a href="cargo-report.html"> cargo-report(1)</a></dd>
-
-
-</dl>
 {==+==}
 
 {==+==}
@@ -800,13 +732,15 @@ Cargo读取的环境变量的详细信息。
        cargo check --all-targets --profile=test
 {==+==}
 
+
 {==+==}
 ## SEE ALSO
 {==+==}
 ## 另见
 {==+==}
+
 {==+==}
 [cargo(1)](cargo.html), [cargo-build(1)](cargo-build.html)
 {==+==}
-[cargo(1)](cargo.html), [cargo-build(1)](cargo-build.html)
+
 {==+==}

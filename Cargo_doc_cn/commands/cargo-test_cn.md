@@ -1,6 +1,7 @@
 {==+==}
 # cargo-test(1)
 {==+==}
+
 {==+==}
 
 
@@ -12,11 +13,13 @@
 ## 定义
 {==+==}
 
+
 {==+==}
 cargo-test - Execute unit and integration tests of a package
 {==+==}
 cargo-test - 对包执行单元测试和集成测试
 {==+==}
+
 
 {==+==}
 ## SYNOPSIS
@@ -24,10 +27,13 @@ cargo-test - 对包执行单元测试和集成测试
 ## 概要
 {==+==}
 
+
 {==+==}
 `cargo test` [_options_] [_testname_] [`--` _test-options_]
 {==+==}
+
 {==+==}
+
 
 {==+==}
 ## DESCRIPTION
@@ -35,11 +41,13 @@ cargo-test - 对包执行单元测试和集成测试
 ## 说明
 {==+==}
 
+
 {==+==}
 Compile and execute unit, integration, and documentation tests.
 {==+==}
 编译并执行单元测试、集成测试以及文档测试。
 {==+==}
+
 
 {==+==}
 The test filtering argument `TESTNAME` and all the arguments following the two
@@ -57,6 +65,7 @@ how tests work at <https://doc.rust-lang.org/rustc/tests/index.html>.
 <https://doc.rust-lang.org/rustc/tests/index.html>。
 {==+==}
 
+
 {==+==}
 As an example, this will filter for tests with `foo` in their name and run them
 on 3 threads in parallel:
@@ -64,10 +73,13 @@ on 3 threads in parallel:
 下面这个例子，将过滤名称中含有foo的测试，并在3个线程中并行运行:
 {==+==}
 
+
 {==+==}
     cargo test foo -- --test-threads 3
 {==+==}
+
 {==+==}
+
 
 {==+==}
 Tests are built with the `--test` option to `rustc` which creates a special
@@ -81,12 +93,14 @@ that they are functional.
 `#[bench]` 注释的函数也将被运行一次，以验证它们是否正常。
 {==+==}
 
+
 {==+==}
 If the package contains multiple test targets, each target compiles to a
 special executable as aforementioned, and then is run serially.
 {==+==}
 如果软件包包含多个测试目标，每个目标都会像前面提到的那样编译成一个特殊的可执行文件，然后被串行地运行。
 {==+==}
+
 
 {==+==}
 The libtest harness may be disabled by setting `harness = false` in the target
@@ -97,11 +111,13 @@ function to handle running tests.
 在这种情况下，你的代码需要提供自己的 `main` 函数来处理运行测试。
 {==+==}
 
+
 {==+==}
 ### Documentation tests
 {==+==}
 ### 文档测试
 {==+==}
+
 
 {==+==}
 Documentation tests are also run by default, which is handled by `rustdoc`. It
@@ -111,6 +127,7 @@ then executes them.
 文档测试也是默认运行的，这是由 `rustdoc` 处理的。
 它从库目标的文档注释中提取代码样本，然后执行它们。
 {==+==}
+
 
 {==+==}
 Different from normal test targets, each code block compiles to a doctest
@@ -126,6 +143,7 @@ and may change in the future; beware of depending on it.
 请注意，doctests 的这种执行模式是不被保证的，将来可能会发生变化;谨慎依赖它。
 {==+==}
 
+
 {==+==}
 See the [rustdoc book](https://doc.rust-lang.org/rustdoc/) for more information
 on writing doc tests.
@@ -133,11 +151,13 @@ on writing doc tests.
 关于编写文档测试的更多信息，请参见 [rustdoc book](https://doc.rust-lang.org/rustdoc/)。
 {==+==}
 
+
 {==+==}
 ## OPTIONS
 {==+==}
 ## 选项
 {==+==}
+
 
 {==+==}
 ### Test Options
@@ -145,9 +165,8 @@ on writing doc tests.
 ### 测试选项
 {==+==}
 
-{==+==}
-<dl>
 
+{==+==}
 <dt class="option-term" id="option-cargo-test---no-run"><a class="option-anchor" href="#option-cargo-test---no-run"></a><code>--no-run</code></dt>
 <dd class="option-desc">Compile, but don't run tests.</dd>
 
@@ -158,11 +177,7 @@ after the first executable fails. The Rust test harness will run all tests
 within the executable to completion, this flag only applies to the executable
 as a whole.</dd>
 
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-test---no-run"><a class="option-anchor" href="#option-cargo-test---no-run"></a><code>--no-run</code></dt>
 <dd class="option-desc">编译，但不运行测试。</dd>
 
@@ -172,10 +187,8 @@ as a whole.</dd>
 如果没有这个标志，Cargo 会在第一个可执行程序失败后退出。
 Rust test harness 会运行可执行文件中的所有测试，
 这个标志只适用于整个可执行文件。</dd>
-
-
-</dl>
 {==+==}
+
 
 
 {==+==}
@@ -183,6 +196,7 @@ Rust test harness 会运行可执行文件中的所有测试，
 {==+==}
 ### 选择包
 {==+==}
+
 
 {==+==}
 By default, when no package selection options are given, the packages selected
@@ -196,6 +210,7 @@ by the manifest will be selected.
 如果清单在工作空间的根目录，那么将选择工作空间的默认成员，否则将只选择清单定义的包。
 {==+==}
 
+
 {==+==}
 The default members of a workspace can be set explicitly with the
 `workspace.default-members` key in the root manifest. If this is not set, a
@@ -206,14 +221,13 @@ virtual workspace will include all workspace members (equivalent to passing
 如果没有设置，虚拟工作空间将包括所有工作空间成员(相当于通过 `--workspace`)，而非虚拟工作区将只包括根 crate 本身。
 {==+==}
 
-{==+==}
-<dl>
 
+{==+==}
 <dt class="option-term" id="option-cargo-test--p"><a class="option-anchor" href="#option-cargo-test--p"></a><code>-p</code> <em>spec</em>...</dt>
 <dt class="option-term" id="option-cargo-test---package"><a class="option-anchor" href="#option-cargo-test---package"></a><code>--package</code> <em>spec</em>...</dt>
 <dd class="option-desc">Test only the specified packages. See <a href="cargo-pkgid.html">cargo-pkgid(1)</a> for the
 SPEC format. This flag may be specified multiple times and supports common Unix
-glob patterns like <code>*</code>, <code>?</code> and <code>[]</code>. However, to avoid your shell accidentally
+glob patterns like <code>*</code>, <code>?</code> and <code>[]</code>. However, to avoid your shell accidentally 
 expanding glob patterns before Cargo handles them, you must use single quotes or
 double quotes around each pattern.</dd>
 
@@ -234,12 +248,7 @@ double quotes around each pattern.</dd>
 common Unix glob patterns like <code>*</code>, <code>?</code> and <code>[]</code>. However, to avoid your shell
 accidentally expanding glob patterns before Cargo handles them, you must use
 single quotes or double quotes around each pattern.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-test--p"><a class="option-anchor" href="#option-cargo-test--p"></a><code>-p</code> <em>spec</em>...</dt>
 <dt class="option-term" id="option-cargo-test---package"><a class="option-anchor" href="#option-cargo-test---package"></a><code>--package</code> <em>spec</em>...</dt>
 <dd class="option-desc">只测试指定的软件包。 关于SPEC的格式，见<a href="cargo-pkgid.html">cargo-pkgid(1)</a>。
@@ -263,10 +272,6 @@ single quotes or double quotes around each pattern.</dd>
 这个标志可以被多次指定，并且支持常见的 Unix glob pattern，比如
 <code>*</code>, <code>?</code> 和 <code>[]</code>。
 然而，为了避免你的 shell 在 Cargo 处理 glob pattern 之前意外地扩展它们，你必须在每个 pattern 周围使用单引号或双引号。</dd>
-
-
-
-</dl>
 {==+==}
 
 
@@ -275,6 +280,7 @@ single quotes or double quotes around each pattern.</dd>
 {==+==}
 ### 选择目标
 {==+==}
+
 
 {==+==}
 When no target selection options are given, `cargo test` will build the
@@ -312,12 +318,14 @@ ignore the `test` flag and will always test the given target.
 根据目标名称选择目标的选项会忽略 `test` 标志，并总是测试给定的目标。
 {==+==}
 
+
+{==+==}
 Doc tests for libraries may be disabled by setting `doctest = false` for the
 library in the manifest.
 
 Binary targets are automatically built if there is an integration test or
 benchmark being selected to test. This allows an integration
-test to execute the binary to exercise and test its behavior.
+test to execute the binary to exercise and test its behavior. 
 The `CARGO_BIN_EXE_<name>`
 [environment variable](../reference/environment-variables.html#environment-variables-cargo-sets-for-crates)
 is set when the integration test is built so that it can use the
@@ -337,11 +345,11 @@ executable.
 
 {==+==}
 Passing target selection flags will test only the specified
-targets.
+targets. 
 
-Note that `--bin`, `--example`, `--test` and `--bench` flags also
-support common Unix glob patterns like `*`, `?` and `[]`. However, to avoid your
-shell accidentally expanding glob patterns before Cargo handles them, you must
+Note that `--bin`, `--example`, `--test` and `--bench` flags also 
+support common Unix glob patterns like `*`, `?` and `[]`. However, to avoid your 
+shell accidentally expanding glob patterns before Cargo handles them, you must 
 use single quotes or double quotes around each glob pattern.
 {==+==}
 传递目标选择标志将只测试指定的目标。
@@ -350,9 +358,8 @@ use single quotes or double quotes around each glob pattern.
 然而，为了避免你的 shell 在 Cargo 处理 glob pattern 之前意外地扩展它们，你必须在每个 glob pattern 周围使用单引号或双引号。
 {==+==}
 
-{==+==}
-<dl>
 
+{==+==}
 <dt class="option-term" id="option-cargo-test---lib"><a class="option-anchor" href="#option-cargo-test---lib"></a><code>--lib</code></dt>
 <dd class="option-desc">Test the package's library.</dd>
 
@@ -408,12 +415,7 @@ manifest settings for the target.</dd>
 
 <dt class="option-term" id="option-cargo-test---all-targets"><a class="option-anchor" href="#option-cargo-test---all-targets"></a><code>--all-targets</code></dt>
 <dd class="option-desc">Test all targets. This is equivalent to specifying <code>--lib --bins --tests --benches --examples</code>.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-test---lib"><a class="option-anchor" href="#option-cargo-test---lib"></a><code>--lib</code></dt>
 <dd class="option-desc">测试包的类库。</dd>
 
@@ -459,36 +461,25 @@ manifest settings for the target.</dd>
 
 <dt class="option-term" id="option-cargo-test---all-targets"><a class="option-anchor" href="#option-cargo-test---all-targets"></a><code>--all-targets</code></dt>
 <dd class="option-desc">测试所有目标。 相当于指定 <code>--lib --bins --tests --benches --examples</code>.</dd>
-
-
-</dl>
 {==+==}
 
 
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-test---doc"><a class="option-anchor" href="#option-cargo-test---doc"></a><code>--doc</code></dt>
 <dd class="option-desc">Test only the library's documentation. This cannot be mixed with other
 target options.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-test---doc"><a class="option-anchor" href="#option-cargo-test---doc"></a><code>--doc</code></dt>
 <dd class="option-desc">只测试库的文档。这不能与其他目标选项混合使用。</dd>
-
-
-</dl>
 {==+==}
+
 
 {==+==}
 ### Feature Selection
 {==+==}
 ### 选择 Feature
 {==+==}
+
 
 {==+==}
 The feature flags allow you to control which features are enabled. When no
@@ -498,6 +489,7 @@ selected package.
 feature 标志允许你控制哪些功能被启用。当没有给出特性选项时，每个选定的包都会激活 `default` 的 feature 。
 {==+==}
 
+
 {==+==}
 See [the features documentation](../reference/features.html#command-line-feature-options)
 for more details.
@@ -505,9 +497,8 @@ for more details.
 更多细节请参见[the features documentation](../reference/features.html#command-line-feature-options)。
 {==+==}
 
-{==+==}
-<dl>
 
+{==+==}
 <dt class="option-term" id="option-cargo-test--F"><a class="option-anchor" href="#option-cargo-test--F"></a><code>-F</code> <em>features</em></dt>
 <dt class="option-term" id="option-cargo-test---features"><a class="option-anchor" href="#option-cargo-test---features"></a><code>--features</code> <em>features</em></dt>
 <dd class="option-desc">Space or comma separated list of features to activate. Features of workspace
@@ -521,12 +512,7 @@ be specified multiple times, which enables all specified features.</dd>
 
 <dt class="option-term" id="option-cargo-test---no-default-features"><a class="option-anchor" href="#option-cargo-test---no-default-features"></a><code>--no-default-features</code></dt>
 <dd class="option-desc">Do not activate the <code>default</code> feature of the selected packages.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-test--F"><a class="option-anchor" href="#option-cargo-test--F"></a><code>-F</code> <em>features</em></dt>
 <dt class="option-term" id="option-cargo-test---features"><a class="option-anchor" href="#option-cargo-test---features"></a><code>--features</code> <em>features</em></dt>
 <dd class="option-desc">
@@ -540,10 +526,8 @@ be specified multiple times, which enables all specified features.</dd>
 
 <dt class="option-term" id="option-cargo-test---no-default-features"><a class="option-anchor" href="#option-cargo-test---no-default-features"></a><code>--no-default-features</code></dt>
 <dd class="option-desc">不激活所选包的 <code>default</code> 特性。</dd>
-
-
-</dl>
 {==+==}
+
 
 
 {==+==}
@@ -552,9 +536,8 @@ be specified multiple times, which enables all specified features.</dd>
 ### 编译选项
 {==+==}
 
-{==+==}
-<dl>
 
+{==+==}
 <dt class="option-term" id="option-cargo-test---target"><a class="option-anchor" href="#option-cargo-test---target"></a><code>--target</code> <em>triple</em></dt>
 <dd class="option-desc">Test for the given architecture. The default is the host architecture. The general format of the triple is
 <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>. Run <code>rustc --print target-list</code> for a
@@ -601,14 +584,7 @@ and does not provide machine-readable timing data.</li>
 <li><code>json</code> (unstable, requires <code>-Zunstable-options</code>): Emit machine-readable JSON
 information about timing information.</li>
 </ul></dd>
-
-
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-test---target"><a class="option-anchor" href="#option-cargo-test---target"></a><code>--target</code> <em>triple</em></dt>
 <dd class="option-desc">指定架构的测试。 默认为宿主机的架构。三元组的通用格式为
 <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>。运行 <code>rustc --print target-list</code> 来获取支持的目标列表。
@@ -656,12 +632,8 @@ HTML输出只适合用户使用，并不提供机器可读的计时数据。</li
 <li><code>json</code> (不稳定，需要 <code>-Zunstable-options</code>):
 发出机器可读的JSON格式的计时信息。</li>
 </ul></dd>
-
-
-
-
-</dl>
 {==+==}
+
 
 {==+==}
 ### Output Options
@@ -669,34 +641,29 @@ HTML输出只适合用户使用，并不提供机器可读的计时数据。</li
 ### 输出选项
 {==+==}
 
+
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-test---target-dir"><a class="option-anchor" href="#option-cargo-test---target-dir"></a><code>--target-dir</code> <em>directory</em></dt>
 <dd class="option-desc">Directory for all generated artifacts and intermediate files. May also be
 specified with the <code>CARGO_TARGET_DIR</code> environment variable, or the
 <code>build.target-dir</code> <a href="../reference/config.html">config value</a>.
 Defaults to <code>target</code> in the root of the workspace.</dd>
-
-
-</dl>
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-test---target-dir"><a class="option-anchor" href="#option-cargo-test---target-dir"></a><code>--target-dir</code> <em>directory</em></dt>
 <dd class="option-desc">
 所有生成的 artifacts 和中间文件的目录。
 也可以用 <code>CARGO_TARGET_DIR</code> 环境变量或
 <code>build.target-dir</code> <a href="../reference/config.html">config value</a> 来指定。
 默认为工作空间根目录下的 <code>target</code> 。</dd>
-
-
-</dl>
 {==+==}
+
 
 {==+==}
 ### Display Options
 {==+==}
 ### 显示选项
 {==+==}
+
 
 {==+==}
 By default the Rust test harness hides output from test execution to keep
@@ -711,9 +678,8 @@ results readable. Test output can be recovered (e.g., for debugging) by passing
     cargo test -- --nocapture
 {==+==}
 
-{==+==}
-<dl>
 
+{==+==}
 <dt class="option-term" id="option-cargo-test--v"><a class="option-anchor" href="#option-cargo-test--v"></a><code>-v</code></dt>
 <dt class="option-term" id="option-cargo-test---verbose"><a class="option-anchor" href="#option-cargo-test---verbose"></a><code>--verbose</code></dt>
 <dd class="option-desc">Use verbose output. May be specified twice for &quot;very verbose&quot; output which
@@ -763,13 +729,7 @@ in JSON messages printed, but instead Cargo itself should render the
 JSON diagnostics coming from rustc. Cargo's own JSON diagnostics and others
 coming from rustc are still emitted. Cannot be used with <code>human</code> or <code>short</code>.</li>
 </ul></dd>
-
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-test--v"><a class="option-anchor" href="#option-cargo-test--v"></a><code>-v</code></dt>
 <dt class="option-term" id="option-cargo-test---verbose"><a class="option-anchor" href="#option-cargo-test---verbose"></a><code>--verbose</code></dt>
 <dd class="option-desc">使用 verbose 级别输出详细信息。 指定两次此选项来输出 &quot;十分详细&quot; 的输出信息，
@@ -823,11 +783,8 @@ coming from rustc are still emitted. Cannot be used with <code>human</code> or <
 Cargo 自己的 JSON 诊断程序和其他来自 rustc 的诊断程序仍然会被生成出来。
 不能与 <code>human</code> 或 <code>short</code> 一起使用。</li>
 </ul></dd>
-
-
-
-</dl>
 {==+==}
+
 
 {==+==}
 ### Manifest Options
@@ -835,9 +792,8 @@ Cargo 自己的 JSON 诊断程序和其他来自 rustc 的诊断程序仍然会�
 ### 清单选项
 {==+==}
 
-{==+==}
-<dl>
 
+{==+==}
 <dt class="option-term" id="option-cargo-test---manifest-path"><a class="option-anchor" href="#option-cargo-test---manifest-path"></a><code>--manifest-path</code> <em>path</em></dt>
 <dd class="option-desc">Path to the <code>Cargo.toml</code> file. By default, Cargo searches for the
 <code>Cargo.toml</code> file in the current directory or any parent directory.</dd>
@@ -866,13 +822,7 @@ if there might be a newer version as indicated in the local copy of the index.
 See the <a href="cargo-fetch.html">cargo-fetch(1)</a> command to download dependencies before going
 offline.</p>
 <p>May also be specified with the <code>net.offline</code> <a href="../reference/config.html">config value</a>.</dd>
-
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-test---manifest-path"><a class="option-anchor" href="#option-cargo-test---manifest-path"></a><code>--manifest-path</code> <em>path</em></dt>
 <dd class="option-desc"> <code>Cargo.toml</code> 文件的路径. 默认情况下，Cargo 会在当前目录或任何父目录下搜索
 <code>Cargo.toml</code> 文件。</dd>
@@ -901,11 +851,8 @@ offline.</p>
 即使在本地拷贝的索引中可能有更新的版本也是如此。
 参见 <a href="cargo-fetch.html">cargo-fetch(1)</a> 命令来在离线前下载依赖关系。</p>
 <p>也可以用 <code>net.offline</code> <a href="../reference/config.html">config value</a> 来指定。</dd>
-
-
-
-</dl>
 {==+==}
+
 
 {==+==}
 ### Common Options
@@ -913,9 +860,8 @@ offline.</p>
 ### 通用选项
 {==+==}
 
-{==+==}
-<dl>
 
+{==+==}
 <dt class="option-term" id="option-cargo-test-+toolchain"><a class="option-anchor" href="#option-cargo-test-+toolchain"></a><code>+</code><em>toolchain</em></dt>
 <dd class="option-desc">If Cargo has been installed with rustup, and the first argument to <code>cargo</code>
 begins with <code>+</code>, it will be interpreted as a rustup toolchain name (such
@@ -937,12 +883,7 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 
 <dt class="option-term" id="option-cargo-test--Z"><a class="option-anchor" href="#option-cargo-test--Z"></a><code>-Z</code> <em>flag</em></dt>
 <dd class="option-desc">Unstable (nightly-only) flags to Cargo. Run <code>cargo -Z help</code> for details.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-test-+toolchain"><a class="option-anchor" href="#option-cargo-test-+toolchain"></a><code>+</code><em>toolchain</em></dt>
 <dd class="option-desc">如果 Cargo 已经和 rustup 一起安装, 并且 <code>cargo</code> 的第一个参数以
 <code>+</code> 开头, 它将被解释为一个rustup工具链的名字 (比如 <code>+stable</code> 或者 <code>+nightly</code>)。
@@ -962,9 +903,6 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 
 <dt class="option-term" id="option-cargo-test--Z"><a class="option-anchor" href="#option-cargo-test--Z"></a><code>-Z</code> <em>flag</em></dt>
 <dd class="option-desc">Cargo 的不稳定 (仅限 nightly 版本) 标志。 更多信息请运行 <code>cargo -Z help</code>。</dd>
-
-
-</dl>
 {==+==}
 
 
@@ -973,6 +911,7 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 {==+==}
 ### 其他选项
 {==+==}
+
 
 {==+==}
 The `--jobs` argument affects the building of the test executable but does not
@@ -987,9 +926,8 @@ Rust test harness 包括一个选项来控制使用的线程数:
     cargo test -j 2 -- --test-threads=2
 {==+==}
 
-{==+==}
-<dl>
 
+{==+==}
 <dt class="option-term" id="option-cargo-test--j"><a class="option-anchor" href="#option-cargo-test--j"></a><code>-j</code> <em>N</em></dt>
 <dt class="option-term" id="option-cargo-test---jobs"><a class="option-anchor" href="#option-cargo-test---jobs"></a><code>--jobs</code> <em>N</em></dt>
 <dd class="option-desc">Number of parallel jobs to run. May also be specified with the
@@ -1009,13 +947,7 @@ the build on the first one that fails to build. Unstable, requires
 <dd class="option-desc">Displays a future-incompat report for any future-incompatible warnings
 produced during execution of this command</p>
 <p>See <a href="cargo-report.html">cargo-report(1)</a></dd>
-
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-test--j"><a class="option-anchor" href="#option-cargo-test--j"></a><code>-j</code> <em>N</em></dt>
 <dt class="option-term" id="option-cargo-test---jobs"><a class="option-anchor" href="#option-cargo-test---jobs"></a><code>--jobs</code> <em>N</em></dt>
 <dd class="option-desc">要运行的并行作业的数量。
@@ -1032,17 +964,15 @@ produced during execution of this command</p>
 <dt class="option-term" id="option-cargo-test---future-incompat-report"><a class="option-anchor" href="#option-cargo-test---future-incompat-report"></a><code>--future-incompat-report</code></dt>
 <dd class="option-desc">展示一个未来兼容性报告(future-incompat report)，显示在执行此命令过程中产生的任何未来不兼容(future-incompatible)的警告</p>
 <p>请参阅 <a href="cargo-report.html">cargo-report(1)</a></dd>
-
-
-
-</dl>
 {==+==}
+
 
 {==+==}
 ## ENVIRONMENT
 {==+==}
 ## 环境
 {==+==}
+
 
 {==+==}
 See [the reference](../reference/environment-variables.html) for
@@ -1074,6 +1004,7 @@ details on environment variables that Cargo reads.
 ## 示例
 {==+==}
 
+
 {==+==}
 1. Execute all the unit and integration tests of the current package:
 
@@ -1099,6 +1030,7 @@ details on environment variables that Cargo reads.
 
        cargo test --test int_test_name -- modname::test_name
 {==+==}
+
 
 {==+==}
 ## SEE ALSO

@@ -1,13 +1,13 @@
 ## 编译设置
 
-编译设置提供了一种修改编译器设置的方法，从而影响性能优化和调试符号等。
+Profile "编译设置" 提供了一种修改编译器设置的方法，从而影响代码优化和调试符号等。
 
-Cargo有4种内置的编译设置： `dev` 、  `release` 、 `test`  和 `bench` 。
-如果命令行中并未指定具体的编译配置，Cargo会根据当前运行的命令来自动选择。
+Cargo 内置的编译设置有4种： `dev` 、  `release` 、 `test`  和 `bench` 。
+如果命令行中并未指定具体的编译设置，Cargo会根据当前运行的命令来自动选择。
 除了内置，用户也可以自定义。
 
-编译设置可以在 `Cargo.toml` 文件中 `[profile]` 表中进行修改。
-具体名称的编译设置中，单独的设置条目可以用键值对来修改：
+编译设置可以在 `Cargo.toml` 文件 `[profile]` 表中进行修改。
+具体某个名称的编译设置中，单独的设置条目可以用键值对来修改：
 
 ```toml
 [profile.dev]
@@ -18,18 +18,19 @@ overflow-checks = false     # 关闭整数溢出检查。
 Cargo只会扫描工作空间根目录下 `Cargo.toml` 配置清单中的编译设置。
 在依赖中定义的编译设置会被忽略。
 
-此外，可以通过[config]的定义来覆盖编译设置。
+此外，可以通过 [config] 的定义来覆盖编译设置。
 在config文件或环境变量中指定编译设置将会覆盖 `Cargo.toml` 中的。
 
 [config]: config.md
 
-### 编译设置
+### 编译设置条目
 
 下面是可以在编译设置中进行控制的设置条目列表。
 
 #### opt-level
 
-`opt-level` 设置控制 [`-C opt-level` flag] 优化级别。高优化级别通过更长的编译时间换来生成后更快的运行时代码。更高的优化级别同时也可能改变或者重新布局编译过的代码，从而更难调试。
+`opt-level` 设置控制 [`-C opt-level` flag] 优化级别。高优化级别通过更长的编译时间换来生成后更快的运行时代码。
+更高的优化级别同时也可能改变或者重新布局编译过的代码，从而更难调试。
 
 有效选项：
 
@@ -40,7 +41,8 @@ Cargo只会扫描工作空间根目录下 `Cargo.toml` 配置清单中的编译�
 * `"s"` ： 优化二进制大小
 * `"z"` ： 优化二进制大小，同时关闭循环向量化
 
-建议你的项目尝试用不同的优化级别，从而找到合理的平衡。也许你有时会惊讶级别 `3` 会比级别 `2` 慢，或者 `"s"` 和 `"z"` 级别未能压缩二进制的大小。在开发的过程中，由于 `rustc` 版本更新可能改变了优化行为，也许你也需要重新评估设置。
+建议你的项目尝试用不同的优化级别，从而找到合理的平衡。也许你有时会惊讶级别 `3` 会比级别 `2` 慢，或者 `"s"` 和 `"z"` 级别未能压缩二进制的大小。
+在开发的过程中，由于 `rustc` 版本更新可能改变了优化行为，也许你也需要重新评估设置。
 
 另请参阅[Profile Guided Optimization]了解更多的高级优化技巧。
 
@@ -57,7 +59,7 @@ Cargo只会扫描工作空间根目录下 `Cargo.toml` 配置清单中的编译�
 * `1` ： 只包含行号表
 * `2` 或 `true` ： 包含完整的调试信息
 
-也许根据需要，你同时会配置 [`split-debuginfo`](#split-debuginfo) 选项。
+也许根据需要，同时配置 [`split-debuginfo`](#split-debuginfo) 选项。
 
 [`-C debuginfo` flag]: ../../rustc/codegen-options/index.html#debuginfo
 
@@ -68,7 +70,7 @@ Cargo只会扫描工作空间根目录下 `Cargo.toml` 配置清单中的编译�
 这个选项是字符串，可接受的值与[编译器接受的][`-C split-debuginfo` flag]相同。
 在macOS上，这个选项的默认值是 `unpacked` ，用于已启用调试信息的编译设置。
 否则，这个选项的默认值是 [rustc文档][`-C split-debuginfo` flag]，并且是特定平台的。
-有些选项只在 [nightly channel] 中可用。
+有些选项只在 [每日构建通道][nightly channel] 中可用。
 一旦进行了更多的测试，并且对DWARF的支持稳定下来，Cargo的默认值可能会在未来发生变化。
 
 [nightly channel]: ../../book/appendix-07-nightly-rust.html
@@ -76,7 +78,7 @@ Cargo只会扫描工作空间根目录下 `Cargo.toml` 配置清单中的编译�
 
 #### strip
 
-`strip` 选项控制 [ `-C strip` flag] 从而告知 rustc 从二进制文件中去除符号或调试信息。可以像这样启用：
+`strip` 选项控制 [ `-C strip` flag] 从而告知 rustc 从二进制文件中去除符号或调试信息。可以像这样启用:
 
 ```toml
 [package]
@@ -96,7 +98,7 @@ strip = "debuginfo"
 
 #### debug-assertions
 
-`debug-assertions` 设置控制 [ `-C debug-assertions` flag] ，从而可以打开或关闭  `cfg(debug_assertions)` [conditional compilation] "条件编译"。
+`debug-assertions` 设置控制 [ `-C debug-assertions` flag] ，从而可以打开或关闭 `cfg(debug_assertions)` [conditional compilation] "条件编译"。
 调试断言旨在包含仅在调试或开发版本可用的运行时验证。这些对于发布版本来说可能消耗过高或者并不需要。调试断言会开启标准库中的 [`debug_assert!` macro] 。
 
 有效选项：
@@ -110,7 +112,7 @@ strip = "debuginfo"
 
 #### overflow-checks
 
-`overflow-checks` 设置控制[ `-C overflow-checks` flag] ，控制 [runtime integer overflow] 的行为。当启用溢出检查时，溢出发生将导致系统发生严重错误，而panic恐慌。
+`overflow-checks` 设置控制[ `-C overflow-checks` flag] ，控制 [runtime integer overflow] 的行为。当启用溢出检查时，溢出将导致系统发生严重错误，从而panic恐慌。
 
 有效选项：
 
@@ -123,7 +125,7 @@ strip = "debuginfo"
 #### lto
 
 `lto` 设置控制 [`-C lto` flag]，控制LLVM [link time optimizations] "链接时优化"。
-LTO可以使用全程序分析，以更长的链接时间换取生成更好的优化后的代码。
+LTO可以使用全过程分析，以更长的链接时间换取生成更好的优化后的代码。
 
 有效选项：
 
@@ -145,10 +147,10 @@ LTO可以使用全程序分析，以更长的链接时间换取生成更好的�
 
 有效选项：
 
-* `"unwind"` ：panic时进行栈展开。
+* `"unwind"` ：panic时进行栈解旋。
 * `"abort"` ：panic时终止进程。
 
-当设置为 `"unwind"` 时，实际值取决于目标平台的默认值。例如，NVPTX平台不支持栈展开，所以它总是使用 `"abort"` 。
+当设置为 `"unwind"` 时，实际值取决于目标平台的默认值。例如，NVPTX平台不支持栈解旋，所以它总是使用 `"abort"` 。
 
 测试、性能测试、构建脚本、过程宏会忽略 `panic` 设置。
 `rust` 测试工具目前需要 `unwind` 行为。 见 [`panic-abort-tests`] 未稳定的标志启用 `abort` 行为。
@@ -326,7 +328,7 @@ opt-level = 3
 
 包的名字实际为[Package ID Spec](pkgid-spec.md)，所以可以使用如 `[profile.dev.package."foo:2.1.0"]` 的语法定位到某个版本的包。
 
-如需覆盖所有依赖的设置(但是并非任何工作空间的成员)，使用 `"*"` 包名 :
+如需覆盖所有依赖的设置(但是并非任意工作空间的成员)，使用 `"*"` 包名 :
 
 ```toml
 # 为所有配置设定默认设置。

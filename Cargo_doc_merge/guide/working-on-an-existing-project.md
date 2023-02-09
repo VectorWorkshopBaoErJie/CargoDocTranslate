@@ -1,6 +1,6 @@
 ## 拥有Cargo包
 
-使用 Cargo 下载已有的 [package][def-package] 非常简单。
+使用 Cargo 下载已存在的 [package][def-package] 非常简单。
 
 首先，获取到包的代码。比如使用从 GitHub 克隆的 `regex` 包。
 

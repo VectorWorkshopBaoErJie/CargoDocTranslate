@@ -1,6 +1,7 @@
 {==+==}
 # cargo-rustc(1)
 {==+==}
+
 {==+==}
 
 
@@ -17,22 +18,27 @@ cargo-rustc - Compile the current package, and pass extra options to the compile
 cargo-rustc - 编译当前包，并将额外参数传递给编译器
 {==+==}
 
+
 {==+==}
 ## SYNOPSIS
 {==+==}
 ## 概要
 {==+==}
 
+
 {==+==}
 `cargo rustc` [_options_] [`--` _args_]
 {==+==}
+
 {==+==}
+
 
 {==+==}
 ## DESCRIPTION
 {==+==}
 ## 说明
 {==+==}
+
 
 {==+==}
 The specified target for the current package (or package specified by `-p` if
@@ -48,12 +54,14 @@ _args_ will simply be added to the compiler invocation.
 而指定的的 _args_ 将被添加到编译器的调用中。
 {==+==}
 
+
 {==+==}
 See <https://doc.rust-lang.org/rustc/index.html> for documentation on rustc
 flags.
 {==+==}
 有关 rustc 的标志位的文档请查看 <https://doc.rust-lang.org/rustc/index.html>
 {==+==}
+
 
 {==+==}
 This command requires that only one target is being compiled when additional
@@ -66,6 +74,7 @@ target is compiled.
 目标被编译。
 {==+==}
 
+
 {==+==}
 To pass flags to all compiler processes spawned by Cargo, use the `RUSTFLAGS`
 [environment variable](../reference/environment-variables.html) or the
@@ -76,17 +85,20 @@ To pass flags to all compiler processes spawned by Cargo, use the `RUSTFLAGS`
 来给 Cargo 创建的所有编译器进程传递标志位。
 {==+==}
 
+
 {==+==}
 ## OPTIONS
 {==+==}
 ## 选项
 {==+==}
 
+
 {==+==}
 ### Package Selection
 {==+==}
 ### 选择包
 {==+==}
+
 
 {==+==}
 By default, the package in the current working directory is selected. The `-p`
@@ -95,25 +107,16 @@ flag can be used to choose a different package in a workspace.
 当前工作目录下的包是默认选中的。可以使用 `-p` 选项来选择工作空间中不同的包。
 {==+==}
 
-{==+==}
-<dl>
 
+{==+==}
 <dt class="option-term" id="option-cargo-rustc--p"><a class="option-anchor" href="#option-cargo-rustc--p"></a><code>-p</code> <em>spec</em></dt>
 <dt class="option-term" id="option-cargo-rustc---package"><a class="option-anchor" href="#option-cargo-rustc---package"></a><code>--package</code> <em>spec</em></dt>
 <dd class="option-desc">The package to build. See <a href="cargo-pkgid.html">cargo-pkgid(1)</a> for the SPEC
 format.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-rustc--p"><a class="option-anchor" href="#option-cargo-rustc--p"></a><code>-p</code> <em>spec</em></dt>
 <dt class="option-term" id="option-cargo-rustc---package"><a class="option-anchor" href="#option-cargo-rustc---package"></a><code>--package</code> <em>spec</em></dt>
 <dd class="option-desc">要构建的包。请在 <a href="cargo-pkgid.html">cargo-pkgid(1)</a> 查看 SPEC 格式</dd>
-
-
-</dl>
 {==+==}
 
 
@@ -123,6 +126,7 @@ format.</dd>
 ### 选择构建目标
 {==+==}
 
+
 {==+==}
 When no target selection options are given, `cargo rustc` will build all
 binary and library targets of the selected package.
@@ -130,10 +134,11 @@ binary and library targets of the selected package.
 当没有提供构建目标选择的选项时， `cargo rustc` 会构建选中包的所有二进制程序和类库目标。
 {==+==}
 
+
 {==+==}
 Binary targets are automatically built if there is an integration test or
 benchmark being selected to build. This allows an integration
-test to execute the binary to exercise and test its behavior.
+test to execute the binary to exercise and test its behavior. 
 The `CARGO_BIN_EXE_<name>`
 [environment variable](../reference/environment-variables.html#environment-variables-cargo-sets-for-crates)
 is set when the integration test is built so that it can use the
@@ -155,9 +160,9 @@ targets.
 {==+==}
 
 {==+==}
-Note that `--bin`, `--example`, `--test` and `--bench` flags also
-support common Unix glob patterns like `*`, `?` and `[]`. However, to avoid your
-shell accidentally expanding glob patterns before Cargo handles them, you must
+Note that `--bin`, `--example`, `--test` and `--bench` flags also 
+support common Unix glob patterns like `*`, `?` and `[]`. However, to avoid your 
+shell accidentally expanding glob patterns before Cargo handles them, you must 
 use single quotes or double quotes around each glob pattern.
 {==+==}
 注意 `--bin` 、 `--example` 、 `--test` 和 `--bench` 标志也
@@ -167,8 +172,6 @@ use single quotes or double quotes around each glob pattern.
 {==+==}
 
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-rustc---lib"><a class="option-anchor" href="#option-cargo-rustc---lib"></a><code>--lib</code></dt>
 <dd class="option-desc">Build the package's library.</dd>
 
@@ -224,13 +227,7 @@ manifest settings for the target.</dd>
 
 <dt class="option-term" id="option-cargo-rustc---all-targets"><a class="option-anchor" href="#option-cargo-rustc---all-targets"></a><code>--all-targets</code></dt>
 <dd class="option-desc">Build all targets. This is equivalent to specifying <code>--lib --bins --tests --benches --examples</code>.</dd>
-
-
-</dl>
 {==+==}
-
-<dl>
-
 <dt class="option-term" id="option-cargo-rustc---lib"><a class="option-anchor" href="#option-cargo-rustc---lib"></a><code>--lib</code></dt>
 <dd class="option-desc">构建包的类库</dd>
 
@@ -280,9 +277,6 @@ manifest settings for the target.</dd>
 
 <dt class="option-term" id="option-cargo-rustc---all-targets"><a class="option-anchor" href="#option-cargo-rustc---all-targets"></a><code>--all-targets</code></dt>
 <dd class="option-desc">构建所有目标。 相当于指定 <code>--lib --bins --tests --benches --examples</code>.</dd>
-
-
-</dl>
 {==+==}
 
 
@@ -291,6 +285,7 @@ manifest settings for the target.</dd>
 {==+==}
 ### 选择特性
 {==+==}
+
 
 {==+==}
 The feature flags allow you to control which features are enabled. When no
@@ -309,8 +304,6 @@ for more details.
 {==+==}
 
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-rustc--F"><a class="option-anchor" href="#option-cargo-rustc--F"></a><code>-F</code> <em>features</em></dt>
 <dt class="option-term" id="option-cargo-rustc---features"><a class="option-anchor" href="#option-cargo-rustc---features"></a><code>--features</code> <em>features</em></dt>
 <dd class="option-desc">Space or comma separated list of features to activate. Features of workspace
@@ -324,12 +317,7 @@ be specified multiple times, which enables all specified features.</dd>
 
 <dt class="option-term" id="option-cargo-rustc---no-default-features"><a class="option-anchor" href="#option-cargo-rustc---no-default-features"></a><code>--no-default-features</code></dt>
 <dd class="option-desc">Do not activate the <code>default</code> feature of the selected packages.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-rustc--F"><a class="option-anchor" href="#option-cargo-rustc--F"></a><code>-F</code> <em>特性</em></dt>
 <dt class="option-term" id="option-cargo-rustc---features"><a class="option-anchor" href="#option-cargo-rustc---features"></a><code>--features</code> <em>特性</em></dt>
 <dd class="option-desc">要启用的特性列表，列表用空格或逗号分割。
@@ -343,9 +331,6 @@ be specified multiple times, which enables all specified features.</dd>
 
 <dt class="option-term" id="option-cargo-rustc---no-default-features"><a class="option-anchor" href="#option-cargo-rustc---no-default-features"></a><code>--no-default-features</code></dt>
 <dd class="option-desc">不要为选择的包 <code>默认</code> 启用默认特性。</dd>
-
-
-</dl>
 {==+==}
 
 
@@ -355,9 +340,8 @@ be specified multiple times, which enables all specified features.</dd>
 ### 编译选项
 {==+==}
 
-{==+==}
-<dl>
 
+{==+==}
 <dt class="option-term" id="option-cargo-rustc---target"><a class="option-anchor" href="#option-cargo-rustc---target"></a><code>--target</code> <em>triple</em></dt>
 <dd class="option-desc">Build for the given architecture. The default is the host architecture. The general format of the triple is
 <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>. Run <code>rustc --print target-list</code> for a
@@ -427,12 +411,7 @@ for possible values.</p>
 <p>If the manifest contains a list, and <code>--crate-type</code> is provided,
 the command-line argument value will override what is in the manifest.</p>
 <p>This flag only works when building a <code>lib</code> or <code>example</code> library target.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-rustc---target"><a class="option-anchor" href="#option-cargo-rustc---target"></a><code>--target</code> <em>triple</em></dt>
 <dd class="option-desc">指定架构的构建。 默认为宿主机的架构。三元组的通用格式为
 <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>。运行 <code>rustc --print target-list</code> 来获取支持的目标列表。
@@ -493,10 +472,8 @@ HTML输出只适合用户使用，并不提供机器可读的计时数据。</li
 <p>如果清单中制定了列表, 并且提供了 <code>--crate-type</code>,
 命令行参数会覆盖清单指定的列表。</p>
 <p>此标志仅用于构建 <code>lib</code> 或 <code>example</code> 类库目标.</dd>
-
-
-</dl>
 {==+==}
+
 
 {==+==}
 ### Output Options
@@ -504,26 +481,20 @@ HTML输出只适合用户使用，并不提供机器可读的计时数据。</li
 ### 输出选项
 {==+==}
 
+
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-rustc---target-dir"><a class="option-anchor" href="#option-cargo-rustc---target-dir"></a><code>--target-dir</code> <em>directory</em></dt>
 <dd class="option-desc">Directory for all generated artifacts and intermediate files. May also be
 specified with the <code>CARGO_TARGET_DIR</code> environment variable, or the
 <code>build.target-dir</code> <a href="../reference/config.html">config value</a>.
 Defaults to <code>target</code> in the root of the workspace.</dd>
-
-
-</dl>
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-rustc---target-dir"><a class="option-anchor" href="#option-cargo-rustc---target-dir"></a><code>--target-dir</code> <em>directory</em></dt>
 <dd class="option-desc">所有生成的 artifacts 和中间文件的目录。 
 也可以与 <code>CARGO_TARGET_DIR</code> 环境变量或 <code>build.target-dir</code> <a href="../reference/config.html">配置项</a> 一起指定。
 默认是工作空间中 <code>target</code> 的根目录。</dd>
-
-
-</dl>
 {==+==}
+
 
 {==+==}
 ### Display Options
@@ -531,10 +502,8 @@ Defaults to <code>target</code> in the root of the workspace.</dd>
 ### 显示选项
 {==+==}
 
+
 {==+==}
-<dl>
-
-
 <dt class="option-term" id="option-cargo-rustc--v"><a class="option-anchor" href="#option-cargo-rustc--v"></a><code>-v</code></dt>
 <dt class="option-term" id="option-cargo-rustc---verbose"><a class="option-anchor" href="#option-cargo-rustc---verbose"></a><code>--verbose</code></dt>
 <dd class="option-desc">Use verbose output. May be specified twice for &quot;very verbose&quot; output which
@@ -584,14 +553,7 @@ in JSON messages printed, but instead Cargo itself should render the
 JSON diagnostics coming from rustc. Cargo's own JSON diagnostics and others
 coming from rustc are still emitted. Cannot be used with <code>human</code> or <code>short</code>.</li>
 </ul></dd>
-
-
-
-</dl>
 {==+==}
-<dl>
-
-
 <dt class="option-term" id="option-cargo-rustc--v"><a class="option-anchor" href="#option-cargo-rustc--v"></a><code>-v</code></dt>
 <dt class="option-term" id="option-cargo-rustc---verbose"><a class="option-anchor" href="#option-cargo-rustc---verbose"></a><code>--verbose</code></dt>
 <dd class="option-desc">使用 verbose 级别输出详细信息。 指定两次此选项来输出 &quot;十分详细&quot; 的输出信息，
@@ -645,11 +607,8 @@ coming from rustc are still emitted. Cannot be used with <code>human</code> or <
 Cargo 自己的 JSON 诊断程序和其他来自 rustc 的诊断程序仍然会被生成出来。
 不能与 <code>human</code> 或 <code>short</code> 一起使用。</li>
 </ul></dd>
-
-
-
-</dl>
 {==+==}
+
 
 {==+==}
 ### Manifest Options
@@ -657,10 +616,8 @@ Cargo 自己的 JSON 诊断程序和其他来自 rustc 的诊断程序仍然会�
 ### 清单选项
 {==+==}
 
+
 {==+==}
-<dl>
-
-
 <dt class="option-term" id="option-cargo-rustc---manifest-path"><a class="option-anchor" href="#option-cargo-rustc---manifest-path"></a><code>--manifest-path</code> <em>path</em></dt>
 <dd class="option-desc">Path to the <code>Cargo.toml</code> file. By default, Cargo searches for the
 <code>Cargo.toml</code> file in the current directory or any parent directory.</dd>
@@ -689,14 +646,7 @@ if there might be a newer version as indicated in the local copy of the index.
 See the <a href="cargo-fetch.html">cargo-fetch(1)</a> command to download dependencies before going
 offline.</p>
 <p>May also be specified with the <code>net.offline</code> <a href="../reference/config.html">config value</a>.</dd>
-
-
-
-</dl>
 {==+==}
-<dl>
-
-
 <dt class="option-term" id="option-cargo-rustc---manifest-path"><a class="option-anchor" href="#option-cargo-rustc---manifest-path"></a><code>--manifest-path</code> <em>path</em></dt>
 <dd class="option-desc"><code>Cargo.toml</code> 文件的路径. 默认情况下，Cargo 会在当前目录或任何父目录下搜索
 <code>Cargo.toml</code> 文件。</dd>
@@ -721,11 +671,8 @@ offline.</p>
 即使在本地拷贝的索引中可能有更新的版本也是如此。
 参见 <a href="cargo-fetch.html">cargo-fetch(1)</a> 命令来在离线前下载依赖关系。</p>
 <p>也可以用 <code>net.offline</code> <a href="../reference/config.html">config value</a> 来指定。</dd>
-
-
-
-</dl>
 {==+==}
+
 
 {==+==}
 ### Common Options
@@ -733,10 +680,8 @@ offline.</p>
 ### 通用选项
 {==+==}
 
+
 {==+==}
-<dl>
-
-
 <dt class="option-term" id="option-cargo-rustc-+toolchain"><a class="option-anchor" href="#option-cargo-rustc-+toolchain"></a><code>+</code><em>toolchain</em></dt>
 <dd class="option-desc">If Cargo has been installed with rustup, and the first argument to <code>cargo</code>
 begins with <code>+</code>, it will be interpreted as a rustup toolchain name (such
@@ -758,13 +703,7 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 
 <dt class="option-term" id="option-cargo-rustc--Z"><a class="option-anchor" href="#option-cargo-rustc--Z"></a><code>-Z</code> <em>flag</em></dt>
 <dd class="option-desc">Unstable (nightly-only) flags to Cargo. Run <code>cargo -Z help</code> for details.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
-
 <dt class="option-term" id="option-cargo-rustc-+toolchain"><a class="option-anchor" href="#option-cargo-rustc-+toolchain"></a><code>+</code><em>toolchain</em></dt>
 <dd class="option-desc">如果 Cargo 已经和 rustup 一起安装, 并且 <code>cargo</code> 的第一个参数以
 <code>+</code> 开头, 它将被解释为一个rustup工具链的名字 (比如 <code>+stable</code> 或者 <code>+nightly</code>)。
@@ -783,9 +722,6 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 
 <dt class="option-term" id="option-cargo-rustc--Z"><a class="option-anchor" href="#option-cargo-rustc--Z"></a><code>-Z</code> <em>flag</em></dt>
 <dd class="option-desc">Cargo 的不稳定 (仅限 nightly 版本) 标志。 更多信息请运行 <code>cargo -Z help</code>。</dd>
-
-
-</dl>
 {==+==}
 
 
@@ -796,8 +732,8 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 ### 其他选项
 {==+==}
 
+
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-rustc--j"><a class="option-anchor" href="#option-cargo-rustc--j"></a><code>-j</code> <em>N</em></dt>
 <dt class="option-term" id="option-cargo-rustc---jobs"><a class="option-anchor" href="#option-cargo-rustc---jobs"></a><code>--jobs</code> <em>N</em></dt>
 <dd class="option-desc">Number of parallel jobs to run. May also be specified with the
@@ -817,11 +753,7 @@ the build on the first one that fails to build. Unstable, requires
 <dd class="option-desc">Displays a future-incompat report for any future-incompatible warnings
 produced during execution of this command</p>
 <p>See <a href="cargo-report.html">cargo-report(1)</a></dd>
-
-
-</dl>
 {==+==}
-<dl>
 <dt class="option-term" id="option-cargo-rustc--j"><a class="option-anchor" href="#option-cargo-rustc--j"></a><code>-j</code> <em>N</em></dt>
 <dt class="option-term" id="option-cargo-rustc---jobs"><a class="option-anchor" href="#option-cargo-rustc---jobs"></a><code>--jobs</code> <em>N</em></dt>
 <dd class="option-desc">
@@ -838,16 +770,15 @@ produced during execution of this command</p>
 <dt class="option-term" id="option-cargo-rustc---future-incompat-report"><a class="option-anchor" href="#option-cargo-rustc---future-incompat-report"></a><code>--future-incompat-report</code></dt>
 <dd class="option-desc">展示一个未来兼容性报告(future-incompat report)，显示在执行此命令过程中产生的任何未来不兼容(future-incompatible)的警告</p>
 <p>请参阅 <a href="cargo-report.html">cargo-report(1)</a></dd>
-
-
-</dl>
 {==+==}
+
 
 {==+==}
 ## ENVIRONMENT
 {==+==}
 ## 环境
 {==+==}
+
 
 {==+==}
 See [the reference](../reference/environment-variables.html) for
@@ -904,6 +835,7 @@ details on environment variables that Cargo reads.
 
        cargo rustc --lib --crate-type lib,cdylib
 {==+==}
+
 
 {==+==}
 ## SEE ALSO

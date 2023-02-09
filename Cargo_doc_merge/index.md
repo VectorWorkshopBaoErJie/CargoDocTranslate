@@ -3,19 +3,19 @@ Cargo之书
 ![Cargo Logo](images/Cargo-Logo-Small.png)
 
 Cargo是 [Rust] [*包管理器*][def-package-manager]，能够下载、编译Rust所依赖的包 [package][def-package],
-制作可分享的包，并上传到[crates.io](Rust [*包注册中心*][def-package-registry] )。 
-您可以在 [GitHub] 为本书做出贡献。或者参与完善此 [Cargo中文手册][CargoCnBook] 。
+能制作可分享的包，可以上传到[crates.io](Rust [*包注册中心*][def-package-registry] )。 
+您可以在 [GitHub] 为本书贡献内容。或者参与完善此 [Cargo之书中文译本][CargoCnBook] 。
 
 
 ### 章节
 
 **[初步准备](getting-started/index.md)**
 
-开始使用Cargo，安装Cargo和Rust并设置您的第一个[*crate*][def-crate]。
+开始使用Cargo，安装Cargo和Rust，并设置您的第一个[*crate*][def-crate]。
 
 **[Cargo指南](guide/index.md)**
 
-该指南提供有关使用Cargo开发Rust包所需的知识。
+本指南提供有关使用Cargo开发Rust包所需的知识。
 
 **[Cargo参考](reference/index.md)**
 

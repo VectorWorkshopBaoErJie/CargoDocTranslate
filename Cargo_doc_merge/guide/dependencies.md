@@ -3,7 +3,7 @@
 [crates.io] 是 Rust 社区主要的 [*包注册中心*][def-package-registry] 。
 是搜索和下载 [packages][def-package] 的仓库。 `cargo` 默认使用这个地址来搜索所需的包。
 
-要添加 [crates.io] 上托管的依赖库，将它添加到你的 `Cargo.toml` 。
+要添加 [crates.io] 上托管的库，你需要将库添加到 `Cargo.toml` 。
 
 [crates.io]: https://crates.io/
 
@@ -18,12 +18,12 @@
 time = "0.1.12"
 ```
 
-版本字符串要求使用 [SemVer] 规范。[specifying dependencies](../reference/specifying-dependencies.md) 部分对此有更多信息。
+描述版本的字符串要求使用 [SemVer] "语义化版本"规范。对此 [specifying dependencies](../reference/specifying-dependencies.md) 部分有更多信息。
 
 [SemVer]: https://semver.org
 
-如果我们想添加一个 `regex` 依赖，不需要为每个依赖都添加 `[dependencies]` 。
-下面是添加 `time` 和 `regex` 依赖的 `Cargo.toml` 文件范例:
+如果我们想添加一个 `regex` 依赖，则不需要为每个依赖都添加 `[dependencies]` 。
+下面是 `Cargo.toml` 文件添加 `time` 和 `regex` 依赖的范例:
 
 ```toml
 [package]
@@ -36,7 +36,7 @@ time = "0.1.12"
 regex = "0.1.41"
 ```
 
-重新执行 `cargo build` 命令，Cargo 会下载新依赖以及依赖本身所需的依赖，
+重新执行 `cargo build` 命令，Cargo 会下载新的依赖以及依赖本身所需的依赖，
 全部编译，并更新 `Cargo.lock` 文件:
 
 ```console
@@ -57,7 +57,7 @@ $ cargo build
      Compiling hello_world v0.1.0 (file:///path/to/package/hello_world)
 ```
 
-`Cargo.lock` 文件包含着所有依赖的准确版本信息。
+`Cargo.lock` 文件包含着所有依赖准确的版本信息。
 
 如果 `regex` 依赖升级了，仍然会使用当前的版本进行构建，除非手动执行 `cargo update` 命令。
 

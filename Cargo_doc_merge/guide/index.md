@@ -1,6 +1,6 @@
 ## Cargo指南
 
-如何使用Cargo来开发Rust包。
+本指南提供了如何使用Cargo来开发Rust包的指导内容。
 
 * [为何有Cargo](why-cargo-exists.md)
 * [创建新包](creating-a-new-project.md)

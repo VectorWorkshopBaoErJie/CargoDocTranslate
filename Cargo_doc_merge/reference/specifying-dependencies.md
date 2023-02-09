@@ -1,19 +1,20 @@
 ## 指定依赖
 
-你的crate能够于依赖另一个库，来自 [crates.io] 、其他注册中心、git仓库、本地文件系统中的子目录。
-你可以暂时覆盖某个依赖的路径，从而在本地检查和修复依赖的bug。对于不同目标平台可以指定不同的依赖，也可以指定某个依赖仅在开发阶段使用。
+你的crate能够依赖于其他库，其库可以来自 [crates.io] 、其他注册中心、git仓库、本地文件系统中的子目录。
+你可以暂时覆盖某个依赖的路径，从而在本地检查和修复依赖的bug。
+对于不同目标平台可以指定不同的依赖，也可以仅在开发阶段指定使用某个依赖。
 
 ### 指定crate.io中的依赖
 
-默认，Cargo从 [crates.io] 查找依赖。之前在 [cargo指南](../guide/index.md) 中指定了 `time` crate 作为依赖: 
+Cargo默认从 [crates.io] 查找依赖。之前在 [cargo指南](../guide/index.md) 中指定了 `time` crate 作为依赖: 
 
 ```toml
 [dependencies]
 time = "0.1.12"
 ```
 
-`"0.1.12"` 这个字符串表示限定的版本，虽然貌似表示一个具体的 `time` 版本，但实际表示一个范围，接受 [SemVer] 语义化兼容的更新。
-具体来说，接受不改变 `主版本号.次版本号.修订号` 中**第一个非零数字**的所有更新。
+`"0.1.12"` 这个字符串表示限定的版本，虽然貌似表示一个具体的 `time` 版本，但实际上表示一个范围，接受 [SemVer] 语义化兼容的更新。
+具体来说，接受不改变 `主版本号.次版本号.修订号` 中 **第一个非零数字** 的所有更新。
 如果运行 `cargo update -p time` ，Cargo 会把 `time` 更新到 `0.1.13` (假设 `0.1.z` 表示的最新版本)，但不会更新到 `0.2.0`。
 如果指定版本为 `1.0` ，那么Cargo 会将其更新到 `1.1` (假设 `1.y` 表示的最新版本)，但不会更新到 `2.0` 。 `0.0.x` 版本和其他版本都不兼容。
 
@@ -32,7 +33,7 @@ time = "0.1.12"
 0      :=  >=0.0.0, <1.0.0
 ```
 
-这种兼容规则与SemVer规则有些不同，SemVer认为在1.0.0之前都不兼容，而Cargo认为 `0.x.y` 与 `0.x.z`兼容 (只要 `y ≥ z` 且 `x > 0`)。
+这种兼容规则与SemVer规则有所不同，SemVer认为在1.0.0之前都不兼容，而Cargo认为 `0.x.y` 与 `0.x.z`兼容 (只要 `y ≥ z` 且 `x > 0`)。
 
 可以通过一些特殊操作符来调整选择兼容版本的逻辑，但在大多数情况不需要。
 
@@ -66,7 +67,7 @@ time = "0.1.12"
 1.2.* := >=1.2.0, <1.3.0
 ```
 
-> **注意**: [crates.io] 不允许单独的 `*`。
+> **注意**: [crates.io] 不允许单独的 `*` 。
 
 ### 使用比较符号
 
@@ -87,14 +88,15 @@ time = "0.1.12"
 
 ### 指定来自其他注册中心的依赖
 
-要指定非 [crates.io] 的依赖，首先该注册中心须在 `.cargo/config.toml` 中设置，参见 [registries documentation] 。在依赖中，将 `registry` 字段设置为要使用的注册中心。
+要指定非 [crates.io] 的依赖，首先须在 `.cargo/config.toml` 中设置该注册中心，参见 [registries documentation] 。
+在依赖中，将 `registry` 字段设置为要使用的注册中心。
 
 ```toml
 [dependencies]
 some-crate = { version = "1.0", registry = "my-registry" }
 ```
 
-> **注意**: [crates.io] 不允许发布带有其他注册中心依赖的包。
+> **注意**: [crates.io] 发布包不允许带有其他注册中心的依赖。
 
 [registries documentation]: registries.md
 
@@ -109,7 +111,8 @@ regex = { git = "https://github.com/rust-lang/regex.git" }
 
 Cargo 会 fetch 该 `git` 仓库，并在仓库中查找所需crate对应的 `Cargo.toml` 文件(该文件不要求必须在地址根目录下，比如说指定的是工作空间某个成员crate，这时 `git` 字段只需给出工作空间的地址)。
 
-因为没有指定其他信息，Cargo会假设使用该仓库主分支的最新提交。也可以在 `git`字段后加上 `rev`、`tag` 或 `branch` 字段，来指定想要的提交。下面是一个指定 `next` 分支上最新提交的例子:
+因为没有指定其他信息，Cargo会假设使用该仓库主分支的最新提交。
+也可以在 `git` 字段后加上 `rev` 、 `tag` 或 `branch` 字段，来指定想要的提交。下面是一个指定 `next` 分支上最新提交的例子:
 
 ```toml
 [dependencies]
@@ -119,22 +122,22 @@ regex = { git = "https://github.com/rust-lang/regex.git", branch = "next" }
 如果想要指定的依赖版本不是某个分支或标签，那么用 `rev` 来指定。
 `rev` 字段可以是 `rev = "4c59b707"` 这样的提交hash，也可以是 `rev = "refs/pull/493/head"` 这样的名称。
 哪些引用是合法的取决于这个git仓库具体的管理组织。
-Github 暴露每个pull requeset 最新提交的引用，其他git组织一般也提供类似的，只是可能有不同的命名规则。
+Github 公开每个 pull requeset 最新提交的引用，其他git组织一般也提供类似的信息，只是可能有不同的命名规则。
 
-一旦添加某个 `git` 依赖，Cargo会马上锁定到该依赖最新的提交。
+一旦添加某个 `git` 依赖，Cargo会立即锁定到该依赖最新的提交。
 之后即使有新的提交，Cargo也不会自动拉取。可以通过 `cargo update` 命令来手动拉取。
 
 对于私有仓库的身份验证，参考 [Git 身份验证][Git Authentication]。
 
-> **注意**: [crates.io] 不允许发布带 `git` 依赖的包(`git` [dev-dependencies] 除外)。关于备用方案，参考[Multiple locations](#multiple-locations)。
+> **注意**: [crates.io] 发布的包不允许带有 `git` 依赖 (`git` [dev-dependencies] 除外) 。关于备用方案，参考 [Multiple locations](#multiple-locations)。
 
 [Git Authentication]: ../appendix/git-authentication.md
 
 ### 指定路径依赖
 
-经过一段时间，我们的 `hello_world` 包 (来自[指南](../guide/index.md)) 内容增多了。可能想把其中一部分拆出来。
-Cargo为此提供了指定路径依赖的功能，常见的情况是一个git仓库中有很多个子crate。
-首先在 `hello_world` 项目里面创建一个新的crate:
+经过一段时间，[指南](../guide/index.md) 中的 `hello_world` 包内容增多了。可能需要把其中一部分拆出来。
+Cargo 为此提供了指定路径依赖的功能，常见的情况是一个 git 仓库中有很多个子 crate 。
+首先在 `hello_world` 项目里面创建一个新的 crate :
 
 ```console
 # hello_world/ 目录中
@@ -152,7 +155,7 @@ hello_utils = { path = "hello_utils" }
 这会告诉Cargo依赖了一个名为 `hello_utils` 的crate，在 `hello_utils` 文件夹中(相对于 `Cargo.toml` 的位置)。
 
 搞定！下次执行 `cargo build` 会自动构建 `hello_utils` 和它的所有依赖，其他包也可以使用这个crate。
-但 [crates.io] 不允许发布以路径指定某个依赖的包。
+但 [crates.io] 发布的包不允许以路径指定某个依赖。
 如果我们想发布 `hello_world`，就必须把 `hello_utils` 发布到 [crates.io]，然后在 `hello_word` 配置中指定依赖版本:
 
 ```toml
@@ -164,21 +167,21 @@ hello_utils = { path = "hello_utils", version = "0.1.0" }
 
 ### 多依赖位置
 
-对于依赖可以同时指定注册中心依赖、 `git` 或 `path` 位置。
+可以同时指定注册中心、 `git` 或 `path` 位置的依赖项。
 `git` 或 `path` 依赖项用于本地( `version` 会与本地副本进行对比)，
-而要发布到一个注册中心 (比如[crates.io]) 时，使用注册中心中的版本，不允许其他组合。例如:
+而要发布到一个注册中心 (比如[crates.io]) 时，需要使用注册中心中的版本，不允许其他组合。例如:
 
 ```toml
 [dependencies]
-# 在本地时会使用 `my-bitflags`
-# 而上传后会使用 crates.io 中的1.0 版本
+# 在本地时使用 `my-bitflags`
+# 而上传后使用 crates.io 中的 1.0 版本
 bitflags = { path = "my-bitflags", version = "1.0" }
 
-# 在本地时会使用给定的 git 仓库
-# 而上传后会使用 crates.io 中的1.0 版本
+# 在本地时使用给定的 git 仓库
+# 而上传后使用 crates.io 中的1.0 版本
 smallvec = { git = "https://github.com/servo/rust-smallvec.git", version = "1.0" }
 
-# 如果version没有匹配，Cargo 会编译失败！
+# 如果 version 不能匹配，Cargo 会编译失败！
 ```
 
 比如这种使用场景，当你把一个库拆分成工作空间中的多个包，
@@ -205,7 +208,8 @@ native-x86_64 = { path = "native/x86_64" }
 
 如同rust代码一样，语法支持 `not`、`any` 和 `all` 操作符，从而组合不同的cfg键值对。
 
-如果你想知道自己的平台支持哪些cfg目标，可以运行 `rustc --print=cfg` 来获取。如果你想知道其他平台可用的cfg目标，可以使用 `rustc --print=cfg --target=x86_64-pc-windows-msvc`。
+如果你想知道自己的平台支持哪些cfg目标，可以运行 `rustc --print=cfg` 来获取。
+如果你想知道其他平台可用的cfg目标，可以使用 `rustc --print=cfg --target=x86_64-pc-windows-msvc`。
 
 与rust代码不同，你不能使用 `[target.'cfg(feature = "fancy-feature")'.dependencies]` 根据特性指定依赖，而应该使用 [features](features.md)。
 
@@ -256,9 +260,9 @@ native = { path = "native/i686" }
 tempdir = "0.3"
 ```
 
-在构建包时不会使用开发依赖，而是用在编译测试、示例和性能测试。
+在构建包时不会使用开发依赖，而是用在编译测试、实例和性能测试。
 
-这些依赖不会传播给依赖此包的那些包。
+这些依赖 *不会* 传播给依赖此包的那些包。
 
 你也可以为特定目标指定开发依赖，只需要把 `dependencies` 换成 `dev-denpendencies` 。
 
@@ -268,11 +272,11 @@ mio = "0.0.1"
 ```
 
 > **注意**: 当发布包时，只有那些以 `version` 指定的开发依赖才会包含在发布的包中。
-大部分情况下，包发布后就不需要开发依赖了，但是也有一些使用者(比如操作系统包)希望在crate中运行一些测试，所以给开发依赖提供一个 `version` 也是有好处的。
+大部分情况下，包发布后就不需要开发依赖了，但是也有一些使用者(比如操作系统包)希望在crate中运行一些测试，所以给开发依赖提供一个 `version` 也是有益处。
 
 ### 构建依赖
 
-你可以在构建脚本中依赖一些使用Cargo的crate。在配置清单中指定 `build-dependencies` 来声明依赖。
+你可以在构建脚本中使用其他基于cargo的crate。在配置清单中指定 `build-dependencies` 来声明依赖。
 
 ```toml
 [build-dependencies]
@@ -290,9 +294,9 @@ cc = "1.0.3"
 这样，只有当主机平台满足指定目标要求时，才会构建相关依赖。
 
 构建脚本无法使用 `dependencies` 和 `dev-dependencies` 中列出的依赖。
-同样的，包也无法使用构建依赖(`build-dependencies`)，除非该依赖放在 `dependencies` 中。
+同样的，除非依赖放在 `dependencies` 中，包也无法使用构建依赖 (`build-dependencies`) 中的。
 一个包和它的构建脚本是各自分开编译的，因此它们的依赖项不需要相同。
-Cargo通过不同目的使用各自依赖来保持简洁。
+Cargo 不同目的使用各自的依赖，以保持简洁。
 
 ### 选择特性
 
@@ -338,8 +342,8 @@ extern crate bar; // git repository
 extern crate baz; // registry `custom`
 ```
 
-这三个crate都在自己的 `Cargo.toml` 里名为 `foo` ，所以我们用 `package` 来声明想要的是那个 `foo` 的包，即使我们会在本地用另一个别名。
-如果没有指定 `package` ，则认为其名称与指定的依赖名称一致。
+这三个crate在自身的 `Cargo.toml` 里都名为 `foo` ，用 `package` 来可以声明想要的那个 `foo` 包，在本地用另一个别名。
+如果没有指定 `package` ，则认为包的名称与依赖名称一致。
 
 注意，如果你有一个可选依赖:
 
@@ -348,9 +352,10 @@ extern crate baz; // registry `custom`
 bar = { version = "0.1", package = 'foo', optional = true }
 ```
 
-你依赖的是 crates.io 上的 `foo` 包，但是你的包指定的是 `bar` 特性而不是 `foo` 特性。也就是说如果你给一个依赖改了名，特性使用的是依赖的名字，而不是包原本的名字。
+你依赖的是 crates.io 上的 `foo` 包，但是，需要指定的是 `bar` 的特性，而不是 `foo` 的特性。
+即，如果你给一个依赖改了名，需要使用新的名称，而不是原本的名称。
 
-传递依赖也是如此，比如我们可以把下面的条目加入清单文件:
+依赖传递也是如此。比如，可以把下面的条目加入配置清单:
 
 ```toml
 [features]
@@ -359,13 +364,14 @@ log-debug = ['bar/log-debug'] # 用 'foo/log-debug' 会报错!
 
 ### 从工作空间中继承依赖
 
-可以在工作空间的 [`[workspace.dependencies]`][workspace.dependencies] 字段指定依赖，然后在crate的 `[dependencies]` 中添加 `workspace = true` 就可以继承这个依赖。
+可以在工作空间的 [`[workspace.dependencies]`][workspace.dependencies] 字段指定依赖，
+然后在 crate 的 `[dependencies]` 中添加 `workspace = true` 就可以继承这个依赖。
 
 除了 `workspace` 字段，还可以加入:
 - [`optional`][optional]: 注意 `[workspace.dependencies]` 不允许使用 `optional`。
-- [`features`][features]:  这是对于 `[workspace.dependencies]` 中声明的依赖的补充。
+- [`features`][features]: 这是对于 `[workspace.dependencies]` 中声明的依赖的补充。
 
-在 `optional` 和 `features` 之外，继承依赖不允许使用任何其他字段(比如 `version` 或 `default-features`)。
+在 `optional` 和 `features` 之外，继承依赖不允许使用任何其他字段 (比如 `version` 或 `default-features`) 。
 
 `[dependencies]` 、 `[dev-dependencies]` 、 `[build-dependencies]` 、 `[target."...".dependencies]` 都可以引用 `[workspace.dependencies]` 中定义的依赖。
 

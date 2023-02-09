@@ -1,6 +1,7 @@
 {==+==}
 # cargo-tree(1)
 {==+==}
+
 {==+==}
 
 
@@ -26,6 +27,7 @@ cargo-tree - 用树状结构展示依赖图
 {==+==}
 `cargo tree` [_options_]
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -59,6 +61,7 @@ myproject v0.1.0 (/myproject)
 └── cc v1.0.50
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -91,6 +94,7 @@ myproject v0.1.0 (/myproject)
             └── cfg-if v0.1.10
 ```
 {==+==}
+
 {==+==}
 
 {==+==}
@@ -376,13 +380,11 @@ virtual workspace will include all workspace members (equivalent to passing
 {==+==}
 
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-tree--p"><a class="option-anchor" href="#option-cargo-tree--p"></a><code>-p</code> <em>spec</em>...</dt>
 <dt class="option-term" id="option-cargo-tree---package"><a class="option-anchor" href="#option-cargo-tree---package"></a><code>--package</code> <em>spec</em>...</dt>
 <dd class="option-desc">Display only the specified packages. See <a href="cargo-pkgid.html">cargo-pkgid(1)</a> for the
 SPEC format. This flag may be specified multiple times and supports common Unix
-glob patterns like <code>*</code>, <code>?</code> and <code>[]</code>. However, to avoid your shell accidentally
+glob patterns like <code>*</code>, <code>?</code> and <code>[]</code>. However, to avoid your shell accidentally 
 expanding glob patterns before Cargo handles them, you must use single quotes or
 double quotes around each pattern.</dd>
 
@@ -399,12 +401,7 @@ double quotes around each pattern.</dd>
 common Unix glob patterns like <code>*</code>, <code>?</code> and <code>[]</code>. However, to avoid your shell
 accidentally expanding glob patterns before Cargo handles them, you must use
 single quotes or double quotes around each pattern.</dd>
-
-
-</dl>
 {==+==}
-<dl>
-
 <dt class="option-term" id="option-cargo-tree--p"><a class="option-anchor" href="#option-cargo-tree--p"></a><code>-p</code> <em>spec</em>...</dt>
 <dt class="option-term" id="option-cargo-tree---package"><a class="option-anchor" href="#option-cargo-tree---package"></a><code>--package</code> <em>spec</em>...</dt>
 <dd class="option-desc">只展示指定的软件包。 关于SPEC的格式，见<a href="cargo-pkgid.html">cargo-pkgid(1)</a>。
@@ -424,10 +421,6 @@ single quotes or double quotes around each pattern.</dd>
 这个标志可以被多次指定，并且支持常见的 Unix glob pattern，比如
 <code>*</code>, <code>?</code> 和 <code>[]</code>。
 然而，为了避免你的 shell 在 Cargo 处理 glob pattern 之前意外地扩展它们，你必须在每个 pattern 周围使用单引号或双引号。</dd>
-
-
-
-</dl>
 {==+==}
 
 
@@ -811,6 +804,7 @@ details on environment variables that Cargo reads.
        └── syn feature "proc-macro" (*)
    ```
 {==+==}
+
 {==+==}
 
 {==+==}
