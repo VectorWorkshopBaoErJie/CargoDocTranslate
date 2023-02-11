@@ -19,7 +19,7 @@ import your crates into the files in `tests`.
 Here's an example of running `cargo test` in our [package][def-package], which
 currently has no tests:
 {==+==}
-下面的例子中对 [package][def-package] 执行 `cargo test` ，目前这个包里还没有任何测试项。
+下面的例子，对 [package][def-package] 执行了 `cargo test` ，目前这个包里还没有任何测试项。
 {==+==}
 
 {==+==}
@@ -77,8 +77,8 @@ Please see the [testing guide][testing] in the Rust documentation for a general
 view of writing and organizing tests. See [Cargo Targets: Tests] to learn more
 about different styles of tests in Cargo.
 {==+==}
-`cargo test` 将进行额外的检查。Cargo会编译每个示例，确保它们可以通过编译。同时也会运行文档测试来确保文档中的代码样例可以通过编译。
-Rust文档中的 [testing guide][testing] 部分可以获得更多关于组织测试的知识。[Cargo Targets: Tests] 中可以学到 Cargo 中更多不同的测试模式。
+`cargo test` 将进行额外的检查 。 Cargo 会编译每个示例，确保它们可以通过编译。同时也会运行文档测试来确保文档中的代码样例可以通过编译。
+Rust文档中的 [testing guide][testing] 部分可以获得更多关于开展测试的知识。 [Cargo Targets: Tests] 中可以获得 Cargo 中更多不同的测试模式。
 {==+==}
 
 

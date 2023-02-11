@@ -12,8 +12,8 @@ this is the directory named `target` in the root of your
 `CARGO_TARGET_DIR` [environment variable], the [`build.target-dir`] config
 value, or the `--target-dir` command-line flag.
 {==+==}
-Cargo会把构建输出保存在 "target" 文件夹中。默认情况下这个文件夹是你的 [*workspace*][def-workspace] 根目录下的 `target` 文件夹。
-如果要改变输出位置，可以设置 `CARGO_TARGET_DIR` [environment variable] "环境变量"、 [`build.target-dir`] config参数，或者 `--target-dir` 命令行标志(flag)。
+Cargo 会把构建输出保存在 "target" 文件夹中。默认情况下是 [*workspace*][def-workspace] 根目录下的 `target` 文件夹。
+如果要改变输出位置，可以设置 `CARGO_TARGET_DIR` [environment variable] "环境变量"、 [`build.target-dir`] config 参数，或者 `--target-dir` 命令行标志(flag)。
 {==+==}
 
 
@@ -25,7 +25,7 @@ the root of the target directory, with each [profile] stored in a separate
 subdirectory:
 {==+==}
 这个文件夹的布局取决于你是否使用 `--target` 标志来为特定平台构建。如果没有设置 `--target` 标志，Cargo 会按宿主机的架构进行构建。
-输出文件保存在target文件夹，每个特定编译设置 ([profile]) 的输出文件会在放在单独的子文件夹中。
+输出文件保存在 target 文件夹，每个特定编译设置 ([profile]) 的输出文件会放在单独的子文件夹中。
 {==+==}
 
 
@@ -61,6 +61,7 @@ directory with the name of the target:
 当为另一种架构 (非宿主架构，命令行带 `--target` 参数) 而构建，输出文件会放在带有目标架构名字的文件夹中:
 {==+==}
 
+
 {==+==}
 Directory | Example
 ----------|--------
@@ -80,7 +81,7 @@ Directory | Example
 > build scripts and proc macros are built separately (for the host
 > architecture), and do not share `RUSTFLAGS`.
 {==+==}
-> **注意**: 如果没有使用 `--target`，Cargo会把你的依赖共享给构建脚本(build scripts)和过程宏(proc macros)使用。
+> **注意**: 如果没有使用 `--target`， Cargo 会把你的依赖共享给构建脚本 (build scripts) 和过程宏 (proc macros) 使用。
 > [`RUSTFLAGS`] 会在每次 `rustc` 调用时使用。
 > 如果使用了 `--target` 标志，构建脚本和过程宏会为宿主架构单独构建，不会获取 `RUSTFLAGS` 中的参数。
 {==+==}
@@ -111,7 +112,7 @@ Directory | Description
 Some commands place their output in dedicated directories in the top level of
 the `target` directory:
 {==+==}
-一些命令会把生成文件放在 `target`目录的顶层:
+一些命令会把生成文件放在 `target` 目录的顶层:
 {==+==}
 
 
@@ -132,7 +133,7 @@ Cargo also creates several other directories and files needed for the build
 process. Their layout is considered internal to Cargo, and is subject to
 change. Some of these directories are:
 {==+==}
-Cargo还会生成构建过程需要的其他文件和文件夹，它们的组织结构看做Cargo内部项，可能会更改。其中几个文件夹:
+Cargo 还会生成构建过程需要的其他文件和文件夹，它们的组织结构看做 Cargo 内部项，可能会更改。其中几个文件夹:
 {==+==}
 
 {==+==}
@@ -163,8 +164,8 @@ with external build systems so that they can detect if Cargo needs to be
 re-executed. The paths in the file are absolute by default. See the
 [`build.dep-info-basedir`] config option to use relative paths.
 {==+==}
-还有一个后缀为 `.d` 的 "依赖信息" 文件(dep info)，类似Makefile，记录了再次构建所需的文件依赖。
-这个文件用于提供给外部的构建系统，判断是否需要再次执行Cargo。文件中的文件路径在默认情况下都是绝对路径。如何设置为相对路径见 [`build.dep-info-basedir`]。
+还有一个后缀为 `.d` 的 "依赖信息" 文件(dep info)，类似 Makefile ，记录了再次构建所需的文件依赖。
+这个文件用于提供给外部的构建系统，判断是否需要再次执行 Cargo 。文件中的文件路径在默认情况下都是绝对路径。如何设置为相对路径见 [`build.dep-info-basedir`]。
 {==+==}
 
 {==+==}
@@ -202,9 +203,9 @@ you use bash, it makes sense to add `export RUSTC_WRAPPER=sccache` to
 `.bashrc`. Alternatively, you can set [`build.rustc-wrapper`] in the [Cargo
 configuration][config]. Refer to sccache documentation for more details.
 {==+==}
-通过 `cargo install sccache` 下载 `sccache`。在执行Cargo前，将 `RUSTC_WRAPPER` 环境变量设置为 `sccache`。
-如果你用的是bash，那么可以把 `export RUSTC_WRAPPER=sccache` 添加到 `.bashrc` 。
-或者你可以在 [Cargo配置文件][config] 中设置 [`build.rustc-wrapper`] 。查看sccache的文档来获取更多细节。
+通过 `cargo install sccache` 下载 `sccache`。在执行 Cargo 前，将 `RUSTC_WRAPPER` 环境变量设置为 `sccache`。
+如果你用的是 bash ，那么可以把 `export RUSTC_WRAPPER=sccache` 添加到 `.bashrc` 。
+或者在 [Cargo配置文件][config] 中设置 [`build.rustc-wrapper`] 。查看 sccache 的文档来获得更多细节。
 {==+==}
 
 

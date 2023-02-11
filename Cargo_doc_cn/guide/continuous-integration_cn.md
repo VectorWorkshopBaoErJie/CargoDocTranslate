@@ -14,7 +14,7 @@
 To test your [package][def-package] on Travis CI, here is a sample
 `.travis.yml` file:
 {==+==}
-为了在 Travis CI 测试你的包，这里有一个样例配置文件 `.travis.yml` :
+对于在 Travis CI 中测试你的包，这里有一个样例配置文件 `.travis.yml` :
 {==+==}
 
 {==+==}
@@ -40,7 +40,7 @@ documentation](https://docs.travis-ci.com/user/languages/rust/) for more
 information.
 {==+==}
 这将同时测试三个发布通道，每日构建中的问题不会导致整个构建的失败。
-查看[Travis CI Rust documentation](https://docs.travis-ci.com/user/languages/rust/)获得更多信息。
+查看 [Travis CI Rust documentation](https://docs.travis-ci.com/user/languages/rust/) 获得更多信息。
 {==+==}
 
 
@@ -49,11 +49,12 @@ information.
 {==+==}
 ### GitHub Actions
 {==+==}
+
 
 {==+==}
 To test your package on GitHub Actions, here is a sample `.github/workflows/ci.yml` file:
 {==+==}
-为在Github Actions中测试你的包，这里有一个样例配置文件 `.github/workflows/ci.yml` :
+对于 Github Actions 中测试你的包，这里有一个样例配置文件 `.github/workflows/ci.yml` :
 {==+==}
 
 {==+==}
@@ -92,10 +93,10 @@ jobs:
 {==+==}
 This will test all three release channels (note a failure in any toolchain version will fail the entire job). You can also click `"Actions" > "new workflow"` in the GitHub UI and select Rust to add the [default configuration](https://github.com/actions/starter-workflows/blob/main/ci/rust.yml) to your repo. See [GitHub Actions documentation](https://docs.github.com/en/actions) for more information.
 {==+==}
-这将测试全部的三个发布通道(注意任意toolchain版本的失败会导致整个流程的失败)。
-你也可以在Github界面中点击 `"Actions" > "new workflow"` ，
-并在其中选择Rust来为你的库添加 [default configuration](https://github.com/actions/starter-workflows/blob/main/ci/rust.yml) "默认设置"。
-访问[GitHub Actions documentation](https://docs.github.com/en/actions)以获得更多信息。
+这将测试全部的三个发布通道(注意任意 toolchain 版本的失败会导致整个流程的失败)。
+你也可以在 Github 界面中点击 `"Actions" > "new workflow"` ，
+并在其中选择 Rust 来为你的库添加 [default configuration](https://github.com/actions/starter-workflows/blob/main/ci/rust.yml) "默认设置"。
+访问 [GitHub Actions documentation](https://docs.github.com/en/actions) 以获得更多信息。
 {==+==}
 
 {==+==}
@@ -107,7 +108,7 @@ This will test all three release channels (note a failure in any toolchain versi
 {==+==}
 To test your package on GitLab CI, here is a sample `.gitlab-ci.yml` file:
 {==+==}
-为在GitLab CI测试你的包，这里有一个样例配置文件 `.gitlab-ci.yml` :
+对于在 GitLab CI 中测试你的包，这里有一个样例配置文件 `.gitlab-ci.yml` :
 {==+==}
 
 
@@ -143,7 +144,7 @@ breakage in nightly will not fail your overall build. Please see the
 information.
 {==+==}
 这将测试 stable 通道和 nightly 通道，每日构建中的任何失败不会导致整个构建的失败。
-请查看[GitLab CI documentation](https://docs.gitlab.com/ce/ci/yaml/index.html)获取更多信息。
+请查看 [GitLab CI documentation](https://docs.gitlab.com/ce/ci/yaml/index.html) 获取更多信息。
 {==+==}
 
 
@@ -158,8 +159,8 @@ To test your package on sr.ht, here is a sample `.build.yml` file.
 Be sure to change `<your repo>` and `<your project>` to the repo to clone and
 the directory where it was cloned.
 {==+==}
-为在 sr.ht 测试你的包，这里有一个样例设置文件 `.build.yml` 。
-注意将 `<your repo>` 和 `<your project>` 修改为你要clone的库以及其被clone到的目录。
+对于在 sr.ht 中测试你的包，这里有一个样例设置文件 `.build.yml` 。
+注意将 `<your repo>` 和 `<your project>` 修改为你要 clone 的库以及其被 clone 到的目录。
 {==+==}
 
 
@@ -201,8 +202,8 @@ channel, but any breakage in nightly will not fail your overall build. Please
 see the [builds.sr.ht documentation](https://man.sr.ht/builds.sr.ht/) for more
 information.
 {==+==}
-这将为stable 通道和nightly 通道进行测试和构建文档，每日构建中的问题不会导致整个构建的失败。
-请查看[builds.sr.ht documentation](https://man.sr.ht/builds.sr.ht/)以获取更多信息。
+这将为 stable 通道和 nightly 通道进行测试和构建文档，每日构建中的问题不会导致整个构建的失败。
+请查看 [builds.sr.ht documentation](https://man.sr.ht/builds.sr.ht/) 以获取更多信息。
 {==+==}
 
 {==+==}

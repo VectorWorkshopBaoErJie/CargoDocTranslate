@@ -55,7 +55,7 @@ Cargo 有一系列文件布局的约定，从而可以简便地创建新的包:
 │       └── multi-file-executable/      多文件可执行crate根目录，目录名即可执行文件名
 │           ├── main.rs                 crate 的根
 │           └── some_module.rs          crate 的模块
-├── benches/                            性能测试        与bin/目录结构相同
+├── benches/                            性能测试                  与bin/目录结构相同
 │   ├── large-input.rs                  
 │   └── multi-file-bench/               
 │       ├── main.rs                     
@@ -85,13 +85,13 @@ Cargo 有一系列文件布局的约定，从而可以简便地创建新的包:
 * Examples go in the `examples` directory.
 * Integration tests go in the `tests` directory.
 {==+==}
-*  `Cargo.toml` 和 `Cargo.lock` 保储在包的根目录。
+* `Cargo.toml` 和 `Cargo.lock` 存储在包的根目录。
 * 源码在 `src` 目录。
 * 默认的库 crate 根文件是 `src/lib.rs` 。
 * 默认的可执行 crate 根文件是 `src/main.rs` 。
     * 其他可执行 crate 文件可以放在 `src/bin/` 目录。
 * 性能测试放在 `benches` 目录。
-* 示例放在 `examples` 目录.
+* 实例放在 `examples` 目录.
 * 集成测试文件放在 `tests` 目录.
 {==+==}
 
@@ -102,14 +102,15 @@ files, place a `main.rs` file along with the extra [*modules*][def-module]
 within a subdirectory of the `src/bin`, `examples`, `benches`, or `tests`
 directory. The name of the executable will be the directory name.
 {==+==}
-如果一个binary、example、bench 或集成测试具有多个源文件，把 `main.rs` 和其他模块([*modules*][def-module])一起放在目录( `src/bin` 、`examples` 、`benches` 或 `tests` )中的一个子目录下，可执行crate的名字就是该子目录的名字。
+如果一个 binary 、 example 、 bench 或 test 具有多个源文件，把 `main.rs` 和其他模块([*modules*][def-module]) 在内，
+在 ( `src/bin` 、`examples` 、`benches` 或 `tests` ) 下建立子目录，那么该子目录的名称就是可执行 crate 的名称。
 {==+==}
 
 
 {==+==}
 You can learn more about Rust's module system in [the book][book-modules].
 {==+==}
-你可以在 [the book][book-modules] 中了解更多关于Rust模块系统的知识。
+你可以在 [the book][book-modules] 中了解更多关于 Rust 模块系统的知识。
 {==+==}
 
 
@@ -119,7 +120,7 @@ See [Target auto-discovery] for more information on controlling how Cargo
 automatically infers target names.
 {==+==}
 参阅 [Configuring a target] 一节，有更多关于手动设置编译目标的细节。
-参阅 [Target auto-discovery] 一节，有更多关于控制Cargo如何自动推断目标名的知识。
+参阅 [Target auto-discovery] 一节，有更多关于控制 Cargo 如何自动推断目标名称的知识。
 {==+==}
 
 
