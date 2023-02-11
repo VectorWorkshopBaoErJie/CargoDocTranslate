@@ -18,8 +18,10 @@ dependencies, compiles your packages, makes distributable packages, and uploads 
 [crates.io], the Rust community’s [*package registry*][def-package-registry]. You can contribute
 to this book on [GitHub].
 {==+==}
-Cargo是 [Rust] [*包管理器*][def-package-manager]，能够下载、编译Rust所依赖的包 [package][def-package],
-能制作可分享的包，可以上传到[crates.io](Rust [*包注册中心*][def-package-registry] )。 
+Cargo 是 [Rust] [*包管理器*][def-package-manager]，能够下载所依赖的 [package][def-package] "包" 和编译包,
+能够制作可分享的包，可以上传到 [crates.io](Rust [*包注册中心*][def-package-registry] )。 
+
+
 您可以在 [GitHub] 为本书贡献内容。或者参与完善此 [Cargo之书中文译本][CargoCnBook] 。
 {==+==}
 
@@ -42,7 +44,7 @@ Cargo是 [Rust] [*包管理器*][def-package-manager]，能够下载、编译Rus
 To get started with Cargo, install Cargo (and Rust) and set up your first
 [*crate*][def-crate].
 {==+==}
-开始使用Cargo，安装Cargo和Rust，并设置您的第一个[*crate*][def-crate]。
+安装 Cargo 和 Rust ，并创建属于您的第一个 [*crate*][def-crate] 。
 {==+==}
 
 
@@ -57,7 +59,7 @@ To get started with Cargo, install Cargo (and Rust) and set up your first
 The guide will give you all you need to know about how to use Cargo to develop
 Rust packages.
 {==+==}
-本指南提供有关使用Cargo开发Rust包所需的知识。
+此指南提供了有关如何使用 Cargo 开发 Rust 包所需的知识。
 {==+==}
 
 
@@ -67,11 +69,13 @@ Rust packages.
 **[Cargo参考](reference/index.md)**
 {==+==}
 
+
 {==+==}
 The reference covers the details of various areas of Cargo.
 {==+==}
-参考部分涵盖了Cargo的各个方面的细节。
+参考部分涵盖了 Cargo 各个方面知识的细节。
 {==+==}
+
 
 {==+==}
 **[Cargo Commands](commands/index.md)**
@@ -83,7 +87,7 @@ The reference covers the details of various areas of Cargo.
 {==+==}
 The commands will let you interact with Cargo using its command-line interface.
 {==+==}
-这些命令将允许您使用其命令行界面与Cargo交互。
+通过命令行界面，这些命令可以与 Cargo 交互。
 {==+==}
 
 
@@ -112,10 +116,8 @@ The commands will let you interact with Cargo using its command-line interface.
   Rust documentation and tools.
 {==+==}
 **其他文档:**
-* [更新日志](https://github.com/rust-lang/cargo/blob/master/CHANGELOG.md) —
-  关于每个版本中Cargo更改的详细说明。
-* [Rust 文档网站](https://doc.rust-lang.org/) —
-  Rust官方文档和工具的链接.
+* [更新日志](https://github.com/rust-lang/cargo/blob/master/CHANGELOG.md) — 关于 Cargo 每个发布版本相关更改的详细说明。
+* [Rust 文档网站](https://doc.rust-lang.org/) — Rust 官方文档和工具的链接.
 {==+==}
 
 

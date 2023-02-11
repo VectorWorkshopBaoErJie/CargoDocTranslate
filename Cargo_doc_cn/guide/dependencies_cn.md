@@ -11,13 +11,13 @@ that serves as a location to discover and download
 requested packages.
 {==+==}
 [crates.io] 是 Rust 社区主要的 [*包注册中心*][def-package-registry] 。
-是搜索和下载 [packages][def-package] 的仓库。 `cargo` 默认使用这个地址来搜索所需的包。
+是搜索和下载 [packages][def-package] 的仓库。 `cargo` 默认使用这个地址来搜索所需要的包。
 {==+==}
 
 {==+==}
 To depend on a library hosted on [crates.io], add it to your `Cargo.toml`.
 {==+==}
-要添加 [crates.io] 上托管的库，你需要将库添加到 `Cargo.toml` 。
+可在 `Cargo.toml` 中添加 [crates.io] 上托管的库。
 {==+==}
 
 {==+==}
@@ -38,7 +38,7 @@ If your `Cargo.toml` doesn't already have a `[dependencies]` section, add
 that, then list the [crate][def-crate] name and version that you would like to
 use. This example adds a dependency of the `time` crate:
 {==+==}
-如果你的 `Cargo.toml` 还没有 `[dependencies]` 部分，添加上这个标记，
+如果你的 `Cargo.toml` 还没有 `[dependencies]` 部分，那么添加上这个标记，
 然后在标记下方列出你需要使用的 [crate][def-crate] 的名称和版本。
 下面这个例子展示了如何添加 `time` 依赖:
 {==+==}
@@ -76,7 +76,7 @@ to add `[dependencies]` for each crate listed. Here's what your whole
 `Cargo.toml` file would look like with dependencies on the `time` and `regex`
 crates:
 {==+==}
-如果我们想添加一个 `regex` 依赖，则不需要为每个依赖都添加 `[dependencies]` 。
+如果想添加另一个 `regex` 依赖，则不需要为每个依赖都添加 `[dependencies]` 。
 下面是 `Cargo.toml` 文件添加 `time` 和 `regex` 依赖的范例:
 {==+==}
 
@@ -102,7 +102,7 @@ Re-run `cargo build`, and Cargo will fetch the new dependencies and all of
 their dependencies, compile them all, and update the `Cargo.lock`:
 {==+==}
 重新执行 `cargo build` 命令，Cargo 会下载新的依赖以及依赖本身所需的依赖，
-全部编译，并更新 `Cargo.lock` 文件:
+编译全部，并更新 `Cargo.lock` 文件:
 {==+==}
 
 

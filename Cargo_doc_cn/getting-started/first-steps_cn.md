@@ -10,15 +10,15 @@ demonstrate its ability to generate a new [***package***][def-package] for us,
 its ability to compile the [***crate***][def-crate] within the package, and
 its ability to run the resulting program.
 {==+==}
-本节提供对 `cargo` 命令行工具的快速一览。展示其生成新 [***package***][def-package] 的功能，
-其在包内编译 [***crate***][def-crate] 的能力，以及运行所生成程序的功能。
+这节提供对 `cargo` 命令行工具的快速一览。展示其生成新 [***package***][def-package] 的功能，
+在包内编译 [***crate***][def-crate] 的功能，以及其运行所生成程序的功能。
 {==+==}
 
 
 {==+==}
 To start a new package with Cargo, use `cargo new`:
 {==+==}
-使用 `cargo new` 可创建新包:
+可以使用 `cargo new` 创建新包:
 {==+==}
 
 {==+==}
@@ -34,7 +34,7 @@ $ cargo new hello_world
 Cargo defaults to `--bin` to make a binary program. To make a library, we
 would pass `--lib`, instead.
 {==+==}
-Cargo 默认以 `--bin` 来构建二进制程序，可通过 `--lib` 来构建库。
+Cargo 默认以 `--bin` 来创建二进制程序，可以通过 `--lib` 选项来创建库。
 {==+==}
 
 
@@ -86,7 +86,7 @@ edition = "2021"
 This is called a [***manifest***][def-manifest], and it contains all of the
 metadata that Cargo needs to compile your package.
 {==+==}
-其内容称为 [***manifest***][def-manifest] "配置清单"，包含了Cargo编译包时所需的所有元数据。
+这些内容称为 [***manifest***][def-manifest] "配置清单"，包含了 Cargo 编译包时所需要的所有元数据。
 {==+==}
 
 

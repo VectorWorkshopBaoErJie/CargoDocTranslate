@@ -43,7 +43,7 @@
     * [依赖](guide/dependencies.md)
     * [包的布局](guide/project-layout.md)
     * [Cargo.toml vs Cargo.lock](guide/cargo-toml-vs-cargo-lock.md)
-    * [测试](guide/tests.md)
+    * [集成测试](guide/tests.md)
     * [持续集成](guide/continuous-integration.md)
     * [Cargo Home](guide/cargo-home.md)
     * [构建缓存](guide/build-cache.md)

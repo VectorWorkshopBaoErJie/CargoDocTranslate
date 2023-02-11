@@ -29,7 +29,7 @@ develop Rust packages.
 * [依赖](dependencies.md)
 * [包的布局](project-layout.md)
 * [Cargo.toml vs Cargo.lock](cargo-toml-vs-cargo-lock.md)
-* [测试](tests.md)
+* [集成测试](tests.md)
 * [持续集成](continuous-integration.md)
 * [Cargo Home](cargo-home.md)
 * [构建缓存](build-cache.md)
