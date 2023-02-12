@@ -7,7 +7,7 @@
 {==+==}
 The reference covers the details of various areas of Cargo.
 {==+==}
-参考涵盖Cargo各个领域的细节。
+参考部分涵盖了 Cargo 各个方面知识的细节。
 {==+==}
 
 {==+==}
