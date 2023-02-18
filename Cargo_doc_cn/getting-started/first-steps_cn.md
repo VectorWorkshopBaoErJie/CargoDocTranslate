@@ -10,8 +10,8 @@ demonstrate its ability to generate a new [***package***][def-package] for us,
 its ability to compile the [***crate***][def-crate] within the package, and
 its ability to run the resulting program.
 {==+==}
-这节提供对 `cargo` 命令行工具的快速一览。展示其生成新 [***package***][def-package] 的功能，
-在包内编译 [***crate***][def-crate] 的功能，以及其运行所生成程序的功能。
+这节提供对 `cargo` 命令行工具的快速一览。
+演示如何使用 `cargo` 工具创建一个新的包 [***package***][def-package]，对包中的 [***crate***][def-crate] 进行编译，以及运行生成的程序。
 {==+==}
 
 
@@ -34,14 +34,14 @@ $ cargo new hello_world
 Cargo defaults to `--bin` to make a binary program. To make a library, we
 would pass `--lib`, instead.
 {==+==}
-Cargo 默认以 `--bin` 来创建二进制程序，可以通过 `--lib` 选项来创建库。
+Cargo 默认使用 `--bin` 选项生成一个二进制程序，要生成一个库，我们可以传递 `--lib` 选项。
 {==+==}
 
 
 {==+==}
 Let’s check out what Cargo has generated for us:
 {==+==}
-让我们来查看 Cargo 所生成的内容:
+让我们看一下 Cargo 为我们生成了什么:
 {==+==}
 
 
@@ -64,7 +64,7 @@ $ tree .
 {==+==}
 This is all we need to get started. First, let’s check out `Cargo.toml`:
 {==+==}
-这就是创建的全部内容。先来查看一下 `Cargo.toml` :
+这就是我们开始的全部内容。首先，让我们看一下 `Cargo.toml` :
 {==+==}
 
 
@@ -86,7 +86,7 @@ edition = "2021"
 This is called a [***manifest***][def-manifest], and it contains all of the
 metadata that Cargo needs to compile your package.
 {==+==}
-这些内容称为 [***manifest***][def-manifest] "配置清单"，包含了 Cargo 编译包时所需要的所有元数据。
+这被称为 [***配置清单***][def-manifest] ，包含 Cargo 编译包所需的所有元数据。
 {==+==}
 
 

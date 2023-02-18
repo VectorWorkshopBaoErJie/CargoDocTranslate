@@ -14,7 +14,7 @@
 The easiest way to get Cargo is to install the current stable release of [Rust]
 by using [rustup]. Installing Rust using `rustup` will also install `cargo`.
 {==+==}
-获得 Cargo 最简单的方法是通过 [rustup] 来安装 [Rust] 当前的稳定版本，同时也会安装 `cargo` 。
+获取 Cargo 的最简单方法是使用 [rustup] 安装当前稳定版本的 [Rust]。使用 `rustup` 安装 Rust 也将安装 `cargo` 。
 {==+==}
 
 {==+==}
@@ -37,7 +37,7 @@ curl https://sh.rustup.rs -sSf | sh
 It will download a script, and start the installation. If everything goes well,
 you’ll see this appear:
 {==+==}
-它将下载一个脚本，并开始安装。如果安装顺利会有这样的提示:
+它将下载一个脚本，并开始安装。如果一切顺利，您将看到以下内容:
 {==+==}
 
 
@@ -54,14 +54,14 @@ Rust is installed now. Great!
 On Windows, download and run [rustup-init.exe]. It will start the installation
 in a console and present the above message on success.
 {==+==}
-在 Windows 操作系统中，下载并运行 [rustup-init.exe] ，在控制台进行安装，成功时会显示上述消息。
+在 Windows 操作系统上，可以下载并运行 [rustup-init.exe] ，它将在控制台中开始安装，并在成功时显示上述消息。
 {==+==}
 
 {==+==}
 After this, you can use the `rustup` command to also install `beta` or `nightly`
 channels for Rust and Cargo.
 {==+==}
-然后，就可以使用 `rustup` 命令来安装 Rust 和 Cargo ，也可以安装 `beta` "测试" 或 `nightly` "每日" 版本。
+之后，你可以使用 `rustup` 命令来安装 Rust 和 Cargo 的 `beta` 或 `nightly` 版本。
 {==+==}
 
 
@@ -69,7 +69,7 @@ channels for Rust and Cargo.
 For other installation options and information, visit the
 [install][install-rust] page of the Rust website.
 {==+==}
-关于其他安装选项和信息，请访问 Rust 网站的 [install][install-rust] 页面了解。
+有关其他安装选项和信息，请访问 Rust 网站上的 [安装页面][install-rust] 。
 {==+==}
 
 
