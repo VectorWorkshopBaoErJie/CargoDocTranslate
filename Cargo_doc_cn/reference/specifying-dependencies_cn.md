@@ -14,9 +14,9 @@ locally. You can have different dependencies for different platforms, and
 dependencies that are only used during development. Let's take a look at how
 to do each of these.
 {==+==}
-你的 crate 可以添加 [crates.io] 中丰富的库，或者其他注册中心、 git 仓库，以及本地文件系统中的子目录。
-你可以暂时覆盖某个依赖的路径，从而在本地检查和修复依赖的 bug 。
-对于不同目标平台可以指定不同的依赖，也可以仅在开发阶段指定使用某个依赖。
+您的 crate 可以依赖于来自 [crates.io] 或其他注册中心、`git` 仓库或本地文件系统子目录中的其他库。
+您还可以暂时覆盖依赖的位置 —— 例如，为了能够在本地测试正在处理的依赖中的错误修复。
+您可以为不同的平台设置不同的依赖，并且可以在开发过程中仅使用某些依赖。让我们看看如何完成这些操作。
 {==+==}
 
 
@@ -31,7 +31,8 @@ Cargo is configured to look for dependencies on [crates.io] by default. Only
 the name and a version string are required in this case. In [the cargo
 guide](../guide/index.md), we specified a dependency on the `time` crate:
 {==+==}
-Cargo 默认就是从 [crates.io] 查找依赖。例如，之前在 [cargo指南](../guide/index.md) 中指定了 `time` crate 作为依赖: 
+默认情况下，Cargo 配置为在 [crates.io] 上查找依赖。
+此时仅需要指定依赖的名称和版本字符串。在 Cargo [cargo指南](../guide/index.md) 中，我们指定了对 `time` crate 的依赖关系：
 {==+==}
 
 
@@ -56,10 +57,10 @@ update us to `0.2.0`. If instead we had specified the version string as `1.0`,
 cargo should update to `1.1` if it is the latest `1.y` release, but not `2.0`.
 The version `0.0.x` is not considered compatible with any other version.
 {==+==}
-`"0.1.12"` 这个字符串表示限定的版本，虽然貌似表示一个具体的 `time` 版本，但实际上表示一个范围，接受 [SemVer] 语义化兼容的更新。
-具体来说，接受不改变 `主版本号.次版本号.修订号` 中 **第一个非零数字** 的所有更新。
-如果运行 `cargo update -p time` ， Cargo 会把 `time` 更新到 `0.1.13` (假设 `0.1.z` 表示的最新版本)，但不会更新到 `0.2.0`。
-如果指定版本为 `1.0` ，那么 Cargo 会将其更新到 `1.1` (假设 `1.y` 表示的最新版本)，但不会更新到 `2.0` 。 `0.0.x` 版本和其他版本都不兼容。
+字符串 `"0.1.12"` 是一个版本需求。虽然它看起来像是对 `time` crate 的具体版本，但实际上指定了一个版本范围，并允许 [SemVer] 语义化兼容的更新。
+如果新版本号不修改 `主版本号.次版本号.修订号` 的最左侧非零数字，就允许更新。
+在这种情况下，如果我们运行 `cargo update -p time`，Cargo 应该将更新到 `0.1.13` 版本 (如果它是最新的 `0.1.z` 发布)，但不会更新到 `0.2.0` 版本。
+如果我们将版本字符串指定为 `1.0` ，则当最新的 `1.y` 发布为 `1.1` 时，Cargo 应该会更新到该版本，但不会更新到 `2.0` 版本。版本 `0.0.x` 认为与任何其他版本都不兼容。
 {==+==}
 
 
@@ -74,7 +75,7 @@ The version `0.0.x` is not considered compatible with any other version.
 Here are some more examples of version requirements and the versions that would
 be allowed with them:
 {==+==}
-下面是一些书写示例，以及符合要求的版本范围:
+以下是一些版本需求的示例以及符合这些需求的版本：
 {==+==}
 
 
@@ -100,14 +101,14 @@ versions before 1.0.0. While SemVer says there is no compatibility before
 1.0.0, Cargo considers `0.x.y` to be compatible with `0.x.z`, where `y ≥ z`
 and `x > 0`.
 {==+==}
-这种兼容规则与 SemVer 规则有所不同， SemVer 认为在 1.0.0 之前都不兼容，而 Cargo 认为 `0.x.y` 与 `0.x.z` 兼容 (只要 `y ≥ z` 且 `x > 0`)。
+这种兼容性约定与 SemVer 在处理 1.0.0 之前的版本时不同。虽然 SemVer 规定 1.0.0 之前的版本不兼容，但是 Cargo 认为 `0.x.y` 与 `0.x.z` 兼容，只要 `y ≥ z`，且 `x > 0`。
 {==+==}
 
 {==+==}
 It is possible to further tweak the logic for selecting compatible versions
 using special operators, though it shouldn't be necessary most of the time.
 {==+==}
-可以通过一些特殊操作符来调整选择兼容版本的逻辑，但在大多数情况不需要。
+可以使用特殊运算符进一步调整选择兼容版本的逻辑，但大多数情况下不需要这样做。
 {==+==}
 
 {==+==}
@@ -121,7 +122,7 @@ using special operators, though it shouldn't be necessary most of the time.
 **Caret requirements** are an alternative syntax for the default strategy,
 `^1.2.3` is exactly equivalent to `1.2.3`.
 {==+==}
- `^` 符号表示默认策略，`^1.2.3` 和 `1.2.3` 的意义相同。
+** `^` 符号需求** 是默认策略的另一种语法形式， `^1.2.3` 和 `1.2.3` 完全等价。
 {==+==}
 
 
@@ -138,9 +139,9 @@ If you specify a major, minor, and patch version or only a major and minor
 version, only patch-level changes are allowed. If you only specify a major
 version, then minor- and patch-level changes are allowed.
 {==+==}
-`~` 符号表示在某个最小版本的基础上可以做指定更新。
-如果指定了如 `主.次.修` 或者 `主.次` 的版本，那么可以做修订级别的改变。
-如果是只指定了主版本号，那么次版本号和修订号可以改变。
+** `~` 符号需求** 指定了一个具有一定升级能力的最小版本。
+如果您指定了 `主.次.修` ，或者只指定了 `主.次` ，则只允许进行修订级别的更改。
+如果只指定了主版本号，则允许进行次级别和修订级别的更改。
 {==+==}
 
 
@@ -172,7 +173,7 @@ version, then minor- and patch-level changes are allowed.
 **Wildcard requirements** allow for any version where the wildcard is
 positioned.
 {==+==}
-通配符出现的位置表示任意数字。
+** `*` 符号需求** 允许在通配符所在位置使用任何版本。
 {==+==}
 
 {==+==}
@@ -209,7 +210,7 @@ positioned.
 **Comparison requirements** allow manually specifying a version range or an
 exact version to depend on.
 {==+==}
-使用比较符号可以手动指定版本范围或一个具体的版本。
+**比较符号需求** 使用比较符号可以手动指定版本范围或一个具体的版本。
 {==+==}
 
 {==+==}
@@ -241,7 +242,7 @@ Here are some examples of comparison requirements:
 As shown in the examples above, multiple version requirements can be
 separated with a comma, e.g., `>= 1.2, < 1.5`.
 {==+==}
-参考上面的示例，多个版本约束可以用逗号分隔，如 `>= 1.2, < 1.5`。
+如上面的示例所示，多个版本需求可以用逗号分隔，例如 `>= 1.2, < 1.5` 。
 {==+==}
 
 {==+==}
@@ -257,8 +258,8 @@ registry must be configured in a `.cargo/config.toml` file. See the [registries
 documentation] for more information. In the dependency, set the `registry` key
 to the name of the registry to use.
 {==+==}
-要指定非 [crates.io] 的依赖，首先需要在 `.cargo/config.toml` 中设置该注册中心，参阅 [registries documentation] 。
-在依赖中，将 `registry` 字段设置为要使用的注册中心。
+要指定来自 [crates.io] 以外的注册中心的依赖项，首先必须在 `.cargo/config.toml` 文件中配置该注册中心。
+有关更多信息，请参阅 [registries documentation]。在依赖项中，将 `registry` 键设置为要使用的注册中心的名称。
 {==+==}
 
 
@@ -276,7 +277,7 @@ some-crate = { version = "1.0", registry = "my-registry" }
 > **Note**: [crates.io] does not allow packages to be published with
 > dependencies on other registries.
 {==+==}
-> **注意**: [crates.io] 发布包时不允许带有其他注册中心的依赖。
+>  **注意**: [crates.io] 不允许发布依赖其他注册中心的包。
 {==+==}
 
 
@@ -298,7 +299,7 @@ some-crate = { version = "1.0", registry = "my-registry" }
 To depend on a library located in a `git` repository, the minimum information
 you need to specify is the location of the repository with the `git` key:
 {==+==}
-要指定位于 `git` 仓库的依赖，需要的最少信息是在 `git` 字段中给出该仓库的地址:
+要依赖位于 `git` 存储库中的库，您需要指定的最小信息是使用 `git` 键指定仓库的位置:
 {==+==}
 
 
@@ -318,7 +319,7 @@ Cargo will fetch the `git` repository at this location then look for a
 (not necessarily at the root - for example, specifying a member crate name
 of a workspace and setting `git` to the repository containing the workspace).
 {==+==}
-Cargo 会 fetch 该 `git` 仓库，并在仓库中查找所需 crate 对应的 `Cargo.toml` 文件 (该文件不要求必须在地址根目录下，比如说指定的是工作空间某个成员 crate ，这时 `git` 字段只需给出工作空间的地址)。
+Cargo 将在此位置获取 `git` 仓库，然后在仓库内查找所请求的 crate 的 `Cargo.toml` (不一定在根目录 - 例如，指定工作区的成员名称并将 `git` 设置为包含工作区的仓库)。
 {==+==}
 
 
@@ -329,8 +330,9 @@ You can combine the `git` key with the `rev`, `tag`, or `branch` keys to
 specify something else. Here's an example of specifying that you want to use
 the latest commit on a branch named `next`:
 {==+==}
-因为没有指定其他信息， Cargo 会假设使用该仓库主分支的最新提交。
-也可以在 `git` 字段后加上 `rev` 、 `tag` 或 `branch` 字段，来指定想要的提交。下面是一个指定 `next` 分支上最新提交的例子:
+由于我们没有指定其他信息，Cargo 假定我们打算使用最新的提交来构建我们的包。
+您可以将 `git` 键与 `rev`、`tag` 或 `branch` 键组合，以指定其他内容。
+下面是一个示例，指定您要使用名为 `next` 的分支上的最新提交：
 {==+==}
 
 
@@ -352,10 +354,8 @@ varies by where the repo is hosted; GitHub in particular exposes a reference to
 the most recent commit of every pull request as shown, but other git hosts often
 provide something equivalent, possibly under a different naming scheme.
 {==+==}
-如果想要指定的依赖版本不是某个分支或标签，那么用 `rev` 来指定。
-`rev` 字段可以是 `rev = "4c59b707"` 这样的提交 hash ，也可以是 `rev = "refs/pull/493/head"` 这样的名称。
-哪些引用是合法的取决于这个 git 仓库具体的管理方式。
-Github 公开每个 pull requeset 最新提交的引用，其他 git 组织一般也提供类似的信息，只是可能有不同的命名规则。
+任何不是分支或标签的都属于 `rev` 。这可以是类似于 `rev="4c59b707"` 的提交哈希，或者是由远程仓库公开的命名引用，例如 `rev="refs/pull/493/head"` 。
+可用的引用因仓库托管的位置而异；特别是 GitHub 会显示每个拉取请求的最新提交的引用，但其他 git 主机通常提供类似的东西，可能使用不同的命名方案。
 {==+==}
 
 
@@ -365,15 +365,15 @@ latest commit at the time. New commits will not be pulled down automatically
 once the lock is in place. However, they can be pulled down manually with
 `cargo update`.
 {==+==}
-一旦添加某个 `git` 依赖， Cargo 会立即锁定到该依赖最新的提交。
-之后即使有新的提交， Cargo 也不会自动拉取。可以通过 `cargo update` 命令来手动拉取。
+一旦添加了一个 `git` 依赖，Cargo 将锁定该依赖到在该时间的最新提交。
+一旦锁定，新的提交将不会自动拉取。但是，可以使用 `cargo update` 命令手动拉取。
 {==+==}
 
 
 {==+==}
 See [Git Authentication] for help with git authentication for private repos.
 {==+==}
-对于私有仓库的身份验证，参考 [Git 身份验证][Git Authentication] 。
+参见 [Git 身份验证][Git Authentication] ，了解如何为私有仓库进行 Git 身份验证。
 {==+==}
 
 
@@ -382,7 +382,7 @@ See [Git Authentication] for help with git authentication for private repos.
 > dependencies (`git` [dev-dependencies] are ignored). See the [Multiple
 > locations](#multiple-locations) section for a fallback alternative.
 {==+==}
-> **注意**: [crates.io] 发布的包不允许带有 `git` 依赖 ( `git` [dev-dependencies] 除外) 。关于备用方案，参考 [Multiple locations](#multiple-locations)。
+> **注意**: [crates.io] 不允许在发布包时使用 `git` 依赖 ( `git` [dev-dependencies] 被忽略) 。请参见 [多个位置](#multiple-locations) 部分以获取回退的替代方案。
 {==+==}
 
 
@@ -407,9 +407,10 @@ split out a separate crate for others to use. To do this Cargo supports **path
 dependencies** which are typically sub-crates that live within one repository.
 Let’s start off by making a new crate inside of our `hello_world` package:
 {==+==}
-经过一段时间， [指南](../guide/index.md) 中的 `hello_world` 包内容增多了。可能需要把其中一部分拆出来。
-Cargo 为此提供了指定路径依赖的功能，常见的情况是一个 git 仓库中有很多个子 crate 。
-首先在 `hello_world` 项目里面创建一个新的 crate :
+随着时间的推移，我们的 [指南](../guide/index.md) 中的 `hello_world` 包变得越来越庞大！
+现在，我们可能想要将其拆分为一个独立的包供其他人使用。
+为此，Cargo 支持路径依赖，它们通常是位于同一个仓库中的子 crate 。
+让我们首先在 `hello_world` 包中创建一个新的 crate ：
 {==+==}
 
 
@@ -431,8 +432,8 @@ This will create a new folder `hello_utils` inside of which a `Cargo.toml` and
 `src` folder are ready to be configured. In order to tell Cargo about this, open
 up `hello_world/Cargo.toml` and add `hello_utils` to your dependencies:
 {==+==}
-这将创建新的 `hello_utils` 文件夹，其中已经设置好了 `Cargo.toml` 和 `src` 文件夹。
-为了让 Cargo 知道新 crate 的存在，需要在 `hello_world/Cargo.toml` 中将 `hello_utils` 添加为依赖:
+这将在 `hello_world` 包内创建一个名为 `hello_utils` 的新文件夹，其中包含一个 `Cargo.toml` 文件和一个 `src` 文件夹，可以进行配置。
+为了让 Cargo 知道这个新的 crate，打开 `hello_world/Cargo.toml` 并将 `hello_utils` 添加到依赖项中：
 {==+==}
 
 
@@ -450,7 +451,7 @@ hello_utils = { path = "hello_utils" }
 This tells Cargo that we depend on a crate called `hello_utils` which is found
 in the `hello_utils` folder (relative to the `Cargo.toml` it’s written in).
 {==+==}
-这会告诉 Cargo 依赖了一个名为 `hello_utils` 的 crate ，在 `hello_utils` 文件夹中 (相对于 `Cargo.toml` 的位置) 。
+这告诉 Cargo 我们依赖一个名为 `hello_utils` 的 crate，该 crate 位于 `hello_utils` 文件夹中 (相对于包含它的 `Cargo.toml` 文件的路径)。
 {==+==}
 
 
@@ -462,9 +463,9 @@ permitted on [crates.io]. If we wanted to publish our `hello_world` crate, we
 would need to publish a version of `hello_utils` to [crates.io]
 and specify its version in the dependencies line as well:
 {==+==}
-搞定！下次执行 `cargo build` 会自动构建 `hello_utils` 和它的所有依赖，其他包也可以使用这个 crate。
-但 [crates.io] 发布的包不允许以路径指定某个依赖。
-如果我们想发布 `hello_world`，就必须把 `hello_utils` 发布到 [crates.io]，然后在 `hello_word` 配置中指定依赖版本:
+这样就完成了！下一次运行 `cargo build` 命令时，Cargo 将自动构建 `hello_utils` 包及其所有依赖项，并且其他人也可以开始使用该包。
+但是，仅使用路径指定的依赖项的 crate 不允许在 [crates.io] 上发布。
+如果我们想要发布 `hello_world` crate，我们需要先将 `hello_utils` 包的一个版本发布到 [crates.io] 上，并在依赖项行中指定其版本号:
 {==+==}
 
 
@@ -483,14 +484,14 @@ hello_utils = { path = "hello_utils", version = "0.1.0" }
 > dependencies (`path` [dev-dependencies] are ignored). See the [Multiple
 > locations](#multiple-locations) section for a fallback alternative.
 {==+==}
-> **注意**: [crates.io] 不允许发布带 `path` 依赖的包( `path` [dev-dependencies] 除外)。对于备用选择，参考 [Multiple locations](#multiple-locations) 。
+> **注意**: [crates.io] 不允许包含 `path` 依赖关系的包 ( `path` [dev-dependencies] 会被忽略) 。参见 [多个位置](#multiple-locations) 章节以获得替代方案。
 {==+==}
 
 
 {==+==}
 ### Multiple locations
 {==+==}
-### 多重位置
+### 多个位置
 {==+==}
 
 
@@ -501,9 +502,9 @@ the `version` is checked against the local copy), and when published to a
 registry like [crates.io], it will use the registry version. Other
 combinations are not allowed. Examples:
 {==+==}
-可以同时指定注册中心、 `git` 或 `path` 位置的依赖。
-`git` 或 `path` 依赖适用于本地 ( `version` 会与本地副本进行对比)，
-而要发布到一个注册中心 (比如[crates.io]) 时，需要使用注册中心中的版本，不允许其他组合。例如:
+可以同时指定注册中心版本和 `git` 或 `path` 地址。
+本地将使用 `git` 或 `path` 依赖项 ( 此时 `version` 会与本地副本进行比较)，当发布到像 [crates.io] 这样的注册中心时，它将使用注册中心版本。
+不允许使用其他组合。例如：
 {==+==}
 
 
@@ -545,8 +546,9 @@ is published. This is similar to specifying an
 [override](overriding-dependencies.md), but only applies to this one
 dependency declaration.
 {==+==}
-比如这种使用场景，当你把一个库拆分成工作空间中的多个包，
-在开发阶段，可以用 `path` 指定工作空间内的本地包做为依赖，而将其发布后，就可以使用 [crates.io] 中的版本。
+这种情况的一个例子是将库拆分为同一工作空间中的多个包。
+您可以使用 `path` 依赖项指向工作空间中的本地包，在开发期间使用本地版本，然后在发布后使用 [crates.io] 版本。
+这类似于指定 [override](overriding-dependencies.md) ，但仅适用于这个依赖声明。
 {==+==}
 
 
@@ -562,8 +564,8 @@ Platform-specific dependencies take the same format, but are listed under a
 syntax](../../reference/conditional-compilation.html) will be used to define
 these sections:
 {==+==}
-平台特定依赖的书写格式没什么变化，但是要列在 `target` 部分。
-通常使用与 rust 代码类似的 [`#[cfg]` 语法](../../reference/conditional-compilation.html):
+平台相关的依赖项采用相同的格式，但在 `target` 部分下进行列出。
+通常，会使用类似 Rust [`#[cfg]` 语法](../../reference/conditional-compilation.html) 来定义这些部分：
 {==+==}
 
 
@@ -590,7 +592,7 @@ native-x86_64 = { path = "native/x86_64" }
 Like with Rust, the syntax here supports the `not`, `any`, and `all` operators
 to combine various cfg name/value pairs.
 {==+==}
-如同rust代码一样，语法支持 `not`、`any` 和 `all` 操作符，从而组合不同的 cfg 键值对。
+和 Rust 一样，这里的语法支持 `not`、`any` 和 `all` 操作符来组合各种 cfg 名称/值对。
 {==+==}
 
 
@@ -600,8 +602,8 @@ If you want to know which cfg targets are available on your platform, run
 targets are available for another platform, such as 64-bit Windows,
 run `rustc --print=cfg --target=x86_64-pc-windows-msvc`.
 {==+==}
-如果你想知道自己的平台支持哪些 cfg 目标，可以运行 `rustc --print=cfg` 来获取。
-如果你想知道其他平台可用的 cfg目标，可以使用 `rustc --print=cfg --target=x86_64-pc-windows-msvc`。
+如果你想知道你的平台上有哪些 cfg target，可以在命令行中运行 `rustc --print=cfg` 。
+如果你想知道另一个平台上有哪些 `cfg` target，比如 64 位 Windows ，请运行 `rustc --print=cfg --target=x86_64-pc-windows-msvc` 。
 {==+==}
 
 
@@ -611,7 +613,7 @@ Unlike in your Rust source code, you cannot use
 based on optional features. Use [the `[features]` section](features.md)
 instead:
 {==+==}
-与 rust 代码不同，你不能使用 `[target.'cfg(feature = "fancy-feature")'.dependencies]` 根据特性指定依赖，而应该使用 [features](features.md)。
+与您的 Rust 源代码不同，您不能使用 `[target.'cfg(feature = "fancy-feature")'.dependencies]` 基于可选特性来添加依赖项。请改用 [features](features.md) 部分：
 {==+==}
 
 
@@ -635,8 +637,8 @@ These values will not work as expected and will always have the default value
 returned by `rustc --print=cfg`.
 There is currently no way to add dependencies based on these configuration values.
 {==+==}
- `cfg(debug_assertions)` ， `cfg(test)` 和 `cfg(proc_macro)` 也是同样的，这些值不生效。
- 总是有 `rustc --print=cfg` 返回的默认值。目前，无法根据这些设置添加依赖。
+这同样适用于 `cfg(debug_assertions)`、`cfg(test)` 和 `cfg(proc_macro)`。
+这些值不能按预期工作，它们始终返回 `rustc --print=cfg` 返回的默认值。目前还没有办法基于这些配置值添加依赖。
 {==+==}
 
 
@@ -644,7 +646,7 @@ There is currently no way to add dependencies based on these configuration value
 In addition to `#[cfg]` syntax, Cargo also supports listing out the full target
 the dependencies would apply to:
 {==+==}
-除 `#[cfg]` 标志，Cargo支持直接写出 target 全名来指定依赖:
+除了 `#[cfg]` 语法之外，Cargo 还支持列出完整的目标，以适用于依赖项：
 {==+==}
 
 
@@ -673,7 +675,7 @@ openssl = "1.0.1"
 If you’re using a custom target specification (such as `--target
 foo/bar.json`), use the base filename without the `.json` extension:
 {==+==}
-如果使用自定义构建目标 (比如 `--target foo/bar.json` )，使用不含 `.json` 后缀的文件名:
+如果您正在使用自定义目标规范 (例如 `--target foo/bar.json` )，请使用不带 `.json` 扩展名的基本文件名：
 {==+==}
 
 
@@ -694,7 +696,7 @@ native = { path = "native/i686" }
 {==+==}
 > **Note**: Custom target specifications are not usable on the stable channel.
 {==+==}
-> **注意**: 在稳定版不支持自定义目标依赖。
+> **注意**: 自定义目标规范在稳定通道上不可用。
 {==+==}
 
 {==+==}
@@ -707,7 +709,7 @@ native = { path = "native/i686" }
 You can add a `[dev-dependencies]` section to your `Cargo.toml` whose format
 is equivalent to `[dependencies]`:
 {==+==}
-你可以在 `Cargo.toml` 中添加 `[dev-dependencies]` ，格式与 `[dependencies]` 一致:
+你可以在 `Cargo.toml` 中添加一个 `[dev-dependencies]` 部分，其格式与 `[dependencies]` 相同：
 {==+==}
 
 
@@ -726,7 +728,7 @@ Dev-dependencies are not used when compiling
 a package for building, but are used for compiling tests, examples, and
 benchmarks.
 {==+==}
-在构建包时不会使用开发依赖，而是用在编译测试、实例和性能测试。
+dev-dependencies 是用于编译测试、实例和基准的，而不是编译构建包时使用的。
 {==+==}
 
 
@@ -734,7 +736,7 @@ benchmarks.
 These dependencies are *not* propagated to other packages which depend on this
 package.
 {==+==}
-这些依赖 *不会* 传播给依赖此包的那些包。
+这些依赖关系 *不会* 传递给依赖于该包的其他包。
 {==+==}
 
 
@@ -743,7 +745,7 @@ You can also have target-specific development dependencies by using
 `dev-dependencies` in the target section header instead of `dependencies`. For
 example:
 {==+==}
-你也可以为特定目标指定开发依赖，只需要把 `dependencies` 换成 `dev-denpendencies` 。
+您也可以在目标特定的开发依赖项中使用 `dev-dependencies` 代替 `dependencies`。例如：
 {==+==}
 
 
@@ -764,8 +766,8 @@ mio = "0.0.1"
 > packagers) may want to run tests within a crate, so providing a `version` if
 > possible can still be beneficial.
 {==+==}
-> **注意**: 当发布包时，只有那些以 `version` 指定的开发依赖才会包含在发布的包中。
-大部分情况下，包发布后就不需要开发依赖了，但是也有一些使用者 (比如操作系统包) 希望在 crate 中运行一些测试，所以给开发依赖提供一个 `version` 也将有所益处。
+> **注意**: 当一个包被发布时，只有指定了 `version` 的开发依赖才会被包含在发布的 crate 中。
+> 对于大多数用例，发布时不需要开发依赖，但某些用户 (如操作系统打包者) 可能希望在 crate 中运行测试，因此如果可能的话，提供一个 `version` 仍然是有益的。
 {==+==}
 
 
@@ -781,7 +783,8 @@ You can depend on other Cargo-based crates for use in your build scripts.
 Dependencies are declared through the `build-dependencies` section of the
 manifest:
 {==+==}
-你可以在构建脚本中使用其他基于 cargo 的 crate 。在配置清单中指定 `build-dependencies` 来声明依赖。
+你可以依赖其他基于 Cargo 的 crate 用于在你的构建脚本中使用。
+通过 `build-dependencies` 部分在 manifest 中声明依赖：
 {==+==}
 
 
@@ -800,7 +803,8 @@ You can also have target-specific build dependencies by using
 `build-dependencies` in the target section header instead of `dependencies`. For
 example:
 {==+==}
-你也可以为特定目标指定构建依赖，只需将 `dependencies` 替换为 `build-dependencies` 。例如:
+这些依赖项只在执行构建脚本时才会被使用，而不会在编译你的 Rust 代码时使用。
+你可以使用与 `dev-dependencies` 相同的方式声明目标特定的构建依赖。例如：
 {==+==}
 
 
@@ -818,7 +822,7 @@ cc = "1.0.3"
 In this case, the dependency will only be built when the host platform matches the
 specified target.
 {==+==}
-这样，只有当主机平台满足指定目标要求时，才会构建相关依赖。
+在这种情况下，只有在主机平台与指定的目标匹配时才会构建依赖项。
 {==+==}
 
 
@@ -831,10 +835,10 @@ itself and its build script are built separately, so their
 dependencies need not coincide. Cargo is kept simpler and cleaner by
 using independent dependencies for independent purposes.
 {==+==}
-构建脚本无法使用 `dependencies` 和 `dev-dependencies` 中列出的依赖。
-同样的，包也无法使用构建脚本的依赖 (`build-dependencies`) 。
-包和它的构建脚本是各自分开编译的，因而包和脚本的依赖不需要相同。
-Cargo 不同目的使用各自不同的依赖，以保持包的洁净。
+构建脚本没有访问 `dependencies` 或 `dev-dependencies` 中列出的依赖项。
+同样，除非在 `dependencies` 部分中列出，否则构建依赖项也不会对包本身可用。
+包本身和其构建脚本是分别构建的，因此它们的依赖项不必一致。
+对于独立的目的使用独立的依赖，使用独立的依赖可以使 Cargo 更简单、更清洁。
 {==+==}
 
 
@@ -849,7 +853,7 @@ Cargo 不同目的使用各自不同的依赖，以保持包的洁净。
 If a package you depend on offers conditional features, you can
 specify which to use:
 {==+==}
-如果你依赖的包提供了可选的特性 (feature) ，可以选择使用:
+如果你依赖的包提供了条件特性，你可以指定使用哪些特性：
 {==+==}
 
 
@@ -876,7 +880,7 @@ features = ["secure-password", "civet"]
 More information about features can be found in the [features
 chapter](features.md#dependency-features).
 {==+==}
-关于特性的更多信息，参考 [features chapter](features.md#dependency-features) 特性一节。
+更多关于特性的信息可以在 [特性章节][features chapter](features.md#dependency-features) 中找到。
 {==+==}
 
 
@@ -894,8 +898,8 @@ code. For some projects, though, you may wish to reference the crate with a
 different name in the code regardless of how it's published on crates.io. For
 example you may wish to:
 {==+==}
-当你在 `Cargo.toml` 中添加 `[dependencies]` 时，依赖名称就是导入代码的 crate 名称。
-但在某些项目中，可能想要用另一个名称来引用这个 crate ，而不是它在 crates.io 上的名称。比如，你想:
+在 `Cargo.toml` 中编写 `[dependencies]` 部分时，你为一个依赖写的键通常与你在代码中导入的 crate 的名称相匹配。
+但是对于某些项目，你可能希望不管 crate 在 crates.io 上如何发布，在代码中都用不同的名称引用它。例如，你可能希望：
 {==+==}
 
 
@@ -904,9 +908,9 @@ example you may wish to:
 * Depend on multiple versions of a crate.
 * Depend on crates with the same name from different registries.
 {==+==}
-* 避免在代码中使用 `use foo as bar`。
-* 同时使用某个 crate 的多个版本。
-* 依赖不同注册中心同名的包。
+* 避免在 Rust 源代码中需要 `use foo as bar`。
+* 依赖于多个版本的 crate。
+* 从不同的注册中心中依赖于具有相同名称的 crate。
 {==+==}
 
 
@@ -914,7 +918,7 @@ example you may wish to:
 To support this Cargo supports a `package` key in the `[dependencies]` section
 of which package should be depended on:
 {==+==}
-Cargo 通过在 `[dependencies]` 加入`package` 字段来实现此功能。
+为了支持这一点， Cargo 在 `[dependencies]` 部分支持一个 `package` 键，指定应该依赖哪个包：
 {==+==}
 
 
@@ -937,7 +941,7 @@ baz = { version = "0.1", registry = "custom", package = "foo" }
 {==+==}
 In this example, three crates are now available in your Rust code:
 {==+==}
-在这个例子中，这三个 crate 都在代码中可用:
+在这个例子中，你的 Rust 代码中现在有三个 crate 可用：
 {==+==}
 
 
@@ -959,15 +963,15 @@ we want the `foo` package even though we're calling it something else locally.
 The `package` key, if not specified, defaults to the name of the dependency
 being requested.
 {==+==}
-这三个crate在自身的 `Cargo.toml` 里都名为 `foo` ，用 `package` 来可以声明想要的那个 `foo` 包，在本地用另一个别名。
-如果没有指定 `package` ，则认为包的名称与依赖名称一致。
+这三个 crate 在它们各自的 `Cargo.toml` 文件中都有 `foo` 作为包名，所以我们使用 `package` 键明确告诉 Cargo 我们希望使用 `foo` 包，即使我们在本地使用不同的名称。
+如果没有指定 `package` 键，则默认使用请求的依赖项名称。
 {==+==}
 
 
 {==+==}
 Note that if you have an optional dependency like:
 {==+==}
-注意，如果你有一个可选依赖:
+请注意，如果您有一个可选依赖项，例如：
 {==+==}
 
 
@@ -986,8 +990,8 @@ you're depending on the crate `foo` from crates.io, but your crate has a `bar`
 feature instead of a `foo` feature. That is, names of features take after the
 name of the dependency, not the package name, when renamed.
 {==+==}
-你依赖的是 crates.io 上的 `foo` 包，但是，需要指定的是 `bar` 的特性，而不是 `foo` 的特性。
-即，如果你给一个依赖改了名，需要使用新的名称，而不是原本的名称。
+如果你的 crate 有一个 `bar` 特性而不是 `foo` 特性，那么虽然你从 crates.io 依赖的是 `foo` crate，但仍可以在 Cargo.toml 文件中将其重命名为 `bar`。
+也就是说，在重命名时，特性的名称采用依赖的名称，而不是包名称。
 {==+==}
 
 
@@ -995,7 +999,7 @@ name of the dependency, not the package name, when renamed.
 Enabling transitive dependencies works similarly, for example we could add the
 following to the above manifest:
 {==+==}
-依赖传递也是如此。比如，可以把下面的条目加入配置清单:
+启用传递依赖的方法类似，例如我们可以将以下内容添加到上述清单中：
 {==+==}
 
 
@@ -1023,8 +1027,8 @@ Dependencies can be inherited from a workspace by specifying the
 dependency in the workspace's [`[workspace.dependencies]`][workspace.dependencies] table.
 After that, add it to the `[dependencies]` table with `workspace = true`.
 {==+==}
-可以在工作空间的 [`[workspace.dependencies]`][workspace.dependencies] 字段指定依赖，
-然后在 crate 的 `[dependencies]` 中添加 `workspace = true` 就可以继承这个依赖。
+可以通过在工作空间的 [`[workspace.dependencies]`][workspace.dependencies] 表中指定依赖继承自工作空间。
+然后，在 `[dependencies]` 表中添加 `workspace = true`。
 {==+==}
 
 
@@ -1043,7 +1047,7 @@ Along with the `workspace` key, dependencies can also include these keys:
 Other than `optional` and `features`, inherited dependencies cannot use any other
 dependency key (such as `version` or `default-features`).
 {==+==}
-在 `optional` 和 `features` 之外，继承依赖不允许使用任何其他字段 (比如 `version` 或 `default-features`) 。
+除了 `optional` 和 `features` 之外，继承的依赖不能使用任何其他的依赖键 (例如 `version` 或 `default-features` )。
 {==+==}
 
 
