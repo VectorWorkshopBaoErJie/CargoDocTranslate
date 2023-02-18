@@ -277,7 +277,7 @@ some-crate = { version = "1.0", registry = "my-registry" }
 > **Note**: [crates.io] does not allow packages to be published with
 > dependencies on other registries.
 {==+==}
->  **注意**: [crates.io] 不允许发布依赖其他注册中心的包。
+> **注意**: [crates.io] 不允许发布依赖其他注册中心的包。
 {==+==}
 
 
@@ -319,7 +319,7 @@ Cargo will fetch the `git` repository at this location then look for a
 (not necessarily at the root - for example, specifying a member crate name
 of a workspace and setting `git` to the repository containing the workspace).
 {==+==}
-Cargo 将在此位置获取 `git` 仓库，然后在仓库内查找所请求的 crate 的 `Cargo.toml` (不一定在根目录 - 例如，指定工作区的成员名称并将 `git` 设置为包含工作区的仓库)。
+Cargo 将在此位置获取 `git` 仓库，然后在仓库内查找所请求的 crate 的 `Cargo.toml` (不一定在根目录 - 例如，指定工作区的成员名称并将 `git` 设置为包含工作空间的仓库)。
 {==+==}
 
 
