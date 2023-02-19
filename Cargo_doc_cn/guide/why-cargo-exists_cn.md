@@ -17,8 +17,8 @@ In Rust, as you may know, a library or executable program is called a
 is that of the venerable “hello world” program, which they compile by invoking
 `rustc` directly:
 {==+==}
-在 Rust 中，库或可执行程序被称为 [*crate*][def-crate] 。可以使用 Rust 编译器 `rustc` 编译 Crate 。
-刚开始学习 Rust 时，经典的 "hello world" 程序，可以通过 `rustc` 直接编译:
+在 Rust 中，库或可执行程序被称为 [*crate*][def-crate] 。使用 Rust 编译器 `rustc` 编译 crate  。
+当开始使用 Rust 时，大多数人遇到的第一份源代码是经典的 "hello world" 程序，可以通过直接调用 `rustc` 进行编译。
 {==+==}
 
 
@@ -40,9 +40,8 @@ a different command line invocation would be required. If we needed to specify
 any specific compiler flags or include external dependencies, then the
 needed command would be even more specific (and elaborate).
 {==+==}
-请注意，上面的命令需要显式指定文件名。
-如果直接使用 `rustc` 来编译不同的程序，那么不同的文件就需要执行不同的命令。
-如果需要指定编译选项或包含的外部依赖，执行的命令就需要十分具体详尽。
+注意，上述命令需要我们明确指定文件名。如果我们直接使用 `rustc` 编译不同的程序，则需要不同的命令行调用。
+如果我们需要指定任何特定的编译器标志或包含外部依赖项，则所需的命令将需要十分具体和详尽。
 {==+==}
 
 
@@ -53,8 +52,8 @@ dependencies. Obtaining the correct versions of all the necessary dependencies
 and keeping them up to date would be laborious and error-prone if done by
 hand.
 {==+==}
-而且，大多数程序会有额外的外部依赖，这些外部依赖又会有其他依赖。
-此时手动维护必要依赖的正确版本，并协调依赖版本的更新会很困难。
+此外，大多数复杂的程序可能会依赖外部库，这些外部依赖又会有其他依赖。
+此时手动完成获取所有必要依赖的正确版本并使它们保持最新，将十分费力且容易出错。
 {==+==}
 
 
@@ -64,8 +63,7 @@ involved with performing the above tasks by introducing a higher-level
 ["*package*"][def-package] abstraction and by using a
 [*package manager*][def-package-manager].
 {==+==}
-引入了 ["*包(package)*"][def-package] 这一更高层的抽象。
-并使用 [*包管理器*][def-package-manager] ，避免了直接跟 crate 和 `rustc` 手动乏味的交互。
+Rust 中，我们可以引入更高级别的 ["*包(package)*"][def-package] 抽象和使用 [包管理器][def-package-manager] ，避免需要手动执行上述任务的繁琐过程。
 {==+==}
 
 
@@ -81,13 +79,13 @@ involved with performing the above tasks by introducing a higher-level
 [*packages*][def-package] to declare their various dependencies and ensure
 that you’ll always get a repeatable build.
 {==+==}
-*Cargo* 是 Rust 的包管理器。它是工具，允许 Rust [*packages*][def-package] 声明其各种依赖关系，确保总是能得到一个可重复的构建。
+*Cargo* 是 Rust 的包管理器。它是工具，允许 Rust [*packages*][def-package] 声明它们的各种依赖项，并确保您始终可以获得可重复的构建。
 {==+==}
 
 {==+==}
 To accomplish this goal, Cargo does four things:
 {==+==}
-Cargo 做了以下四件事来实现这个目标:
+为了实现这一目标，Cargo 执行以下四个操作:
 {==+==}
 
 {==+==}
@@ -97,10 +95,10 @@ Cargo 做了以下四件事来实现这个目标:
   your package.
 * Introduces conventions to make working with Rust packages easier.
 {==+==}
-* 引进两个文件，包含包的各类元数据信息。
-* 下载并构建包的依赖。
+* 引入两个元数据文件，包含有关包的各种信息。
+* 获取和构建包的依赖项。
 * 调用 `rustc` 或其他构建工具及正确的参数来构建包。
-* 通过规范使 Rust 包的操作更简洁。
+* 通过规范使 Rust 包的操作更简洁
 {==+==}
 
 {==+==}
@@ -114,17 +112,17 @@ invocation. Furthermore, Cargo will automatically fetch from a
 [*registry*][def-registry] any dependencies we have defined for our artifact,
 and arrange for them to be incorporated into our build as needed.
 {==+==}
-作为上述规范的一个方面， Cargo 有很标准的构建程序或包的命令。
-从下文中可以看到，相同的命令可以构建名称不同的 [*artifacts*][def-artifact] "制品"。
-相比直接调用 `rustc` ，可以调用 `cargo build` 等更加通用的命令，让 cargo 去调用 `rustc` 去正确构建。
-并且，Cargo 可以自动从 [*registry*][def-registry] "注册中心" 下载依赖，并将依赖合并到构建中。
+正如所述，Cargo 的目标之一是将构建 Rust 程序或库所需的命令规范化，这是上述惯例的一个方面。
+如稍后所示，相同的命令可以用于构建不同的 [制品][def-artifact] ，而不管它们的名称如何。
+与直接调用 `rustc` 不同，我们可以调用像 `cargo build` 这样的通用工具，让 Cargo 负责构建正确的 `rustc` 调用。
+此外，Cargo 将自动从 [*registry*][def-registry] "注册中心" 中获取我们为制品定义的任何依赖，并安排将它们按需要合并到我们的构建中。
 {==+==}
 
 {==+==}
 It is only a slight exaggeration to say that once you know how to build one
 Cargo-based project, you know how to build *all* of them.
 {==+==}
-夸张一点说，一旦你学会使用 Cargo 就可以构建 *所有* 项目。
+可以说，你一旦学会使用 Cargo 就可以构建 *所有* 项目。
 {==+==}
 
 {==+==}

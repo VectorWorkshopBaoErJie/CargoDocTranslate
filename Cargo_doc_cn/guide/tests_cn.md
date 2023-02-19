@@ -11,15 +11,18 @@ Tests in your `src` files should be unit tests and [documentation tests].
 Tests in `tests/` should be integration-style tests. As such, you’ll need to
 import your crates into the files in `tests`.
 {==+==}
-可以使用 `cargo test` 命令来运行测试。Cargo 在两个地方查找测试内容： 1. `src` 中的每个文件；2. `test` 目录中的测试条目。
-`src` 中的测试是单元测试和文档测试([documentation tests])。 `tests` 中的测试是集成测试， `tests` 中的文件需要导入 crate 。
+Cargo 可以通过 `cargo test` 命令运行您的测试。
+Cargo 在两个地方寻找测试来运行：您的 `src` 文件中的每个测试和 `tests/` 目录中的任何测试。
+`src` 文件中的测试应该是单元测试和 [文档测试][documentation tests] 。`tests/` 中的测试应该是集成测试。
+因此，您需要将您的 crate 导入到 `tests` 文件中。
 {==+==}
+
 
 {==+==}
 Here's an example of running `cargo test` in our [package][def-package], which
 currently has no tests:
 {==+==}
-下面的例子，对 [package][def-package] 执行了 `cargo test` ，目前这个包里还没有任何测试项。
+以下是对应包中执行 `cargo test` 的例子，这个包目前还没有测试项:
 {==+==}
 
 {==+==}
@@ -42,7 +45,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 If our package had tests, we would see more output with the correct number of
 tests.
 {==+==}
-如果包中有测试项，就可以看到更多输出内容。
+如果包含有测试项，将会看到更多的输出，其中包含测试正确的数量。
 {==+==}
 
 
@@ -77,8 +80,9 @@ Please see the [testing guide][testing] in the Rust documentation for a general
 view of writing and organizing tests. See [Cargo Targets: Tests] to learn more
 about different styles of tests in Cargo.
 {==+==}
-`cargo test` 将进行额外的检查 。 Cargo 会编译每个示例，确保它们可以通过编译。同时也会运行文档测试来确保文档中的代码样例可以通过编译。
-Rust文档中的 [testing guide][testing] 部分可以获得更多关于开展测试的知识。 [Cargo Targets: Tests] 中可以获得 Cargo 中更多不同的测试模式。
+`cargo test` 不仅运行单元测试和集成测试，还会执行其他检查。它将编译您包含的示例，以确保它们能够通过编译。
+它还运行文档测试，以确保文档注释中的代码示例可以编译。请查看 Rust 文档中的 [测试指南][testing] 了解编写和组织测试的相关内容。
+请查看 [Cargo Targets: Tests] 了解 Cargo 中不同测试样式的更多信息。
 {==+==}
 
 

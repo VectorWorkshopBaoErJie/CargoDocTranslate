@@ -8,14 +8,14 @@
 If you download an existing [package][def-package] that uses Cargo, it’s
 really easy to get going.
 {==+==}
-通过 Cargo 下载已存在的 [package][def-package] 并使用，非常简单。
+如果你下载了一个已经使用 Cargo 管理的 [包][def-package] ，那么开始使用它会非常简单。
 {==+==}
 
 {==+==}
 First, get the package from somewhere. In this example, we’ll use `regex`
 cloned from its repository on GitHub:
 {==+==}
-首先，获取包。比如从 GitHub 克隆 `regex` 包。
+首先，从某个地方获取包。在这个示例中，我们将使用从其 GitHub 存储库克隆的 `regex` 。
 {==+==}
 
 {==+==}
@@ -46,7 +46,7 @@ $ cargo build
 This will fetch all of the dependencies and then build them, along with the
 package.
 {==+==}
-这将获取包所有的依赖，然后构建依赖和包。
+这将获取所有依赖项，然后与包一起构建。
 {==+==}
 
 {==+==}

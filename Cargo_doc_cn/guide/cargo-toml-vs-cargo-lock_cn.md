@@ -8,7 +8,7 @@
 `Cargo.toml` and `Cargo.lock` serve two different purposes. Before we talk
 about them, here’s a summary:
 {==+==}
-`Cargo.toml` 和 `Cargo.lock` 具有不同的用途。在谈论之前，这里先概况一下：
+`Cargo.toml` 和 `Cargo.lock` 具有不同的用途。在谈论它们之前，这里是一个简要总结:
 {==+==}
 
 {==+==}
@@ -17,8 +17,8 @@ about them, here’s a summary:
 * `Cargo.lock` contains exact information about your dependencies. It is
   maintained by Cargo and should not be manually edited.
 {==+==}
-* `Cargo.toml` 用于宽泛地描述包的依赖，这个文件是由开发者来写。
-* `Cargo.lock` 包含依赖更多确切的信息。这个文件是由 Cargo 维护，不应手动编辑。
+* `Cargo.toml` 是关于广义依赖的描述，由开发者编写。
+* `Cargo.lock` 包含有关依赖项的确切信息。它由 Cargo 维护，不应手动编辑。
 {==+==}
 
 
@@ -32,17 +32,16 @@ about why that is, see
 ["Why do binaries have `Cargo.lock` in version control, but not libraries?" in the
 FAQ](../faq.md#why-do-binaries-have-cargolock-in-version-control-but-not-libraries).
 {==+==}
-如果你构建的是一个非末端产品，比如一个其他 rust [packages][def-package] 会依赖的库，那么把 `Cargo.lock` 放进 `.gitignore` 即忽略 Cargo.lock 文件。
-如果你构建是一个末端产品，比如像命令行工具或桌面应用，这样的可执行程序，或者是一个系统库 ( crate-type 为 `staticlib` 或 `cdylib` ) ，
-那么就应该将 `Cargo.lock` 加入 git。想了解为什么要这样做，
-参考 [FAQ中的"为什么binary的版本控制中有 `Cargo.lock` ， library 却没有？"](../faq.md#why-do-binaries-have-cargolock-in-version-control-but-not-libraries) 一节。
+如果您正在构建一个非终端产品 (例如，其他 Rust 包将依赖的 Rust 库) ，请将 `Cargo.lock` 放入 `.gitignore` 文件中。
+如果您正在构建一个终端产品 (如命令行工具或应用程序)，或者一个 `staticlib` 或 `cdylib` crate 类型的系统库，则将 `Cargo.lock` 提交到 git 中。
+如果您想知道原因，可以参考 [FAQ 中的 "为什么二进制文件在版本控制中有 `Cargo.lock` ，而库没有？"](../faq.md#why-do-binaries-have-cargolock-in-version-control-but-not-libraries)。
 {==+==}
 
 
 {==+==}
 Let’s dig in a little bit more.
 {==+==}
-让我们更进一步。
+让我们深入了解一下。
 {==+==}
 
 
@@ -51,7 +50,7 @@ Let’s dig in a little bit more.
 bunch of different metadata about our package. For example, we can say that we
 depend on another package:
 {==+==}
-`Cargo.toml` 是 [**manifest**][def-manifest] "配置清单"文件，其中包含了一系列该包的元数据。比如，可以声明包的依赖:
+`Cargo.toml` 是一个 [配置清单][def-manifest] 文件，我们可以在其中指定包的许多不同元数据。例如，我们可以声明依赖于另一个包。
 {==+==}
 
 
@@ -62,7 +61,7 @@ GitHub. Since we haven’t specified any other information, Cargo assumes that
 we intend to use the latest commit on the `master` branch to build our package.
 {==+==}
 在本节例子中，包依赖单独的 `regex` 库，声明为一个 github 上的仓库。
-如果没有提供更多信息，Cargo 会假定使用该仓库 `master` 分支的最新 commit "提交"来构建包。
+由于我们没有指定其他信息，Cargo 假定我们打算使用 `master` 分支上的最新提交来构建。
 {==+==}
 
 
@@ -73,10 +72,9 @@ could happen. There could be more commits to `regex` in the meantime, and my
 build would include new commits while yours would not. Therefore, we would
 get different builds. This would be bad because we want reproducible builds.
 {==+==}
-似乎不错！但有一个问题：
-如果你今天构建了这个包，然后把代码复制一份发给了我，然后我第二天才去构建这个包，这时就可能有坏事发生。
-在这期间，`regex` 库可能产生了更多的 commit ，而这些 commit 内容在你的构建中没有。
-因此，构建会得到不同的结果，这一般很糟糕，因为重复构建结果应总是希望一致的。
+似乎不错！但是有一个问题：如果你今天构建这个包，然后你将它发送给我，我明天构建这个包，就会发生一些不好的事情。
+在此期间可能会有更多的提交到 `regex` ，而我的构建将包含新提交，而你的构建则不会。
+因此，我们会得到不同的构建结果。这很糟糕，因为我们想要可重复构建的结果。
 {==+==}
 
 
@@ -84,7 +82,7 @@ get different builds. This would be bad because we want reproducible builds.
 We could fix this problem by defining a specific `rev` value in our `Cargo.toml`,
 so Cargo could know exactly which revision to use when building the package:
 {==+==}
-可以在 `Cargo.toml` 中定义一个 `rev` 字段，这样 Cargo 就会知道构建包时应该使用哪个具体的修订版本(revision)。
+我们可以通过在 `Cargo.toml` 中定义一个特定的 `rev` 值来解决这个问题，这样 Cargo 就可以知道在构建包时使用哪个精确的修订版本:
 {==+==}
 
 
@@ -103,7 +101,7 @@ Now our builds will be the same. But there’s a big drawback: now we have to
 manually think about SHA-1s every time we want to update our library. This is
 both tedious and error prone.
 {==+==}
-现在我们两个的构建结果又一致了。但是这种方式有个很大的缺点：现在每次想更新库的时候，都必须手动来调整 SHA-1 字符串。这件事既无聊又容易出错。
+现在我们的构建将是相同的。但是有一个很大的缺点：现在我们每次更新库时都必须手动考虑SHA-1值，这既繁琐又容易出错。
 {==+==}
 
 
@@ -112,7 +110,7 @@ Enter the `Cargo.lock`. Because of its existence, we don’t need to manually
 keep track of the exact revisions: Cargo will do it for us. When we have a
 manifest like this:
 {==+==}
-于是 `Cargo.lock` 应运而生。因为它的存在，无需手动跟踪具体的修订版本。当有这样一个配置清单文件，Cargo会帮我们做这件事:
+有了 `Cargo.lock`，我们就不需要手动跟踪确切的提交版本，因为 Cargo 会替我们完成。当我们有这样一个清单时:
 {==+==}
 
 
@@ -134,7 +132,7 @@ regex = { git = "https://github.com/rust-lang/regex.git" }
 Cargo will take the latest commit and write that information out into our
 `Cargo.lock` when we build for the first time. That file will look like this:
 {==+==}
-在进行第一次构建的时候， Cargo 会获取最新的 commit 并将信息写入 `Cargo.lock` 文件。 `Cargo.lock` 的内容如下:
+当我们第一次构建时， Cargo 会获取最新的提交记录并将其写入 `Cargo.lock` 文件中。该文件看起来会像这样:
 {==+==}
 
 
@@ -163,7 +161,7 @@ revision we used to build. Now when you give your package to someone else,
 they’ll use the exact same SHA, even though we didn’t specify it in our
 `Cargo.toml`.
 {==+==}
-可以看到这个文件中有更多的信息，包括构建中使用的包的具体修订版本。现在当你把包发给其他人时，他们通过 Cargo.lock 文件拿到了完全相同的 SHA ， 无需在 `Cargo.toml` 中标注。
+你可以看到这里有更多的信息，包括我们用于构建的确切修订版本。现在当你把你的包交给别人时，他们将使用完全相同的SHA值，尽管我们没有在 `Cargo.toml` 中指定它。
 {==+==}
 
 
@@ -171,7 +169,7 @@ they’ll use the exact same SHA, even though we didn’t specify it in our
 When we’re ready to opt in to a new version of the library, Cargo can
 re-calculate the dependencies and update things for us:
 {==+==}
-当需要切换到库的新版本时， Cargo 可以重新计算依赖，并帮我们更新 Cargo.lock 中的 SHA 信息:
+当我们准备使用新版本的库时， Cargo 可以重新计算依赖关系并为我们自动更新相关内容:
 {==+==}
 
 
@@ -194,7 +192,7 @@ that the argument to `cargo update` is actually a
 [Package ID Specification](../reference/pkgid-spec.md) and `regex` is just a
 short specification.
 {==+==}
-这样就可以将新的版本 SHA 信息覆写进 `Cargo.lock` 。注意， `cargo update` 的参数实际上是一个 [Package ID Specification](../reference/pkgid-spec.md) "包ID规格"， `regex` 只是简写。
+这将写出一个新的 `Cargo.lock` 文件，包含新版本信息。注意，`cargo update` 命令的参数实际上是一个包ID规格，`regex` 只是简写。
 {==+==}
 
 

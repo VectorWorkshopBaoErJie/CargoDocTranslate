@@ -8,7 +8,7 @@
 Cargo uses conventions for file placement to make it easy to dive into a new
 Cargo [package][def-package]:
 {==+==}
-Cargo 有一系列文件布局的约定，从而可以简便地创建新的包:
+Cargo 使用文件约定来放置文件，以便更轻松地部署新的 Cargo 包:
 {==+==}
 
 {==+==}
@@ -102,15 +102,14 @@ files, place a `main.rs` file along with the extra [*modules*][def-module]
 within a subdirectory of the `src/bin`, `examples`, `benches`, or `tests`
 directory. The name of the executable will be the directory name.
 {==+==}
-如果一个 binary 、 example 、 bench 或 test 具有多个源文件，把 `main.rs` 和其他模块([*modules*][def-module]) 在内，
-在 ( `src/bin` 、`examples` 、`benches` 或 `tests` ) 下建立子目录，那么该子目录的名称就是可执行 crate 的名称。
+如果一个二进制文件、示例、基准测试或集成测试由多个源文件组成，把 `main.rs` 和其他模块([*modules*][def-module]) 在内，放在 `src/bin`、`examples`、`benches` 或 `tests` 目录的子目录中。可执行文件的名称将是目录名。
 {==+==}
 
 
 {==+==}
 You can learn more about Rust's module system in [the book][book-modules].
 {==+==}
-你可以在 [the book][book-modules] 中了解更多关于 Rust 模块系统的知识。
+你可以在 [the book][book-modules] 中了解有关 Rust 模块系统的更多信息。
 {==+==}
 
 
@@ -119,8 +118,8 @@ See [Configuring a target] for more details on manually configuring targets.
 See [Target auto-discovery] for more information on controlling how Cargo
 automatically infers target names.
 {==+==}
-参阅 [Configuring a target] 一节，有更多关于手动设置编译目标的细节。
-参阅 [Target auto-discovery] 一节，有更多关于控制 Cargo 如何自动推断目标名称的知识。
+更多有关手动配置目标的详细信息，请参阅 [配置目标][Configuring a target] 。
+有关控制 Cargo 如何自动推断目标名称的更多信息，请参阅 [目标自动发现][Target auto-discovery]。
 {==+==}
 
 

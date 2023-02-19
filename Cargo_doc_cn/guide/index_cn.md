@@ -8,7 +8,7 @@
 This guide will give you all that you need to know about how to use Cargo to
 develop Rust packages.
 {==+==}
-本指南提供了如何使用Cargo来开发Rust包的指导内容。
+这个指南将为您提供有关如何使用 Cargo 开发 Rust 包的所需信息。
 {==+==}
 
 {==+==}

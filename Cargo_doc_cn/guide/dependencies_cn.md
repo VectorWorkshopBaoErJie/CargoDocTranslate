@@ -10,14 +10,14 @@ that serves as a location to discover and download
 [packages][def-package]. `cargo` is configured to use it by default to find
 requested packages.
 {==+==}
-[crates.io] 是 Rust 社区主要的 [*包注册中心*][def-package-registry] 。
-是搜索和下载 [packages][def-package] 的仓库。 `cargo` 默认使用这个地址来搜索所需要的包。
+[crates.io] 是 Rust 社区的中央 [*包注册中心*][def-package-registry] ，用于查找和下载 [packages][def-package] 。
+`cargo` 默认配置使用它来查找所需的包。
 {==+==}
 
 {==+==}
 To depend on a library hosted on [crates.io], add it to your `Cargo.toml`.
 {==+==}
-可在 `Cargo.toml` 中添加 [crates.io] 上托管的库。
+要依赖托管在 [crates.io] 上的库，需将其添加到 `Cargo.toml` 文件中。
 {==+==}
 
 {==+==}
@@ -38,9 +38,8 @@ If your `Cargo.toml` doesn't already have a `[dependencies]` section, add
 that, then list the [crate][def-crate] name and version that you would like to
 use. This example adds a dependency of the `time` crate:
 {==+==}
-如果你的 `Cargo.toml` 还没有 `[dependencies]` 部分，那么添加上这个标记，
-然后在标记下方列出你需要使用的 [crate][def-crate] 的名称和版本。
-下面这个例子展示了如何添加 `time` 依赖:
+如果你的 `Cargo.toml` 文件中没有 `[dependencies]` 部分，可以添加它，然后列出你想要使用的 [crate][def-crate] 的名称和版本。
+以下示例添加了 `time` crate 作为依赖项：
 {==+==}
 
 
@@ -59,7 +58,7 @@ The version string is a [SemVer] version requirement. The [specifying
 dependencies](../reference/specifying-dependencies.md) docs have more information about
 the options you have here.
 {==+==}
-描述版本的字符串要求使用 [SemVer] "语义化版本"规范。对此 [specifying dependencies](../reference/specifying-dependencies.md) 部分有更多信息。
+版本字符串是一个 [SemVer] 版本需求。在这里， [specifying dependencies](../reference/specifying-dependencies.md)  文档有更多关于你可以使用的选项的信息。
 {==+==}
 
 
@@ -76,7 +75,7 @@ to add `[dependencies]` for each crate listed. Here's what your whole
 `Cargo.toml` file would look like with dependencies on the `time` and `regex`
 crates:
 {==+==}
-如果想添加另一个 `regex` 依赖，则不需要为每个依赖都添加 `[dependencies]` 。
+如果我们还想增加对 `regex` crate 的依赖，不需要为每个 crate 列出一个 `[dependencies]` 。
 下面是 `Cargo.toml` 文件添加 `time` 和 `regex` 依赖的范例:
 {==+==}
 
@@ -101,8 +100,7 @@ regex = "0.1.41"
 Re-run `cargo build`, and Cargo will fetch the new dependencies and all of
 their dependencies, compile them all, and update the `Cargo.lock`:
 {==+==}
-重新执行 `cargo build` 命令，Cargo 会下载新的依赖以及依赖本身所需的依赖，
-编译全部，并更新 `Cargo.lock` 文件:
+重新运行 `cargo build` ， Cargo 将会获取新的依赖及其所有的依赖，编译它们，并更新 `Cargo.lock` :
 {==+==}
 
 
@@ -133,7 +131,8 @@ $ cargo build
 Our `Cargo.lock` contains the exact information about which revision of all of
 these dependencies we used.
 {==+==}
-`Cargo.lock` 文件包含着所有依赖准确的版本信息。
+ `Cargo.lock` 文件包含了我们使用的所有依赖项的精确信息。
+ 这有助于确保用户都使用相同的依赖项版本，从而避免由于不同版本之间的不兼容性而导致的问题。
 {==+==}
 
 
@@ -141,7 +140,7 @@ these dependencies we used.
 Now, if `regex` gets updated, we will still build with the same revision until
 we choose to `cargo update`.
 {==+==}
-如果 `regex` 依赖升级了，仍然会使用当前的版本进行构建，除非手动执行 `cargo update` 命令。
+现在，如果 `regex` 更新了，我们仍将使用相同的版本，直到我们选择运行 `cargo update` 命令。
 {==+==}
 
 

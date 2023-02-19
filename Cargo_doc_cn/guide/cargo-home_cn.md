@@ -12,15 +12,16 @@ The [home](https://crates.io/crates/home) crate provides an API for getting this
 By default, the Cargo home is located in `$HOME/.cargo/`.
 {==+==}
 "Cargo home" 目录的功能是为下载项和源代码提供缓存。
-当构建 crate 时， Cargo 会将下载的构建依赖保存在 Cargo home 目录中。你可以通过设置 `CARGO_HOME` [environmental variable][env] "环境变量" 来修改 Cargo home 的位置。
-如果你需要在自己的 crate 中获取这个位置， [home](https://crates.io/crates/home) crate 提供了相关的API。
+在构建一个 [crate][def-crate] 时， Cargo 将下载的构建依赖存储在 Cargo home 中。
+可以通过设置 `CARGO_HOME` [环境变量][env] 来更改 Cargo home 的位置。
+如果需要在 Rust crate 中获取此信息，可以使用 home crate 提供的 API 。默认情况下，Cargo home 位于 `$HOME/.cargo/` 。
 {==+==}
 
 
 {==+==}
 Please note that the internal structure of the Cargo home is not stabilized and may be subject to change at any time.
 {==+==}
-注意， Cargo home 的内部结构规范还未稳定下来，可能会改变。
+请注意，Cargo home 的内部结构还未稳定，可能会有所更改。
 {==+==}
 
 
@@ -52,7 +53,7 @@ Cargo home 由以下几个部分构成:
  	Private login credentials from [`cargo login`] in order to log in to a [registry][def-registry].
 {==+==}
 * `credentials.toml`
- 	[`cargo login`] 的私有凭证，用于登陆某个 [registry][def-registry] "注册中心" 。
+ 	文件包含使用 [`cargo login`] 登录到 [registry][def-registry] 时使用的私人登录凭据。
 {==+==}
 
 {==+==}
@@ -60,7 +61,7 @@ Cargo home 由以下几个部分构成:
 	These hidden files contain [package][def-package] information of crates installed via [`cargo install`]. Do NOT edit by hand!
 {==+==}
 * `.crates.toml`, `.crates2.json`
-	这些隐藏文件包含通过 [`cargo install`] 下载的 [package][def-package] 的信息。不要手动修改这些文件！
+	这两个隐藏文件包含了使用 [`cargo install`] 安装的 crate 的信息。请注意，不要手动编辑这些文件！
 {==+==}
 
 {==+==}
@@ -75,8 +76,8 @@ The bin directory contains executables of crates that were installed via [`cargo
 To be able to make these binaries accessible, add the path of the directory to your `$PATH` environment variable.
 {==+==}
 * `bin`
-bin 目录中保存了通过 [`cargo install`] 或 [`rustup`](https://rust-lang.github.io/rustup/) 下载的可执行文件。
-方便在终端中直接使用这些二进制文件，可以把该目录添加到 `$PATH` 环境变量。
+ `bin` 目录包含通过 [`cargo install`] 或 [`rustup`](https://rust-lang.github.io/rustup/) 安装的 crate 的可执行文件。
+ 要使这些二进制文件可访问，需要将该目录的路径添加到 `$PATH` 环境变量中。
 {==+==}
 
 {==+==}
@@ -92,7 +93,7 @@ bin 目录中保存了通过 [`cargo install`] 或 [`rustup`](https://rust-lang.
 		When a crate depends on a git repository, Cargo clones the repo as a bare repo into this directory and updates it if necessary.
 {==+==}
 	* `git/db`
-		 当 crate 的依赖是 git 仓库， Cargo 会将这个仓库 clone 到该目录下作为一个裸仓库 (只有 `.git` 文件夹中的内容) ，并在必要时更新该仓库。
+		 当 crate 依赖于 Git 仓库时，Cargo 会将该仓库作为裸仓库 (只有 `.git` 文件夹中的内容) 克隆到 `git/db` 目录中，必要时还会更新该仓库。
 {==+==}
 
 
@@ -103,8 +104,7 @@ bin 目录中保存了通过 [`cargo install`] 或 [`rustup`](https://rust-lang.
 		Multiple checkouts of different commits of the same repo are possible.
 {==+==}
 	* `git/checkouts`
-		如果某个 git 源的代码被用到，实际的代码会从 `git/db` 内的仓库中 checkout 检出，保存在该目录下。
-		为编译器提供依赖指定的 *commit* 文件。从而可以检出同一个仓库的不同提交。
+		如果某个 git 源的代码被用到，实际的代码会从 `git/db` 内的仓库检出到 `git/checkouts` 目录中，提供编译器使用该依赖的指定提交所包含的实际文件。同一个仓库的不同提交可以有多个检出。
 {==+==}
 
 
@@ -113,7 +113,7 @@ bin 目录中保存了通过 [`cargo install`] 或 [`rustup`](https://rust-lang.
 	Packages and metadata of crate registries (such as [crates.io](https://crates.io/)) are located here.
 {==+==}
 * `registry`
-	crate 注册中心(比如 [crates.io](https://crates.io/) )的元数据和下载的包保存在这个文件夹中。
+	此目录存储了 crate 注册中心 (如 [crates.io](https://crates.io/) ) 的包和元数据。
 {==+==}
 
 
@@ -122,7 +122,7 @@ bin 目录中保存了通过 [`cargo install`] 或 [`rustup`](https://rust-lang.
 		The index is a bare git repository which contains the metadata (versions, dependencies etc) of all available crates of a registry.
 {==+==}
   * `registry/index`
-		index是一个裸仓库，其中包含着注册中心所有可用 crate 的元数据(版本、依赖等)。
+		是一个裸的 git 仓库，包含了某个仓库中所有可用 crate 的元数据信息，如版本、依赖等。。
 {==+==}
 
 
@@ -131,7 +131,7 @@ bin 目录中保存了通过 [`cargo install`] 或 [`rustup`](https://rust-lang.
 		Downloaded dependencies are stored in the cache. The crates are compressed gzip archives named with a `.crate` extension.
 {==+==}
   *  `registry/cache`
-		下载的依赖的源代码保存在 cache 目录中。这些 crate 被压缩为 gzip 文件，以 `.crate` 为后缀。
+		下载的依赖项存储在此缓存目录中。这些 crate 是以 `.crate` 扩展名命名压缩的 gzip 存档
 {==+==}
 
 
@@ -140,7 +140,7 @@ bin 目录中保存了通过 [`cargo install`] 或 [`rustup`](https://rust-lang.
 		If a downloaded `.crate` archive is required by a package, it is unpacked into `registry/src` folder where rustc will find the `.rs` files.
 {==+==}
   * `registry/src`
-		如果某个包需要已下载的 `.crate` 压缩文件，该文件会解压到 `registry/src` 目录，从而让 rustc 能找到相应的 `.rs` 文件。
+		用于存放从 crate 源 (如 crates.io) 下载的源代码的目录。如果依赖的 crate 不存在于本地的 Cargo cache 中，Cargo 就会从注册中心下载它的压缩包，然后将其解压到 `registry/src` 文件夹下。当 Rust 编译器需要引用这些 crate 时，会在该目录下查找相关的 `.rs` 文件。
 {==+==}
 
 
@@ -157,17 +157,17 @@ However, caching the entire directory is often inefficient as it will contain do
 If we depend on a crate such as `serde 1.0.92` and cache the entire `$CARGO_HOME` we would actually cache the sources twice, the `serde-1.0.92.crate` inside `registry/cache` and the extracted `.rs` files of serde inside `registry/src`.
 That can unnecessarily slow down the build as downloading, extracting, recompressing and reuploading the cache to the CI servers can take some time.
 {==+==}
-为避免在持续集成时重复下载所有crate依赖，你可以对 `$CARGO_HOME` 目录进行缓存。
-但是，缓存整个 Cargo home 目录往往低效，因为它会把相同的代码保存两遍。
-如果我们依赖一个crate叫做 `serde 1.0.92` 而缓存了整个 `$CARGO_HOME`，会把源代码存两遍( `registry/cache` 中的 `serde-1.0.92.crate` 以及解压到 `registry/src` 的 `.rs` 文件)。
-这会拖慢构建过程，下载、解压、压缩和重新上传 cache 到 CI 服务器都会消耗时间。
+为避免在持续集成过程中重复下载所有 crate 依赖项，您可以缓存 `$CARGO_HOME` 目录。
+但是，缓存整个目录通常效率较低，因为它将包含两个已下载的源文件。
+如果我们依赖 `serde 1.0.92` 等包并缓存整个 `$CARGO_HOME` ，实际上会在 `registry/cache` 中缓存 `serde-1.0.92.crate` 和 `registry/src` 中的 serde 提取的 `.rs` 文件两次。
+这可能会导致构建速度变慢，因为下载、提取、重新压缩并重新上传缓存到 CI 服务器可能需要一些时间。
 {==+==}
 
 
 {==+==}
 It should be sufficient to only cache the following directories across builds:
 {==+==}
-只需缓存以下的文件夹就足够了:
+以下目录缓存即可足够跨构建缓存：
 {==+==}
 
 
@@ -209,13 +209,13 @@ See the [`cargo vendor`] subcommand.
 {==+==}
 In theory, you can always remove any part of the cache and Cargo will do its best to restore sources if a crate needs them either by reextracting an archive or checking out a bare repo or by simply redownloading the sources from the web.
 {==+==}
-理论上，你可以删除 cache 的任何部分，当一个 crate 需要某些源码时， Cargo 会帮你恢复，要么是解压已有的压缩文件或从裸仓库中检出，或从网上重新下载源文件。
+理论上，你可以随时删除缓存中的任何部分，Cargo 会尽其所能恢复源代码，如果一个 crate 需要它们，Cargo 可以重新解压缩存档、检出裸仓库，或者直接从网络上重新下载源代码。
 {==+==}
 
 {==+==}
 Alternatively, the [cargo-cache](https://crates.io/crates/cargo-cache) crate provides a simple CLI tool to only clear selected parts of the cache or show sizes of its components in your command-line.
 {==+==}
-另一种方法是， [cargo-cache](https://crates.io/crates/cargo-cache) crate 提供了一个 CLI 工具来只清除 cache 中选中的部分，和显示 cache 组成部分所占用的空间大小。
+[cargo-cache](https://crates.io/crates/cargo-cache) 是一个提供了简单的命令行界面的工具，可以用来清理选定的缓存部分或者显示其组成部分的大小。
 {==+==}
 
 
