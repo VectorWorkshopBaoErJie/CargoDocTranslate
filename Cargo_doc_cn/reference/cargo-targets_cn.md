@@ -4,6 +4,7 @@
 ## Cargo 构建目标
 {==+==}
 
+
 {==+==}
 Cargo packages consist of *targets* which correspond to source files which can
 be compiled into a crate. Packages can have [library](#library),
@@ -12,16 +13,17 @@ be compiled into a crate. Packages can have [library](#library),
 `Cargo.toml` manifest, often [inferred automatically](#target-auto-discovery)
 by the [directory layout][package layout] of the source files.
 {==+==}
-Cargo 包主要在于 *构建目标* ，对应于可以编译成 crate 的源文件。
-构建目标包括 [library](#library), [binary](#binaries), [example](#examples), [test](#tests) 和 [benchmark](#benchmarks) 。
-可以在 `Cargo.toml` 配置清单中设置构建目标列表，但总是会通过源文件的 [目录结构][package layout] [自动推断](#target-auto-discovery) 。
+Cargo 包由 *目标* 组成，这些目标对应于可以编译的 crate 源文件。
+包可以拥有 [library](#library), [binary](#binaries), [example](#examples), [test](#tests) 和 [benchmark](#benchmarks) 。
+目标列表可以在 `Cargo.toml` 清单中配置，在大多数情况下会根据源文件的 [目录布局][package layout] 进行 [自动推断](#target-auto-discovery) 。
 {==+==}
+
 
 {==+==}
 See [Configuring a target](#configuring-a-target) below for details on
 configuring the settings for a target.
 {==+==}
-关于构建目标的配置，参阅下面的 [配置构建目标](#configuring-a-target) 部分。
+请参见下面的 [配置目标](#configuring-a-target) 部分以获取有关配置目标设置的详细信息。
 {==+==}
 
 {==+==}
@@ -39,8 +41,8 @@ one library. The settings for the library can be [customized] in the `[lib]`
 table in `Cargo.toml`.
 {==+==}
 定义 "library" 库目标 ，可以被其他库和可执行程序使用和链接。
-默认的根文件是 `src/lib.rs` ，库的名称默认就是包的名称。
-包仅能有一个库。可以在 `Cargo.toml` 的 `[lib]` 表 [自定义][customized] 设置。
+默认的文件名为 `src/lib.rs`，库的名称默认为包的名称。一个包只能有一个库。
+可以在 `Cargo.toml` 文件中的 `[lib]` 表中 [自定义][customized] 设置。
 {==+==}
 
 
@@ -64,7 +66,7 @@ bench = false
 {==+==}
 ### Binaries
 {==+==}
-### 二进制构建目标
+### 二进制目标
 {==+==}
 
 {==+==}
@@ -74,10 +76,10 @@ the package. Additional binaries are stored in the [`src/bin/`
 directory][package layout]. The settings for each binary can be [customized]
 in the `[[bin]]` tables in `Cargo.toml`.
 {==+==}
-二进制构建目标指编译后可以运行的可执行程序。
-默认的二进制根的文件为 `src/main.rs` ，名称默认就是包的名称。
-附加的二进制文件会放在 [`src/bin/` 目录][package layout]。
-可以在 `Cargo.toml` 的 `[[bin]]` 表，给每个二进制文件 [自定义][customized] 设置。
+二进制目标是可执行程序，在编译后可以运行。
+默认的二进制文件名为 `src/main.rs` ，默认名称为包名称。
+额外的二进制文件存储在 [`src/bin/` 目录][package layout] 中。
+每个二进制文件的设置可以在 `Cargo.toml` 中的 `[[bin]]` 表中进行 [自定义][customized] 。
 {==+==}
 
 
