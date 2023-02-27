@@ -8,7 +8,7 @@
 A *workspace* is a collection of one or more packages, called *workspace
 members*, that are managed together.
 {==+==}
-*工作空间* 是一个或多个包的集合，这些包称为 *工作空间成员* ，它们被统一管理。
+*工作空间* 是一个或多个被称为 *工作空间成员* 的包的集合，它们被一起管理。
 {==+==}
 
 {==+==}
@@ -28,17 +28,17 @@ The key points of workspaces are:
   sections in `Cargo.toml` are only recognized in the *root* manifest, and
   ignored in member crates' manifests.
 {==+==}
-* 常规命令可以对所有工作空间成员运行，比如 `cargo check --workspace` 。
-* 所有包共享 [`Cargo.lock`] 文件，该文件在 *工作空间根* 下。
-* 所有包共享 [输出目录][output directory] ，默认为 *工作空间根* 下的 `target` 。
-* 共享包的metadata，比如 [`workspace.package`](#the-package-table) 。
-* [`[patch]`][patch] , [`[replace]`][replace] 和 [`[profile.*]`][profiles] 仅识别 *根* 配置清单 `Cargo.toml` 中的，忽略其成员 crate 配置清单中的。
+* 通用命令可以在所有工作空间成员上运行，例如 `cargo check --workspace` 。
+* 所有包共享相同的 [`Cargo.lock`] 文件，位于 *工作空间根目录* 中。
+* 所有包共享相同的 [输出目录][output directory] ，默认为 *工作空间根目录* 中的一个名为 `target` 的目录。
+* 共享包元数据，例如使用 [`workspace.package`](#the-package-table) 。
+* `Cargo.toml` 中的 [`[patch]`][patch] 、 [`[replace]`][replace] 和 [`[profile.*]`][profiles] 部分只在 *根* 清单中识别，在成员 crate 清单中忽略。
 {==+==}
 
 {==+==}
 In the `Cargo.toml`, the `[workspace]` table supports the following sections:
 {==+==}
-在 `Cargo.toml` 中， `[workspace]` 表支持以下部分:
+在 `Cargo.toml` 中， `[workspace]` 表支持以下部分。
 {==+==}
 
 {==+==}
@@ -88,7 +88,7 @@ To create a workspace, you add the `[workspace]` table to a `Cargo.toml`:
 At minimum, a workspace has to have a member, either with a root package or as
 a virtual manifest.
 {==+==}
-工作空间至少要有一个成员，要么是一个根package，或者是虚拟配置清单。
+至少，工作空间必须有一个成员，要么是根包，要么是虚拟配置清单。
 {==+==}
 
 {==+==}
@@ -103,7 +103,8 @@ If the [`[workspace]` section](#the-workspace-section) is added to a
 the *root package* of the workspace. The *workspace root* is the directory
 where the workspace's `Cargo.toml` is located.
 {==+==}
-如果在已定义 `[package]` 的 `Cargo.toml` 中，添加 [`[workspace]` 部分](#the-workspace-section) ，该package就是工作空间的 *Root package* 。 *工作空间根* 指的是工作空间 `Cargo.toml` 所在的目录。
+如果向 `Cargo.toml` 添加了 [`[workspace]` 部分](#the-workspace-section) ，而该文件已经定义了一个 `[package]` ，那么该包就是工作空间的 *根包* 。
+ *工作空间根目录* 是存放工作空间 `Cargo.toml` 文件的目录。
 {==+==}
 
 {==+==}
@@ -143,8 +144,8 @@ but without a [`[package]` section][package]. This is called a *virtual
 manifest*. This is typically useful when there isn't a "primary" package, or
 you want to keep all the packages organized in separate directories.
 {==+==}
-或者，创建 `Cargo.toml` 的文件中，有 `[workspace]` 表，没有 [`[package]`][package] 表，则称为 *虚拟配置清单* 。
-这通常在没有 "主" 包时很有用，可把拥有的各个包放在不同的目录里。
+另外，可以使用 `[workspace]` 部分但没有 [`[package]` 部分][package] 创建一个 `Cargo.toml` 文件。
+这被称为 *虚拟配置清单* 。当没有 "主" 包时，或者希望将所有包组织在不同的目录中时，通常很有用。
 {==+==}
 
 
@@ -188,7 +189,7 @@ authors = ["Alice <a@example.com>", "Bob <b@example.com>"]
 The `members` and `exclude` fields define which packages are members of
 the workspace:
 {==+==}
-`members` 和 `exclude` 字段定义哪些包是工作空间的成员:
+ `members` 和 `exclude` 字段定义了哪些包是工作空间的成员:
 {==+==}
 
 {==+==}
@@ -207,8 +208,8 @@ All [`path` dependencies] residing in the workspace directory automatically
 become members. Additional members can be listed with the `members` key, which
 should be an array of strings containing directories with `Cargo.toml` files.
 {==+==}
-工作空间目录中的所有 [`path` 依赖][`path` dependencies] 自动成为成员。
-可以用 `Cargo.toml` 中 `members` 键，以字符串数组列出其他成员。
+所有位于工作空间目录中的 [`path` 依赖][`path` dependencies] 都会自动成为成员。
+可以使用 `members` 键列出其他成员，该键应该是一个包含具有 `Cargo.toml` 文件的目录的字符串数组。
 {==+==}
 
 
@@ -216,7 +217,7 @@ should be an array of strings containing directories with `Cargo.toml` files.
 The `members` list also supports [globs] to match multiple paths, using
 typical filename glob patterns like `*` and `?`.
 {==+==}
-`members` 列表支持用 [globs] 通配符来匹配多个路径，使用典型的文件名通配符模式 `*` 和 `?` 。
+ `members` 列表还支持 [通配符][globs] 来匹配多个路径，使用典型的文件名通配符模式，如 `*` 和 `?` 。
 {==+==}
 
 
@@ -226,7 +227,8 @@ workspace. This can be useful if some path dependencies aren't desired to be
 in the workspace at all, or using a glob pattern and you want to remove a
 directory.
 {==+==}
-`exclude` 键可以防止路径自动包含到工作空间，排除某些路径依赖，可用通配符模式。
+ `exclude` 键可以用来防止路径被包含在工作空间中。
+如果某些路径依赖不希望完全包含在工作空间中，或者使用通配符模式并且想要排除目录，这可能会很有用。
 {==+==}
 
 
@@ -238,8 +240,9 @@ manifest key can be used in member crates to point at a workspace's root to
 override this automatic search. The manual setting can be useful if the member
 is not inside a subdirectory of the workspace root.
 {==+==}
-当在工作空间子目录内操作时，Cargo会自动搜索父目录中的 `Cargo.toml` 文件，以其中的 `[workspace]` 定义，来确定使用的工作空间。
-在工作空间成员可以使用 [`package.workspace`] 配置键来配置工作空间根，以覆盖向上自动搜索。当成员不在工作空间根的子目录内时，就需要手动设置。
+当在工作空间的子目录中时， Cargo 将自动搜索父目录以查找具有 `[workspace]` 定义的 `Cargo.toml` 文件，以确定要使用哪个工作空间。
+可以使用 [`package.workspace`] 键在成员 crate 中指向工作空间根目录来覆盖此自动搜索。
+如果成员不在工作区空间目录的子目录中，则手动设置可能很有用。
 {==+==}
 
 
@@ -259,9 +262,10 @@ a [virtual workspace](#virtual-workspace), it will apply to all members (as if
 `--workspace` were specified on the command-line).  See also
 [`default-members`](#the-default-members-field).
 {==+==}
-在工作空间中，与包有关的cargo命令，如 [`cargo build`] ，可以使用 `-p` / `-package` 或 `-workspace` 命令行标志来选择成员进行操作。
-如果这两个标志都没有指定，Cargo将使用当前工作目录的包。如果是无根包的 [虚拟工作空间](#virtual-workspace) ，
-命令将应用于所有成员 (同指定 `--workspace` 一样) 。 另请参阅 [`default-members`](#the-default-members-field) 。
+在工作空间中，可以使用 `-p` / `-package` 或 `-workspace` 命令行标志来确定要操作哪些包的 cargo 命令，如 [`cargo build`] 。
+如果未指定这些标志， Cargo 将使用当前工作目录中的包。
+如果当前目录是 [虚拟工作空间](#virtual-workspace) ，则它将应用于所有成员 (就像在命令行上指定了 `--workspace` 一样) 。
+另请参阅 [`default-members`](#the-default-members-field) 。
 {==+==}
 
 
@@ -277,7 +281,7 @@ The optional `default-members` key can be specified to set the members to
 operate on when in the workspace root and the package selection flags are not
 used:
 {==+==}
-`default-members` 键可选，在未使用工作空间根包和选择包的标志时，默认操作的成员:
+可以指定可选的 `default-members` 键来设置在工作空间根目录中未使用包选择标志时要操作的成员:
 {==+==}
 
 
@@ -311,7 +315,8 @@ The `workspace.package` table is where you define keys that can be
 inherited by members of a workspace. These keys can be inherited by
 defining them in the member package with `{key}.workspace = true`.
 {==+==}
-`workspace.package` 表可以定义工作空间成员继承的键。这些键可以通过在成员包配置清单中定义 `{key}.workspace = true` 的方式继承。
+ `workspace.package` 表是您定义可以由工作空间成员继承的键的地方。
+ 可以通过在成员包中使用 `{key}.workspace = true` 定义它们来继承这些键。
 {==+==}
 
 {==+==}
@@ -389,13 +394,14 @@ documentation.workspace = true
 The `workspace.dependencies` table is where you define dependencies to be
 inherited by members of a workspace.
 {==+==}
-`workspace.dependencies` 是可以定义工作空间成员所能继承的依赖。
+ `workspace.dependencies` 表是您定义要由工作空间成员继承的依赖的地方。
 {==+==}
 
 {==+==}
 Specifying a workspace dependency is similar to [package dependencies][specifying-dependencies] except:
 {==+==}
-指定工作空间依赖与 [package依赖][specifying-dependencies] 类似，除了:
+指定工作空间依赖与 [包依赖][specifying-dependencies] 类似，但是:
+
 {==+==}
 
 
@@ -404,14 +410,14 @@ Specifying a workspace dependency is similar to [package dependencies][specifyin
 - [`features`][features] declared in this table are additive with the `features` from `[dependencies]`
 {==+==}
 - 此表中的依赖不能声明为 `optional` 可选的。
-- 在此表中声明的 [`features`][features] 特性将与来自 `[dependencies]` 的 `features` 相加。
+- 在此表中声明的 [`features`][features] 特性将与来自 `[dependencies]` 的 `features` 叠加。
 {==+==}
 
 
 {==+==}
 You can then [inherit the workspace dependency as a package dependency][inheriting-a-dependency-from-a-workspace]
 {==+==}
-从而，就可以[把工作区的依赖作为包的依赖来继承][inheriting-a-dependency-from-a-workspace]。
+从而，就可以 [把工作区的依赖作为包的依赖来继承][inheriting-a-dependency-from-a-workspace] 。
 {==+==}
 
 
@@ -472,7 +478,7 @@ The `workspace.metadata` table is ignored by Cargo and will not be warned
 about. This section can be used for tools that would like to store workspace
 configuration in `Cargo.toml`. For example:
 {==+==}
-Cargo忽略对 `workspace.metadata` 表的检查，不会发出警告。一些工具插件可以在 `Cargo.toml` 的这一部分中存储配置。比如:
+ `workspace.metadata` 表被 Cargo 忽略，不会发出警告。此部分可用于希望在 `Cargo.toml` 中存储工作空间配置的工具。例如:
 {==+==}
 
 
@@ -499,8 +505,8 @@ external tools may wish to use them in a consistent fashion, such as referring
 to the data in `workspace.metadata` if data is missing from `package.metadata`,
 if that makes sense for the tool in question.
 {==+==}
-在包中也有类似的表 [`package.metadata`][package-metadata] 。虽然cargo没有为表的内容指定格式，
-但建议外部工具以一致的方式使用，对工具来说有意义就好，在 `package.metadata` 中缺少数据时，会参考 `workspace.metadata` 中的数据。
+在 [`package.metadata`][package-metadata] 的包层级有一套类似的表。
+虽然 Cargo 不为这些表中的内容指定格式，但建议外部工具能以一致的方式使用它们，例如，如果 `package.metadata` 中缺少数据，可以参考 `workspace.metadata` 中的数据，如果对相关工具来说有意义。
 {==+==}
 
 
