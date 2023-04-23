@@ -315,7 +315,7 @@ The `workspace.package` table is where you define keys that can be
 inherited by members of a workspace. These keys can be inherited by
 defining them in the member package with `{key}.workspace = true`.
 {==+==}
- `workspace.package` 表是您定义可以由工作空间成员继承的键的地方。
+ `workspace.package` 表是你定义可以由工作空间成员继承的键的地方。
  可以通过在成员包中使用 `{key}.workspace = true` 定义它们来继承这些键。
 {==+==}
 
@@ -394,7 +394,7 @@ documentation.workspace = true
 The `workspace.dependencies` table is where you define dependencies to be
 inherited by members of a workspace.
 {==+==}
- `workspace.dependencies` 表是您定义要由工作空间成员继承的依赖的地方。
+ `workspace.dependencies` 表是你定义要由工作空间成员继承的依赖的地方。
 {==+==}
 
 {==+==}

@@ -22,7 +22,7 @@ Cargo 是 [Rust] [*包管理器*][def-package-manager]，能够下载所依赖�
 能够制作可分享的包，可以上传到 [crates.io](Rust [*包注册中心*][def-package-registry] )。 
 
 
-您可以在 [GitHub] 为本书贡献内容。或者参与完善此 [Cargo之书中文译本][CargoCnBook] 。
+你可以在 [GitHub] 为本书贡献内容。或者参与完善此 [Cargo之书中文译本][CargoCnBook] 。
 {==+==}
 
 
@@ -44,7 +44,7 @@ Cargo 是 [Rust] [*包管理器*][def-package-manager]，能够下载所依赖�
 To get started with Cargo, install Cargo (and Rust) and set up your first
 [*crate*][def-crate].
 {==+==}
-安装 Cargo 和 Rust ，并创建属于您的第一个 [*crate*][def-crate] 。
+安装 Cargo 和 Rust ，并创建属于你的第一个 [*crate*][def-crate] 。
 {==+==}
 
 

@@ -32,9 +32,9 @@ about why that is, see
 ["Why do binaries have `Cargo.lock` in version control, but not libraries?" in the
 FAQ](../faq.md#why-do-binaries-have-cargolock-in-version-control-but-not-libraries).
 {==+==}
-如果您正在构建一个非终端产品 (例如，其他 Rust 包将依赖的 Rust 库) ，请将 `Cargo.lock` 放入 `.gitignore` 文件中。
-如果您正在构建一个终端产品 (如命令行工具或应用程序)，或者一个 `staticlib` 或 `cdylib` crate 类型的系统库，则将 `Cargo.lock` 提交到 git 中。
-如果您想知道原因，可以参考 [FAQ 中的 "为什么二进制文件在版本控制中有 `Cargo.lock` ，而库没有？"](../faq.md#why-do-binaries-have-cargolock-in-version-control-but-not-libraries)。
+如果你正在构建一个非终端产品 (例如，其他 Rust 包将依赖的 Rust 库) ，请将 `Cargo.lock` 放入 `.gitignore` 文件中。
+如果你正在构建一个终端产品 (如命令行工具或应用程序)，或者一个 `staticlib` 或 `cdylib` crate 类型的系统库，则将 `Cargo.lock` 提交到 git 中。
+如果你想知道原因，可以参考 [FAQ 中的 "为什么二进制文件在版本控制中有 `Cargo.lock` ，而库没有？"](../faq.md#why-do-binaries-have-cargolock-in-version-control-but-not-libraries)。
 {==+==}
 
 

@@ -226,8 +226,8 @@ you've done this then you can also update the `[patch]` section. The listing
 inside of `[patch]` is just like the `[dependencies]` section, so once your pull
 request is merged you could change your `path` dependency to:
 {==+==}
-一旦您修复了最初发现的错误，下一步可能是将其作为拉取请求提交给 `uuid` crate。完成后，您还可以更新 `[patch]` 部分。
-`[patch]` 部分内的列表就像 `[dependencies]` 部分一样，因此一旦您的拉取请求被合并，您可以将 `path` 依赖项更改为：
+一旦你修复了最初发现的错误，下一步可能是将其作为拉取请求提交给 `uuid` crate。完成后，你还可以更新 `[patch]` 部分。
+`[patch]` 部分内的列表就像 `[dependencies]` 部分一样，因此一旦你的拉取请求被合并，你可以将 `path` 依赖项更改为：
 {==+==}
 
 
@@ -262,8 +262,8 @@ crate. You've implemented this feature, tested it locally above with `[patch]`,
 and submitted a pull request. Let's go over how you continue to use and test it
 before it's actually published.
 {==+==}
-让我们现在换个角度，从添加特性开始。当您在处理 `my-library` 时，发现需要 `uuid` 中的一个全新的特性。
-您已经实现了此特性，并在上面使用 `[patch]` 进行了本地测试，并提交了一个拉取请求。
+让我们现在换个角度，从添加特性开始。当你在处理 `my-library` 时，发现需要 `uuid` 中的一个全新的特性。
+你已经实现了此特性，并在上面使用 `[patch]` 进行了本地测试，并提交了一个拉取请求。
 在实际发布之前，让我们讨论如何继续使用和测试它。
 {==+==}
 
@@ -322,7 +322,7 @@ be deleted.
 It's also worth noting that `[patch]` applies *transitively*. Let's say you use
 `my-library` in a larger package, such as:
 {==+==}
-值得注意的是， `[patch]` 是递归应用的。比如，假设您在一个较大的包中使用了 `my-library`，如下所示：
+值得注意的是， `[patch]` 是递归应用的。比如，假设你在一个较大的包中使用了 `my-library`，如下所示：
 {==+==}
 
 
@@ -462,7 +462,7 @@ to gradually roll out breaking changes to a crate through a dependency graph
 without being forced to update everything all at once.
 {==+==}
 请注意，这将实际上解析出 `uuid` crate 的两个版本。`my-binary` crate 将继续使用 `uuid` crate 的 `1.x.y` 系列，但是 `my-library` crate 将使用 `uuid` 的 `2.0.0` 版本。
-这将允许您逐步通过依赖图向 crate 中引入破坏性更改，而不必被迫立即更新所有内容。
+这将允许你逐步通过依赖图向 crate 中引入破坏性更改，而不必被迫立即更新所有内容。
 {==+==}
 
 
@@ -687,7 +687,7 @@ overrides**.
 Path overrides are specified through [`.cargo/config.toml`](config.md) instead of
 `Cargo.toml`. Inside of `.cargo/config.toml` you'll specify a key called `paths`:
 {==+==}
-路径覆盖是通过 `.cargo/config.toml` 而不是 `Cargo.toml` 指定。在 `.cargo/config.toml` 中，您需要指定一个名为 `paths` 的键。
+路径覆盖是通过 `.cargo/config.toml` 而不是 `Cargo.toml` 指定。在 `.cargo/config.toml` 中，你需要指定一个名为 `paths` 的键。
 {==+==}
 
 {==+==}
@@ -732,7 +732,7 @@ that have been published to [crates.io]. You cannot use this feature to tell
 Cargo how to find local unpublished crates.
 {==+==}
 注意：使用本地配置覆盖路径仅适用于已发布到 [crates.io] 的 crate。
-您不能使用此功能来告诉 Cargo 如何查找本地未发布的 crate。
+你不能使用此功能来告诉 Cargo 如何查找本地未发布的 crate。
 {==+==}
 
 

@@ -79,7 +79,7 @@ Rust 中，我们可以引入更高级别的 ["*包(package)*"][def-package] 抽
 [*packages*][def-package] to declare their various dependencies and ensure
 that you’ll always get a repeatable build.
 {==+==}
-*Cargo* 是 Rust 的包管理器。它是工具，允许 Rust [*packages*][def-package] 声明它们的各种依赖项，并确保您始终可以获得可重复的构建。
+*Cargo* 是 Rust 的包管理器。它是工具，允许 Rust [*packages*][def-package] 声明它们的各种依赖项，并确保你始终可以获得可重复的构建。
 {==+==}
 
 {==+==}

@@ -42,7 +42,7 @@ cargo-add -向Cargo.toml清单文件添加依赖项
 {==+==}
 This command can add or modify dependencies.
 {==+==}
-此命令可以添加或修改依赖关系。
+此命令可以添加或修改依赖项。
 {==+==}
 
 {==+==}
@@ -56,15 +56,15 @@ The source for the dependency can be specified with:
 * `--path` _path_: Fetch from the specified _path_
 * `--git` _url_: Pull from a git repo at _url_
 {==+==}
-* _crate_`@`_version_: 以"_version_"的约束从注册中心取（包）
-* `--path` _path_: 从指定的 _path_ 取（包）
-* `--git` _url_: 从给定 _url_ 的git仓库拉取
+* _crate_`@`_version_: 从指定版本为 "_version_" 的仓库中获取包 (crate)
+* `--path` _path_: 从指定路径中获取代码包
+* `--git` _url_: 从指定的 git 仓库 url 拉取代码包
 {==+==}
 
 {==+==}
 If no source is specified, then a best effort will be made to select one, including:
 {==+==}
-如果没有指定源，那么尽最大努力选择一个，包括：
+如果没有指定源，将会尽最大努力选择一个，包括:
 {==+==}
 
 {==+==}
@@ -80,20 +80,20 @@ If no source is specified, then a best effort will be made to select one, includ
 {==+==}
 When you add a package that is already present, the existing entry will be updated with the flags specified.
 {==+==}
-当您添加一个已经存在的包时，将使用指定的标志更新现有条目。
+当你添加一个已经存在的包时，已有条目将会被使用指定的标志进行更新。
 {==+==}
 
 {==+==}
 Upon successful invocation, the enabled (`+`) and disabled (`-`) [features] of the specified
 dependency will be listed in the command's output.
 {==+==}
-一旦成功调用，指定的依赖中的启用的 (`+`) 和 禁用的 (`-`) [特性]  将在命令输出中被列出
+如果调用成功，指定依赖启用 (`+`) 和禁用 (`-`) 的 [特性][features] 将会在命令的输出中列出。
 {==+==}
 
 {==+==}
 [features]: ../reference/features.md
 {==+==}
-[特性]: ../reference/features.md
+
 {==+==}
 
 {==+==}
@@ -115,7 +115,7 @@ dependency will be listed in the command's output.
 <dd class="option-desc"><a href="../reference/specifying-dependencies.html#specifying-dependencies-from-git-repositories">Git URL to add the specified crate from</a>.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-add---git"><a class="option-anchor" href="#option-cargo-add---git"></a><code>--git</code> <em>url</em></dt>
-<dd class="option-desc"><a href="../reference/specifying-dependencies.html#specifying-dependencies-from-git-repositories">从Git URL添加指定的crate</a>。</dd>
+<dd class="option-desc"><a href="../reference/specifying-dependencies.html#specifying-dependencies-from-git-repositories">从Git URL添加指定的 crate</a>。</dd>
 {==+==}
 
 
@@ -124,7 +124,7 @@ dependency will be listed in the command's output.
 <dd class="option-desc">Branch to use when adding from git.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-add---branch"><a class="option-anchor" href="#option-cargo-add---branch"></a><code>--branch</code> <em>branch</em></dt>
-<dd class="option-desc">从git添加时使用的分支。</dd>
+<dd class="option-desc">从 git 添加时使用的分支。</dd>
 {==+==}
 
 
@@ -133,7 +133,7 @@ dependency will be listed in the command's output.
 <dd class="option-desc">Tag to use when adding from git.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-add---tag"><a class="option-anchor" href="#option-cargo-add---tag"></a><code>--tag</code> <em>tag</em></dt>
-<dd class="option-desc">从git添加时使用的标签。</dd>
+<dd class="option-desc">从 git 添加时使用的标签。</dd>
 {==+==}
 
 
@@ -142,7 +142,7 @@ dependency will be listed in the command's output.
 <dd class="option-desc">Specific commit to use when adding from git.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-add---rev"><a class="option-anchor" href="#option-cargo-add---rev"></a><code>--rev</code> <em>sha</em></dt>
-<dd class="option-desc">从git添加时使用的特定提交</dd>
+<dd class="option-desc">从 git 添加时使用的特定提交</dd>
 {==+==}
 
 {==+==}
@@ -150,7 +150,7 @@ dependency will be listed in the command's output.
 <dd class="option-desc"><a href="../reference/specifying-dependencies.html#specifying-path-dependencies">Filesystem path</a> to local crate to add.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-add---path"><a class="option-anchor" href="#option-cargo-add---path"></a><code>--path</code> <em>path</em></dt>
-<dd class="option-desc">要添加的本地crate的<a href="../reference/specifying-dependencies.html#specifying-path-dependencies">文件系统路径</a>。</dd>
+<dd class="option-desc">要添加的本地 crate的<a href="../reference/specifying-dependencies.html#specifying-path-dependencies">文件系统路径</a>。</dd>
 {==+==}
 
 
@@ -162,7 +162,7 @@ which is defined by the <code>registry.default</code> config key which defaults 
 <code>crates-io</code>.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-add---registry"><a class="option-anchor" href="#option-cargo-add---registry"></a><code>--registry</code> <em>registry</em></dt>
-<dd class="option-desc">注册中心所使用的名称。注册中心名称被定义在<a href="../reference/config.html">Cargo配置文件</a>中。如果未指定将会使用默认注册中心，该注册中心由registry.default配置项定义，默认为<code>crates-io</code>。</dd>
+<dd class="option-desc">注册中心所使用的名称。注册中心名称被定义在<a href="../reference/config.html">Cargo配置文件</a>中。如果未指定将会使用默认注册中心，该注册中心由 registry.default 配置项定义，默认为<code>crates-io</code>。</dd>
 {==+==}
 
 
@@ -221,7 +221,7 @@ which is defined by the <code>registry.default</code> config key which defaults 
 <dd class="option-desc">Don't actually write the manifest</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-add---dry-run"><a class="option-anchor" href="#option-cargo-add---dry-run"></a><code>--dry-run</code></dt>
-<dd class="option-desc">不真的写入清单</dd>
+<dd class="option-desc">不实际写入配置清单</dd>
 {==+==}
 
 
@@ -279,7 +279,7 @@ crates, the features for a specific crate may be enabled with
 which enables all specified features.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-add---features"><a class="option-anchor" href="#option-cargo-add---features"></a><code>--features</code> <em>features</em></dt>
-<dd class="option-desc">要激活的以逗号或空格分隔的<a href="../reference/features.html#dependency-features">特性</a>。添加多个crate时，特定板条箱的功能可通过<code>包名称/功能名称</code>语法启用。可以多次指定该标志，从而启用所有指定的功能。</dd>
+<dd class="option-desc">要激活的以逗号或空格分隔的<a href="../reference/features.html#dependency-features">特性</a>。添加多个 crate 时，特定 crate 的特性可通过<code>包名称/特性名称</code>语法启用。可以多次指定该标志，从而启用所有指定的特性。</dd>
 {==+==}
 
 
@@ -302,11 +302,16 @@ May also be specified with the <code>term.verbose</code>
 <a href="../reference/config.html">config value</a>.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-add---verbose"><a class="option-anchor" href="#option-cargo-add---verbose"></a><code>--verbose</code></dt>
-<dd class="option-desc">使用详细输出。对于包括额外输出(如依赖关系警告和构建脚本输出)的“非常详细”输出，可以指定两次。也可以用<code>term.verbose</code><a href="../reference/config.html">配置</a>指定。</dd>
+<dd class="option-desc">使用详细输出。对于包括额外输出(如依赖关系警告和构建脚本输出)的 "非常详细" 输出，可以指定两次。也可以用<code>term.verbose</code><a href="../reference/config.html">配置</a>指定。</dd>
+{==+==}
+
+{==+==}
+<dt class="option-term" id="option-cargo-add--q"><a class="option-anchor" href="#option-cargo-add--q"></a><code>-q</code></dt>
+{==+==}
+
 {==+==}
 
 
-<dt class="option-term" id="option-cargo-add--q"><a class="option-anchor" href="#option-cargo-add--q"></a><code>-q</code></dt>
 {==+==}
 <dt class="option-term" id="option-cargo-add---quiet"><a class="option-anchor" href="#option-cargo-add---quiet"></a><code>--quiet</code></dt>
 <dd class="option-desc">Do not print cargo log messages.
@@ -314,7 +319,7 @@ May also be specified with the <code>term.quiet</code>
 <a href="../reference/config.html">config value</a>.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-add---quiet"><a class="option-anchor" href="#option-cargo-add---quiet"></a><code>--quiet</code></dt>
-<dd class="option-desc">不要打印cargo日志信息。也可以用<code>term.quiet</code><a href="../reference/config.html">配置</a>。</dd>
+<dd class="option-desc">不打印 cargo 日志信息。也可以用<code>term.quiet</code><a href="../reference/config.html">配置</a>。</dd>
 {==+==}
 
 
@@ -356,12 +361,16 @@ terminal.</li>
 <code>Cargo.toml</code> file in the current directory or any parent directory.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-add---manifest-path"><a class="option-anchor" href="#option-cargo-add---manifest-path"></a><code>--manifest-path</code> <em>path</em></dt>
-<dd class="option-desc"><code>Cargo.toml</code>文件的路径。默认情况下，Cargo在当前目录或任何父目录中搜索<code>Cargo.toml</code>文件。</dd>
+<dd class="option-desc"><code>Cargo.toml</code>文件的路径。默认情况下，Cargo 在当前目录或任何父目录中搜索<code>Cargo.toml</code>文件。</dd>
 {==+==}
 
 
-
+{==+==}
 <dt class="option-term" id="option-cargo-add--p"><a class="option-anchor" href="#option-cargo-add--p"></a><code>-p</code> <em>spec</em></dt>
+{==+==}
+
+{==+==}
+
 {==+==}
 <dt class="option-term" id="option-cargo-add---package"><a class="option-anchor" href="#option-cargo-add---package"></a><code>--package</code> <em>spec</em></dt>
 <dd class="option-desc">Add dependencies to only the specified package.</dd>
@@ -370,8 +379,13 @@ terminal.</li>
 <dd class="option-desc">仅向指定的包添加依赖项。</dd>
 {==+==}
 
-
+{==+==}
 <dt class="option-term" id="option-cargo-add---frozen"><a class="option-anchor" href="#option-cargo-add---frozen"></a><code>--frozen</code></dt>
+{==+==}
+
+{==+==}
+
+
 {==+==}
 <dt class="option-term" id="option-cargo-add---locked"><a class="option-anchor" href="#option-cargo-add---locked"></a><code>--locked</code></dt>
 <dd class="option-desc">Either of these flags requires that the <code>Cargo.lock</code> file is
@@ -383,8 +397,8 @@ attempting to access the network to determine if it is out-of-date.</p>
 access.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-add---locked"><a class="option-anchor" href="#option-cargo-add---locked"></a><code>--locked</code></dt>
-<dd class="option-desc">这两个标志都要求<code>Cargo.lock</code>文件是最新的。如果lock文件丢失，或者需要更新，Cargo将出错退出。<code>--frozen</code>标志还防止cargo试图访问网络来确定它是否过期。
-在您希望断言<code>Cargo.lock</code>文件是最新的(例如CI构建)或希望避免网络访问的环境中，可以使用这些文件。</dd>
+<dd class="option-desc">这两个标志都要求<code>Cargo.lock</code>文件是最新的。如果 lock 文件丢失，或者需要更新，Cargo将出错退出。<code>--frozen</code>标志还防止 cargo 试图访问网络来确定它是否过期。
+在你希望断言<code>Cargo.lock</code>文件是最新的 (例如 CI 构建) 或希望避免网络访问的环境中，可以使用这些文件。</dd>
 {==+==}
 
 
@@ -407,12 +421,20 @@ offline.</p>
 也可以用 <code>net.offline</code> <a href="../reference/config.html">配置</a>。</dd>
 {==+==}
 
-
+{==+==}
 </dl>
 
 ### Common Options
 
 <dl>
+{==+==}
+</dl>
+
+### 常规选项
+
+<dl>
+{==+==}
+
 
 {==+==}
 <dt class="option-term" id="option-cargo-add-+toolchain"><a class="option-anchor" href="#option-cargo-add-+toolchain"></a><code>+</code><em>toolchain</em></dt>
@@ -423,7 +445,7 @@ See the <a href="https://rust-lang.github.io/rustup/overrides.html">rustup docum
 for more information about how toolchain overrides work.</dd>
 {==+==}
 <dt class="option-term" id="option-cargo-add-+toolchain"><a class="option-anchor" href="#option-cargo-add-+toolchain"></a><code>+</code><em>toolchain</em></dt>
-<dd class="option-desc">如果cargo已经安装了rustup，并且 <code>cargo</code> 的第一个参数以 <code>cargo</code> 开头，它将被解释为 rustup 工具链名称(例如 <code>+stable</code> 或 <code>+nightly</code> )。有关工具链覆盖如何工作的更多信息，请参见 <a href="https://rust-lang.github.io/rustup/overrides.html">rustup 文档</a>。</dd>
+<dd class="option-desc">如果 cargo 已经安装了 rustup ，并且 <code>cargo</code> 的第一个参数以 <code>cargo</code> 开头，它将被解释为 rustup 工具链名称(例如 <code>+stable</code> 或 <code>+nightly</code> )。有关工具链覆盖如何工作的更多信息，请参见 <a href="https://rust-lang.github.io/rustup/overrides.html">rustup 文档</a>。</dd>
 {==+==}
 
 
@@ -437,8 +459,13 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 <dd class="option-desc">覆盖 Cargo 配置值。该参数应该采用 <code>KEY=VALUE</code> 的 TOML 语法，或者作为额外配置文件的路径提供。可以多次指定该标志。有关更多信息，请参见 <a href="../reference/config.html#command-line-overrides">命令行覆盖部分</a>。</dd>
 {==+==}
 
-
+{==+==}
 <dt class="option-term" id="option-cargo-add--h"><a class="option-anchor" href="#option-cargo-add--h"></a><code>-h</code></dt>
+{==+==}
+
+{==+==}
+
+
 {==+==}
 <dt class="option-term" id="option-cargo-add---help"><a class="option-anchor" href="#option-cargo-add---help"></a><code>--help</code></dt>
 <dd class="option-desc">Prints help information.</dd>
@@ -470,7 +497,7 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 See [the reference](../reference/environment-variables.html) for
 details on environment variables that Cargo reads.
 {==+==}
-有关Cargo读取的环境变量的详细信息，请参见 [the reference](../reference/environment-variables.html)。
+有关 Cargo 读取的环境变量的详细信息，请参见 [参考](../reference/environment-variables.html)。
 {==+==}
 
 

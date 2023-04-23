@@ -83,7 +83,7 @@ Directory | Example
 > build scripts and proc macros are built separately (for the host
 > architecture), and do not share `RUSTFLAGS`.
 {==+==}
-> **注意**: 注意：当没有使用 `--target` 选项时， Cargo 会将您的依赖与构建脚本和过程宏共享。
+> **注意**: 注意：当没有使用 `--target` 选项时， Cargo 会将你的依赖与构建脚本和过程宏共享。
 > [`RUSTFLAGS`] 将与每次 `rustc` 调用共享。
 > 使用 `--target` 选项时，构建脚本和过程宏会单独构建 (针对主机架构) ，并且不共享 `RUSTFLAGS` 。
 {==+==}

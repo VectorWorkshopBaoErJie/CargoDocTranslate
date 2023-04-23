@@ -16,20 +16,20 @@ cargo-bench - 执行包的基准测试
 编译和执行基准。
 
 基准过滤参数 _benchname_ 及其后的所有参数两个破折号(`--`)被传递给基准二进制文件，从而传递给 _libtest_ （rustc的内置单元测试和微基准框架）。
-如果您同时向 Cargo 和二进制文件传递参数，那么 `--` 之后的参数将转到二进制文件，转到 Cargo 之前的参数将转到 Cargo。有关libtest的详细信息参数查看 `cargo bench -- --help` 的输出，并检查rustc书中关于测试如何工作的章节
+如果你同时向 Cargo 和二进制文件传递参数，那么 `--` 之后的参数将转到二进制文件，转到 Cargo 之前的参数将转到 Cargo。有关libtest的详细信息参数查看 `cargo bench -- --help` 的输出，并检查rustc书中关于测试如何工作的章节
 <https://doc.rust-lang.org/rustc/tests/index.html>.
 
 例如，这将只运行名为 `foo` 的基准测试（并跳过其他类似名称的基准测试，如 `foobar `）：
 
     cargo bench -- foo --exact
 
-基准测试是使用 `rustc` 的 `- test` 选项构建的，它通过将您的代码与 libtest 链接来创建一个特殊的可执行文件。可执行文件自动运行所有用 `#[bench]` 属性注释的函数。Cargo 将 `bench` 标志传递给测试工具，告诉它只运行基准测试。
+基准测试是使用 `rustc` 的 `- test` 选项构建的，它通过将你的代码与 libtest 链接来创建一个特殊的可执行文件。可执行文件自动运行所有用 `#[bench]` 属性注释的函数。Cargo 将 `bench` 标志传递给测试工具，告诉它只运行基准测试。
 
-可以通过在目标清单设置中设置 `harness = false` 来禁用 libtest 工具，在这种情况下，您的代码将需要提供自己的 `main` 函数来处理运行基准。
+可以通过在目标清单设置中设置 `harness = false` 来禁用 libtest 工具，在这种情况下，你的代码将需要提供自己的 `main` 函数来处理运行基准。
 
 [`#[bench]属性`](https://doc.rust-lang.org/nightly/unstable-book/library-features/test.html) 目前不稳定，仅在 [nightly channel](https://doc.rust-lang.org/book/appendix-07-nightly-rust.html). 可用。[crates.io](https://crates.io/keywords/benchmark) 上有一些包可以帮助在稳定通道上运行基准，例如[Criterion](https://crates.io/crates/criterion)。
 
-默认情况下，货物台架使用台架配置文件，这样可以优化和禁用调试信息。如果您需要调试一个基准，您可以使用 `--profile=dev` 命令行选项切换到dev配置文件。然后，您可以在调试器中运行启用调试的基准。
+默认情况下，货物台架使用台架配置文件，这样可以优化和禁用调试信息。如果你需要调试一个基准，你可以使用 `--profile=dev` 命令行选项切换到dev配置文件。然后，你可以在调试器中运行启用调试的基准。
 
 [`bench` profile]: ../reference/profiles.html#bench
 
@@ -60,7 +60,7 @@ cargo-bench - 执行包的基准测试
 
 <dt class="option-term" id="option-cargo-bench--p"><a class="option-anchor" href="#option-cargo-bench--p"></a><code>-p</code> <em>spec</em>...</dt>
 <dt class="option-term" id="option-cargo-bench---package"><a class="option-anchor" href="#option-cargo-bench---package"></a><code>--package</code> <em>spec</em>...</dt>
-<dd class="option-desc">仅对指定的包进行基准测试。SPEC 格式请参考<a href="cargo-pkgid.html">cargo-pkgid(1)</a>。该标志可以多次指定，并支持常见的Unix全局模式，如 <code>*</code >、<code >?</code >和 <code>[]</code > 。然而，为了避免您的shell在Cargo处理glob模式之前意外扩展它们，您必须在每个模式周围使用单引号或双引号。</dd>
+<dd class="option-desc">仅对指定的包进行基准测试。SPEC 格式请参考<a href="cargo-pkgid.html">cargo-pkgid(1)</a>。该标志可以多次指定，并支持常见的Unix全局模式，如 <code>*</code >、<code >?</code >和 <code>[]</code > 。然而，为了避免你的shell在Cargo处理glob模式之前意外扩展它们，你必须在每个模式周围使用单引号或双引号。</dd>
 
 
 <dt class="option-term" id="option-cargo-bench---workspace"><a class="option-anchor" href="#option-cargo-bench---workspace"></a><code>--workspace</code></dt>
@@ -74,7 +74,7 @@ cargo-bench - 执行包的基准测试
 
 
 <dt class="option-term" id="option-cargo-bench---exclude"><a class="option-anchor" href="#option-cargo-bench---exclude"></a><code>--exclude</code> <em>SPEC</em>...</dt>
-<dd class="option-desc">排除指定的包。必须与 <code>--workspace</code >标志一起使用。该标志可以多次指定，并支持常见的Unix全局模式，如 <code>*</code >、<code >？</code > 和 <code>[]</code >。然而，为了避免您的shell在Cargo处理glob模式之前意外扩展它们，您必须在每个模式周围使用单引号或双引号。</dd>
+<dd class="option-desc">排除指定的包。必须与 <code>--workspace</code >标志一起使用。该标志可以多次指定，并支持常见的Unix全局模式，如 <code>*</code >、<code >？</code > 和 <code>[]</code >。然而，为了避免你的shell在Cargo处理glob模式之前意外扩展它们，你必须在每个模式周围使用单引号或双引号。</dd>
 
 
 </dl>
@@ -98,7 +98,7 @@ cargo-bench - 执行包的基准测试
 
 传递目标选择标志将只对指定的目标进行基准测试。
 
-注意 `--bin`、`--example`、`--test` 和 `--bench` 标志也支持常见的 Unix 全局模式，如 ` *`、`?` 和 `[]`。然而，为了避免您的 shell 在 Cargo 处理 glob 模式之前意外地扩展它们，您必须在每个 glob 模式周围使用单引号或双引号。
+注意 `--bin`、`--example`、`--test` 和 `--bench` 标志也支持常见的 Unix 全局模式，如 ` *`、`?` 和 `[]`。然而，为了避免你的 shell 在 Cargo 处理 glob 模式之前意外地扩展它们，你必须在每个 glob 模式周围使用单引号或双引号。
 
 <dl>
 
@@ -150,7 +150,7 @@ cargo-bench - 执行包的基准测试
 
 ### 特征选项
 
-功能标志允许您控制启用哪些功能。当未给出功能选项时，为每个选定的包激活 `default` 特性。
+功能标志允许你控制启用哪些功能。当未给出功能选项时，为每个选定的包激活 `default` 特性。
 
 请参见 [the features documentation](../reference/features.html#command-line-feature-options) 了解更多详情。
 
@@ -199,7 +199,7 @@ cargo-bench - 执行包的基准测试
 <dt class="option-term" id="option-cargo-bench---timings=fmts"><a class="option-anchor" href="#option-cargo-bench---timings=fmts"></a><code>--timings=</code><em>fmts</em></dt>
 <dd class="option-desc">输出每次编译需要多长时间的信息，并随着时间的推移跟踪并发信息。接受可选的逗号分隔的输出格式列表；不带参数的 <code>--timings</code> 将默认为 <code>--timings=html</code> 。指定输出格式(而不是默认格式)不稳定，需要 <code>-Zunstable-options</code>。有效的输出格式:</p>
 <ul>
-<li><code>html</code >(不稳定，需要 <code>-Zunstable-options</code> ):将一个可读的文件 <code>cargo-timing.html</code> 写入 <code>target/cargo-timings</code> 目录，并附上编译报告。如果您想查看以前的运行，也可以在相同的目录下写一个带有时间戳的报告。HTML输出只适合人类使用，不提供机器可读的计时数据。</li>
+<li><code>html</code >(不稳定，需要 <code>-Zunstable-options</code> ):将一个可读的文件 <code>cargo-timing.html</code> 写入 <code>target/cargo-timings</code> 目录，并附上编译报告。如果你想查看以前的运行，也可以在相同的目录下写一个带有时间戳的报告。HTML输出只适合人类使用，不提供机器可读的计时数据。</li>
 <li><code>json</code >(不稳定，需要 <code>-Zunstable-options</code> ):发出有关计时信息的机器可读json信息。</li>
 </ul></dd>
 
@@ -282,7 +282,7 @@ scheme. Cannot be used with <code>human</code> or <code>short</code>.</li>
 <dt class="option-term" id="option-cargo-bench---frozen"><a class="option-anchor" href="#option-cargo-bench---frozen"></a><code>--frozen</code></dt>
 <dt class="option-term" id="option-cargo-bench---locked"><a class="option-anchor" href="#option-cargo-bench---locked"></a><code>--locked</code></dt>
 <dd class="option-desc">这两个标志都要求<code>Cargo.lock</code>文件是最新的。如果锁文件丢失，或者需要更新，Cargo将出错退出。<code>--frozen</code>标志还防止 Cargo 试图访问网络以确定其是否过期。</p>
-<p>在您希望断言<code>Cargo.lock</code >文件是最新的(如CI构建)或希望避免网络访问的环境中，可以使用这些文件。</dd>
+<p>在你希望断言<code>Cargo.lock</code >文件是最新的(如CI构建)或希望避免网络访问的环境中，可以使用这些文件。</dd>
 
 
 <dt class="option-term" id="option-cargo-bench---offline"><a class="option-anchor" href="#option-cargo-bench---offline"></a><code>--offline</code></dt>

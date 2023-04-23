@@ -3,21 +3,23 @@
 
 ## NAME
 {==+==}
+# cargo(1)
 
+## 名称
 {==+==}
 
 
 {==+==}
 cargo - The Rust package manager
 {==+==}
-cargo - Rust包管理器
+cargo - Rust 包管理器
 {==+==}
 
 
 {==+==}
 ## SYNOPSIS
 {==+==}
-
+## 摘要
 {==+==}
 
 
@@ -35,7 +37,7 @@ cargo - Rust包管理器
 {==+==}
 ## DESCRIPTION
 {==+==}
-
+## 描述
 {==+==}
 
 
@@ -43,14 +45,14 @@ cargo - Rust包管理器
 This program is a package manager and build tool for the Rust language,
 available at <https://rust-lang.org>.
 {==+==}
-这个程序是Rust语言的包管理器和构建工具，可在<https://rust-lang.org>上获得。
+这个程序是 Rust 语言的包管理器和构建工具，可在 <https://rust-lang.org> 上获得。
 {==+==}
 
 
 {==+==}
 ## COMMANDS
 {==+==}
-
+## 命令
 {==+==}
 
 
@@ -93,7 +95,7 @@ available at <https://rust-lang.org>.
 &nbsp;&nbsp;&nbsp;&nbsp;Remove artifacts that Cargo has generated in the past.
 {==+==}
 [cargo-clean(1)](cargo-clean.html)\
-&nbsp;&nbsp;&nbsp;&nbsp;移除Cargo曾生成的制品。
+&nbsp;&nbsp;&nbsp;&nbsp;移除 Cargo 曾生成的制品。
 {==+==}
 
 
@@ -111,7 +113,7 @@ available at <https://rust-lang.org>.
 &nbsp;&nbsp;&nbsp;&nbsp;Fetch dependencies of a package from the network.
 {==+==}
 [cargo-fetch(1)](cargo-fetch.html)\
-&nbsp;&nbsp;&nbsp;&nbsp;从网络中获取包的依赖。
+&nbsp;&nbsp;&nbsp;&nbsp;从网络获取包的依赖。
 {==+==}
 
 
@@ -120,7 +122,7 @@ available at <https://rust-lang.org>.
 &nbsp;&nbsp;&nbsp;&nbsp;Automatically fix lint warnings reported by rustc.
 {==+==}
 [cargo-fix(1)](cargo-fix.html)\
-&nbsp;&nbsp;&nbsp;&nbsp;自动修复rustc报告的lint警告。
+&nbsp;&nbsp;&nbsp;&nbsp;自动修复 rustc 报告的代码分析警告。
 {==+==}
 
 
@@ -181,7 +183,7 @@ available at <https://rust-lang.org>.
 &nbsp;&nbsp;&nbsp;&nbsp;Print a JSON representation of a `Cargo.toml` file's location.
 {==+==}
 [cargo-locate-project(1)](cargo-locate-project.html)\
-&nbsp;&nbsp;&nbsp;&nbsp;打印 `Cargo.toml` 文件位置的JSON表示。
+&nbsp;&nbsp;&nbsp;&nbsp;打印 `Cargo.toml` 文件位置的 JSON 表示。
 {==+==}
 
 
@@ -235,7 +237,7 @@ available at <https://rust-lang.org>.
 &nbsp;&nbsp;&nbsp;&nbsp;Check correctness of crate manifest.
 {==+==}
 [cargo-verify-project(1)](cargo-verify-project.html)\
-&nbsp;&nbsp;&nbsp;&nbsp;检查crate配置是否正确。
+&nbsp;&nbsp;&nbsp;&nbsp;检查 crate 配置是否正确。
 {==+==}
 
 
@@ -251,7 +253,7 @@ available at <https://rust-lang.org>.
 &nbsp;&nbsp;&nbsp;&nbsp;Create a new Cargo package in an existing directory.
 {==+==}
 [cargo-init(1)](cargo-init.html)\
-&nbsp;&nbsp;&nbsp;&nbsp;在现有目录中创建新的Cargo包。
+&nbsp;&nbsp;&nbsp;&nbsp;在现有目录中创建新的 Cargo 包。
 {==+==}
 
 
@@ -260,7 +262,7 @@ available at <https://rust-lang.org>.
 &nbsp;&nbsp;&nbsp;&nbsp;Build and install a Rust binary.
 {==+==}
 [cargo-install(1)](cargo-install.html)\
-&nbsp;&nbsp;&nbsp;&nbsp;构建并安装Rust二进制文件。
+&nbsp;&nbsp;&nbsp;&nbsp;构建并安装 Rust 二进制文件。
 {==+==}
 
 
@@ -269,7 +271,7 @@ available at <https://rust-lang.org>.
 &nbsp;&nbsp;&nbsp;&nbsp;Create a new Cargo package.
 {==+==}
 [cargo-new(1)](cargo-new.html)\
-&nbsp;&nbsp;&nbsp;&nbsp;创建新的Cargo包。
+&nbsp;&nbsp;&nbsp;&nbsp;创建新的 Cargo 包。
 {==+==}
 
 
@@ -287,7 +289,7 @@ available at <https://rust-lang.org>.
 &nbsp;&nbsp;&nbsp;&nbsp;Remove a Rust binary.
 {==+==}
 [cargo-uninstall(1)](cargo-uninstall.html)\
-&nbsp;&nbsp;&nbsp;&nbsp;移除Rust二进制文件。
+&nbsp;&nbsp;&nbsp;&nbsp;移除 Rust 二进制文件。
 {==+==}
 
 
@@ -303,7 +305,7 @@ available at <https://rust-lang.org>.
 &nbsp;&nbsp;&nbsp;&nbsp;Save an API token from the registry locally.
 {==+==}
 [cargo-login(1)](cargo-login.html)\
-&nbsp;&nbsp;&nbsp;&nbsp;在本地注册中心保存API令牌。
+&nbsp;&nbsp;&nbsp;&nbsp;在本地注册中心保存 API 令牌。
 {==+==}
 
 
@@ -312,7 +314,7 @@ available at <https://rust-lang.org>.
 &nbsp;&nbsp;&nbsp;&nbsp;Manage the owners of a crate on the registry.
 {==+==}
 [cargo-owner(1)](cargo-owner.html)\
-&nbsp;&nbsp;&nbsp;&nbsp;在注册中心管理crate的所有者。
+&nbsp;&nbsp;&nbsp;&nbsp;在注册中心管理 crate 的所有者。
 {==+==}
 
 
@@ -339,7 +341,7 @@ available at <https://rust-lang.org>.
 &nbsp;&nbsp;&nbsp;&nbsp;Remove a pushed crate from the index.
 {==+==}
 [cargo-yank(1)](cargo-yank.html)\
-&nbsp;&nbsp;&nbsp;&nbsp;从索引中移除已推送的crate。
+&nbsp;&nbsp;&nbsp;&nbsp;从索引中移除已推送的 crate 。
 {==+==}
 
 
@@ -355,7 +357,7 @@ available at <https://rust-lang.org>.
 &nbsp;&nbsp;&nbsp;&nbsp;Display help information about Cargo.
 {==+==}
 [cargo-help(1)](cargo-help.html)\
-&nbsp;&nbsp;&nbsp;&nbsp;显示有关Cargo的帮助信息。
+&nbsp;&nbsp;&nbsp;&nbsp;显示有关 Cargo 的帮助信息。
 {==+==}
 
 
@@ -409,7 +411,7 @@ information.</dd>
 <dd class="option-desc">List all installed Cargo subcommands. If used with <code>--verbose</code>, prints extra
 information.</dd>
 {==+==}
-<dd class="option-desc">列出所有已安装的Cargo子命令。如果有 <code>--verbose</code>, 打印额外的信息。</dd>
+<dd class="option-desc">列出所有已安装的 Cargo 子命令。如果有 <code>--verbose</code>, 打印额外的信息。</dd>
 {==+==}
 
 
@@ -465,7 +467,7 @@ May also be specified with the <code>term.verbose</code>
 <dd class="option-desc">Do not print cargo log messages.
 May also be specified with the <code>term.quiet</code>
 {==+==}
-<dd class="option-desc">不要打印cargo日志信息。也可以用 <code>term.quiet</code>
+<dd class="option-desc">不打印 cargo 日志信息。也可以用 <code>term.quiet</code>
 {==+==}
 
 
@@ -531,9 +533,9 @@ attempting to access the network to determine if it is out-of-date.</p>
 <code>Cargo.lock</code> file is up-to-date (such as a CI build) or want to avoid network
 access.</dd>
 {==+==}
-<dd class="option-desc">这些标志中的任何一个都要求<code>Cargo.lock</code>文件是最新的。 如果lock file丢失，或者需要更新，Cargo将以错误退出。
- <code>--frozen</code> 标志还可以防止Cargo试图访问网络以确定其是否过时。</p>
-<p>这可能用于你想断言 <code>Cargo.lock</code> 文件是最新的环境(如CI构建)或想避免网络访问。</dd>
+<dd class="option-desc">这些标志中的任何一个都要求<code>Cargo.lock</code>文件是最新的。 如果 lock 文件丢失，或者需要更新， Cargo 将以错误退出。
+ <code>--frozen</code> 标志还可以防止 Cargo 试图访问网络以确定其是否过时。</p>
+<p>这可能用于你想断言 <code>Cargo.lock</code> 文件是最新的环境(如 CI 构建)或想避免网络访问。</dd>
 {==+==}
 
 
@@ -556,10 +558,10 @@ See the <a href="cargo-fetch.html">cargo-fetch(1)</a> command to download depend
 offline.</p>
 <p>May also be specified with the <code>net.offline</code> <a href="../reference/config.html">config value</a>.</dd>
 {==+==}
-<dd class="option-desc">阻止Cargo访问网络。如果没有这个标志，Cargo在需要访问网络而网络不可用的情况下会以错误方式停止。
-有了这个标志，如果可能的话，Cargo将尝试在没有网络的情况下进行。</p>
+<dd class="option-desc">阻止 Cargo 访问网络。如果没有这个标志， Cargo 在需要访问网络而网络不可用的情况下会以错误方式停止。
+有了这个标志，如果可能的话， Cargo 将尝试在没有网络的情况下进行。</p>
 <p>请注意，这可能会导致与在线模式不同的依赖解决。
-Cargo会将自己限制在本地下载的crate上，即使在本地拷贝的索引中可能有一个较新的版本。
+Cargo 会将自己限制在本地下载的 crate 上，即使在本地拷贝的索引中可能有一个较新的版本。
 参见 <a href="cargo-fetch.html">cargo-fetch(1)</a> 命令在离线前下载依赖。</p>
 <p>也可以用 <code>net.offline</code> <a href="../reference/config.html">配置</a>。</dd>
 {==+==}
@@ -586,7 +588,7 @@ as <code>+stable</code> or <code>+nightly</code>).
 See the <a href="https://rust-lang.github.io/rustup/overrides.html">rustup documentation</a>
 for more information about how toolchain overrides work.</dd>
 {==+==}
-<dd class="option-desc">如果Cargo已经安装了rustup。 <code>cargo</code>的第一个参数以<code>+</code>开始, 它将被解释为一个rustup工具链名称 (比如 <code>+stable</code> 或 <code>+nightly</code>)。
+<dd class="option-desc">如果 Cargo 已经安装了 rustup 。 <code>cargo</code>的第一个参数以<code>+</code>开始, 它将被解释为一个 rustup 工具链名称 (比如 <code>+stable</code> 或 <code>+nightly</code>)。
 参见 <a href="https://rust-lang.github.io/rustup/overrides.html">rustup 文档</a> 有关工具链覆盖如何工作的详细信息。</dd>
 {==+==}
 
@@ -603,9 +605,9 @@ for more information about how toolchain overrides work.</dd>
 or provided as a path to an extra configuration file. This flag may be specified multiple times.
 See the <a href="../reference/config.html#command-line-overrides">command-line overrides section</a> for more information.</dd>
 {==+==}
-<dd class="option-desc">覆盖Cargo配置值。参数应该是TOML语法中的 <code>KEY=VALUE</code>,
+<dd class="option-desc">覆盖 Cargo 配置值。参数应该是 TOML 语法中的 <code>KEY=VALUE</code>,
 或作为一个额外的配置文件的路径提供。这个标志可以被多次指定。
-参见 <a href="../reference/config.html#command-line-overrides">command-line 覆盖部分</a> 了解详细信息。</dd>
+参见 <a href="../reference/config.html#command-line-overrides">命令行覆盖部分</a> 了解详细信息。</dd>
 {==+==}
 
 
@@ -641,7 +643,7 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 {==+==}
 ## ENVIRONMENT
 {==+==}
-
+## 环境
 {==+==}
 
 
@@ -649,14 +651,14 @@ See the <a href="../reference/config.html#command-line-overrides">command-line o
 See [the reference](../reference/environment-variables.html) for
 details on environment variables that Cargo reads.
 {==+==}
-关于Cargo读取的环境变量的详情，参阅 [参考](../reference/environment-variables.html) 。
+关于 Cargo 读取的环境变量的详情，参阅 [参考](../reference/environment-variables.html) 。
 {==+==}
 
 
 {==+==}
 ## EXIT STATUS
 {==+==}
-
+## 退出状态
 {==+==}
 
 
@@ -672,7 +674,7 @@ details on environment variables that Cargo reads.
 {==+==}
 ## FILES
 {==+==}
-
+## 文件
 {==+==}
 
 
@@ -703,7 +705,7 @@ environment variable.
 for more information about configuration files.
 {==+==}
 `$CARGO_HOME/config.toml`\
-&nbsp;&nbsp;&nbsp;&nbsp;全局配置文件。见[参考](../reference/config.html)了解更多关于配置文件的信息。
+&nbsp;&nbsp;&nbsp;&nbsp;全局配置文件。见 [参考](../reference/config.html) 了解更多关于配置文件的信息。
 {==+==}
 
 
@@ -714,7 +716,7 @@ current directory, and all parent directories. These configuration files
 will be merged with the global configuration file.
 {==+==}
 `.cargo/config.toml`\
-&nbsp;&nbsp;&nbsp;&nbsp;Cargo会自动在当前目录和所有父目录下搜索名为 `.cargo/config.toml` 的文件。这些配置文件将合并到全局配置文件中。
+&nbsp;&nbsp;&nbsp;&nbsp;Cargo 会自动在当前目录和所有父目录下搜索名为 `.cargo/config.toml` 的文件。这些配置文件将合并到全局配置文件中。
 {==+==}
 
 
@@ -742,7 +744,7 @@ downloaded dependencies.
 &nbsp;&nbsp;&nbsp;&nbsp;This directory contains cached downloads of git dependencies.
 {==+==}
 `$CARGO_HOME/git/`\
-&nbsp;&nbsp;&nbsp;&nbsp;这个目录包含了git依赖的缓存下载。
+&nbsp;&nbsp;&nbsp;&nbsp;这个目录包含了 git 依赖的缓存下载。
 {==+==}
 
 
@@ -764,7 +766,7 @@ stable yet and may be subject to change.
 {==+==}
 ## EXAMPLES
 {==+==}
-
+## 例子
 {==+==}
 
 
@@ -839,7 +841,7 @@ stable yet and may be subject to change.
 {==+==}
 ## BUGS
 {==+==}
-
+## 缺陷
 {==+==}
 
 
@@ -854,5 +856,6 @@ See <https://github.com/rust-lang/cargo/issues> for issues.
 ## SEE ALSO
 [rustc(1)](https://doc.rust-lang.org/rustc/index.html), [rustdoc(1)](https://doc.rust-lang.org/rustdoc/index.html)
 {==+==}
-
+## 更多
+[rustc(1)](https://doc.rust-lang.org/rustc/index.html), [rustdoc(1)](https://doc.rust-lang.org/rustdoc/index.html)
 {==+==}

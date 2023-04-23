@@ -27,7 +27,7 @@ cargo-check - 检查当前包
 
 <dt class="option-term" id="option-cargo-check--p"><a class="option-anchor" href="#option-cargo-check--p"></a><code>-p</code> <em>spec</em>...</dt>
 <dt class="option-term" id="option-cargo-check---package"><a class="option-anchor" href="#option-cargo-check---package"></a><code>--package</code> <em>spec</em>...</dt>
-<dd class="option-desc">仅对指定的包进行基准测试。SPEC 格式请参考<a href="cargo-pkgid.html">cargo-pkgid(1)</a>。该标志可以多次指定，并支持常见的Unix全局模式，如 <code>*</code >、<code >?</code >和 <code>[]</code > 。然而，为了避免您的shell在Cargo处理glob模式之前意外扩展它们，您必须在每个模式周围使用单引号或双引号。</dd>
+<dd class="option-desc">仅对指定的包进行基准测试。SPEC 格式请参考<a href="cargo-pkgid.html">cargo-pkgid(1)</a>。该标志可以多次指定，并支持常见的Unix全局模式，如 <code>*</code >、<code >?</code >和 <code>[]</code > 。然而，为了避免你的shell在Cargo处理glob模式之前意外扩展它们，你必须在每个模式周围使用单引号或双引号。</dd>
 
 
 <dt class="option-term" id="option-cargo-check---workspace"><a class="option-anchor" href="#option-cargo-check---workspace"></a><code>--workspace</code></dt>
@@ -41,7 +41,7 @@ cargo-check - 检查当前包
 
 
 <dt class="option-term" id="option-cargo-check---exclude"><a class="option-anchor" href="#option-cargo-check---exclude"></a><code>--exclude</code> <em>SPEC</em>...</dt>
-<dd class="option-desc">排除指定的包。必须与 <code>--workspace</code >标志一起使用。该标志可以多次指定，并支持常见的Unix全局模式，如 <code>*</code >、<code >？</code > 和 <code>[]</code >。然而，为了避免您的shell在Cargo处理glob模式之前意外扩展它们，您必须在每个模式周围使用单引号或双引号。</dd>
+<dd class="option-desc">排除指定的包。必须与 <code>--workspace</code >标志一起使用。该标志可以多次指定，并支持常见的Unix全局模式，如 <code>*</code >、<code >？</code > 和 <code>[]</code >。然而，为了避免你的shell在Cargo处理glob模式之前意外扩展它们，你必须在每个模式周围使用单引号或双引号。</dd>
 
 
 </dl>
@@ -53,7 +53,7 @@ cargo-check - 检查当前包
 
 传递目标选择标志将只检查指定的目标。
 
-注意`--bin`、`--example`、`--test`和`--bench`标志也支持常见的Unix全局模式，如`*`、`?`和`[]`。然而，为了避免您的 shell 在 Cargo 处理 glob 模式之前意外地扩展它们，您必须在每个 glob 模式周围使用单引号或双引号。
+注意`--bin`、`--example`、`--test`和`--bench`标志也支持常见的Unix全局模式，如`*`、`?`和`[]`。然而，为了避免你的 shell 在 Cargo 处理 glob 模式之前意外地扩展它们，你必须在每个 glob 模式周围使用单引号或双引号。
 
 <dl>
 
@@ -107,7 +107,7 @@ unittest，一次作为二进制、集成测试等的依赖项。).
 
 ### 特性选择
 
-功能标志允许您控制启用哪些功能。当未给出功能选项时，为每个选定的包激活“默认”功能。
+功能标志允许你控制启用哪些功能。当未给出功能选项时，为每个选定的包激活“默认”功能。
 
 请参见 [the features documentation](../reference/features.html#command-line-feature-options) 了解更多详细信息。
 
@@ -164,7 +164,7 @@ unittest，一次作为二进制、集成测试等的依赖项。).
 <dt class="option-term" id="option-cargo-check---timings=fmts"><a class="option-anchor" href="#option-cargo-check---timings=fmts"></a><code>--timings=</code><em>fmts</em></dt>
 <dd class="option-desc">输出每次编译需要多长时间的信息，并随着时间的推移跟踪并发信息。接受可选的逗号分隔的输出格式列表；不带参数的 <code>--timings</code> 将默认为 <code>--timings=html</code> 。指定输出格式(而不是默认格式)不稳定，需要 <code>-Zunstable-options</code>。有效的输出格式:</p>
 <ul>
-<li><code>html</code >(不稳定，需要 <code>-Zunstable-options</code> ):将一个可读的文件 <code>cargo-timing.html</code> 写入 <code>target/cargo-timings</code> 目录，并附上编译报告。如果您想查看以前的运行，也可以在相同的目录下写一个带有时间戳的报告。HTML输出只适合人类使用，不提供机器可读的计时数据。</li>
+<li><code>html</code >(不稳定，需要 <code>-Zunstable-options</code> ):将一个可读的文件 <code>cargo-timing.html</code> 写入 <code>target/cargo-timings</code> 目录，并附上编译报告。如果你想查看以前的运行，也可以在相同的目录下写一个带有时间戳的报告。HTML输出只适合人类使用，不提供机器可读的计时数据。</li>
 <li><code>json</code >(不稳定，需要 <code>-Zunstable-options</code> ):发出有关计时信息的机器可读json信息。</li>
 </ul></dd>
 
@@ -241,7 +241,7 @@ scheme. Cannot be used with <code>human</code> or <code>short</code>.</li>
 <dt class="option-term" id="option-cargo-check---frozen"><a class="option-anchor" href="#option-cargo-check---frozen"></a><code>--frozen</code></dt>
 <dt class="option-term" id="option-cargo-check---locked"><a class="option-anchor" href="#option-cargo-check---locked"></a><code>--locked</code></dt>
 <dd class="option-desc">这两个标志都要求<code>Cargo.lock</code>文件是最新的。如果锁文件丢失，或者需要更新，Cargo将出错退出。 <code>--freezed </code>标志还防止 Cargo 试图访问网络以确定其是否过期。</p>
-<p>在您希望断言<code>Cargo.lock</code>文件是最新的(如CI构建)或希望避免网络访问的环境中，可以使用这些文件。</dd>
+<p>在你希望断言<code>Cargo.lock</code>文件是最新的(如CI构建)或希望避免网络访问的环境中，可以使用这些文件。</dd>
 
 
 <dt class="option-term" id="option-cargo-check---offline"><a class="option-anchor" href="#option-cargo-check---offline"></a><code>--offline</code></dt>

@@ -157,7 +157,7 @@ However, caching the entire directory is often inefficient as it will contain do
 If we depend on a crate such as `serde 1.0.92` and cache the entire `$CARGO_HOME` we would actually cache the sources twice, the `serde-1.0.92.crate` inside `registry/cache` and the extracted `.rs` files of serde inside `registry/src`.
 That can unnecessarily slow down the build as downloading, extracting, recompressing and reuploading the cache to the CI servers can take some time.
 {==+==}
-为避免在持续集成过程中重复下载所有 crate 依赖项，您可以缓存 `$CARGO_HOME` 目录。
+为避免在持续集成过程中重复下载所有 crate 依赖项，你可以缓存 `$CARGO_HOME` 目录。
 但是，缓存整个目录通常效率较低，因为它将包含两个已下载的源文件。
 如果我们依赖 `serde 1.0.92` 等包并缓存整个 `$CARGO_HOME` ，实际上会在 `registry/cache` 中缓存 `serde-1.0.92.crate` 和 `registry/src` 中的 serde 提取的 `.rs` 文件两次。
 这可能会导致构建速度变慢，因为下载、提取、重新压缩并重新上传缓存到 CI 服务器可能需要一些时间。

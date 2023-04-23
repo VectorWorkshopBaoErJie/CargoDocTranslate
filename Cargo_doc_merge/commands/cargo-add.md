@@ -29,7 +29,7 @@ cargo-add -向Cargo.toml清单文件添加依赖项
 * 工作空间成员
 * 注册中心中的最新发行版
 
-当您添加一个已经存在的包时，将使用指定的标志更新现有条目。
+当你添加一个已经存在的包时，将使用指定的标志更新现有条目。
 
 一旦成功调用，指定的依赖中的启用的 (`+`) 和 禁用的 (`-`) [特性]  将在命令输出中被列出
 
@@ -165,7 +165,7 @@ cargo-add -向Cargo.toml清单文件添加依赖项
 <dt class="option-term" id="option-cargo-add---frozen"><a class="option-anchor" href="#option-cargo-add---frozen"></a><code>--frozen</code></dt>
 <dt class="option-term" id="option-cargo-add---locked"><a class="option-anchor" href="#option-cargo-add---locked"></a><code>--locked</code></dt>
 <dd class="option-desc">这两个标志都要求<code>Cargo.lock</code>文件是最新的。如果lock文件丢失，或者需要更新，Cargo将出错退出。<code>--frozen</code>标志还防止cargo试图访问网络来确定它是否过期。
-在您希望断言<code>Cargo.lock</code>文件是最新的(例如CI构建)或希望避免网络访问的环境中，可以使用这些文件。</dd>
+在你希望断言<code>Cargo.lock</code>文件是最新的(例如CI构建)或希望避免网络访问的环境中，可以使用这些文件。</dd>
 
 
 <dt class="option-term" id="option-cargo-add---offline"><a class="option-anchor" href="#option-cargo-add---offline"></a><code>--offline</code></dt>

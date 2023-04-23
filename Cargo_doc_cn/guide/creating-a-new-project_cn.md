@@ -141,7 +141,7 @@ We can also use `cargo run` to compile and then run it, all in one step (You
 won't see the `Compiling` line if you have not made any changes since you last
 compiled):
 {==+==}
-我们也可以使用 `cargo run` 来一步完成编译和运行 (如果自上次编译以来没有更改，您将不会看到 `Compiling` 行):：
+我们也可以使用 `cargo run` 来一步完成编译和运行 (如果自上次编译以来没有更改，你将不会看到 `Compiling` 行):：
 {==+==}
 
 

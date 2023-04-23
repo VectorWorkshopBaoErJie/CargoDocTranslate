@@ -243,7 +243,7 @@ resolve dependencies, and for guidelines on setting your own version. See the
 [SemVer compatibility] chapter for more details on exactly what constitutes a
 breaking change.
 {==+==}
-请参考 [Resolver] 章节获取有关 Cargo 如何使用版本解决依赖项以及设置您自己的版本的准则的更多信息。
+请参考 [Resolver] 章节获取有关 Cargo 如何使用版本解决依赖项以及设置你自己的版本的准则的更多信息。
 请参考 [SemVer 兼容性][SemVer compatibility] 章节以获取有关构成破坏性更改的详细信息。
 {==+==}
 
@@ -314,7 +314,7 @@ is compiled with. Setting the `edition` key in `[package]` will affect all
 targets/crates in the package, including test suites, benchmarks, binaries,
 examples, etc.
 {==+==}
-`edition` 键是可选的键，它影响使用哪个 [Rust Edition] 编译您的包。
+`edition` 键是可选的键，它影响使用哪个 [Rust Edition] 编译你的包。
 在 `[package]` 中设置 `edition` 键会影响包中的所有目标/crate的版本，包括测试套件、性能测试、二进制文件、实例等。
 {==+==}
 
@@ -361,7 +361,7 @@ will exit with an error, telling the user what version is required.
 {==+==}
 #### `rust-version` 字段
 
-`rust-version` 字段是可选的键，用于告诉 Cargo 可以使用哪个版本的 Rust 语言和编译器来编译您的包。
+`rust-version` 字段是可选的键，用于告诉 Cargo 可以使用哪个版本的 Rust 语言和编译器来编译你的包。
 如果当前选择的 Rust 编译器版本低于所声明的版本，Cargo 将以错误形式退出，并告诉用户需要哪个版本。
 {==+==}
 
@@ -453,7 +453,7 @@ documentation. If no URL is specified in the manifest file, [crates.io] will
 automatically link your crate to the corresponding [docs.rs] page.
 {==+==}
 `documentation` 字段指定了一个 URL，该 URL 指向托管该 crate 文档的网站。
-如果在清单文件中未指定 URL，则 [crates.io] 将自动将您的 crate 链接到相应的 [docs.rs] 页面。
+如果在清单文件中未指定 URL，则 [crates.io] 将自动将你的 crate 链接到相应的 [docs.rs] 页面。
 {==+==}
 
 
@@ -502,7 +502,7 @@ file will be used. You can suppress this behavior by setting this field to
 be assumed.
 {==+==}
 如果在 `Cargo.toml` 中没有为该字段指定值，并且在包根目录下存在名为 `README.md` 、 `README.txt `或 `README` 的文件，则将使用该文件的名称。
-您可以通过将此字段设置为 `false` 来取消此行为。如果该字段设置为 `true` ，则默认值为 `README.md` 。
+你可以通过将此字段设置为 `false` 来取消此行为。如果该字段设置为 `true` ，则默认值为 `README.md` 。
 {==+==}
 
 
@@ -514,7 +514,7 @@ package.
 {==+==}
 #### `homepage` 字段
 
-`homepage` 字段应该是指向一个站点的URL，该站点是您的包的主页。
+`homepage` 字段应该是指向一个站点的URL，该站点是你的包的主页。
 {==+==}
 
 
@@ -657,7 +657,7 @@ words that would help someone find this crate.
 #### `keywords` 字段
 
 `keywords` 字段是一个字符串数组，用于描述该包。
-当在注册中心上搜索包时，它可以提供帮助，您可以选择任何有助于其他人找到这个 crate 的词。
+当在注册中心上搜索包时，它可以提供帮助，你可以选择任何有助于其他人找到这个 crate 的词。
 {==+==}
 
 
@@ -777,7 +777,7 @@ script] for building native code. More information can be found in the [build
 script guide][build script].
 {==+==}
 `build` 字段指定了位于包根目录中的一个文件，用于构建本地代码的 [构建脚本][build script] 。
-您可以在 [构建脚本指南][build script] 中找到更多信息。
+你可以在 [构建脚本指南][build script] 中找到更多信息。
 {==+==}
 
 
@@ -867,7 +867,7 @@ be included in the package.
 {==+==}
 `exclude` 和 `include` 字段可以用来明确指定在打包项目以进行 [发布][publishing] 和某些变更跟踪时包含哪些文件。
 在 `exclude` 字段中指定的模式标识了一组不被包含的文件，而在 `include` 中指定的模式则指定了要明确包含的文件。
-您可以运行 [`cargo package --list`][`cargo package`] 命令来验证哪些文件将包含在包中。
+你可以运行 [`cargo package --list`][`cargo package`] 命令来验证哪些文件将包含在包中。
 {==+==}
 
 

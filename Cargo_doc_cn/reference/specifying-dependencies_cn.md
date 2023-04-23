@@ -14,9 +14,9 @@ locally. You can have different dependencies for different platforms, and
 dependencies that are only used during development. Let's take a look at how
 to do each of these.
 {==+==}
-您的 crate 可以依赖于来自 [crates.io] 或其他注册中心、`git` 仓库或本地文件系统子目录中的其他库。
-您还可以暂时覆盖依赖的位置 —— 例如，为了能够在本地测试正在处理的依赖中的错误修复。
-您可以为不同的平台设置不同的依赖，并且可以在开发过程中仅使用某些依赖。让我们看看如何完成这些操作。
+你的 crate 可以依赖于来自 [crates.io] 或其他注册中心、`git` 仓库或本地文件系统子目录中的其他库。
+你还可以暂时覆盖依赖的位置 —— 例如，为了能够在本地测试正在处理的依赖中的错误修复。
+你可以为不同的平台设置不同的依赖，并且可以在开发过程中仅使用某些依赖。让我们看看如何完成这些操作。
 {==+==}
 
 
@@ -140,7 +140,7 @@ version, only patch-level changes are allowed. If you only specify a major
 version, then minor- and patch-level changes are allowed.
 {==+==}
 ** `~` 符号需求** 指定了一个具有一定升级能力的最小版本。
-如果您指定了 `主.次.修` ，或者只指定了 `主.次` ，则只允许进行修订级别的更改。
+如果你指定了 `主.次.修` ，或者只指定了 `主.次` ，则只允许进行修订级别的更改。
 如果只指定了主版本号，则允许进行次级别和修订级别的更改。
 {==+==}
 
@@ -299,7 +299,7 @@ some-crate = { version = "1.0", registry = "my-registry" }
 To depend on a library located in a `git` repository, the minimum information
 you need to specify is the location of the repository with the `git` key:
 {==+==}
-要依赖位于 `git` 存储库中的库，您需要指定的最小信息是使用 `git` 键指定仓库的位置:
+要依赖位于 `git` 存储库中的库，你需要指定的最小信息是使用 `git` 键指定仓库的位置:
 {==+==}
 
 
@@ -331,8 +331,8 @@ specify something else. Here's an example of specifying that you want to use
 the latest commit on a branch named `next`:
 {==+==}
 由于我们没有指定其他信息，Cargo 假定我们打算使用最新的提交来构建我们的包。
-您可以将 `git` 键与 `rev`、`tag` 或 `branch` 键组合，以指定其他内容。
-下面是一个示例，指定您要使用名为 `next` 的分支上的最新提交：
+你可以将 `git` 键与 `rev`、`tag` 或 `branch` 键组合，以指定其他内容。
+下面是一个示例，指定你要使用名为 `next` 的分支上的最新提交：
 {==+==}
 
 
@@ -547,7 +547,7 @@ is published. This is similar to specifying an
 dependency declaration.
 {==+==}
 这种情况的一个例子是将库拆分为同一工作空间中的多个包。
-您可以使用 `path` 依赖项指向工作空间中的本地包，在开发期间使用本地版本，然后在发布后使用 [crates.io] 版本。
+你可以使用 `path` 依赖项指向工作空间中的本地包，在开发期间使用本地版本，然后在发布后使用 [crates.io] 版本。
 这类似于指定 [override](overriding-dependencies.md) ，但仅适用于这个依赖声明。
 {==+==}
 
@@ -613,7 +613,7 @@ Unlike in your Rust source code, you cannot use
 based on optional features. Use [the `[features]` section](features.md)
 instead:
 {==+==}
-与您的 Rust 源代码不同，您不能使用 `[target.'cfg(feature = "fancy-feature")'.dependencies]` 基于可选特性来添加依赖项。请改用 [features](features.md) 部分：
+与你的 Rust 源代码不同，你不能使用 `[target.'cfg(feature = "fancy-feature")'.dependencies]` 基于可选特性来添加依赖项。请改用 [features](features.md) 部分：
 {==+==}
 
 
@@ -675,7 +675,7 @@ openssl = "1.0.1"
 If you’re using a custom target specification (such as `--target
 foo/bar.json`), use the base filename without the `.json` extension:
 {==+==}
-如果您正在使用自定义目标规范 (例如 `--target foo/bar.json` )，请使用不带 `.json` 扩展名的基本文件名：
+如果你正在使用自定义目标规范 (例如 `--target foo/bar.json` )，请使用不带 `.json` 扩展名的基本文件名：
 {==+==}
 
 
@@ -745,7 +745,7 @@ You can also have target-specific development dependencies by using
 `dev-dependencies` in the target section header instead of `dependencies`. For
 example:
 {==+==}
-您也可以在目标特定的开发依赖项中使用 `dev-dependencies` 代替 `dependencies`。例如：
+你也可以在目标特定的开发依赖项中使用 `dev-dependencies` 代替 `dependencies`。例如：
 {==+==}
 
 
@@ -971,7 +971,7 @@ being requested.
 {==+==}
 Note that if you have an optional dependency like:
 {==+==}
-请注意，如果您有一个可选依赖项，例如：
+请注意，如果你有一个可选依赖项，例如：
 {==+==}
 
 

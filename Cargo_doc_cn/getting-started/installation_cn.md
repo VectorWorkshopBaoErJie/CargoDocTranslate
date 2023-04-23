@@ -37,7 +37,7 @@ curl https://sh.rustup.rs -sSf | sh
 It will download a script, and start the installation. If everything goes well,
 you’ll see this appear:
 {==+==}
-它将下载一个脚本，并开始安装。如果一切顺利，您将看到以下内容:
+它将下载一个脚本，并开始安装。如果一切顺利，你将看到以下内容:
 {==+==}
 
 

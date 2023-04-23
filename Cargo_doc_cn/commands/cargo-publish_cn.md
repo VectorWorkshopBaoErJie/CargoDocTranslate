@@ -75,7 +75,7 @@ following steps:
 This command requires you to be authenticated with either the `--token` option
 or using [cargo-login(1)](cargo-login.html).
 {==+==}
-该命令要求您使用 `--token` 选项或使用 [cargo-login(1)](cargo-login.html) 进行认证。
+该命令要求你使用 `--token` 选项或使用 [cargo-login(1)](cargo-login.html) 进行认证。
 {==+==}
 
 

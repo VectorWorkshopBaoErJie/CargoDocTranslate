@@ -211,7 +211,7 @@ when packaging, but if you want to specify an extra set of files to ignore you
 can use the [`exclude` key](manifest.md#the-exclude-and-include-fields) in the
 manifest:
 {==+==}
-Cargo在打包时将自动忽略您的版本控制系统所忽略的文件，如果想额外指定一组要忽略的文件，
+Cargo在打包时将自动忽略你的版本控制系统所忽略的文件，如果想额外指定一组要忽略的文件，
 可以在配置清单中使用 [`exclude` 键](manifest.md#the-exclude-and-include-fields) 。
 {==+==}
 

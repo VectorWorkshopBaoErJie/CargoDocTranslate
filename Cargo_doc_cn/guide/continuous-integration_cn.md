@@ -94,7 +94,7 @@ jobs:
 This will test all three release channels (note a failure in any toolchain version will fail the entire job). You can also click `"Actions" > "new workflow"` in the GitHub UI and select Rust to add the [default configuration](https://github.com/actions/starter-workflows/blob/main/ci/rust.yml) to your repo. See [GitHub Actions documentation](https://docs.github.com/en/actions) for more information.
 {==+==}
 这将测试所有三个发行渠道 (请注意，任何工具链版本的失败都会导致整个作业失败) 。
-您也可以在 GitHub UI 中单击 `"Actions" > "new workflow"` ，然后选择 Rust 将 [default configuration](https://github.com/actions/starter-workflows/blob/main/ci/rust.yml) 添加到您的仓库中。有关更多信息，请参见 [GitHub Actions documentation](https://docs.github.com/en/actions) 。
+你也可以在 GitHub UI 中单击 `"Actions" > "new workflow"` ，然后选择 Rust 将 [default configuration](https://github.com/actions/starter-workflows/blob/main/ci/rust.yml) 添加到你的仓库中。有关更多信息，请参见 [GitHub Actions documentation](https://docs.github.com/en/actions) 。
 {==+==}
 
 {==+==}

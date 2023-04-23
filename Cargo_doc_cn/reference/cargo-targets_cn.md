@@ -190,7 +190,7 @@ example that you want to run with [`cargo test`].
 可以使用 [`cargo build`] 命令，带 `--example <example-name>` 选项来构建库实例。
 使用 [`cargo install`] 命令，带 `--example <example-name>` 选项可以将可执行二进制文件复制到通用位置。
 默认情况下，实例由 [`cargo test`] 编译，以防止单元损坏。
-如果实例中有 `#[test]` 函数，您可以将 [`test` 字段](#the-test-field) 设置为 `true`，这样可以使用 [`cargo test`] 运行这些函数。
+如果实例中有 `#[test]` 函数，你可以将 [`test` 字段](#the-test-field) 设置为 `true`，这样可以使用 [`cargo test`] 运行这些函数。
 {==+==}
 
 
@@ -268,7 +268,7 @@ tests. When you run [`cargo test`], Cargo will compile each of these files as
 a separate crate, and execute them.
 {==+==}
 位于 [`tests` 目录][package layout] 下的文件是集成测试。
-当您运行 [`cargo test`] 时，Cargo 将把这些文件编译为单独的 crate，并执行它们。
+当你运行 [`cargo test`] 时，Cargo 将把这些文件编译为单独的 crate，并执行它们。
 {==+==}
 
 
@@ -305,7 +305,7 @@ annotated functions and run them in parallel. You can pass module names to
 在某些情况下，这可能效率较低，编译时间较长，且可能无法充分利用多个 CPU 运行测试。
 如果有很多集成测试，可以考虑创建一个单独的集成测试，然后将测试拆分为多个模块。
 libtest 测试框架将自动查找所有标记了 `#[test]` 的函数并以并行方式运行它们。
-您可以将模块名称传递给 [`cargo test`] ，而只运行该模块中的测试。
+你可以将模块名称传递给 [`cargo test`] ，而只运行该模块中的测试。
 {==+==}
 
 
@@ -673,7 +673,7 @@ examples. Binaries, tests, and benchmarks are always the "bin" crate type. The
 defaults are:
 {==+==}
 `crate-type` 字段定义目标将生成的 [crate 类型][crate types] 。
-它是一个字符串数组，允许您为单个目标指定多个 crate 类型。这只能为库和实例指定。
+它是一个字符串数组，允许你为单个目标指定多个 crate 类型。这只能为库和实例指定。
 二进制文件、测试和基准总是 "bin" crate 类型。默认值为：
 {==+==}
 
@@ -787,7 +787,7 @@ compile anything in the `bin` directory as an executable. Here is a sample
 layout of this scenario:
 {==+==}
 禁用自动发现功能通常只在特殊情况下需要。
-例如，如果您想要一个名为 `bin` 的模块，这样是不行的，因为 Cargo 通常会尝试将 `bin `目录中的所有内容编译为可执行文件。以下是此场景的示例布局：
+例如，如果你想要一个名为 `bin` 的模块，这样是不行的，因为 Cargo 通常会尝试将 `bin `目录中的所有内容编译为可执行文件。以下是此场景的示例布局：
 {==+==}
 
 

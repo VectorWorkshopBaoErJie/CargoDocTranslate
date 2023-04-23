@@ -20,7 +20,7 @@ cargo-publish - 上传包到注册中心
 2. 按照 [cargo-package(1)](cargo-package.html) 中的步骤，创建 `.crate` 文件。
 3. 将crate上传到注册中心。需注意，服务器将对crate进行额外的检查。
 
-该命令要求您使用 `--token` 选项或使用 [cargo-login(1)](cargo-login.html) 进行认证。
+该命令要求你使用 `--token` 选项或使用 [cargo-login(1)](cargo-login.html) 进行认证。
 
 见 [参考](../reference/publishing.html) 了解关于包和发布的详情。
 
