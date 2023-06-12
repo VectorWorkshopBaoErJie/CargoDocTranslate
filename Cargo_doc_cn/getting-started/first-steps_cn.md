@@ -10,16 +10,17 @@ demonstrate its ability to generate a new [***package***][def-package] for us,
 its ability to compile the [***crate***][def-crate] within the package, and
 its ability to run the resulting program.
 {==+==}
-这节提供对 `cargo` 命令行工具的快速一览。
-演示如何使用 `cargo` 工具创建一个新的包 [***package***][def-package]，对包中的 [***crate***][def-crate] 进行编译，以及运行生成的程序。
+这节是 `cargo` 命令行工具的快览。
+使用 `cargo` 工具创建一个新 [***包***][def-package]，编译包中的 [***crate***][def-crate] ，以及运行程序。
 {==+==}
 
 
 {==+==}
 To start a new package with Cargo, use `cargo new`:
 {==+==}
-可以使用 `cargo new` 创建新包:
+可以使用命令 `cargo new` 创建新的包:
 {==+==}
+
 
 {==+==}
 ```console
@@ -34,14 +35,14 @@ $ cargo new hello_world
 Cargo defaults to `--bin` to make a binary program. To make a library, we
 would pass `--lib`, instead.
 {==+==}
-Cargo 默认使用 `--bin` 选项生成一个二进制程序，要生成一个库，我们可以传递 `--lib` 选项。
+Cargo 默认使用 `--bin` 选项生成二进制程序，要生成库，可以传递 `--lib` 选项。
 {==+==}
 
 
 {==+==}
 Let’s check out what Cargo has generated for us:
 {==+==}
-让我们看一下 Cargo 为我们生成了什么:
+来看一下 Cargo 所生成的目录及文件:
 {==+==}
 
 
@@ -64,7 +65,7 @@ $ tree .
 {==+==}
 This is all we need to get started. First, let’s check out `Cargo.toml`:
 {==+==}
-这就是我们开始的全部内容。首先，让我们看一下 `Cargo.toml` :
+所创建的就是这些内容。首先，来看一下 `Cargo.toml` 的内容:
 {==+==}
 
 
@@ -86,7 +87,7 @@ edition = "2021"
 This is called a [***manifest***][def-manifest], and it contains all of the
 metadata that Cargo needs to compile your package.
 {==+==}
-这被称为 [***配置清单***][def-manifest] ，包含 Cargo 编译包所需的所有元数据。
+这些内容称为 [***配置清单***][def-manifest] ，包含 Cargo 编译包时所需要的 '元数据' 。
 {==+==}
 
 
@@ -112,8 +113,8 @@ fn main() {
 Cargo generated a “hello world” program for us, otherwise known as a
 [***binary crate***][def-crate]. Let’s compile it:
 {==+==}
-Cargo 为我们生成了一个 "hello world" 程序，是 [***binary crate***][def-crate] "二进制crate"。
-编译这个程序:
+Cargo 所生成的 "hello world" 程序，是 [***二进制 crate***][def-crate] 。
+编译程序:
 {==+==}
 
 
@@ -147,7 +148,7 @@ Hello, world!
 {==+==}
 We can also use `cargo run` to compile and then run it, all in one step:
 {==+==}
-可以使用 `cargo run` 来编译后运行，一步完成:
+可以使用 `cargo run` 来编译及运行，一步完成:
 {==+==}
 
 
@@ -173,8 +174,8 @@ Hello, world!
 {==+==}
 For more details on using Cargo, check out the [Cargo Guide](../guide/index.md)
 {==+==}
-关于Cargo的更多细节，查阅 [Cargo 指南](../guide/index.md) 。
-{==+==}
+关于 Cargo 的更多细节，查阅 [Cargo 指南](../guide/index.md) 。
+{==+==} 
 
 
 {==+==}

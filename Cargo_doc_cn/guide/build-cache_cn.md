@@ -13,7 +13,7 @@ this is the directory named `target` in the root of your
 value, or the `--target-dir` command-line flag.
 {==+==}
 Cargo 会将构建的输出存储在 "target" 目录中。默认情况下，默认情况下是 [*workspace*][def-workspace] 根目录下的 `target` 目录。
-如果要更改此目录的位置，可以设置 `CARGO_TARGET_DIR` [环境变量][environment variable] 、 [`build.target-dir`]  配置值或 `--target-dir` 命令行标志。
+如果要更改此目录的位置，可以设置 `CARGO_TARGET_DIR` [环境变量][environment variable] 、 [`build.target-dir`] 配置值或通过 `--target-dir` 命令行标志。
 {==+==}
 
 
@@ -25,7 +25,7 @@ the root of the target directory, with each [profile] stored in a separate
 subdirectory:
 {==+==}
 如果没有使用 `--target` 标志来构建特定平台的程序，则目录结构会有所不同。
-在这种情况下，Cargo 会以构建主机架构的模式运行。
+在这种情况下，Cargo 会以构建时主机的架构模式运行。
 输出结果会存储在目标目录的根目录中，而每个 [编译设置][profile] 则会存储在单独的子目录中：
 {==+==}
 
@@ -60,7 +60,7 @@ same name as the profile.
 When building for another target with `--target`, the output is placed in a
 directory with the name of the target:
 {==+==}
-当使用 `--target` 为另一个目标构建时，输出文件将被放置在名称为目标名称的目录中。
+当使用 `--target` 为其它目标构建时，输出文件将被放置在名称为目标名称的目录中。
 {==+==}
 
 
@@ -76,6 +76,7 @@ Directory | Example
 <code style="white-space: nowrap">target/&lt;triple&gt;/release/</code> | <code style="white-space: nowrap">target/thumbv7em-none-eabihf/release/</code>
 {==+==}
 
+
 {==+==}
 > **Note**: When not using `--target`, this has a consequence that Cargo will
 > share your dependencies with build scripts and proc macros. [`RUSTFLAGS`]
@@ -83,8 +84,8 @@ Directory | Example
 > build scripts and proc macros are built separately (for the host
 > architecture), and do not share `RUSTFLAGS`.
 {==+==}
-> **注意**: 注意：当没有使用 `--target` 选项时， Cargo 会将你的依赖与构建脚本和过程宏共享。
-> [`RUSTFLAGS`] 将与每次 `rustc` 调用共享。
+> **注意**: 注意：当未使用 `--target` 选项时， Cargo 会共享依赖的构建脚本和过程宏。
+> [`RUSTFLAGS`] 每次 `rustc` 调用会共享。
 > 使用 `--target` 选项时，构建脚本和过程宏会单独构建 (针对主机架构) ，并且不共享 `RUSTFLAGS` 。
 {==+==}
 
@@ -93,7 +94,7 @@ Directory | Example
 Within the profile directory (such as `debug` or `release`), artifacts are
 placed into the following directories:
 {==+==}
-在编译设置 (profile) 目录 (如 `debug` 或 `release` )下，制品被放置在以下目录中:
+在编译目录 (如 `debug` 或 `release` )下，制品被放置在以下目录中:
 {==+==}
 
 
@@ -135,7 +136,7 @@ Cargo also creates several other directories and files needed for the build
 process. Their layout is considered internal to Cargo, and is subject to
 change. Some of these directories are:
 {==+==}
-Cargo 还会在构建过程创建一些其他的目录和文件。它们的布局被视为 Cargo 内部使用的，可能会发生更改。其中一些目录包括：
+Cargo 还会在构建过程创建一些其他的目录和文件。由 Cargo 内部使用，可能会发生更改。其中一些目录包括：
 {==+==}
 
 {==+==}
@@ -166,11 +167,12 @@ with external build systems so that they can detect if Cargo needs to be
 re-executed. The paths in the file are absolute by default. See the
 [`build.dep-info-basedir`] config option to use relative paths.
 {==+==}
-在每个编译好的制品旁边，都会有一个名为 ".d" 后缀的 "dep info" 文件。
+对于每个编译好的制品，相应的会有一个名为 ".d" 后缀的 "dep info" 文件。
 该文件使用类似 Makefile 的语法，指示重新构建该制品所需的所有文件依赖项。
-这些文件旨在与外部构建系统一起使用，以便它们可以检测是否需要重新执行 Cargo 。
-默认情况下，文件中的路径是绝对路径。请参阅 [`build.dep-info-basedir`] 配置选项以使用相对路径。
+这些文件旨在与外部构建系统一起使用，以检测是否需要重新执行 Cargo 。
+默认情况下，文件中的路径是绝对路径。请参阅 [`build.dep-info-basedir`] 配置选项，以使用相对路径。
 {==+==}
+
 
 {==+==}
 ```Makefile
@@ -196,7 +198,7 @@ re-executed. The paths in the file are absolute by default. See the
 A third party tool, [sccache], can be used to share built dependencies across
 different workspaces.
 {==+==}
-[sccache]是一个第三方工具，可以用于在不同的工作空间之间共享构建的依赖项。
+[sccache] 是第三方工具，可用于在不同的工作空间之间共享构建的依赖项。
 {==+==}
 
 
@@ -207,9 +209,9 @@ you use bash, it makes sense to add `export RUSTC_WRAPPER=sccache` to
 `.bashrc`. Alternatively, you can set [`build.rustc-wrapper`] in the [Cargo
 configuration][config]. Refer to sccache documentation for more details.
 {==+==}
-为了设置 `sccache` ，你需要通过 `cargo install sccache` 安装它，然后在运行 Cargo 前将 `RUSTC_WRAPPER` 环境变量设置为 `sccache`。
-如果你使用的是 bash，可以在 `.bashrc` 中添加 `export RUSTC_WRAPPER=sccache`。
-另外，你还可以在 [Cargo 配置文件][config] 中设置 [`build.rustc-wrapper`] 。更多细节请参考 sccache 文档。
+需要通过 `cargo install sccache` 安装 `sccache` ，然后在运行 Cargo 前将 `RUSTC_WRAPPER` 环境变量设置为 `sccache`。
+如果你使用的是 bash ，可以在 `.bashrc` 中添加 `export RUSTC_WRAPPER=sccache`。
+还可以在 [Cargo 配置文件][config] 中设置 [`build.rustc-wrapper`] 。更多细节请参考 sccache 文档。
 {==+==}
 
 

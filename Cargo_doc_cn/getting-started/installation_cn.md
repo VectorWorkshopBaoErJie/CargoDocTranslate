@@ -14,7 +14,7 @@
 The easiest way to get Cargo is to install the current stable release of [Rust]
 by using [rustup]. Installing Rust using `rustup` will also install `cargo`.
 {==+==}
-获取 Cargo 的最简单方法是使用 [rustup] 安装当前稳定版本的 [Rust]。使用 `rustup` 安装 Rust 也将安装 `cargo` 。
+获取 Cargo 最简单的方法是，使用 [rustup] 安装当前 [Rust] 的稳定版本，将一并安装 `cargo` 。
 {==+==}
 
 {==+==}
@@ -37,7 +37,7 @@ curl https://sh.rustup.rs -sSf | sh
 It will download a script, and start the installation. If everything goes well,
 you’ll see this appear:
 {==+==}
-它将下载一个脚本，并开始安装。如果一切顺利，你将看到以下内容:
+这将下载脚本后开始安装。如果顺利，你将看到以下内容:
 {==+==}
 
 
@@ -54,7 +54,7 @@ Rust is installed now. Great!
 On Windows, download and run [rustup-init.exe]. It will start the installation
 in a console and present the above message on success.
 {==+==}
-在 Windows 操作系统上，可以下载并运行 [rustup-init.exe] ，它将在控制台中开始安装，并在成功时显示上述消息。
+在 Windows 操作系统上，可以下载并运行 [rustup-init.exe] ，将在控制台中开始安装，并在成功时显示上述消息。
 {==+==}
 
 {==+==}
@@ -83,7 +83,7 @@ For other installation options and information, visit the
 {==+==}
 Alternatively, you can [build Cargo from source][compiling-from-source].
 {==+==}
-做为备选，你可以 [从源代码构建Cargo][compiling-from-source] 。
+做为备选，你可以 [从源代码构建 Cargo][compiling-from-source] 。
 {==+==}
 
 
