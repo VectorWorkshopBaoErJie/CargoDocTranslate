@@ -1,14 +1,14 @@
 {==+==}
 ## Cargo Guide
 {==+==}
-## Cargo指南
+## Cargo 指南
 {==+==}
 
 {==+==}
 This guide will give you all that you need to know about how to use Cargo to
 develop Rust packages.
 {==+==}
-这个指南将为你提供有关如何使用 Cargo 开发 Rust 包的所需信息。
+本指南将提供有关如何使用 Cargo 开发 Rust 包的信息。
 {==+==}
 
 {==+==}

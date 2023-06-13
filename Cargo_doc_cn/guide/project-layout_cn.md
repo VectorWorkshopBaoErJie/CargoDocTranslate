@@ -49,10 +49,10 @@ Cargo 使用文件约定来放置文件，以便更轻松地部署新的 Cargo �
 ├── src/                                源码目录
 │   ├── lib.rs                          库 crate 的根
 │   ├── main.rs                         二进制 cate 的根
-│   └── bin/                            其他二进制crate
-│       ├── named-executable.rs         命名的可执行crate根
-│       ├── another-executable.rs       另一个可执行crate根
-│       └── multi-file-executable/      多文件可执行crate根目录，目录名即可执行文件名
+│   └── bin/                            其他二进制 crate
+│       ├── named-executable.rs         命名的可执行 crate 根
+│       ├── another-executable.rs       另一个可执行 crate 根
+│       └── multi-file-executable/      多文件可执行 crate 根目录，目录名即可执行文件名
 │           ├── main.rs                 crate 的根
 │           └── some_module.rs          crate 的模块
 ├── benches/                            性能测试                  与bin/目录结构相同
@@ -102,14 +102,14 @@ files, place a `main.rs` file along with the extra [*modules*][def-module]
 within a subdirectory of the `src/bin`, `examples`, `benches`, or `tests`
 directory. The name of the executable will be the directory name.
 {==+==}
-如果一个二进制文件、示例、基准测试或集成测试由多个源文件组成，把 `main.rs` 和其他模块([*modules*][def-module]) 在内，放在 `src/bin`、`examples`、`benches` 或 `tests` 目录的子目录中。可执行文件的名称将是目录名。
+如果二进制、示例、基准测试或集成测试由多个源文件组成，把 `main.rs` 和其他模块([*modules*][def-module]) 在内，放在 `src/bin`、`examples`、`benches` 或 `tests` 目录的子目录中。目录名就是可执行程序的名称。
 {==+==}
 
 
 {==+==}
 You can learn more about Rust's module system in [the book][book-modules].
 {==+==}
-你可以在 [the book][book-modules] 中了解有关 Rust 模块系统的更多信息。
+可在 [此文档][book-modules] 中了解有关 Rust 模块系统的更多信息。
 {==+==}
 
 

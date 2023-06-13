@@ -14,7 +14,7 @@
 To test your [package][def-package] on Travis CI, here is a sample
 `.travis.yml` file:
 {==+==}
-要在 Travis CI 上测试你的 [包][def-package] ，这里有一个样例 `.travis.yml` 文件:
+要在 Travis CI 上测试你的 [包][def-package] ，这里有一个 `.travis.yml` 文件样例:
 {==+==}
 
 {==+==}
@@ -39,7 +39,7 @@ will not fail your overall build. Please see the [Travis CI Rust
 documentation](https://docs.travis-ci.com/user/languages/rust/) for more
 information.
 {==+==}
-这将测试所有三个发行通道。在 nightly 中出现任何问题，不会导致整个构建失败。
+这将测试所有三个发布通道。在 nightly 中出现任何问题，不会导致整个构建失败。
 请参阅 [Travis CI Rust documentation](https://docs.travis-ci.com/user/languages/rust/) 以获取更多信息。
 {==+==}
 
@@ -54,7 +54,7 @@ information.
 {==+==}
 To test your package on GitHub Actions, here is a sample `.github/workflows/ci.yml` file:
 {==+==}
-要在 Github Actions 中测试你的包，这里有一个样例 `.github/workflows/ci.yml` 文件:
+要在 Github Actions 中测试你的包，这里有一个 `.github/workflows/ci.yml` 文件样例:
 {==+==}
 
 {==+==}
@@ -93,7 +93,7 @@ jobs:
 {==+==}
 This will test all three release channels (note a failure in any toolchain version will fail the entire job). You can also click `"Actions" > "new workflow"` in the GitHub UI and select Rust to add the [default configuration](https://github.com/actions/starter-workflows/blob/main/ci/rust.yml) to your repo. See [GitHub Actions documentation](https://docs.github.com/en/actions) for more information.
 {==+==}
-这将测试所有三个发行渠道 (请注意，任何工具链版本的失败都会导致整个作业失败) 。
+这将测试所有三个发布渠道 (请注意，任何工具链版本的失败都会导致整个作业失败) 。
 你也可以在 GitHub UI 中单击 `"Actions" > "new workflow"` ，然后选择 Rust 将 [default configuration](https://github.com/actions/starter-workflows/blob/main/ci/rust.yml) 添加到你的仓库中。有关更多信息，请参见 [GitHub Actions documentation](https://docs.github.com/en/actions) 。
 {==+==}
 
@@ -106,7 +106,7 @@ This will test all three release channels (note a failure in any toolchain versi
 {==+==}
 To test your package on GitLab CI, here is a sample `.gitlab-ci.yml` file:
 {==+==}
-要在 GitLab CI 中测试你的包，这里有一个样例 `.gitlab-ci.yml` 文件:
+要在 GitLab CI 中测试你的包，这里有一个 `.gitlab-ci.yml` 文件样例:
 {==+==}
 
 

@@ -7,7 +7,7 @@
 {==+==}
 To start a new [package][def-package] with Cargo, use `cargo new`:
 {==+==}
-使用 Cargo 创建一个新的 [package][def-package]，可以使用 `cargo new` 命令。
+可以使用 `cargo new` 命令，创建新 [包][def-package]。
 {==+==}
 
 {==+==}
@@ -24,16 +24,16 @@ We’re passing `--bin` because we’re making a binary program: if we
 were making a library, we’d pass `--lib`. This also initializes a new `git`
 repository by default. If you don't want it to do that, pass `--vcs none`.
 {==+==}
-我们在运行 `cargo new` 命令时加入了 `--bin` 参数，而创建一个二进制程序。
-如果要创建一个库，就需要传入 `--lib` 参数。
-默认情况下，这个命令还会初始化一个新的 `git` 仓库。如果你不想这样做，可以传入 `--vcs none`。
+在运行 `cargo new` 命令时加入了 `--bin` 参数，将创建可执行二进制程序。
+如果要创建库，需传入 `--lib` 参数。
+默认情况下，该命令会初始化新的 `git` 仓库。如果不想这样做，可以传入 `--vcs none` 参数。
 {==+==}
 
 
 {==+==}
 Let’s check out what Cargo has generated for us:
 {==+==}
-让我们来看看 Cargo 所生成的内容:
+来看看 Cargo 所生成的内容:
 {==+==}
 
 
@@ -80,7 +80,7 @@ This is called a [***manifest***][def-manifest], and it contains all of the
 metadata that Cargo needs to compile your package. This file is written in the
 [TOML] format (pronounced /tɑməl/).
 {==+==}
-这是一个称为 [***配置清单***][def-manifest] 的文件，它包含了 Cargo 编译你的包所需的所有元数据。
+该文件称为 [***配置清单***][def-manifest] 文件，包含 Cargo 编译需要所有元数据。
 这个文件采用 [TOML] (发音为 /tɑməl/) 格式书写。
 {==+==}
 
@@ -106,7 +106,7 @@ fn main() {
 Cargo generated a “hello world” program for us, otherwise known as a
 [*binary crate*][def-crate]. Let’s compile it:
 {==+==}
-Cargo 为我们生成了一个 "hello world" 程序，也被称为 [*binary crate*][def-crate] 。我们来编译它:
+Cargo 生成了 "hello world" 程序，一个可执行二进制 [*binary crate*][def-crate] 。进行编译:
 {==+==}
 
 {==+==}
@@ -141,7 +141,7 @@ We can also use `cargo run` to compile and then run it, all in one step (You
 won't see the `Compiling` line if you have not made any changes since you last
 compiled):
 {==+==}
-我们也可以使用 `cargo run` 来一步完成编译和运行 (如果自上次编译以来没有更改，你将不会看到 `Compiling` 行):：
+可以使用 `cargo run` 来一步来完成编译和运行 (如果没有更改，就不会有 `Compiling` 信息):：
 {==+==}
 
 
@@ -161,7 +161,7 @@ Hello, world!
 You’ll now notice a new file, `Cargo.lock`. It contains information about our
 dependencies. Since we don’t have any yet, it’s not very interesting.
 {==+==}
-`Cargo.lock` 是包含有关我们依赖项的信息的文件，当我们还没有任何依赖项时，它没什么有用的内容。
+`Cargo.lock` 文件存储了相关依赖的信息，当没有依赖时，就没什么有用的内容。
 {==+==}
 
 
@@ -169,7 +169,7 @@ dependencies. Since we don’t have any yet, it’s not very interesting.
 Once you’re ready for release, you can use `cargo build --release` to compile
 your files with optimizations turned on:
 {==+==}
-使用 `cargo build --release` 命令，你可以开启优化选项编译你的程序，以准备发布:
+使用 `cargo build --release` 命令，会开启优化选项来编译程序，以准备发布:
 {==+==}
 
 

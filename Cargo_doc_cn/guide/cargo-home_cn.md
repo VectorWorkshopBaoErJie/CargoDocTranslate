@@ -12,23 +12,23 @@ The [home](https://crates.io/crates/home) crate provides an API for getting this
 By default, the Cargo home is located in `$HOME/.cargo/`.
 {==+==}
 "Cargo home" 目录的功能是为下载项和源代码提供缓存。
-在构建一个 [crate][def-crate] 时， Cargo 将下载的构建依赖存储在 Cargo home 中。
-可以通过设置 `CARGO_HOME` [环境变量][env] 来更改 Cargo home 的位置。
-如果需要在 Rust crate 中获取此信息，可以使用 home crate 提供的 API 。默认情况下，Cargo home 位于 `$HOME/.cargo/` 。
+ Cargo 在构建 [crate][def-crate] 时，将下载的依赖存储在该目录中。
+可以设置 `CARGO_HOME` [环境变量][env] 来更改目录位置。
+如果需要在 Rust crate 中获取此信息，可以使用 [home](https://crates.io/crates/home) crate 提供的 API 。默认情况该目录位于 `$HOME/.cargo/` 。
 {==+==}
 
 
 {==+==}
 Please note that the internal structure of the Cargo home is not stabilized and may be subject to change at any time.
 {==+==}
-请注意，Cargo home 的内部结构还未稳定，可能会有所更改。
+请注意，该目录的内部结构还未稳定，可能会有所更改。
 {==+==}
 
 
 {==+==}
 The Cargo home consists of following components:
 {==+==}
-Cargo home 由以下几个部分构成:
+由以下几个部分构成:
 {==+==}
 
 
@@ -44,7 +44,7 @@ Cargo home 由以下几个部分构成:
 	Cargo's global configuration file, see the [config entry in the reference][config].
 {==+==}
 * `config.toml`
-	Cargo 的全局配置文件，参阅 [参考部分的config][config] 内容。
+	Cargo 的全局配置文件，参阅 [参考部分的 config][config] 内容。
 {==+==}
 
 
@@ -56,6 +56,7 @@ Cargo home 由以下几个部分构成:
  	文件包含使用 [`cargo login`] 登录到 [registry][def-registry] 时使用的私人登录凭据。
 {==+==}
 
+
 {==+==}
 * `.crates.toml`, `.crates2.json`
 	These hidden files contain [package][def-package] information of crates installed via [`cargo install`]. Do NOT edit by hand!
@@ -64,11 +65,13 @@ Cargo home 由以下几个部分构成:
 	这两个隐藏文件包含了使用 [`cargo install`] 安装的 crate 的信息。请注意，不要手动编辑这些文件！
 {==+==}
 
+
 {==+==}
 ## Directories:
 {==+==}
 ## 目录项:
 {==+==}
+
 
 {==+==}
 * `bin`
@@ -79,6 +82,7 @@ To be able to make these binaries accessible, add the path of the directory to y
  `bin` 目录包含通过 [`cargo install`] 或 [`rustup`](https://rust-lang.github.io/rustup/) 安装的 crate 的可执行文件。
  要使这些二进制文件可访问，需要将该目录的路径添加到 `$PATH` 环境变量中。
 {==+==}
+
 
 {==+==}
  *  `git`
@@ -122,7 +126,7 @@ To be able to make these binaries accessible, add the path of the directory to y
 		The index is a bare git repository which contains the metadata (versions, dependencies etc) of all available crates of a registry.
 {==+==}
   * `registry/index`
-		是一个裸的 git 仓库，包含了某个仓库中所有可用 crate 的元数据信息，如版本、依赖等。。
+		是裸的 git 仓库，包含了某个仓库中所有可用 crate 的元数据信息，如版本、依赖等。
 {==+==}
 
 
@@ -147,7 +151,7 @@ To be able to make these binaries accessible, add the path of the directory to y
 {==+==}
 ## Caching the Cargo home in CI
 {==+==}
-## 在CI中缓存Cargo home
+## 在 CI 中缓存 Cargo home
 {==+==}
 
 
@@ -167,7 +171,7 @@ That can unnecessarily slow down the build as downloading, extracting, recompres
 {==+==}
 It should be sufficient to only cache the following directories across builds:
 {==+==}
-以下目录缓存即可足够跨构建缓存：
+交叉构建时，缓存以下目录就足够了：
 {==+==}
 
 
@@ -194,7 +198,7 @@ See the [`cargo vendor`] subcommand.
 {==+==}
 见 [`cargo vendor`] 子命令。
 
-译者注："vendor"这个词本身是个名词，意为 "小贩、销售商" ，在软件领域往往表示 "将源代码和其所依赖的第三方库统一管理" 的意思。像 npm 的 `node_modules` 。
+译者注："vendor" 这个词在软件领域往往表示 "将源代码和其所依赖的第三方库统一管理" 的意思。
 参考来源 [wiktionary-vendor](https://en.wiktionary.org/wiki/vendor) 。
 {==+==}
 
@@ -209,13 +213,13 @@ See the [`cargo vendor`] subcommand.
 {==+==}
 In theory, you can always remove any part of the cache and Cargo will do its best to restore sources if a crate needs them either by reextracting an archive or checking out a bare repo or by simply redownloading the sources from the web.
 {==+==}
-理论上，你可以随时删除缓存中的任何部分，Cargo 会尽其所能恢复源代码，如果一个 crate 需要它们，Cargo 可以重新解压缩存档、检出裸仓库，或者直接从网络上重新下载源代码。
+理论上，你可以随时删除缓存中的任何部分，Cargo 会尽其所能恢复源代码，在 crate 需要时，Cargo 可以重新解压缩存档、检出裸仓库，或者直接从网络重新下载源代码。
 {==+==}
 
 {==+==}
 Alternatively, the [cargo-cache](https://crates.io/crates/cargo-cache) crate provides a simple CLI tool to only clear selected parts of the cache or show sizes of its components in your command-line.
 {==+==}
-[cargo-cache](https://crates.io/crates/cargo-cache) 是一个提供了简单的命令行界面的工具，可以用来清理选定的缓存部分或者显示其组成部分的大小。
+[cargo-cache](https://crates.io/crates/cargo-cache) 提供了简单的命令行界面的工具，可以用来清理选定的缓存部分或者显示其组成部分的大小。
 {==+==}
 
 

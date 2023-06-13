@@ -8,14 +8,14 @@
 If you download an existing [package][def-package] that uses Cargo, it’s
 really easy to get going.
 {==+==}
-如果你下载了一个已经使用 Cargo 管理的 [包][def-package] ，那么开始使用它会非常简单。
+当下载采用 Cargo 管理的 [包][def-package] ，则使用包会非常便捷。
 {==+==}
 
 {==+==}
 First, get the package from somewhere. In this example, we’ll use `regex`
 cloned from its repository on GitHub:
 {==+==}
-首先，从某个地方获取包。在这个示例中，我们将使用从其 GitHub 存储库克隆的 `regex` 。
+首先，从某个位置获取包。在下面示例中，从 GitHub 存储库克隆 `regex` 。
 {==+==}
 
 {==+==}
